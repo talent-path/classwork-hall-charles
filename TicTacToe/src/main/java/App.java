@@ -149,7 +149,10 @@ public class App {
 
         //Get game mode
         int gameMode = getGameMode();
-        
+        while (gameMode < 1 || gameMode > 3)
+        {
+            gameMode = getGameMode();
+        }
         //Get the number of rounds for the game
         int rounds = getRounds();
         while(rounds < 1)
@@ -206,7 +209,6 @@ public class App {
                 while (!isFull(board)) {
                     //Get user and comp position
                     int userPosition = getUserInput();
-                    int user2Position = getUserInput();
 
                     //Check if the user position is valid, otherwise reprompt for new position
                     while (!isValid(board, userPosition))
@@ -219,6 +221,7 @@ public class App {
                         break;
                     }
 
+                    int user2Position = getUserInput();
                     //Check if the position is valid, otherwise get new position
                     while (!isValid(board, user2Position))
                         user2Position = getUserInput();
