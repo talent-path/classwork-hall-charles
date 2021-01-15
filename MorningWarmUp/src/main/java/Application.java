@@ -1,17 +1,10 @@
 public class Application {
     public static void main(String[] args) {
-
-//        System.out.println(middleOfThree(1,2,3));
-//        System.out.println(middleOfThree(1,3,2));
-//        System.out.println(middleOfThree(2,1,3));
-//        System.out.println(middleOfThree(2,3,1));
-//        System.out.println(middleOfThree(3,1,2));
-//        System.out.println(middleOfThree(3,2,1));
-//
-//        System.out.println(greatestOfThree(1,2,3));
-        fizzBuzz();
+        System.out.println(noTriples(new int[] {1,2,3}));
+        System.out.println(noTriples(new int[] {1,1,1}));
     }
 
+    //01-14-2021 Warmups
     //TODO work on this
     //Practice fizzBuzzBang (multiple of 7)
     public static void fizzBuzz()
@@ -36,7 +29,6 @@ public class Application {
             }
         }
     }
-
 
     public static int greatestOfThree(int a, int b, int c)
     {
@@ -90,6 +82,76 @@ public class Application {
         return mid;
     }
 
+    //01-15-2021 Warmups
+    //TODO work on some more
+    public static boolean canBalance(int[] nums)
+    {
+        //return true if we can split array so that earlier numbers
+        //equal later half
+        int leftSum = 0, rightSum = 0, leftIndex = 0, rightIndex = 0;
+        int totalSum = 0;
 
+        for(int i = 0; i < nums.length; i++)
+        {
+            totalSum += nums[i];
+        }
+
+        if(totalSum%2 != 0)//If odd, false
+        {
+            return false;
+        }
+
+        for(int i = 0; i < nums.length; i++) {
+
+            while(leftSum != (totalSum/2))
+            {
+                leftIndex = i;
+                leftSum += nums[i];
+            }
+        }
+
+
+        for(int i = 0; i < nums.length; i++) {
+
+            while(rightSum != totalSum/2)//Right sum check
+            {
+                rightIndex = i;
+                rightSum += nums[i];
+            }
+        }
+
+
+        if(rightIndex == leftIndex+1 || leftIndex == rightIndex-1)
+            return true;
+        else
+            return false;
+
+    }
+
+    public static boolean noTriples(int[] nums)
+    {
+        //Return true if no triples, false if there are triples
+        int count = 0, previous = 0;
+        boolean noTriple = false;
+        for(int i = 0; i < nums.length; i++)
+        {
+            if(i == 0)
+                previous = nums[0];
+            previous = nums[i-1];
+
+
+            if(nums[i] == previous)
+                count++;
+            else
+                count = 0;
+
+            if(count == 3)
+                return false;
+            else
+                return true;
+        }
+
+        return true;
+    }
 
 }

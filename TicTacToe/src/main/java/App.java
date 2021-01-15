@@ -4,9 +4,16 @@ import java.util.Arrays;
 public class App {
 
     public static void main(String[] args) {
+        //char[] test = {'O','O','O','O','M','S','P','Z','X'};
+        //System.out.println(getRoundOutcome(test));
         play();
     }
-    
+
+    public static int getGameMode()
+    {
+        return Console.readInt("Enter your game mode: 1(PvC) 2(PvP) 3 (CvP)");
+    }
+
     //Initializes an empty board state
     //return: a 1-d char array of empty space characters.
     public static void initBoard(char[] board)
@@ -18,7 +25,7 @@ public class App {
     //return: a user inputted integer value
     public static int getRounds()
     {
-        return Console.readInt("Enter the number of rounds you would like to play.");
+        return Console.readInt("Enter the number of rounds you would like to play. (At least 1)");
     }
 
     //TODO Think about a memory save feature
@@ -106,10 +113,8 @@ public class App {
             return 1;
         else if ((board[0] == 'X' && board[4] == 'X' && board[8] == 'X')//Diagonal wins
                 || (board[2] == 'X' && board[4] == 'X' && board[6] == 'X'))
-            return 1;
-
-        //Win conditions for computer
-        if ((board[0] == 'O' && board[1] == 'O' && board[2] == 'O')//Horizontal wins
+            return 1;//Else, check computer wins
+        else if ((board[0] == 'O' && board[1] == 'O' && board[2] == 'O')//Horizontal wins
                 || (board[3] == 'O' && board[4] == 'O' && board[5] == 'O')
                 || (board[6] == 'O' && board[7] == 'O' && board[8] == 'O'))
             return 2;
@@ -120,9 +125,10 @@ public class App {
         else if ((board[0] == 'O' && board[4] == 'O' && board[8] == 'O')//Diagonal wins
                 || (board[2] == 'O' && board[4] == 'O' && board[6] == 'O'))
             return 2;
-
-        //Else, draw
-        return 3;
+        else if(isFull(board))
+            //Else, if board is full and none of those conditions are met
+            return 3;
+        else return 3;
     }
 
     //Prints the results of the game
@@ -141,9 +147,15 @@ public class App {
         // Win/Loss/Draw counters
         int wins = 0, losses = 0, draws = 0;
 
+        //Get game mode
+        int gameMode = getGameMode();
+        
         //Get the number of rounds for the game
         int rounds = getRounds();
-
+        while(rounds < 1)
+        {
+            rounds = getRounds();
+        }
         //Play for number of rounds in the game
         for(int i = rounds; i > 0; i--) {
             System.out.println("Good luck!!");
@@ -152,56 +164,127 @@ public class App {
 
             //Init and print empty board
             initBoard(board);
-            printBoard(board);
 
             //While the game is still in play
-            while (!isFull(board)) {
-                //Get user and comp position
-                int userPosition = getUserInput();
-                int compPosition = getComputerInput(board);
-
-                //Check if the user position is valid, otherwise reprompt for new position
-                while (!isValid(board, userPosition))
-                    userPosition = getUserInput();
-
-                //Update the outcome of filling the board and check if win con is met
-                outcome = fillPosition(board, userPosition, 1);
-                if (outcome == 1 || outcome == 2) {
-                    printBoard(board);
-                    break;
-                }
-
-                //Check if the position is valid, otherwise get new position
-                while (!isValid(board, compPosition))
-                    compPosition = getComputerInput(board);
-
-                //Update the outcome of filling the board and check if win con is met
-                outcome = fillPosition(board, compPosition, 0);
-                if (outcome == 1 || outcome == 2) {
-                    printBoard(board);
-                    break;
-                }
-
-                //Print the board state
+            if(gameMode == 1)
+            {//PvC game mode
                 printBoard(board);
+                while (!isFull(board)) {
+                    //Get user and comp position
+                    int userPosition = getUserInput();
+                    int compPosition = getComputerInput(board);
+
+                    //Check if the user position is valid, otherwise reprompt for new position
+                    while (!isValid(board, userPosition))
+                        userPosition = getUserInput();
+
+                    //Update the outcome of filling the board and check if win con is met
+                    outcome = fillPosition(board, userPosition, 1);
+                    if (outcome == 1 || outcome == 2) {
+                        printBoard(board);
+                        break;
+                    }
+
+                    //Check if the position is valid, otherwise get new position
+                    while (!isValid(board, compPosition))
+                        compPosition = getComputerInput(board);
+
+                    //Update the outcome of filling the board and check if win con is met
+                    outcome = fillPosition(board, compPosition, 0);
+                    if (outcome == 1 || outcome == 2) {
+                        printBoard(board);
+                        break;
+                    }
+
+                    //Print the board state
+                    printBoard(board);
+                }//while loop
+            }
+            else if(gameMode == 2)
+            {//PvP game mode
+                printBoard(board);
+                while (!isFull(board)) {
+                    //Get user and comp position
+                    int userPosition = getUserInput();
+                    int user2Position = getUserInput();
+
+                    //Check if the user position is valid, otherwise reprompt for new position
+                    while (!isValid(board, userPosition))
+                        userPosition = getUserInput();
+
+                    //Update the outcome of filling the board and check if win con is met
+                    outcome = fillPosition(board, userPosition, 1);
+                    if (outcome == 1 || outcome == 2) {
+                        printBoard(board);
+                        break;
+                    }
+
+                    //Check if the position is valid, otherwise get new position
+                    while (!isValid(board, user2Position))
+                        user2Position = getUserInput();
+
+                    //Update the outcome of filling the board and check if win con is met
+                    outcome = fillPosition(board, user2Position, 0);
+                    if (outcome == 1 || outcome == 2) {
+                        printBoard(board);
+                        break;
+                    }
+
+                    //Print the board state
+                    printBoard(board);
+                }//while loop
+            }
+            else if(gameMode == 3)
+            {//CvP game mode
+                while (!isFull(board)) {
+                    //Get comp and user position
+                    int compPosition = getComputerInput(board);
+
+                    //Check if the comp position is valid, otherwise reprompt for new position
+                    while (!isValid(board, compPosition))
+                        compPosition = getComputerInput(board);
+
+                    //Update the outcome of filling the board and check if win con is met
+                    outcome = fillPosition(board, compPosition, 0);
+                    if (outcome == 1 || outcome == 2) {
+                        printBoard(board);
+                        break;
+                    }
+
+                    printBoard(board);//Show computer move
+                    int userPosition = getUserInput();//Get user position
+
+                    //Check if the user position is valid, otherwise get new position
+                    while (!isValid(board, userPosition))
+                        userPosition = getUserInput();
+
+                    //Update the outcome of filling the board and check if win con is met
+                    outcome = fillPosition(board, userPosition, 1);
+                    if (outcome == 1 || outcome == 2) {
+                        printBoard(board);
+                        break;
+                    }
+
+                    //Print the board state
+                }//while loop
             }
 
-            //outcome = getRoundOutcome(board);
-            if (outcome == 1)
-            {
-                System.out.println("Congratulations you won this round!\n");
-                wins++;
-            }
-            if (outcome == 2)
-            {
-                System.out.println("Uh oh, you lost this round!\n");
-                losses++;
-            }
-            if(outcome == 3)
+            if(outcome == 3 || isFull(board))
             {
                 System.out.println("Tough game, it's a draw!\n");
                 draws++;
             }
+            else if (outcome == 1)
+            {
+                System.out.println("Congratulations you won this round!\n");
+                wins++;
+            }
+            else if (outcome == 2)
+            {
+                System.out.println("Uh oh, you lost this round!\n");
+                losses++;
+            }
+
         }//for loop
 
         printResults(wins,losses,draws);
