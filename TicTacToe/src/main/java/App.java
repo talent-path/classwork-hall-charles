@@ -4,10 +4,8 @@ import java.util.Arrays;
 public class App {
 
     public static void main(String[] args) {
-        //char[] test = {'O','O','O','O','M','S','P','Z','X'};
-        //System.out.println(getRoundOutcome(test));
         play();
-    }
+    }s
 
     public static int getGameMode()
     {
@@ -28,8 +26,6 @@ public class App {
         return Console.readInt("Enter the number of rounds you would like to play. (At least 1)");
     }
 
-    //TODO Think about a memory save feature
-    // to remember already taken positions
     //Gets the computer's input
     //return: and integer value between 0 and 8
     public static int getComputerInput(char[] board)
@@ -59,6 +55,7 @@ public class App {
     }
 
     //Fills the position of the board and returns the outcome
+    //return: an integer that represents game outcome (1-3)
     public static int fillPosition(char[] board, int position, int user)
     {
         if(isValid(board, position))
@@ -272,7 +269,7 @@ public class App {
                 }//while loop
             }
 
-            if(outcome == 3 || isFull(board))
+            if(outcome == 3 || (isFull(board)))
             {
                 System.out.println("Tough game, it's a draw!\n");
                 draws++;
@@ -291,6 +288,5 @@ public class App {
         }//for loop
 
         printResults(wins,losses,draws);
-
     }
 }

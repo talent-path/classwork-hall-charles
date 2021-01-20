@@ -1,11 +1,12 @@
+import java.util.Arrays;
+
 public class Application {
     public static void main(String[] args) {
-        System.out.println(noTriples(new int[] {1,2,3}));
-        System.out.println(noTriples(new int[] {1,1,1}));
+        int[] arr1 = {1,2,3,4,8,10,4,3,2,1};
+        System.out.println(maxMirror(arr1));
     }
 
     //01-14-2021 Warmups
-    //TODO work on this
     //Practice fizzBuzzBang (multiple of 7)
     public static void fizzBuzz()
     {
@@ -40,7 +41,7 @@ public class Application {
         return maxNum;
     }
 
-    //TODO work on this too
+    //TODO work on this
     //Doesn't handle duplicates
     public static int middleOfThree(int a, int b, int c)
     {
@@ -153,5 +154,95 @@ public class Application {
 
         return true;
     }
+
+    //01-19-2021 Warmups
+    //Given two arrays of size 100 each representing a 100 digit number
+    //(Each element of the input array will have a value between 0-9)
+    //return the 101 element sum of these two numbers
+    //(In the output array, the digits should be between 0-9)
+    //The digit at 0 is the one's place, index 1 is the 10's place, etc.
+    public static int[] addBigNum(int[] left, int[] right)
+    {
+        int[] totalSum = new int[left.length+1];//Accounts for different sized arrays
+
+        //Iterate through the arrays
+        boolean carryOne = false;
+        int sum = Integer.MIN_VALUE;
+        for(int i = 0; i < left.length; i++)
+        {
+            if(carryOne)
+                sum = left[i] + right[i] + 1;//Get the sum of the index with carried one
+            else
+                sum = left[i] + right[i];//Get the sum of the index
+
+            if(sum > 9)//If the sum is greater than 10, carry is true
+            {
+                carryOne = true;
+                sum %= 10;
+            }
+            else
+                carryOne = false;
+
+            totalSum[i] = sum;
+        }
+
+        if(carryOne)
+        {
+            totalSum[totalSum.length-1] = 1;
+        }
+
+        return totalSum;
+    }
+
+    //Multiplication variant of the previous problem
+    //I.E. long multiplication implementation
+    public static int[] multiplyBigNum(int[] left, int[] right)
+    {
+        int[] totalProduct = new int[left.length + right.length];//Product length 
+        int carryNum = 0;
+        boolean carry = false;
+        
+        for(int i = 0; i < left.length; i++)//First loop to iterate through denominator
+        {
+            int temp = 0;
+            for(int j = 0; j < right.length; i++)//Second loop to iterate through numerator
+            {
+                
+            }
+
+        }
+
+        return totalProduct;
+    }
+
+    //01-20-2021
+    //return the length of a mirror contiguous set of numbers within an array
+    public static int maxMirror(int[] nums)
+    {
+        int maxLength = 0;
+
+        for(int i = 0; i < nums.length - maxLength; i++)
+        {
+            for(int j = nums.length-1; j >= i; j--)
+            {
+                if(nums[i] == nums[j])
+                {
+                    int currentLength = 1;
+                    for(int offset = 1; i + offset < nums.length && j - offset >= 0; offset++)
+                    {
+                        if( nums[i+offset] == nums[j-offset])
+                            currentLength++;
+                        else
+                            break;
+                    }
+                    if(currentLength > maxLength)
+                        maxLength = currentLength;
+                }
+            }
+        }
+
+        return maxLength;
+    }
+
 
 }
