@@ -275,22 +275,7 @@ public class Application {
     //Using a map, group strings on names by their starting letters.
     public static Map<String, List<String>> groupByFirstTwoLetters(String[] toGroup)
     {
-        Map<String, List<String>> newMap = new HashMap<>();
-
-        for(int i = 0; i < toGroup.length; i++)
-        {
-            String key = toGroup[i].substring(0,2);
-            if(!newMap.containsKey(key))
-            {
-                newMap.put(key, new ArrayList(Arrays.asList(toGroup[i])));
-            }
-            else
-            {
-                newMap.get(key).add(toGroup[i]);
-            }
-        }
-
-        return newMap;
+        return groupByFirstNLetters(toGroup, 2);
     }
 
     public static Map<String, List<String>> groupByFirstNLetters(String[] toGroup, int numLetters)
@@ -299,7 +284,7 @@ public class Application {
 
         for(int i = 0; i < toGroup.length; i++)
         {
-            String key = toGroup[i].substring(0,numLetters);
+            String key = toGroup[i].length() < numLetters+1 ? toGroup[i] : toGroup[i].substring(0,numLetters);
             if(!newMap.containsKey(key))
             {
                 newMap.put(key, new ArrayList(Arrays.asList(toGroup[i])));
