@@ -1,9 +1,36 @@
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Application {
     public static void main(String[] args) {
-        int[] arr1 = {1,2,3,4,8,10,4,3,2,1};
-        System.out.println(maxMirror(arr1));
+
+        List<String> testList = new ArrayList<>();
+        testList.add("Bobbero");
+        testList.add("Bobby");
+        testList.add("Robert");
+        testList.add("Roberto");
+        testList.add("Alicey");
+        testList.add("Alicia");
+
+        String[] allNames = testList.toArray(new String[0]);
+
+//        Map<String, List<String>> groupedNames = groupByFirstTwoLetters(allNames);
+//
+//        for (Map.Entry entry : groupedNames.entrySet())
+//        {
+//            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
+//        }
+
+        Map<String, List<String>> groupedNames2 = groupByFirstNLetters(allNames, 5);
+
+        for (Map.Entry entry : groupedNames2.entrySet())
+        {
+            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
+        }
+
     }
 
     //01-14-2021 Warmups
@@ -244,5 +271,46 @@ public class Application {
         return maxLength;
     }
 
+    //01-21-2021
+    //Using a map, group strings on names by their starting letters.
+    public static Map<String, List<String>> groupByFirstTwoLetters(String[] toGroup)
+    {
+        Map<String, List<String>> newMap = new HashMap<>();
+
+        for(int i = 0; i < toGroup.length; i++)
+        {
+            String key = toGroup[i].substring(0,2);
+            if(!newMap.containsKey(key))
+            {
+                newMap.put(key, new ArrayList(Arrays.asList(toGroup[i])));
+            }
+            else
+            {
+                newMap.get(key).add(toGroup[i]);
+            }
+        }
+
+        return newMap;
+    }
+
+    public static Map<String, List<String>> groupByFirstNLetters(String[] toGroup, int numLetters)
+    {
+        Map<String, List<String>> newMap = new HashMap<>();
+
+        for(int i = 0; i < toGroup.length; i++)
+        {
+            String key = toGroup[i].substring(0,numLetters);
+            if(!newMap.containsKey(key))
+            {
+                newMap.put(key, new ArrayList(Arrays.asList(toGroup[i])));
+            }
+            else
+            {
+                newMap.get(key).add(toGroup[i]);
+            }
+        }
+
+        return newMap;
+    }
 
 }
