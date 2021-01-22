@@ -7,29 +7,7 @@ import java.util.HashMap;
 public class Application {
     public static void main(String[] args) {
 
-        List<String> testList = new ArrayList<>();
-        testList.add("Bobbero");
-        testList.add("Bobby");
-        testList.add("Robert");
-        testList.add("Roberto");
-        testList.add("Alicey");
-        testList.add("Alicia");
-
-        String[] allNames = testList.toArray(new String[0]);
-
-//        Map<String, List<String>> groupedNames = groupByFirstTwoLetters(allNames);
-//
-//        for (Map.Entry entry : groupedNames.entrySet())
-//        {
-//            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
-//        }
-
-        Map<String, List<String>> groupedNames2 = groupByFirstNLetters(allNames, 5);
-
-        for (Map.Entry entry : groupedNames2.entrySet())
-        {
-            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
-        }
+        System.out.println(longestCollatzSequence());
 
     }
 
@@ -296,6 +274,35 @@ public class Application {
         }
 
         return newMap;
+    }
+
+    //01-22-2021
+    //Collatz Sequence
+    public static long longestCollatzSequence() {
+        int maxLength = 0;
+        long maxNum = 0;
+
+        for (int i = 2; i <= 1000000; i++)
+        {
+            int curLength = 1;
+            long num = i;
+            while (num != 1)
+            {
+                if ((num % 2) == 0)
+                    num /= 2;
+                else if(num%2 == 1)
+                    num = num * 3 + 1;
+                curLength++;
+            }
+
+            if (curLength > maxLength)
+            {
+                maxLength = curLength;
+                maxNum = i;
+            }
+        }
+
+        return maxNum;
     }
 
 }
