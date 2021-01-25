@@ -10,12 +10,14 @@ public class Console {
     public static void print(String msg) {
         System.out.print(msg);
     }
+
     public static float readFloat(String msg)
     {
         boolean isValid = false;
         float parsedFloat = Float.MIN_VALUE;
         return parsedFloat;
     }
+
     public static double readDouble(String msg, double min, double max) {
         boolean isValid = false;
         double value = Double.MIN_VALUE;
@@ -29,6 +31,7 @@ public class Console {
         }
         return value;
     }
+
     public static double readDouble(String msg) {
         Scanner scan = new Scanner(System.in);
         boolean isValid = false;
@@ -44,6 +47,7 @@ public class Console {
         }
         return parsedDouble;
     }
+
     public static int readInt(String msg, int min, int max) {
         boolean isValid = false;
         int value = Integer.MIN_VALUE;

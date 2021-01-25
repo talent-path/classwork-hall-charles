@@ -15,13 +15,16 @@ public class Orc extends NonPlayerCharacter {
 
     public String makeChoice() {
 
-        int random = Console.randInt(1,2);
+        int random = Console.randInt(1,3);
 
         if(random == 1) {
             return "attack";
         }
         else if(random == 2) {
             return "use potion";
+        }
+        else if(random == 3) {
+            return "heavy attack";
         }
 
         return "attack";

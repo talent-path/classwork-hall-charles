@@ -15,9 +15,10 @@ public class PlayerCharacter extends Character {
     public String makeChoice() {
         Scanner scan = new Scanner(System.in);
 
+        System.out.println("__________________________________");
         System.out.println("Choose your next move!");
-        System.out.println("___________________________");
-        System.out.println("Attack | Heavy Attack |Use Potion");
+        System.out.println("__________________________________");
+        System.out.println("Attack | Heavy Attack | Use Potion");
         String choice = scan.nextLine();
 
         return choice;

@@ -1,16 +1,5 @@
 package com.tp.rpg;
 
-//TODO:
-//      add a concept of hitpoints
-//      add a concept of armor (or maybe multiple pieces of armor)
-//      add a concept of a weapon (or maybe multiple weapons)
-//Stretch goals:
-//      add a potion class/interface that the character can drink instead of attacking
-//      let the character "disarm" the opponent instead of attacking
-//          base this on the weapons used?
-//      let the character choose to "block" or "defend"
-//          could stun the opponent if they attack?
-//          could give us TWO attacks on the next round?
 public abstract class Character implements Chooser {
 
     public String name;
@@ -22,7 +11,7 @@ public abstract class Character implements Chooser {
     //Normal attack handling
     //Guaranteed damage with chance to critically strike
     public void attack( Character defender ){
-        if(name.equals("Orc") || name.equals("Goblin")) { //NPC attack handling
+        if(name.equals("Orc") || name.equals("Goblin") || name.equals("Witch")) { //NPC attack handling
             if(isCrit()) { // Critical strike
                 System.out.println("The " + name + " critically strikes dealing " + getCritDamage() + " damage!");
                 defender.takeDamage(getCritDamage());
@@ -50,12 +39,12 @@ public abstract class Character implements Chooser {
     public void heavyAttack( Character defender) {
         int heavyStrike = attackPoints + (attackPoints/2);
 
-        if(name.equals("Orc") || name.equals("Goblin")) { // NPC heavy attack handling
+        if(name.equals("Orc") || name.equals("Goblin") || name.equals("Witch")) { // NPC heavy attack handling
             if(isMiss()) { // Miss
-                System.out.println("The " + name + "tries to strike heavily, but misses!");
+                System.out.println("The " + name + " tries to strike heavily, but misses!");
             }
             else { // Heavy attack
-                System.out.println("The " + name + "strikes heavily, dealing " + heavyStrike + " damage!");
+                System.out.println("The " + name + " strikes heavily, dealing " + heavyStrike + " damage!");
                 defender.takeDamage(heavyStrike);
             }
         }
@@ -63,17 +52,20 @@ public abstract class Character implements Chooser {
             if(isMiss()) { // Miss
                 System.out.println("You attempt to heavily strike, but miss!");
             }
-            System.out.println("You heavily strike the " + defender.name + " for " + heavyStrike + " damage!");
+            else {
+                System.out.println("You heavily strike the " + defender.name + " for " + heavyStrike + " damage!");
+                defender.takeDamage(heavyStrike);
+            }
         }
     }
 
     //Potion handling
     public void usePotion() {
-        if(name.equals("Orc") || name.equals("Goblin")) {
-            System.out.println("The " + name + " consumes a potion, healing for 30 hp!" );
+        if(name.equals("Orc") || name.equals("Goblin") || name.equals("Witch")) {
+            System.out.println("The " + name + " consumes a health potion, healing for 30 hp!" );
         }
         else {
-            System.out.println("You strike the consume a potion, healing for 30 hp!");
+            System.out.println("You consume a health potion, healing for 30 hp!");
         }
         healthPoints += 30;
         potionCount -= 1;

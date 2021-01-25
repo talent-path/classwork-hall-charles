@@ -2,6 +2,7 @@ package com.tp.rpg;
 
 import com.tp.rpg.enemies.Goblin;
 import com.tp.rpg.enemies.Orc;
+import com.tp.rpg.enemies.Witch;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -61,13 +62,16 @@ public class Application {
     //create some NPC object (with armor & weapons?)
     private static NonPlayerCharacter setUpEnemy() {
 
-        int random = Console.randInt(1,2);
+        int random = Console.randInt(1,3);
 
         if(random == 1) {
             return new Goblin();
         }
         else if(random == 2) {
             return new Orc();
+        }
+        else if(random == 3) {
+            return new Witch();
         }
 
         return new Goblin();
@@ -78,10 +82,10 @@ public class Application {
         Character attacker = a;
         Character defender = b;
 
-        while( a.isAlive(a.getHealthPoints()) && b.isAlive(b.getHealthPoints()) ){
+        while(a.isAlive(a.getHealthPoints()) && b.isAlive(b.getHealthPoints())){
             String choice = attacker.makeChoice();
 
-            if( choice.toLowerCase().equals("attack")) {
+            if (choice.toLowerCase().equals("attack")) {
                 attacker.attack(defender);
             } else if (choice.toLowerCase().equals("use potion") && attacker.getPotionCount() > 0) {
                 attacker.usePotion();
