@@ -1,11 +1,15 @@
 package com.tp.rpg;
 
+import com.tp.rpg.enemies.Goblin;
+import com.tp.rpg.enemies.Orc;
+
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
 
         PlayerCharacter pc = setUpPlayer();
+        int kills = 0;
 
         while( pc.isAlive(pc.healthPoints) ){
             NonPlayerCharacter enemy = setUpEnemy();
@@ -14,11 +18,12 @@ public class Application {
                 System.out.println("\nLook out! An Orc appears!");
             else
                 System.out.println("\nLook out! A " + enemy.getName() + " appears!");
-            battle(pc, enemy);
+
+            kills = battle(pc, enemy, kills);
 
         }
 
-        gameOverScreen(pc);
+        gameOverScreen(pc, kills);
 
     }
 
@@ -68,23 +73,18 @@ public class Application {
     }
 
     //a and b battle until one is dead
-    private static void battle(Character a, Character b) {
+    private static int battle(Character a, Character b, int kills) {
         Character attacker = a;
         Character defender = b;
-        int kills = 0;
 
         while( a.isAlive(a.healthPoints) && b.isAlive(b.healthPoints) ){
             String choice = attacker.makeChoice();
 
             if( choice.equals("attack")) {
                 attacker.attack(defender);
-            } else if (choice.equals("block")) {
-                attacker.block(defender);
-            }
-            else if (choice.equals("use potion") && attacker.potionCount > 0) {
+            } else if (choice.equals("use potion") && attacker.potionCount > 0) {
                 attacker.usePotion();
             }
-
 
             Character temp = attacker;
             attacker = defender;
@@ -96,12 +96,20 @@ public class Application {
 
         if(b.healthPoints <= 0) {
             System.out.println("Excellent, you have defeated the enemy!");
+            kills++;
         }
+
+        return kills;
     }
 
     //display some message
-    private static void gameOverScreen(Character player) {
+    private static void gameOverScreen(Character player, int kills) {
         System.out.println("\nGAME OVER");
-        System.out.println("Congratulations, " + player.name + ",you tried your best and slayed many enemies.");
+        if(kills == 0) {
+            System.out.println("Impressive, " + player.name + ", you managed to kill absolutely " + kills + "enemies.");
+        }
+        else if(kills == 1)
+            System.out.println("Uh, " + player.name + ", you only killed " + kills + " enemy. Disappointing performance.");
+        System.out.println("Congratulations, " + player.name + ", you defeated " + kills + " enemies.");
     }
 }

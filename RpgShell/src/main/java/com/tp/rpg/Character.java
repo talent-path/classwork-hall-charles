@@ -14,14 +14,20 @@ package com.tp.rpg;
 public abstract class Character implements Chooser {
 
     //TODO: add fields for armor(s) and weapon(s)
-    String name;
-    int armorPoints;
-    int attackPoints;
-    int healthPoints;
-    int potionCount;
+    public String name;
+    public int armorPoints;
+    public int attackPoints;
+    public int healthPoints;
+    public int potionCount;
 
 
     public void attack( Character defender ){
+        if(name.equals("Orc") || name.equals("Goblin")) {
+            System.out.println("The " + name + " strikes dealing " + attackPoints + " damage!" );
+        }
+        else {
+            System.out.println("You strike the " + defender.name + " for " + attackPoints + " damage!");
+        }
         defender.takeDamage(attackPoints);
     }
 
@@ -30,6 +36,12 @@ public abstract class Character implements Chooser {
     }
 
     public void usePotion() {
+        if(name.equals("Orc") || name.equals("Goblin")) {
+            System.out.println("The " + name + " consumes a potion, healing for 30 hp!" );
+        }
+        else {
+            System.out.println("You strike the consume a potion, healing for 30 hp!");
+        }
         healthPoints += 30;
         potionCount -= 1;
     }

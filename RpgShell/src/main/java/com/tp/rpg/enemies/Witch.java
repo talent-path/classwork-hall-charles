@@ -1,4 +1,7 @@
-package com.tp.rpg;
+package com.tp.rpg.enemies;
+
+import com.tp.rpg.Console;
+import com.tp.rpg.NonPlayerCharacter;
 
 public class Witch extends NonPlayerCharacter {
 

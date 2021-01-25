@@ -1,5 +1,4 @@
 package com.tp.rpg;
-import com.tp.rpg.weapons.*;
 
 import java.util.Scanner;
 
@@ -19,7 +18,7 @@ public class PlayerCharacter extends Character {
 
         System.out.println("Choose your next move!");
         System.out.println("___________________________");
-        System.out.println("Attack | Block | Use Potion");
+        System.out.println("Attack | Use Potion");
         String choice = scan.nextLine();
 
         return choice;
@@ -32,7 +31,7 @@ public class PlayerCharacter extends Character {
             return 30;
         } else if(weapon.equals("short sword")) {
             return 30;
-        } else if(weapon.equals("dagger")){
+        } else if(weapon.equals("dagger")) {
             return 20;
         } else {
             return 10;

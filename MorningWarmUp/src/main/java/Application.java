@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Application {
     public static void main(String[] args) {
 
-        System.out.println(longestCollatzSequence());
+        System.out.println(flipInt(12345));
 
     }
 
@@ -303,6 +303,22 @@ public class Application {
         }
 
         return maxNum;
+    }
+
+    //01-25-2021
+    //Flip an integer without using String or arrays
+    public static int flipInt(int flip)
+    {
+        int flippedInt = 0;
+
+        while (flip != 0) {
+            flippedInt *= 10; // Add another ones place to flipInt
+            flippedInt += flip % 10; // Add the next digit to flipInt
+
+            flip /= 10; // Take away last digit from flip
+        }
+
+        return flippedInt;
     }
 
 }

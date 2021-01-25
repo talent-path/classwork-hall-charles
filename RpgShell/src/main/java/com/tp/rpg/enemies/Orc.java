@@ -1,11 +1,14 @@
-package com.tp.rpg;
+package com.tp.rpg.enemies;
+
+import com.tp.rpg.Console;
+import com.tp.rpg.NonPlayerCharacter;
 
 public class Orc extends NonPlayerCharacter {
 
     public Orc() {
         this.name = "Orc";
-        this.healthPoints = 100;
-        this.attackPoints = 40;
+        this.healthPoints = 80;
+        this.attackPoints = 30;
         this.armorPoints = 10;
         this.potionCount = 1;
     }
