@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Application {
     public static void main(String[] args) {
 
-        System.out.println(flipInt(12345));
+        System.out.println(lengthOfLongestSubstring("abcabcbb"));
 
     }
 
@@ -321,4 +321,34 @@ public class Application {
         return flippedInt;
     }
 
+    //01-25-2021 Technical Interview Prep
+    public static int lengthOfLongestSubstring(String s) {
+
+        ArrayList<String> combinations = new ArrayList<>();
+
+        for(int i = 0; i < s.length(); i++) {
+            for(int j = 1; j <= s.length() - i; j++ ) {
+                combinations.add(s.substring(i, i+j));
+            }
+        }
+
+        String max = "";
+        for(int i = 0; i < combinations.size(); i++) {
+            if(combinations.get(i).length() > max.length() && !isDuplicate(combinations.get(i)))
+                max = combinations.get(i);
+        }
+
+        return max.length();
+    }
+
+    public static boolean isDuplicate(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            for (int j = i + 1; j < str.length(); j++) {
+                if (str.charAt(i) == str.charAt(j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
