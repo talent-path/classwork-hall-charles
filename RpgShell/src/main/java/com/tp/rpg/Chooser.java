@@ -4,6 +4,5 @@ package com.tp.rpg;
 //provides a choice of action
 public interface Chooser {
 
-    //TODO: represent choices more directly
     String makeChoice();
 }

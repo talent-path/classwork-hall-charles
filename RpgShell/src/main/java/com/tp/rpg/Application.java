@@ -3,6 +3,7 @@ package com.tp.rpg;
 import com.tp.rpg.enemies.Goblin;
 import com.tp.rpg.enemies.Orc;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Application {
@@ -77,24 +78,26 @@ public class Application {
         Character attacker = a;
         Character defender = b;
 
-        while( a.isAlive(a.healthPoints) && b.isAlive(b.healthPoints) ){
+        while( a.isAlive(a.getHealthPoints()) && b.isAlive(b.getHealthPoints()) ){
             String choice = attacker.makeChoice();
 
-            if( choice.equals("attack")) {
+            if( choice.toLowerCase().equals("attack")) {
                 attacker.attack(defender);
-            } else if (choice.equals("use potion") && attacker.potionCount > 0) {
+            } else if (choice.toLowerCase().equals("use potion") && attacker.getPotionCount() > 0) {
                 attacker.usePotion();
+            } else if (choice.toLowerCase().equals("heavy attack")) {
+                attacker.heavyAttack(defender);
             }
 
             Character temp = attacker;
             attacker = defender;
             defender = temp;
 
-            System.out.println("Current Health: " + a.healthPoints);
-            System.out.println("Enemy Health: " + b.healthPoints);
+            System.out.println("Current Health: " + a.getHealthPoints());
+            System.out.println("Enemy Health: " + b.getHealthPoints());
         }
 
-        if(b.healthPoints <= 0) {
+        if(b.getHealthPoints() <= 0) {
             System.out.println("Excellent, you have defeated the enemy!");
             kills++;
         }
@@ -106,10 +109,10 @@ public class Application {
     private static void gameOverScreen(Character player, int kills) {
         System.out.println("\nGAME OVER");
         if(kills == 0) {
-            System.out.println("Impressive, " + player.name + ", you managed to kill absolutely " + kills + "enemies.");
+            System.out.println("Impressive, " + player.getName() + ", you managed to kill absolutely " + kills + "enemies.");
         }
         else if(kills == 1)
-            System.out.println("Uh, " + player.name + ", you only killed " + kills + " enemy. Disappointing performance.");
-        System.out.println("Congratulations, " + player.name + ", you defeated " + kills + " enemies.");
+            System.out.println("Uh, " + player.getName() + ", you only killed " + kills + " enemy. Disappointing performance.");
+        System.out.println("Congratulations, " + player.getName() + ", you defeated " + kills + " enemies.");
     }
 }

@@ -3,12 +3,11 @@ package com.tp.rpg;
 import java.util.Scanner;
 
 public class PlayerCharacter extends Character {
-    //use scanner here to get something from the user
 
     public PlayerCharacter(String name, String weapon, String armor, int potionCount) {
         this.name = name;
         this.healthPoints = 100;
-        this.attackPoints = getAttackPoints(weapon);
+        this.attackPoints = getWeaponAttackPoints(weapon);
         this.armorPoints = getArmorPoints(armor);
         this.potionCount = potionCount;
     }
@@ -18,13 +17,13 @@ public class PlayerCharacter extends Character {
 
         System.out.println("Choose your next move!");
         System.out.println("___________________________");
-        System.out.println("Attack | Use Potion");
+        System.out.println("Attack | Heavy Attack |Use Potion");
         String choice = scan.nextLine();
 
         return choice;
     }
 
-    public int getAttackPoints(String weapon) {
+    public int getWeaponAttackPoints(String weapon) {
         if(weapon.equals("axe")) {
             return 50;
         } else if(weapon.equals("spear")) {
@@ -50,5 +49,6 @@ public class PlayerCharacter extends Character {
             return 20;
         }
     }
+
 
 }
