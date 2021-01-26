@@ -7,7 +7,15 @@ import java.util.HashMap;
 public class Application {
     public static void main(String[] args) {
 
-        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println("6 is a perfect number: " + isPerfect( 6));
+        System.out.println("28 is a perfect number: " + isPerfect( 28));
+        System.out.println("496 is a perfect number: " + isPerfect( 496));
+        System.out.println("8128 is a perfect number: " + isPerfect( 8128));
+        System.out.println();
+        System.out.println("4 is a perfect number: " + isPerfect( 4));
+        System.out.println("18 is a perfect number: " + isPerfect( 18));
+        System.out.println("358 is a perfect number: " + isPerfect( 358));
+        System.out.println("1204 is a perfect number: " + isPerfect( 1204));
 
     }
 
@@ -351,4 +359,28 @@ public class Application {
         }
         return false;
     }
+
+    //01-26-2021
+    //A perfect number is one where the sum of all factors = 2x that number
+    public static boolean isPerfect(int num) {
+        int denom = num;
+        int sum = 0;
+
+        while(denom != 0) {
+
+            if(num%denom == 0) {
+                sum += denom;
+                denom--;
+            }
+            else {
+                denom--;
+            }
+
+        }
+
+        return sum == (num*2);
+
+    }
+
+
 }
