@@ -23,15 +23,19 @@ public class HangmanService {
     }
 
 
-    public HangmanViewModel makeGuess(Integer gameId, String guess) {
+    public HangmanViewModel makeGuess(Integer gameId, String guess)
+            throws InvalidGuessException, NullGuessException, InvalidGameIdException {
+
+        if(guess == null) {
+            throw new NullGuessException("Guess is null");
+        }
+
         if( guess.length() != 1){
-            //TODO: make and throw a custom exception here
-            return null;
+            throw new InvalidGuessException("Invalid guess, too long: " + guess);
         }
 
         if( gameId == null ){
-            //TODO: make and throw a custom exception here
-            return null;
+            throw new InvalidGameIdException("Game Id: " + gameId + "DNE");
         }
 
         HangmanGame game = dao.getGameById(gameId);

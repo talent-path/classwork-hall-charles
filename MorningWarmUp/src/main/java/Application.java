@@ -7,15 +7,17 @@ import java.util.HashMap;
 public class Application {
     public static void main(String[] args) {
 
-        System.out.println("6 is a perfect number: " + isPerfect( 6));
-        System.out.println("28 is a perfect number: " + isPerfect( 28));
-        System.out.println("496 is a perfect number: " + isPerfect( 496));
-        System.out.println("8128 is a perfect number: " + isPerfect( 8128));
-        System.out.println();
-        System.out.println("4 is a perfect number: " + isPerfect( 4));
-        System.out.println("18 is a perfect number: " + isPerfect( 18));
-        System.out.println("358 is a perfect number: " + isPerfect( 358));
-        System.out.println("1204 is a perfect number: " + isPerfect( 1204));
+        char[][] grid = { {'3', '.', '6', '5', '.', '8', '4', '.', '.'},
+                          {'5', '2', '.', '.', '.', '.', '.', '.', '.'},
+                          {'.', '8', '7', '.', '.', '.', '.', '3', '1'},
+                          {'.', '.', '3', '.', '1', '.', '.', '8', '.'},
+                          {'9', '.', '.', '8', '6', '3', '.', '.', '5'},
+                          {'.', '5', '.', '.', '9', '.', '6', '.', '.'},
+                          {'1', '3', '.', '.', '.', '.', '2', '5', '.'},
+                          {'.', '.', '.', '.', '.', '.', '.', '7', '4'},
+                          {'.', '.', '5', '2', '.', '6', '3', '.', '.'} };
+
+        System.out.println(isValidSudoku(grid));
 
     }
 
@@ -367,7 +369,6 @@ public class Application {
         int sum = 0;
 
         while(denom != 0) {
-
             if(num%denom == 0) {
                 sum += denom;
                 denom--;
@@ -375,11 +376,67 @@ public class Application {
             else {
                 denom--;
             }
+        }
+        return sum == (num*2);
+    }
+
+    //01-27-2021
+    public static boolean isValidSudoku(char[][]board) {
+        boolean valid = true;
+        List<Character> row = new ArrayList<>();
+        List<Character> column = new ArrayList<>();
+        List<Character> box = new ArrayList<>();
+
+        for(int i = 0; i < board.length; i++) {// iterate through the board
+            //Clear previous rows/columns
+            row.clear();
+            column.clear();
+            box.clear();
+
+            for(int j = 0; j < board[i].length; j++) {
+
+                if(board[i][j] != '.') {
+                    row.add(board[i][j]);//Fill temp list
+                }
+
+                if(board[j][i] != '.') {
+                    column.add(board[j][i]);//Fill column list
+                }
+
+            }
+
+            //Get 3x3 grid numbers
+            //TODO Fix this loop
+            for(int j = 0; j < 3; j++) {
+                for(int k = 0; k < 3; k++) {
+                    if(board[j][k] != '.') {
+                        box.add(board[j][k]);
+                    }
+                }
+            }
+
+
+            //Check current columns/rows for duplicates
+            valid = checkList(row) && checkList(column) && checkList(box);
 
         }
 
-        return sum == (num*2);
+        return valid;
 
+    }
+
+    public static boolean checkList(List<Character> list) {
+        boolean valid = true;
+
+        for(int k = 0; k < list.size(); k++) {//Check the rows and columns
+            for(int l = k + 1; l < list.size(); l++) {
+                if(list.get(k) == list.get(l)) {
+                    valid = false;
+                }
+            }
+        }
+
+        return valid;
     }
 
 
