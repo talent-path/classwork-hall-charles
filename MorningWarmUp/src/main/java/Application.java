@@ -1,8 +1,4 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,8 +13,22 @@ public class Application {
                           {'.', '.', '.', '.', '.', '.', '.', '7', '4'},
                           {'.', '.', '5', '2', '.', '6', '3', '.', '.'} };
 
-        System.out.println(isValidSudoku(grid));
+        char[][] board = {
+                {'5','3','.','.','7','.','.','.','.'},
+                {'6','.','.','1','9','5','.','.','.'},
+                {'.','9','8','.','.','.','.','6','.'},
+                {'8','.','.','.','6','.','.','.','3'},
+                {'4','.','.','8','.','3','.','.','1'},
+                {'7','.','.','.','2','.','.','.','6'},
+                {'.','6','.','.','.','.','2','8','.'},
+                {'.','.','.','4','1','9','.','.','5'},
+                {'.','.','.','.','8','.','.','7','9'}
+        };
 
+
+//        int num = 3+48;
+//        char c  = (char)num;
+//        System.out.println(c);
     }
 
     //01-14-2021 Warmups
@@ -381,49 +391,49 @@ public class Application {
     }
 
     //01-27-2021
-    public static boolean isValidSudoku(char[][]board) {
-        boolean valid = true;
-        List<Character> row = new ArrayList<>();
-        List<Character> column = new ArrayList<>();
-        List<Character> box = new ArrayList<>();
-
-        for(int i = 0; i < board.length; i++) {// iterate through the board
-            //Clear previous rows/columns
-            row.clear();
-            column.clear();
-            box.clear();
-
-            for(int j = 0; j < board[i].length; j++) {
-
-                if(board[i][j] != '.') {
-                    row.add(board[i][j]);//Fill temp list
-                }
-
-                if(board[j][i] != '.') {
-                    column.add(board[j][i]);//Fill column list
-                }
-
-            }
-
-            //Get 3x3 grid numbers
-            //TODO Fix this loop
-            for(int j = 0; j < 3; j++) {
-                for(int k = 0; k < 3; k++) {
-                    if(board[j][k] != '.') {
-                        box.add(board[j][k]);
-                    }
-                }
-            }
-
-
-            //Check current columns/rows for duplicates
-            valid = checkList(row) && checkList(column) && checkList(box);
-
-        }
-
-        return valid;
-
-    }
+//    public static boolean isValidSudoku(char[][]board) {
+//        boolean valid = true;
+//        List<Character> row = new ArrayList<>();
+//        List<Character> column = new ArrayList<>();
+//        List<Character> box = new ArrayList<>();
+//
+//        for(int i = 0; i < board.length; i++) {// iterate through the board
+//            //Clear previous rows/columns
+//            row.clear();
+//            column.clear();
+//            box.clear();
+//
+//            for(int j = 0; j < board[i].length; j++) {
+//
+//                if(board[i][j] != '.') {
+//                    row.add(board[i][j]);//Fill temp list
+//                }
+//
+//                if(board[j][i] != '.') {
+//                    column.add(board[j][i]);//Fill column list
+//                }
+//
+//            }
+//
+//            //Get 3x3 grid numbers
+//            //TODO Fix this loop
+//            for(int j = 0; j < 3; j++) {
+//                for(int k = 0; k < 3; k++) {
+//                    if(board[j][k] != '.') {
+//                        box.add(board[j][k]);
+//                    }
+//                }
+//            }
+//
+//
+//            //Check current columns/rows for duplicates
+//            valid = checkList(row) && checkList(column) && checkList(box);
+//
+//        }
+//
+//        return valid;
+//
+//    }
 
     public static boolean checkList(List<Character> list) {
         boolean valid = true;
@@ -439,5 +449,54 @@ public class Application {
         return valid;
     }
 
+    //Temp sudoku solution for 01-28-2021 problem
+    public static boolean isValidSudoku(char[][] board) {
+        Set<String> set = new HashSet<>();
+        for(int row = 0; row < board.length; row++) {
+            for(int col = 0; col < board[0].length; col++) {
+                char val = board[row][col];
+                if(val != '.') {
+                    int box = (row / 3 * 3) + (col / 3);
+                    if(!set.add("r" + row + val)
+                    || !set.add("c" + col + val)
+                    || !set.add("b" + box + val))
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void solveSudoku(char[][] board) {
+        solve(board);
+    }
+
+    public boolean solve(char[][] board) {
+        for(int row = 0; row < board.length; row++) {//Iterate through board
+            for(int col = 0; col < board[0].length; col++) {
+                //If board spot is empty, try and fill in values 1-9
+                //else, if full, move on to next spot
+                if(board[row][col] == '.') {
+                    for(int valueToFill = 1; valueToFill <= 9; valueToFill++) {
+                        char charValueToFill = (char)(valueToFill+48);
+                        board[row][col] = charValueToFill;
+                        //Once the value is filled, check to see if it is valid && recursively call solve
+                        //If it is not valid, replace with the empty character and try again
+                        if(isValidSudoku(board) && solve(board)) {
+                            return true;
+                        }
+                       //Set back to empty character
+                        board[row][col] = '.';
+
+                    }
+                    //If the program reaches this point, it tried all possible numbers and a solution
+                    //isn't possible, return false
+                    return false;
+                }
+            }
+        }
+        //If the program reaches this point, the whole board is filled
+        return true;
+    }
 
 }
