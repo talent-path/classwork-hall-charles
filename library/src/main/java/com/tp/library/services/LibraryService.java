@@ -27,6 +27,13 @@ public class LibraryService {
         return this.getBookById(id);
     }
 
+    //User defined book
+    public Book defineNewUserBook(String title, List<String> authors, Integer publishedYear) throws NullTitleException,
+            NullAuthorException, NullPublishedYearException, NullBookIdException{
+        int id = dao.defineNewBook(title, authors, publishedYear);
+        return this.getBookById(id);
+    }
+
     //READ
     public List<Book> getAllBooks() {
         return dao.getAllBooks();

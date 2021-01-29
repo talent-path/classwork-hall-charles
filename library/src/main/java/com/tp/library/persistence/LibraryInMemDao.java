@@ -68,7 +68,6 @@ public class LibraryInMemDao implements LibraryDao{
 
     @Override
     public List<Book> getBooksByAuthor(String author) throws NullAuthorException {
-        //TODO Implement lookup logic
         if(author == null)
             throw new NullAuthorException("Authors list is null");
 
@@ -86,7 +85,6 @@ public class LibraryInMemDao implements LibraryDao{
 
     @Override
     public List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException {
-        //TODO Implement lookup logic
         if(year == null)
             throw new NullPublishedYearException("Published year is null.");
 
@@ -131,10 +129,23 @@ public class LibraryInMemDao implements LibraryDao{
     //DELETE
     @Override
     public void removeBook(Integer bookId) throws NullBookIdException {
-        //TODO implement removing a book
         if(bookId == null)
             throw new NullBookIdException("Book Id is null.");
 
+        int removeIndex = -1;
 
+        for(int i = 0; i < allBooks.size(); i++) {//Iterate through all books
+            if(allBooks.get(i).getBookId().equals(bookId)) {//Find matching book id
+                removeIndex = i;//Grab the index of the book we want to remove
+                break;
+            }
+        }
+
+        if(removeIndex != -1) {
+            allBooks.remove(removeIndex);
+        }
+        else {
+            throw new NullBookIdException("Could not find game with ID " + bookId + " in library.");
+        }
     }
 }

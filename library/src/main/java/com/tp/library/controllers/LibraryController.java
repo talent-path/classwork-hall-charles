@@ -15,10 +15,15 @@ public class LibraryController {
     LibraryService service;
 
     //CREATE
-    @PostMapping("/new")
-    public Book defineNewBook() throws NullBookIdException, NullTitleException, NullAuthorException, NullPublishedYearException{
+    @PostMapping("/new")//Generates the default book
+    public Book defineNewBook() throws NullBookIdException, NullTitleException, NullAuthorException, NullPublishedYearException {
         Book book = service.defineNewBook();
         return book;
+    }
+
+    @PostMapping("/new/user")
+    public Book defineNewUserBook(@RequestBody NewBookRequest request) throws NullBookIdException, NullTitleException, NullAuthorException, NullPublishedYearException{
+        return service.defineNewUserBook(request.getTitle(), request.getAuthors(), request.getPublishedYear());
     }
 
     //READ
