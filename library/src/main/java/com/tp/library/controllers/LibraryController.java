@@ -4,6 +4,8 @@ import com.tp.library.exceptions.*;
 import com.tp.library.models.Book;
 import com.tp.library.services.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +25,19 @@ public class LibraryController {
     }
 
     @PostMapping("/new/user")//User defined books using request body
-    public Book defineNewUserBook(@RequestBody NewBookRequest request) throws NullBookIdException, NullTitleException,
+    public ResponseEntity defineNewUserBook(@RequestBody NewBookRequest request) throws NullBookIdException, NullTitleException,
             NullAuthorException, NullPublishedYearException, InvalidPublishedYearException {
-        return service.defineNewUserBook(request.getTitle(), request.getAuthors(), request.getPublishedYear());
+
+        Book toReturn = null;
+        try {
+            toReturn = service.defineNewUserBook(request.getTitle(), request.getAuthors(), request.getPublishedYear());
+        }
+        catch (NullBookIdException | NullTitleException | NullAuthorException
+                | NullPublishedYearException | InvalidPublishedYearException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     //READ
@@ -56,19 +68,43 @@ public class LibraryController {
 
     //UPDATE
     @PutMapping("/edit/title")
-    public Book editTitle(@RequestBody UpdateTitleRequest request) throws NullBookIdException, NullTitleException {
-        return service.editBookTitle(request.getBookId(), request.getNewTitle());
+    public ResponseEntity editTitle(@RequestBody UpdateTitleRequest request) throws NullBookIdException, NullTitleException {
+        Book toReturn = null;
+        try {
+            toReturn = service.editBookTitle(request.getBookId(), request.getNewTitle());
+        }
+        catch(NullBookIdException | NullTitleException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     @PutMapping("/edit/author")
-    public Book editAuthor(@RequestBody UpdateAuthorRequest request) throws NullBookIdException, NullAuthorException {
-        return service.editBookAuthors(request.getBookId(), request.getNewAuthors());
+    public ResponseEntity editAuthor(@RequestBody UpdateAuthorRequest request) throws NullBookIdException, NullAuthorException {
+        Book toReturn = null;
+        try {
+            toReturn = service.editBookAuthors(request.getBookId(), request.getNewAuthors());
+        }
+        catch(NullBookIdException | NullAuthorException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     @PutMapping("/edit/published")
-    public Book editAuthor(@RequestBody UpdatePublishRequest request) throws NullBookIdException, NullPublishedYearException,
+    public ResponseEntity editPublished(@RequestBody UpdatePublishRequest request) throws NullBookIdException, NullPublishedYearException,
             InvalidPublishedYearException {
-        return service.editBookPublishedYear(request.getBookId(), request.getNewPublishedYear());
+        Book toReturn = null;
+        try {
+            toReturn = service.editBookPublishedYear(request.getBookId(), request.getNewPublishedYear());
+        }
+        catch(NullBookIdException | NullPublishedYearException | InvalidPublishedYearException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     //DELETE
