@@ -16,13 +16,15 @@ public class LibraryController {
 
     //CREATE
     @PostMapping("/new")//Generates the default book
-    public Book defineNewBook() throws NullBookIdException, NullTitleException, NullAuthorException, NullPublishedYearException {
+    public Book defineNewBook() throws NullBookIdException, NullTitleException,
+            NullAuthorException, NullPublishedYearException, InvalidPublishedYearException {
         Book book = service.defineNewBook();
         return book;
     }
 
-    @PostMapping("/new/user")
-    public Book defineNewUserBook(@RequestBody NewBookRequest request) throws NullBookIdException, NullTitleException, NullAuthorException, NullPublishedYearException{
+    @PostMapping("/new/user")//User defined books using request body
+    public Book defineNewUserBook(@RequestBody NewBookRequest request) throws NullBookIdException, NullTitleException,
+            NullAuthorException, NullPublishedYearException, InvalidPublishedYearException {
         return service.defineNewUserBook(request.getTitle(), request.getAuthors(), request.getPublishedYear());
     }
 
@@ -32,7 +34,7 @@ public class LibraryController {
         return service.getAllBooks();
     }
 
-    @GetMapping("/library/bookId/{bookId}")//Get book by
+    @GetMapping("/library/bookId/{bookId}")//Get book by id
     public Book getBookById(@PathVariable Integer bookId) throws NullBookIdException {
         return service.getBookById(bookId);
     }
@@ -43,11 +45,11 @@ public class LibraryController {
     }
 
     @GetMapping("/library/published/{publishedYear}")//Get book by published year
-    public List<Book> getBookByTitle(@PathVariable Integer publishedYear) throws NullPublishedYearException {
+    public List<Book> getBookByPublishedYear(@PathVariable Integer publishedYear) throws NullPublishedYearException, InvalidPublishedYearException {
         return service.getBookByPublishedYear(publishedYear);
     }
 
-    @GetMapping("/library/author/{author}")//Get book by published year
+    @GetMapping("/library/author/{author}")//Get book by author
     public List<Book> getBookByAuthor(@PathVariable String author) throws NullAuthorException {
         return service.getBookByAuthor(author);
     }
@@ -64,7 +66,8 @@ public class LibraryController {
     }
 
     @PutMapping("/edit/published")
-    public Book editAuthor(@RequestBody UpdatePublishRequest request) throws NullBookIdException, NullPublishedYearException {
+    public Book editAuthor(@RequestBody UpdatePublishRequest request) throws NullBookIdException, NullPublishedYearException,
+            InvalidPublishedYearException {
         return service.editBookPublishedYear(request.getBookId(), request.getNewPublishedYear());
     }
 

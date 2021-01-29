@@ -9,13 +9,14 @@ import java.util.List;
 public interface LibraryDao {
 
     //CREATE
-    int defineNewBook(String title, List<String> authors, Integer published) throws NullTitleException, NullPublishedYearException, NullAuthorException;
+    int defineNewBook(String title, List<String> authors, Integer published) throws NullTitleException,
+            NullPublishedYearException, NullAuthorException, InvalidPublishedYearException;
 
     //READ
     List<Book> getAllBooks();
     List<Book> getBooksByTitle(String title) throws NullTitleException;
     List<Book> getBooksByAuthor(String author) throws NullAuthorException;
-    List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException;
+    List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException, InvalidPublishedYearException;
     Book getBookInfoById(Integer bookId) throws NullBookIdException;
 
     //UPDATE

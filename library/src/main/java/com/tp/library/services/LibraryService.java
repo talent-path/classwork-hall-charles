@@ -17,7 +17,7 @@ public class LibraryService {
 
     //CREATE
     public Book defineNewBook() throws NullTitleException, NullAuthorException,
-            NullPublishedYearException, NullBookIdException {
+            NullPublishedYearException, NullBookIdException, InvalidPublishedYearException {
         List<String> authorsList = new ArrayList<>();
         authorsList.add("Hall");
         authorsList.add("Smith");
@@ -29,7 +29,7 @@ public class LibraryService {
 
     //User defined book
     public Book defineNewUserBook(String title, List<String> authors, Integer publishedYear) throws NullTitleException,
-            NullAuthorException, NullPublishedYearException, NullBookIdException{
+            NullAuthorException, NullPublishedYearException, NullBookIdException, InvalidPublishedYearException {
         int id = dao.defineNewBook(title, authors, publishedYear);
         return this.getBookById(id);
     }
@@ -47,7 +47,7 @@ public class LibraryService {
         return dao.getBooksByTitle(title);
     }
 
-    public List<Book> getBookByPublishedYear(Integer publishedYear) throws NullPublishedYearException {
+    public List<Book> getBookByPublishedYear(Integer publishedYear) throws NullPublishedYearException, InvalidPublishedYearException {
         return dao.getBooksByPublishedYear(publishedYear);
     }
 
@@ -78,9 +78,12 @@ public class LibraryService {
         return getBookById(bookId);
     }
 
-    public Book editBookPublishedYear(Integer bookId, Integer published) throws NullBookIdException, NullPublishedYearException {
+    public Book editBookPublishedYear(Integer bookId, Integer published) throws NullBookIdException, NullPublishedYearException,
+            InvalidPublishedYearException {
         if(published == null)
             throw new NullPublishedYearException("Tried to set publish year to nothing.");
+        if(published < 618 || published > 2021)
+            throw new InvalidPublishedYearException("No way this book was published then!");
 
         Book toEdit = dao.getBookInfoById(bookId);//Get copy of book to edit
         toEdit.setPublishedYear(published);//Edit the year published

@@ -15,13 +15,15 @@ public class LibraryInMemDao implements LibraryDao{
     @Override
     public int defineNewBook(String title, List<String> authors, Integer published)
             throws NullTitleException,
-            NullAuthorException, NullPublishedYearException {
+            NullAuthorException, NullPublishedYearException, InvalidPublishedYearException {
         if(title == null)//Check exceptions
             throw new NullTitleException("Tried to define new book without a title.");
         if(authors == null)
             throw new NullAuthorException("Tried to define a new book without an author/authors.");
         if(published == null)
             throw new NullPublishedYearException("Tried to define a new book without a published year.");
+        if(published < 618 || published > 2021)//If the book was published between the first printed book or this year
+            throw new InvalidPublishedYearException("No way this book was published then!");
 
         //Make new id
         int id = 0;
@@ -84,9 +86,11 @@ public class LibraryInMemDao implements LibraryDao{
     }
 
     @Override
-    public List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException {
+    public List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException, InvalidPublishedYearException {
         if(year == null)
             throw new NullPublishedYearException("Published year is null.");
+        if(year < 618 || year > 2021)
+            throw new InvalidPublishedYearException("No way this book was published then!");
 
         List<Book> toReturn = new ArrayList<>();//Create list of books
         //Iterate through all books
