@@ -9,19 +9,18 @@ import java.util.List;
 public interface LibraryDao {
 
     //CREATE
-    int defineNewBook(String title, List<String> authors, Integer published) throws InvalidTitleException,
-            InvalidPublishedYearException, NullTitleException, NullPublishedYearException, NullAuthorException, InvalidAuthorException;
+    int defineNewBook(String title, List<String> authors, Integer published) throws NullTitleException, NullPublishedYearException, NullAuthorException;
 
     //READ
     List<Book> getAllBooks();
-    List<Book> getBooksByTitle(String title) throws InvalidTitleException, NullTitleException;
-    List<Book> getBooksByAuthor(List<String> author) throws InvalidAuthorException, NullAuthorException;
-    List<Book> getBooksByPublishedYear(Integer year) throws InvalidPublishedYearException, NullPublishedYearException;
-    Book getBookInfoById(Integer bookId) throws InvalidBookIdException, NullBookIdException;
+    List<Book> getBooksByTitle(String title) throws NullTitleException;
+    List<Book> getBooksByAuthor(List<String> author) throws NullAuthorException;
+    List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException;
+    Book getBookInfoById(Integer bookId) throws NullBookIdException;
 
     //UPDATE
-    void updateBook(Integer bookId) throws InvalidBookIdException, NullBookIdException;
+    void updateLibrary(Book book);
 
     //DELETE
-    void removeBook(Integer bookId) throws InvalidBookIdException, NullBookIdException;
+    void removeBook(Integer bookId) throws NullBookIdException;
 }

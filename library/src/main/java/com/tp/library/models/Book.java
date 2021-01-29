@@ -14,7 +14,7 @@ public class Book {
     public Book(Integer bookId, String title, List<String> authors, Integer publishedYear) {
         this.bookId = bookId;
         this.title = title;
-        this.authors = new ArrayList<>();
+        this.authors = authors;
         this.publishedYear = publishedYear;
     }
 

@@ -2,25 +2,19 @@ package com.tp.library.persistence;
 
 import com.tp.library.exceptions.*;
 import com.tp.library.models.Book;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
+@Component
 public class LibraryInMemDao implements LibraryDao{
 
     private List<Book> allBooks = new ArrayList<>();
 
-    //Constructor for testing purposes
-    public LibraryInMemDao() {
-        Book firstBook = new Book(1, "Java Coding", Arrays.asList("Hall", "Smith"), 1998);
-        allBooks.add(firstBook);
-    }
-
     //CREATE
     @Override
     public int defineNewBook(String title, List<String> authors, Integer published)
-            throws InvalidTitleException, InvalidAuthorException,InvalidPublishedYearException, NullTitleException,
+            throws NullTitleException,
             NullAuthorException, NullPublishedYearException {
         if(title == null)//Check exceptions
             throw new NullTitleException("Tried to define new book without a title.");
@@ -56,40 +50,90 @@ public class LibraryInMemDao implements LibraryDao{
     }
 
     @Override
-    public List<Book> getBooksByTitle(String title) throws InvalidTitleException, NullTitleException{
-
+    public List<Book> getBooksByTitle(String title) throws NullTitleException{
+        //Check for null title
         if(title == null)
             throw new NullTitleException("Book title is null.");
 
-        List<Book> toReturn = new ArrayList<>();
+        List<Book> toReturn = new ArrayList<>();//Create list of books
+        //Iterate through all books
+        for(Book toCheck : allBooks) {
+            if(toCheck.getTitle().equals(title)) {//If the book has the title
+                toReturn.add(toCheck);//Add to list
+            }
+        }
 
-        return null;
+        return toReturn;
     }
 
     @Override
-    public List<Book> getBooksByAuthor(List<String> author) throws InvalidAuthorException, NullAuthorException {
-        return null;
+    public List<Book> getBooksByAuthor(List<String> author) throws NullAuthorException {
+        //TODO Implement lookup logic
+        if(author == null)
+            throw new NullAuthorException("Authors list is null");
+
+        List<Book> toReturn = new ArrayList<>();//Create list of books
+        //Iterate through all books
+        for(Book toCheck : allBooks) {
+            if(!Collections.disjoint((toCheck.getAuthors()), author)) {//If the books contain at least one of the authors
+                toReturn.add(toCheck);
+            }
+        }
+
+        return toReturn;
     }
 
     @Override
-    public List<Book> getBooksByPublishedYear(Integer year) throws InvalidPublishedYearException, NullPublishedYearException{
-        return null;
+    public List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException {
+        //TODO Implement lookup logic
+        if(year == null)
+            throw new NullPublishedYearException("Published year is null.");
+
+        List<Book> toReturn = new ArrayList<>();//Create list of books
+        //Iterate through all books
+        for(Book toCheck : allBooks) {
+            if(toCheck.getPublishedYear() == year) {//If the book has published year
+                toReturn.add(toCheck);//Add to list
+            }
+        }
+
+        return toReturn;
     }
 
     @Override
-    public Book getBookInfoById(Integer bookId) throws InvalidBookIdException, NullBookIdException {
-        return null;
+    public Book getBookInfoById(Integer bookId) throws NullBookIdException {
+        if(bookId == null)
+            throw new NullBookIdException("Tried to get information from book with no id.");
+
+        Book toReturn = null;
+        //Check all books for matching id
+        for(Book toCheck : allBooks) {
+            if(bookId == toCheck.getBookId()) {
+                toReturn = new Book(toCheck);//Use copy constructor
+                break;
+            }
+        }
+        return toReturn;
     }
 
     //UPDATE
     @Override
-    public void updateBook(Integer bookId) throws InvalidBookIdException, NullBookIdException{
-
+    public void updateLibrary(Book book) {
+        //Search through all books
+        for(int i = 0; i < allBooks.size(); i++) {
+            if(allBooks.get(i).getBookId().equals(book.getBookId())) {//Find matching book
+                allBooks.set(i, new Book(book));//Update book in all games
+            }
+        }
     }
 
     //DELETE
     @Override
-    public void removeBook(Integer bookId) throws InvalidBookIdException, NullBookIdException{
+    public void removeBook(Integer bookId) throws NullBookIdException {
+        //TODO implement removing a book
+        if(bookId == null)
+            throw new NullBookIdException("Book Id is null.");
+
 
     }
 }
