@@ -14,7 +14,7 @@ public interface LibraryDao {
     //READ
     List<Book> getAllBooks();
     List<Book> getBooksByTitle(String title) throws NullTitleException;
-    List<Book> getBooksByAuthor(List<String> author) throws NullAuthorException;
+    List<Book> getBooksByAuthor(String author) throws NullAuthorException;
     List<Book> getBooksByPublishedYear(Integer year) throws NullPublishedYearException;
     Book getBookInfoById(Integer bookId) throws NullBookIdException;
 

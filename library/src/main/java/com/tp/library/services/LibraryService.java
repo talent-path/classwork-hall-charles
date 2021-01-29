@@ -44,6 +44,10 @@ public class LibraryService {
         return dao.getBooksByPublishedYear(publishedYear);
     }
 
+    public List<Book> getBookByAuthor(String author) throws NullAuthorException {
+        return dao.getBooksByAuthor(author);
+    }
+
     //UPDATE
     public Book editBookTitle(Integer bookId, String title) throws NullBookIdException, NullTitleException {
         if(title == null)

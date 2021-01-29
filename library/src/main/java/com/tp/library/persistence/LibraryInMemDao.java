@@ -67,15 +67,16 @@ public class LibraryInMemDao implements LibraryDao{
     }
 
     @Override
-    public List<Book> getBooksByAuthor(List<String> author) throws NullAuthorException {
+    public List<Book> getBooksByAuthor(String author) throws NullAuthorException {
         //TODO Implement lookup logic
         if(author == null)
             throw new NullAuthorException("Authors list is null");
 
         List<Book> toReturn = new ArrayList<>();//Create list of books
+
         //Iterate through all books
         for(Book toCheck : allBooks) {
-            if(!Collections.disjoint((toCheck.getAuthors()), author)) {//If the books contain at least one of the authors
+            if(toCheck.getAuthors().contains(author)) {//If the books contain at least one of the authors
                 toReturn.add(toCheck);
             }
         }
@@ -92,7 +93,7 @@ public class LibraryInMemDao implements LibraryDao{
         List<Book> toReturn = new ArrayList<>();//Create list of books
         //Iterate through all books
         for(Book toCheck : allBooks) {
-            if(toCheck.getPublishedYear() == year) {//If the book has published year
+            if(toCheck.getPublishedYear().equals(year)) {//If the book has published year
                 toReturn.add(toCheck);//Add to list
             }
         }
@@ -108,7 +109,7 @@ public class LibraryInMemDao implements LibraryDao{
         Book toReturn = null;
         //Check all books for matching id
         for(Book toCheck : allBooks) {
-            if(bookId == toCheck.getBookId()) {
+            if(toCheck.getBookId().equals(bookId)) {
                 toReturn = new Book(toCheck);//Use copy constructor
                 break;
             }

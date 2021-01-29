@@ -27,21 +27,25 @@ public class LibraryController {
         return service.getAllBooks();
     }
 
-    @GetMapping("/library/{bookId}")//Get book by
+    @GetMapping("/library/bookId/{bookId}")//Get book by
     public Book getBookById(@PathVariable Integer bookId) throws NullBookIdException {
         return service.getBookById(bookId);
     }
 
-    @GetMapping("/library/{title}")//Get book by title
+    @GetMapping("/library/title/{title}")//Get book by title
     public List<Book> getBookByTitle(@PathVariable String title) throws NullTitleException {
         return service.getBookByTitle(title);
     }
 
-    @GetMapping("/library/{published}")//Get book by published year
+    @GetMapping("/library/published/{publishedYear}")//Get book by published year
     public List<Book> getBookByTitle(@PathVariable Integer publishedYear) throws NullPublishedYearException {
         return service.getBookByPublishedYear(publishedYear);
     }
 
+    @GetMapping("/library/author/{author}")//Get book by published year
+    public List<Book> getBookByAuthor(@PathVariable String author) throws NullAuthorException {
+        return service.getBookByAuthor(author);
+    }
 
     //UPDATE
     @PutMapping("/edit/title")
