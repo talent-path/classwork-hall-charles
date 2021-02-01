@@ -26,10 +26,11 @@ public class LibraryInMemDaoTest {
             toTest.removeBook( toRemove.getBookId() );
         }
 
-        //creates one game with "zebra" and id = 1
+        //creates one book title TestOne, with author TestOne, pub year 1998
         toTest.defineNewBook( "TestOne", Arrays.asList("TestOne"), 1998);
     }
 
+    //defineNewBook() test cases
     @Test
     public void defineNewBookGoldenPath() {
         try {
@@ -117,13 +118,121 @@ public class LibraryInMemDaoTest {
         }
     }
 
+    //getBooksByTitle() Test cases
     @Test
     public void getBooksByTitleGoldenPath() {
         try {
-            List<Book> testList = toTest.getBooksByTitle("Test");
-            //TODO finish implementing
+            List<Book> testList = toTest.getBooksByTitle("TestOne");
+
+            assertEquals(1, testList.get(0).getBookId());
+            assertEquals("TestOne", testList.get(0).getTitle());
+            assertEquals(Arrays.asList("TestOne"), testList.get(0).getAuthors());
+            assertEquals(1998, testList.get(0).getPublishedYear());
+
         } catch (NullTitleException e) {
             fail();
+        }
+    }
+
+    @Test
+    public void getBooksByTitleNullTitleTest() {
+        try {
+            List<Book> testList = toTest.getBooksByTitle(null);
+            fail();
+        } catch(NullTitleException e) {
+            //Do nothing expected
+        }
+    }
+
+    //getBooksByAuthor() Test cases
+    @Test
+    public void getBooksByAuthorGoldenPath() {
+        try {
+            List<Book> testList = toTest.getBooksByAuthor("TestOne");
+
+            assertEquals(1, testList.get(0).getBookId());
+            assertEquals("TestOne", testList.get(0).getTitle());
+            assertEquals(Arrays.asList("TestOne"), testList.get(0).getAuthors());
+            assertEquals(1998, testList.get(0).getPublishedYear());
+
+        } catch (NullAuthorException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void getBooksByAuthorNullAuthorTest() {
+        try {
+            List<Book> testList = toTest.getBooksByAuthor(null);
+            fail();
+        } catch(NullAuthorException e) {
+            //Do nothing expected
+        }
+    }
+
+    //getBooksByPublishedYear() Test cases
+    @Test
+    public void getBooksByPublishedYearGoldenPath() {
+        try {
+            List<Book> testList = toTest.getBooksByPublishedYear(1998);
+
+            assertEquals(1, testList.get(0).getBookId());
+            assertEquals("TestOne", testList.get(0).getTitle());
+            assertEquals(Arrays.asList("TestOne"), testList.get(0).getAuthors());
+            assertEquals(1998, testList.get(0).getPublishedYear());
+
+        } catch (NullPublishedYearException | InvalidPublishedYearException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void getBooksByPublishedYearNullYearTest() {
+        try {
+            List<Book> testList = toTest.getBooksByPublishedYear(null);
+            fail();
+        } catch(NullPublishedYearException e) {
+            //Do nothing expected
+        } catch (InvalidPublishedYearException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void getBooksByPublishedYearInvalidYearTest() {
+        try {
+            List<Book> testList = toTest.getBooksByPublishedYear(100);
+            fail();
+        } catch(NullPublishedYearException e) {
+            fail();
+        } catch (InvalidPublishedYearException e) {
+            //Do nothing expected
+        }
+    }
+
+    //getBookInfoById() test cases
+    @Test
+    public void getBooksByIdGoldenPath() {
+        try {
+            Book book = toTest.getBookInfoById(1);
+
+            assertEquals(1, book.getBookId());
+            assertEquals("TestOne", book.getTitle());
+            assertEquals(Arrays.asList("TestOne"), book.getAuthors());
+            assertEquals(1998, book.getPublishedYear());
+
+        } catch (NullBookIdException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void getBooksByIdNullIdTest() {
+        try {
+            Book book = toTest.getBookInfoById(null);
+            fail();
+        } catch(NullBookIdException e) {
+            //Do nothing expected
         }
     }
 
