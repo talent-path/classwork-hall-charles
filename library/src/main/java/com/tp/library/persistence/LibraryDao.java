@@ -20,7 +20,7 @@ public interface LibraryDao {
     Book getBookInfoById(Integer bookId) throws NullBookIdException;
 
     //UPDATE
-    void updateLibrary(Book book);
+    void updateLibrary(Book book) throws NullBookException;
 
     //DELETE
     void removeBook(Integer bookId) throws NullBookIdException;

@@ -121,7 +121,10 @@ public class LibraryInMemDao implements LibraryDao{
 
     //UPDATE
     @Override
-    public void updateLibrary(Book book) {
+    public void updateLibrary(Book book) throws NullBookException {
+        if(book == null)
+            throw new NullBookException("Tried to update library with a null book.");
+
         //Search through all books
         for(int i = 0; i < allBooks.size(); i++) {
             if(allBooks.get(i).getBookId().equals(book.getBookId())) {//Find matching book

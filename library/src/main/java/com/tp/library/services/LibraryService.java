@@ -56,7 +56,7 @@ public class LibraryService {
     }
 
     //UPDATE
-    public Book editBookTitle(Integer bookId, String title) throws NullBookIdException, NullTitleException {
+    public Book editBookTitle(Integer bookId, String title) throws NullBookIdException, NullTitleException, NullBookException {
         if(bookId == null)
             throw new NullBookIdException("Tried to edit a null book.");
         if(title == null)
@@ -69,7 +69,7 @@ public class LibraryService {
         return getBookById(bookId);
     }
 
-    public Book editBookAuthors(Integer bookId, List<String> author) throws NullBookIdException, NullAuthorException {
+    public Book editBookAuthors(Integer bookId, List<String> author) throws NullBookIdException, NullAuthorException, NullBookException {
         if(bookId == null)
             throw new NullBookIdException("Tried to edit a null book.");
         if(author == null)
@@ -83,7 +83,7 @@ public class LibraryService {
     }
 
     public Book editBookPublishedYear(Integer bookId, Integer published) throws NullBookIdException, NullPublishedYearException,
-            InvalidPublishedYearException {
+            InvalidPublishedYearException, NullBookException {
         if(bookId == null)
             throw new NullBookIdException("Tried to edit a null book.");
         if(published == null)

@@ -68,12 +68,12 @@ public class LibraryController {
 
     //UPDATE
     @PutMapping("/edit/title")
-    public ResponseEntity editTitle(@RequestBody UpdateTitleRequest request) throws NullBookIdException, NullTitleException {
+    public ResponseEntity editTitle(@RequestBody UpdateTitleRequest request) throws NullBookIdException, NullTitleException, NullBookException {
         Book toReturn = null;
         try {
             toReturn = service.editBookTitle(request.getBookId(), request.getNewTitle());
         }
-        catch(NullBookIdException | NullTitleException e) {
+        catch(NullBookIdException | NullTitleException | NullBookException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -81,12 +81,12 @@ public class LibraryController {
     }
 
     @PutMapping("/edit/author")
-    public ResponseEntity editAuthor(@RequestBody UpdateAuthorRequest request) throws NullBookIdException, NullAuthorException {
+    public ResponseEntity editAuthor(@RequestBody UpdateAuthorRequest request) throws NullBookIdException, NullAuthorException, NullBookException {
         Book toReturn = null;
         try {
             toReturn = service.editBookAuthors(request.getBookId(), request.getNewAuthors());
         }
-        catch(NullBookIdException | NullAuthorException e) {
+        catch(NullBookIdException | NullAuthorException | NullBookException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -95,12 +95,12 @@ public class LibraryController {
 
     @PutMapping("/edit/published")
     public ResponseEntity editPublished(@RequestBody UpdatePublishRequest request) throws NullBookIdException, NullPublishedYearException,
-            InvalidPublishedYearException {
+            InvalidPublishedYearException, NullBookException {
         Book toReturn = null;
         try {
             toReturn = service.editBookPublishedYear(request.getBookId(), request.getNewPublishedYear());
         }
-        catch(NullBookIdException | NullPublishedYearException | InvalidPublishedYearException e) {
+        catch(NullBookIdException | NullPublishedYearException | InvalidPublishedYearException | NullBookException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
