@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,7 +36,9 @@ public class LibraryInMemDaoTest {
     public void defineNewBookGoldenPath() {
         try {
             String testTitle = "TestTwo";
-            List<String> testAuthors = Arrays.asList("TestTwo");
+            List<String> testAuthors = new ArrayList<>();
+            testAuthors.add("TestTwo");
+            testAuthors.add("TestTwoThree");
             Integer testPublished = 1998;
 
             int id = toTest.defineNewBook(testTitle, testAuthors, testPublished);
@@ -47,10 +50,13 @@ public class LibraryInMemDaoTest {
 
             assertEquals("TestOne", firstBook.getTitle());
             assertEquals(Arrays.asList("TestOne"), firstBook.getAuthors());
+            assertEquals(1, firstBook.getAuthors().size());
             assertEquals(1998, firstBook.getPublishedYear());
 
             assertEquals("TestTwo", testBook.getTitle());
-            assertEquals(Arrays.asList("TestTwo"), testBook.getAuthors());
+            assertEquals("TestTwo", testBook.getAuthors().get(0));
+            assertEquals("TestTwoThree", testBook.getAuthors().get(1));
+            assertEquals(2, testBook.getAuthors().size());
             assertEquals(1998, testBook.getPublishedYear());
 
         } catch (NullTitleException | NullBookIdException | NullAuthorException |
@@ -121,6 +127,18 @@ public class LibraryInMemDaoTest {
         } catch (InvalidPublishedYearException e) {
             //Do nothing expected
         }
+    }
+
+    //getAllBooks() Test cases
+    @Test
+    public void getAllBooksGoldenPath() {
+        List<Book> testList = toTest.getAllBooks();
+
+        assertEquals(1, testList.size());
+        assertEquals(1, testList.get(0).getBookId());
+        assertEquals("TestOne", testList.get(0).getTitle());
+        assertEquals(Arrays.asList("TestOne"), testList.get(0).getAuthors());
+        assertEquals(1998, testList.get(0).getPublishedYear());
     }
 
     //getBooksByTitle() Test cases
@@ -211,5 +229,51 @@ public class LibraryInMemDaoTest {
     public void getBooksByIdNullIdTest() {
         assertThrows(NullBookIdException.class, () -> toTest.getBookInfoById(null));
     }
+
+    @Test
+    public void getBooksByInvalidIdTest() {
+        assertThrows(NullBookIdException.class, () -> toTest.getBookInfoById(100));
+    }
+
+    //updateLibrary() Test cases
+//    @Test
+//    public void updateLibraryGoldenPath() {
+//
+//    }
+
+    @Test
+    public void updateLibraryNullBookTest() {
+        assertThrows(NullBookException.class, () -> toTest.updateLibrary(null));
+    }
+
+    //removeBook() Test cases
+    @Test
+    public void removeBookGoldenPath() throws NullBookIdException {
+
+            Book preRemoveBook = toTest.getBookInfoById(1);
+            assertEquals(1, toTest.getAllBooks().size());
+            assertEquals(1, preRemoveBook.getBookId());
+            assertEquals("TestOne", preRemoveBook.getTitle());
+            assertEquals(Arrays.asList("TestOne"), preRemoveBook.getAuthors());
+            assertEquals(1, preRemoveBook.getAuthors().size());
+            assertEquals(1998, preRemoveBook.getPublishedYear());
+
+            toTest.removeBook(1);
+
+            assertEquals(0, toTest.getAllBooks().size());
+            assertThrows(NullBookIdException.class, () -> toTest.getBookInfoById(1));
+
+    }
+
+    @Test
+    public void removeBookNullBookIdTest() {
+        assertThrows(NullBookIdException.class, () -> toTest.removeBook(null));
+    }
+
+    @Test
+    public void removeBookInvalidBookIdTest() {
+        assertThrows(NullBookIdException.class, () -> toTest.removeBook(100));
+    }
+
 
 }

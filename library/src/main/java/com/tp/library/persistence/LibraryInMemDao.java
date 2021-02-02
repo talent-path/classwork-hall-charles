@@ -116,6 +116,11 @@ public class LibraryInMemDao implements LibraryDao{
                 break;
             }
         }
+
+        if(toReturn == null) {
+            throw new NullBookIdException("Could not find a book with id " + bookId + "in library.");
+        }
+
         return toReturn;
     }
 
