@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,10 +20,17 @@ public class LibraryController {
 
     //CREATE
     @PostMapping("/new")//Generates the default book
-    public Book defineNewBook() throws NullBookIdException, NullTitleException,
+    public ResponseEntity defineNewBook() throws NullBookIdException, NullTitleException,
             NullAuthorException, NullPublishedYearException, InvalidPublishedYearException {
-        Book book = service.defineNewBook();
-        return book;
+        Book toReturn = null;
+        try {
+            toReturn = service.defineNewBook();
+        }
+        catch(NullBookIdException | NullTitleException | NullAuthorException | NullPublishedYearException
+                | InvalidPublishedYearException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.ok(toReturn);
     }
 
     @PostMapping("/new/user")//User defined books using request body
@@ -43,28 +52,64 @@ public class LibraryController {
 
     //READ
     @GetMapping("/library")
-    public List<Book> getAllBooks() {
-        return service.getAllBooks();
+    public ResponseEntity getAllBooks() {
+        List<Book> toReturn = service.getAllBooks();
+
+        return ResponseEntity.ok(toReturn);
     }
 
     @GetMapping("/library/bookId/{bookId}")//Get book by id
-    public Book getBookById(@PathVariable Integer bookId) throws NullBookIdException {
-        return service.getBookById(bookId);
+    public ResponseEntity getBookById(@PathVariable Integer bookId) throws NullBookIdException {
+        Book toReturn = null;
+        try {
+            toReturn = service.getBookById(bookId);
+        }
+        catch(NullBookIdException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     @GetMapping("/library/title/{title}")//Get book by title
-    public List<Book> getBookByTitle(@PathVariable String title) throws NullTitleException, EmptyTitleException {
-        return service.getBooksByTitle(title);
+    public ResponseEntity getBooksByTitle(@PathVariable String title) throws NullTitleException, EmptyTitleException {
+        List<Book> toReturn = new ArrayList<>();
+        try {
+            toReturn = service.getBooksByTitle(title);
+        }
+        catch(NullTitleException | EmptyTitleException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     @GetMapping("/library/published/{publishedYear}")//Get book by published year
-    public List<Book> getBookByPublishedYear(@PathVariable Integer publishedYear) throws NullPublishedYearException, InvalidPublishedYearException {
-        return service.getBooksByPublishedYear(publishedYear);
+    public ResponseEntity getBooksByPublishedYear(@PathVariable Integer publishedYear) throws NullPublishedYearException,
+            InvalidPublishedYearException {
+        List<Book> toReturn = new ArrayList<>();
+        try {
+            toReturn = service.getBooksByPublishedYear(publishedYear);
+        }
+        catch(NullPublishedYearException | InvalidPublishedYearException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     @GetMapping("/library/author/{author}")//Get book by author
-    public List<Book> getBookByAuthor(@PathVariable String author) throws NullAuthorException, EmptyAuthorException {
-        return service.getBooksByAuthor(author);
+    public ResponseEntity getBooksByAuthor(@PathVariable String author) throws NullAuthorException,
+            EmptyAuthorException {
+        List<Book> toReturn = new ArrayList<>();
+        try {
+            toReturn = service.getBooksByAuthor(author);
+        }
+        catch(NullAuthorException | EmptyAuthorException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
     }
 
     //UPDATE
