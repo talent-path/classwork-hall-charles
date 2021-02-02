@@ -42,7 +42,12 @@ public class LibraryInMemDaoTest {
 
             assertEquals(2, id);
 
+            Book firstBook = toTest.getBookInfoById(1);
             Book testBook = toTest.getBookInfoById(id);
+
+            assertEquals("TestOne", firstBook.getTitle());
+            assertEquals(Arrays.asList("TestOne"), firstBook.getAuthors());
+            assertEquals(1998, firstBook.getPublishedYear());
 
             assertEquals("TestTwo", testBook.getTitle());
             assertEquals(Arrays.asList("TestTwo"), testBook.getAuthors());
@@ -136,12 +141,7 @@ public class LibraryInMemDaoTest {
 
     @Test
     public void getBooksByTitleNullTitleTest() {
-        try {
-            List<Book> testList = toTest.getBooksByTitle(null);
-            fail();
-        } catch(NullTitleException e) {
-            //Do nothing expected
-        }
+        assertThrows(NullTitleException.class, () -> toTest.getBooksByTitle(null));
     }
 
     //getBooksByAuthor() Test cases
@@ -162,12 +162,7 @@ public class LibraryInMemDaoTest {
 
     @Test
     public void getBooksByAuthorNullAuthorTest() {
-        try {
-            List<Book> testList = toTest.getBooksByAuthor(null);
-            fail();
-        } catch(NullAuthorException e) {
-            //Do nothing expected
-        }
+        assertThrows(NullAuthorException.class, () -> toTest.getBooksByAuthor(null));
     }
 
     //getBooksByPublishedYear() Test cases
@@ -188,26 +183,12 @@ public class LibraryInMemDaoTest {
 
     @Test
     public void getBooksByPublishedYearNullYearTest() {
-        try {
-            List<Book> testList = toTest.getBooksByPublishedYear(null);
-            fail();
-        } catch(NullPublishedYearException e) {
-            //Do nothing expected
-        } catch (InvalidPublishedYearException e) {
-            fail();
-        }
+        assertThrows(NullPublishedYearException.class, () -> toTest.getBooksByPublishedYear(null));
     }
 
     @Test
     public void getBooksByPublishedYearInvalidYearTest() {
-        try {
-            List<Book> testList = toTest.getBooksByPublishedYear(100);
-            fail();
-        } catch(NullPublishedYearException e) {
-            fail();
-        } catch (InvalidPublishedYearException e) {
-            //Do nothing expected
-        }
+        assertThrows(InvalidPublishedYearException.class, () -> toTest.getBooksByPublishedYear(100));
     }
 
     //getBookInfoById() test cases
@@ -228,12 +209,7 @@ public class LibraryInMemDaoTest {
 
     @Test
     public void getBooksByIdNullIdTest() {
-        try {
-            Book book = toTest.getBookInfoById(null);
-            fail();
-        } catch(NullBookIdException e) {
-            //Do nothing expected
-        }
+        assertThrows(NullBookIdException.class, () -> toTest.getBookInfoById(null));
     }
 
 }
