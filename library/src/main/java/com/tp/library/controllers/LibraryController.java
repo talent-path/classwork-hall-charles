@@ -32,8 +32,9 @@ public class LibraryController {
         try {
             toReturn = service.defineNewUserBook(request.getTitle(), request.getAuthors(), request.getPublishedYear());
         }
-        catch (NullBookIdException | NullTitleException | NullAuthorException
-                | NullPublishedYearException | InvalidPublishedYearException e) {
+        catch (NullBookIdException | NullTitleException | NullAuthorException |
+                NullPublishedYearException | InvalidPublishedYearException | EmptyTitleException |
+                EmptyAuthorListException | EmptyAuthorException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -52,7 +53,7 @@ public class LibraryController {
     }
 
     @GetMapping("/library/title/{title}")//Get book by title
-    public List<Book> getBookByTitle(@PathVariable String title) throws NullTitleException {
+    public List<Book> getBookByTitle(@PathVariable String title) throws NullTitleException, EmptyTitleException {
         return service.getBookByTitle(title);
     }
 
@@ -62,7 +63,7 @@ public class LibraryController {
     }
 
     @GetMapping("/library/author/{author}")//Get book by author
-    public List<Book> getBookByAuthor(@PathVariable String author) throws NullAuthorException {
+    public List<Book> getBookByAuthor(@PathVariable String author) throws NullAuthorException, EmptyAuthorException {
         return service.getBookByAuthor(author);
     }
 
@@ -73,7 +74,7 @@ public class LibraryController {
         try {
             toReturn = service.editBookTitle(request.getBookId(), request.getNewTitle());
         }
-        catch(NullBookIdException | NullTitleException | NullBookException e) {
+        catch(NullBookIdException | NullTitleException | NullBookException | EmptyTitleException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -86,7 +87,7 @@ public class LibraryController {
         try {
             toReturn = service.editBookAuthors(request.getBookId(), request.getNewAuthors());
         }
-        catch(NullBookIdException | NullAuthorException | NullBookException e) {
+        catch(NullBookIdException | NullAuthorException | NullBookException | EmptyAuthorException | EmptyAuthorListException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

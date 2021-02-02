@@ -20,7 +20,7 @@ public class LibraryServicesTest {
 
     @BeforeEach
     public void setup() throws NullAuthorException, InvalidPublishedYearException,
-            NullTitleException, NullPublishedYearException, NullBookIdException {
+            NullTitleException, NullPublishedYearException, NullBookIdException, EmptyTitleException, EmptyAuthorListException, EmptyAuthorException {
         List<Book> allGames = toTest.getAllBooks();
 
         for( Book toRemove : allGames ){
@@ -59,8 +59,7 @@ public class LibraryServicesTest {
             assertEquals(2, testBook.getAuthors().size());
             assertEquals(1998, testBook.getPublishedYear());
 
-        } catch (NullTitleException | NullBookIdException | NullAuthorException |
-                NullPublishedYearException | InvalidPublishedYearException e) {
+        } catch (NullTitleException | NullBookIdException | NullAuthorException | NullPublishedYearException | InvalidPublishedYearException | EmptyTitleException | EmptyAuthorListException | EmptyAuthorException e) {
             fail();
         }
     }
@@ -74,7 +73,7 @@ public class LibraryServicesTest {
 
             Book testBook = toTest.defineNewUserBook(testTitle, testAuthors, testPublished);
             fail();
-        }catch (NullBookIdException | InvalidPublishedYearException | NullAuthorException | NullPublishedYearException e) {
+        }catch (NullBookIdException | InvalidPublishedYearException | NullAuthorException | NullPublishedYearException | EmptyTitleException | EmptyAuthorListException | EmptyAuthorException e) {
             fail();
         } catch (NullTitleException e) {
             //Do nothing expected
@@ -106,7 +105,7 @@ public class LibraryServicesTest {
 
             Book testBook = toTest.defineNewUserBook(testTitle, testAuthors, testPublished);
             fail();
-        }catch (NullBookIdException | InvalidPublishedYearException | NullTitleException | NullPublishedYearException e) {
+        }catch (NullBookIdException | InvalidPublishedYearException | NullTitleException | NullPublishedYearException | EmptyTitleException | EmptyAuthorListException | EmptyAuthorException e) {
             fail();
         } catch (NullAuthorException e) {
             //Do nothing expected
@@ -154,7 +153,7 @@ public class LibraryServicesTest {
 
             Book testBook = toTest.defineNewUserBook(testTitle, testAuthors, testPublished);
             fail();
-        }catch (NullBookIdException | InvalidPublishedYearException | NullTitleException | NullAuthorException e) {
+        }catch (NullBookIdException | InvalidPublishedYearException | NullTitleException | NullAuthorException | EmptyTitleException | EmptyAuthorListException | EmptyAuthorException e) {
             fail();
         } catch (NullPublishedYearException e) {
             //Do nothing expected
@@ -170,7 +169,7 @@ public class LibraryServicesTest {
 
             Book testBook = toTest.defineNewUserBook(testTitle, testAuthors, testPublished);
             fail();
-        }catch (NullBookIdException | NullPublishedYearException | NullTitleException | NullAuthorException e) {
+        }catch (NullBookIdException | NullPublishedYearException | NullTitleException | NullAuthorException | EmptyTitleException | EmptyAuthorListException | EmptyAuthorException e) {
             fail();
         } catch (InvalidPublishedYearException e) {
             //Do nothing expected
@@ -186,7 +185,7 @@ public class LibraryServicesTest {
 
             Book testBook = toTest.defineNewUserBook(testTitle, testAuthors, testPublished);
             fail();
-        }catch (NullBookIdException | NullPublishedYearException | NullTitleException | NullAuthorException e) {
+        }catch (NullBookIdException | NullPublishedYearException | NullTitleException | NullAuthorException | EmptyTitleException | EmptyAuthorListException | EmptyAuthorException e) {
             fail();
         } catch (InvalidPublishedYearException e) {
             //Do nothing expected
@@ -216,7 +215,7 @@ public class LibraryServicesTest {
             assertEquals(Arrays.asList("TestOne"), testList.get(0).getAuthors());
             assertEquals(1998, testList.get(0).getPublishedYear());
 
-        } catch (NullTitleException e) {
+        } catch (NullTitleException | EmptyTitleException e) {
             fail();
         }
     }
@@ -237,7 +236,7 @@ public class LibraryServicesTest {
             assertEquals(Arrays.asList("TestOne"), testList.get(0).getAuthors());
             assertEquals(1998, testList.get(0).getPublishedYear());
 
-        } catch (NullAuthorException e) {
+        } catch (NullAuthorException | EmptyAuthorException e) {
             fail();
         }
     }
@@ -269,8 +268,13 @@ public class LibraryServicesTest {
     }
 
     @Test
-    public void getBooksByPublishedYearInvalidYearTest() {
+    public void getBooksByPublishedYearInvalidLowYearTest() {
         assertThrows(InvalidPublishedYearException.class, () -> toTest.getBookByPublishedYear(100));
+    }
+
+    @Test
+    public void getBooksByPublishedYearInvalidHighYearTest() {
+        assertThrows(InvalidPublishedYearException.class, () -> toTest.getBookByPublishedYear(5000));
     }
 
     //getBookInfoById() test cases

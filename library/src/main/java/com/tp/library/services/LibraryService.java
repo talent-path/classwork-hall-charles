@@ -29,7 +29,7 @@ public class LibraryService {
 
     //User defined book
     public Book defineNewUserBook(String title, List<String> authors, Integer publishedYear) throws NullTitleException,
-            NullAuthorException, NullPublishedYearException, NullBookIdException, InvalidPublishedYearException {
+            NullAuthorException, NullPublishedYearException, NullBookIdException, InvalidPublishedYearException, EmptyTitleException, EmptyAuthorListException, EmptyAuthorException {
         int id = dao.defineNewBook(title, authors, publishedYear);
         return this.getBookById(id);
     }
@@ -43,7 +43,7 @@ public class LibraryService {
         return dao.getBookInfoById(id);
     }
 
-    public List<Book> getBookByTitle(String title) throws NullTitleException {
+    public List<Book> getBookByTitle(String title) throws NullTitleException, EmptyTitleException {
         return dao.getBooksByTitle(title);
     }
 
@@ -51,12 +51,13 @@ public class LibraryService {
         return dao.getBooksByPublishedYear(publishedYear);
     }
 
-    public List<Book> getBookByAuthor(String author) throws NullAuthorException {
+    public List<Book> getBookByAuthor(String author) throws NullAuthorException, EmptyAuthorException {
         return dao.getBooksByAuthor(author);
     }
 
     //UPDATE
-    public Book editBookTitle(Integer bookId, String title) throws NullBookIdException, NullTitleException, NullBookException {
+    public Book editBookTitle(Integer bookId, String title) throws NullBookIdException, NullTitleException,
+            NullBookException, EmptyTitleException {
         if(bookId == null)
             throw new NullBookIdException("Tried to edit a null book.");
         if(title == null)
@@ -69,7 +70,8 @@ public class LibraryService {
         return getBookById(bookId);
     }
 
-    public Book editBookAuthors(Integer bookId, List<String> author) throws NullBookIdException, NullAuthorException, NullBookException {
+    public Book editBookAuthors(Integer bookId, List<String> author) throws NullBookIdException, NullAuthorException,
+            NullBookException, EmptyAuthorException, EmptyAuthorListException {
         if(bookId == null)
             throw new NullBookIdException("Tried to edit a null book.");
         if(author == null)
