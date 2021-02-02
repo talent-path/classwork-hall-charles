@@ -43,15 +43,15 @@ public class LibraryService {
         return dao.getBookInfoById(id);
     }
 
-    public List<Book> getBookByTitle(String title) throws NullTitleException, EmptyTitleException {
+    public List<Book> getBooksByTitle(String title) throws NullTitleException, EmptyTitleException {
         return dao.getBooksByTitle(title);
     }
 
-    public List<Book> getBookByPublishedYear(Integer publishedYear) throws NullPublishedYearException, InvalidPublishedYearException {
+    public List<Book> getBooksByPublishedYear(Integer publishedYear) throws NullPublishedYearException, InvalidPublishedYearException {
         return dao.getBooksByPublishedYear(publishedYear);
     }
 
-    public List<Book> getBookByAuthor(String author) throws NullAuthorException, EmptyAuthorException {
+    public List<Book> getBooksByAuthor(String author) throws NullAuthorException, EmptyAuthorException {
         return dao.getBooksByAuthor(author);
     }
 

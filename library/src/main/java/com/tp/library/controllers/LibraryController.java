@@ -54,17 +54,17 @@ public class LibraryController {
 
     @GetMapping("/library/title/{title}")//Get book by title
     public List<Book> getBookByTitle(@PathVariable String title) throws NullTitleException, EmptyTitleException {
-        return service.getBookByTitle(title);
+        return service.getBooksByTitle(title);
     }
 
     @GetMapping("/library/published/{publishedYear}")//Get book by published year
     public List<Book> getBookByPublishedYear(@PathVariable Integer publishedYear) throws NullPublishedYearException, InvalidPublishedYearException {
-        return service.getBookByPublishedYear(publishedYear);
+        return service.getBooksByPublishedYear(publishedYear);
     }
 
     @GetMapping("/library/author/{author}")//Get book by author
     public List<Book> getBookByAuthor(@PathVariable String author) throws NullAuthorException, EmptyAuthorException {
-        return service.getBookByAuthor(author);
+        return service.getBooksByAuthor(author);
     }
 
     //UPDATE

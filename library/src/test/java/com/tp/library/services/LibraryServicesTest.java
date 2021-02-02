@@ -208,7 +208,7 @@ public class LibraryServicesTest {
     @Test
     public void getBooksByTitleGoldenPath() {
         try {
-            List<Book> testList = toTest.getBookByTitle("TestOne");
+            List<Book> testList = toTest.getBooksByTitle("TestOne");
 
             assertEquals(1, testList.get(0).getBookId());
             assertEquals("TestOne", testList.get(0).getTitle());
@@ -222,14 +222,14 @@ public class LibraryServicesTest {
 
     @Test
     public void getBookByTitleNullTitleTest() {
-        assertThrows(NullTitleException.class, () -> toTest.getBookByTitle(null));
+        assertThrows(NullTitleException.class, () -> toTest.getBooksByTitle(null));
     }
 
     //getBookByAuthor() Test cases
     @Test
     public void getBooksByAuthorGoldenPath() {
         try {
-            List<Book> testList = toTest.getBookByAuthor("TestOne");
+            List<Book> testList = toTest.getBooksByAuthor("TestOne");
 
             assertEquals(1, testList.get(0).getBookId());
             assertEquals("TestOne", testList.get(0).getTitle());
@@ -243,14 +243,14 @@ public class LibraryServicesTest {
 
     @Test
     public void getBooksByAuthorNullAuthorTest() {
-        assertThrows(NullAuthorException.class, () -> toTest.getBookByAuthor(null));
+        assertThrows(NullAuthorException.class, () -> toTest.getBooksByAuthor(null));
     }
 
     //getBooksByPublishedYear() Test cases
     @Test
     public void getBooksByPublishedYearGoldenPath() {
         try {
-            List<Book> testList = toTest.getBookByPublishedYear(1998);
+            List<Book> testList = toTest.getBooksByPublishedYear(1998);
 
             assertEquals(1, testList.get(0).getBookId());
             assertEquals("TestOne", testList.get(0).getTitle());
@@ -264,17 +264,17 @@ public class LibraryServicesTest {
 
     @Test
     public void getBooksByPublishedYearNullYearTest() {
-        assertThrows(NullPublishedYearException.class, () -> toTest.getBookByPublishedYear(null));
+        assertThrows(NullPublishedYearException.class, () -> toTest.getBooksByPublishedYear(null));
     }
 
     @Test
     public void getBooksByPublishedYearInvalidLowYearTest() {
-        assertThrows(InvalidPublishedYearException.class, () -> toTest.getBookByPublishedYear(100));
+        assertThrows(InvalidPublishedYearException.class, () -> toTest.getBooksByPublishedYear(100));
     }
 
     @Test
     public void getBooksByPublishedYearInvalidHighYearTest() {
-        assertThrows(InvalidPublishedYearException.class, () -> toTest.getBookByPublishedYear(5000));
+        assertThrows(InvalidPublishedYearException.class, () -> toTest.getBooksByPublishedYear(5000));
     }
 
     //getBookInfoById() test cases
