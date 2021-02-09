@@ -1,0 +1,43 @@
+package com.tp.LeagueApp.persistance;
+
+import com.tp.LeagueApp.models.ItemSet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+@Component
+public class PostgresItemSetDao implements ItemSetDao {
+    @Autowired
+    JdbcTemplate template;
+
+    @Override
+    public List<ItemSet> getAllItemSets() {
+        List<ItemSet> allChampions = template.query("select * from \"ItemSets\"", new PostgresItemSetDao.ItemSetMapper());
+
+        return allChampions;
+    }
+
+    @Override
+    public ItemSet getItemSetByName(String itemSetName) {
+        List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetName\" = ?;", new PostgresItemSetDao.ItemSetMapper(), itemSetName);
+
+        return toReturn.get(0);
+    }
+
+    public class ItemSetMapper implements RowMapper<ItemSet> {
+
+        @Override
+        public ItemSet mapRow(ResultSet resultSet, int i) throws SQLException {
+            ItemSet mappedItemSet = new ItemSet();
+            mappedItemSet.setItemSetId(resultSet.getInt("itemSetId"));
+            mappedItemSet.setItemSetName(resultSet.getString("itemSetName"));
+
+            return mappedItemSet;
+        }
+    }
+}
