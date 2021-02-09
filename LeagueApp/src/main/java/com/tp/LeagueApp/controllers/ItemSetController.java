@@ -20,7 +20,7 @@ public class ItemSetController {
 
     @GetMapping("/itemSets")
     public ResponseEntity getAllItemSets() {
-        List<Item> toReturn = service.getAllItems();
+        List<ItemSet> toReturn = service.getAllItemSets();
 
         return ResponseEntity.ok(toReturn);
     }

@@ -17,9 +17,9 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     @Override
     public List<ItemSet> getAllItemSets() {
-        List<ItemSet> allChampions = template.query("select * from \"ItemSets\"", new PostgresItemSetDao.ItemSetMapper());
+        List<ItemSet> allItemSets = template.query("select * from \"ItemSets\"", new PostgresItemSetDao.ItemSetMapper());
 
-        return allChampions;
+        return allItemSets;
     }
 
     @Override
