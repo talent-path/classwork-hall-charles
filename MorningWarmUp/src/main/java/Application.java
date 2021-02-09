@@ -2,33 +2,8 @@ import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
-
-        char[][] grid = { {'3', '.', '6', '5', '.', '8', '4', '.', '.'},
-                          {'5', '2', '.', '.', '.', '.', '.', '.', '.'},
-                          {'.', '8', '7', '.', '.', '.', '.', '3', '1'},
-                          {'.', '.', '3', '.', '1', '.', '.', '8', '.'},
-                          {'9', '.', '.', '8', '6', '3', '.', '.', '5'},
-                          {'.', '5', '.', '.', '9', '.', '6', '.', '.'},
-                          {'1', '3', '.', '.', '.', '.', '2', '5', '.'},
-                          {'.', '.', '.', '.', '.', '.', '.', '7', '4'},
-                          {'.', '.', '5', '2', '.', '6', '3', '.', '.'} };
-
-        char[][] board = {
-                {'5','3','.','.','7','.','.','.','.'},
-                {'6','.','.','1','9','5','.','.','.'},
-                {'.','9','8','.','.','.','.','6','.'},
-                {'8','.','.','.','6','.','.','.','3'},
-                {'4','.','.','8','.','3','.','.','1'},
-                {'7','.','.','.','2','.','.','.','6'},
-                {'.','6','.','.','.','.','2','8','.'},
-                {'.','.','.','4','1','9','.','.','5'},
-                {'.','.','.','.','8','.','.','7','9'}
-        };
-
-
-//        int num = 3+48;
-//        char c  = (char)num;
-//        System.out.println(c);
+        String[] board = {"XXX","XOO","OO "};
+        System.out.println(validTicTacToe(board));
     }
 
     //01-14-2021 Warmups
@@ -498,5 +473,107 @@ public class Application {
         //If the program reaches this point, the whole board is filled
         return true;
     }
+
+    //Technical Interview Prep for 02-08-2021
+    public static int minDays(int n) {
+        int numDays = 0;
+
+        if(n == 1) {
+            return 1;
+        }
+
+        int p1 = 0, p2 = 0, p3 = 0;
+        if(n % 2 == 0) {
+            p1 = minDays(n / 2) + 1;
+        }
+        if(n % 3 == 0) {
+            p2 = minDays( (n/3)) + 1;
+        }
+
+        p3 = minDays(n-1) + 1;
+
+        if(p1 < p2 && p1 < p3) {
+            numDays = p1;
+        }
+        else if(p2 < p1 && p2 < p3) {
+            numDays = p2;
+        }
+        else if(p3 < p2 && p3 < p3) {
+            numDays = p3;
+        }
+
+        return numDays;
+    }
+
+    //Warmup for 02-09-2021
+    public static boolean validTicTacToe(String[] board) {
+
+        int xCount = 0, oCount = 0;
+        for(String toCheck : board) {
+            for(int i = 0; i < 3; i++) {
+                if(toCheck.charAt(i) == 'X')
+                    xCount++;
+                else if (toCheck.charAt(i) == 'O')
+                    oCount++;
+            }
+        }
+
+
+        if(oCount > xCount) //X moves first case
+            return false;
+
+        if(xCount > oCount+1)//Players take turns case
+            return false;
+
+        if(playerWins(board, 'X') && playerWins(board, 'O'))//Both win
+            return false;
+
+        if(playerWins(board, 'O') && xCount > oCount)//X moved after O won
+            return false;
+
+        if(playerWins(board, 'X') && xCount == oCount)//O moved after X won
+            return false;
+
+        return true;
+    }
+
+    public static boolean playerWins(String[] board, char player) {
+        if(checkRows(board, player) || checkCols(board, player) || checkDiags(board, player)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean checkRows(String[] board, char player) {
+        for(int i = 0; i < 3; i++) {
+            if(board[i].charAt(0) == player && board[i].charAt(1) == player && board[i].charAt(2) == player) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean checkCols(String[] board, char player) {
+        for(int i = 0; i < 3; i++) {
+            if((board[0].charAt(i) == player && board[1].charAt(i) == player && board[2].charAt(i) == player)
+            ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkDiags(String[] board, char player) {
+        for(int i = 0; i < 3; i++) {
+            if((board[0].charAt(0) == player && board[1].charAt(1) == player && board[2].charAt(2) == player)
+                    || (board[0].charAt(2) == player && board[1].charAt(1) == player && board[2].charAt(0) == player)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
