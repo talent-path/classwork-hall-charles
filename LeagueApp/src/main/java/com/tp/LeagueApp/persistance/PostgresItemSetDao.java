@@ -29,7 +29,20 @@ public class PostgresItemSetDao implements ItemSetDao {
         return toReturn.get(0);
     }
 
-    public class ItemSetMapper implements RowMapper<ItemSet> {
+    @Override
+    public ItemSet createNewItemSet(ItemSet toAdd) {
+        Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?);",
+                new ItemSetIdMapper(),
+                toAdd.getItemSetName(),
+                toAdd.getChampionId()
+        );
+
+        toAdd.setItemSetId(itemSetId);
+
+        return toAdd;
+    }
+
+    private class ItemSetMapper implements RowMapper<ItemSet> {
 
         @Override
         public ItemSet mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -39,6 +52,12 @@ public class PostgresItemSetDao implements ItemSetDao {
             mappedItemSet.setChampionId(resultSet.getInt("championId"));
 
             return mappedItemSet;
+        }
+    }
+
+    private class ItemSetIdMapper implements RowMapper<Integer>{
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("itemSetId");
         }
     }
 }

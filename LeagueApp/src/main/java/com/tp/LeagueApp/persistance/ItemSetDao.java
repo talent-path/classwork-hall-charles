@@ -7,4 +7,5 @@ import java.util.List;
 public interface ItemSetDao {
     List<ItemSet> getAllItemSets();
     ItemSet getItemSetByName(String itemSetName);
+    ItemSet createNewItemSet(ItemSet toAdd);
 }
