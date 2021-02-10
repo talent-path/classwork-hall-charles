@@ -36,6 +36,7 @@ public class PostgresItemSetDao implements ItemSetDao {
             ItemSet mappedItemSet = new ItemSet();
             mappedItemSet.setItemSetId(resultSet.getInt("itemSetId"));
             mappedItemSet.setItemSetName(resultSet.getString("itemSetName"));
+            mappedItemSet.setChampionId(resultSet.getInt("championId"));
 
             return mappedItemSet;
         }

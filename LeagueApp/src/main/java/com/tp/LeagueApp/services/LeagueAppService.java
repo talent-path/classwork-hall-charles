@@ -1,13 +1,7 @@
 package com.tp.LeagueApp.services;
 
-import com.tp.LeagueApp.models.Champion;
-import com.tp.LeagueApp.models.Item;
-import com.tp.LeagueApp.models.ItemSet;
-import com.tp.LeagueApp.models.Rune;
-import com.tp.LeagueApp.persistance.ChampionDao;
-import com.tp.LeagueApp.persistance.ItemDao;
-import com.tp.LeagueApp.persistance.PostgresItemSetDao;
-import com.tp.LeagueApp.persistance.RuneDao;
+import com.tp.LeagueApp.models.*;
+import com.tp.LeagueApp.persistance.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +20,13 @@ public class LeagueAppService {
     RuneDao runeDao;
 
     @Autowired
-    PostgresItemSetDao itemSetDao;
+    ItemSetDao itemSetDao;
+
+    @Autowired
+    RuneSetDao runeSetDao;
+
+    @Autowired
+    SummonerSpellSetDao summonerSpellSetDao;
 
     public List<Champion> getAllChampions() {
         return championDao.getAllChampions();
@@ -59,4 +59,21 @@ public class LeagueAppService {
     public ItemSet getItemSetByName(String itemSetName) {
         return itemSetDao.getItemSetByName(itemSetName);
     }
+
+    public List<RuneSet> getAllRuneSets() {
+        return runeSetDao.getAllRuneSets();
+    }
+
+    public RuneSet getRuneSetByName(String runeSetName) {
+        return runeSetDao.getRuneSetByName(runeSetName);
+    }
+
+    public List<SummonerSpellSet> getAllSummonerSpellSets() {
+        return summonerSpellSetDao.getAllSummonerSpellSets();
+    }
+
+    public SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName) {
+        return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
+    }
+
 }
