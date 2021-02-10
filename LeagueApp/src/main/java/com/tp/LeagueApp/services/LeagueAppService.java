@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.services;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.*;
 import com.tp.LeagueApp.persistance.interfaces.*;
@@ -38,7 +39,7 @@ public class LeagueAppService {
         return championDao.getAllChampions();
     }
 
-    public Champion getChampionByName(String championName) {
+    public Champion getChampionByName(String championName) throws NullNameException {
         return championDao.getChampionByName(championName);
     }
 
@@ -47,7 +48,7 @@ public class LeagueAppService {
         return itemDao.getAllItems();
     }
 
-    public Item getItemByName(String itemName) {
+    public Item getItemByName(String itemName) throws NullNameException {
         return itemDao.getItemByName(itemName);
     }
 
@@ -56,7 +57,7 @@ public class LeagueAppService {
         return runeDao.getAllRunes();
     }
 
-    public Rune getRuneByName(String runeName) {
+    public Rune getRuneByName(String runeName) throws NullNameException {
         return runeDao.getRuneByName(runeName);
     }
 
@@ -65,7 +66,7 @@ public class LeagueAppService {
         return summonerSpellDao.getAllSummonerSpells();
     }
 
-    public SummonerSpell getSummonerSpellByName(String summonerSpellName) {
+    public SummonerSpell getSummonerSpellByName(String summonerSpellName) throws NullNameException {
         return summonerSpellDao.getSummonerSpellByName(summonerSpellName);
     }
 
@@ -76,7 +77,7 @@ public class LeagueAppService {
         return itemSetDao.getAllItemSets();
     }
 
-    public ItemSet getItemSetByName(String itemSetName) {
+    public ItemSet getItemSetByName(String itemSetName) throws NullNameException {
         return itemSetDao.getItemSetByName(itemSetName);
     }
 
@@ -89,7 +90,7 @@ public class LeagueAppService {
         return runeSetDao.getAllRuneSets();
     }
 
-    public RuneSet getRuneSetByName(String runeSetName) {
+    public RuneSet getRuneSetByName(String runeSetName) throws NullNameException {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
@@ -102,7 +103,7 @@ public class LeagueAppService {
         return summonerSpellSetDao.getAllSummonerSpellSets();
     }
 
-    public SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName) {
+    public SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName) throws NullNameException {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
     }
 

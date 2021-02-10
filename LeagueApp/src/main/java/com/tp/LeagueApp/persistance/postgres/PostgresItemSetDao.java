@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.interfaces.ItemSetDao;
@@ -27,7 +28,11 @@ public class PostgresItemSetDao implements ItemSetDao {
     }
 
     @Override
-    public ItemSet getItemSetByName(String itemSetName) {
+    public ItemSet getItemSetByName(String itemSetName) throws NullNameException {
+
+        if(itemSetName == null)
+            throw new NullNameException("ERROR: Tried to get an item set with a null name.");
+
         List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetName\" = ?;", new PostgresItemSetDao.ItemSetMapper(), itemSetName);
 
         return toReturn.get(0);

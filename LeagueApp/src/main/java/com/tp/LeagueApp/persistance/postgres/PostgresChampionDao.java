@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.persistance.interfaces.ChampionDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,11 @@ public class PostgresChampionDao implements ChampionDao {
     }
 
     @Override
-    public Champion getChampionByName(String championName) {
+    public Champion getChampionByName(String championName) throws NullNameException {
+
+        if(championName == null)
+            throw new NullNameException("ERROR: Tried to get champion with null name.");
+
         List<Champion> toReturn = template.query("select * from \"Champions\" where \"championName\" = ?;", new ChampionMapper(), championName);
 
         return toReturn.get(0);

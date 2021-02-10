@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.interfaces.RuneSetDao;
@@ -28,7 +29,11 @@ public class PostgresRuneSetDao implements RuneSetDao {
     }
 
     @Override
-    public RuneSet getRuneSetByName(String runeSetName) {
+    public RuneSet getRuneSetByName(String runeSetName) throws NullNameException {
+
+        if(runeSetName == null)
+            throw new NullNameException("ERROR: Tried to get a rune set with a null name.");
+
         List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetName\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetName);
 
         return toReturn.get(0);

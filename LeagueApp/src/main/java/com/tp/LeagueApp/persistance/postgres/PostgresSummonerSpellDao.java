@@ -1,5 +1,7 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.SummonerSpell;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,11 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
     }
 
     @Override
-    public SummonerSpell getSummonerSpellByName(String summonerSpellName) {
+    public SummonerSpell getSummonerSpellByName(String summonerSpellName) throws NullNameException {
+
+        if(summonerSpellName == null)
+            throw new NullNameException("ERROR: Tried to get a summoner spell with a null name.");
+
         List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellName\" = ?;", new PostgresSummonerSpellDao.SummonerSpellMapper(), summonerSpellName);
 
         return toReturn.get(0);

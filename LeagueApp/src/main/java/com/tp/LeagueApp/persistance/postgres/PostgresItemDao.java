@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.persistance.interfaces.ItemDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,11 @@ public class PostgresItemDao implements ItemDao {
     }
 
     @Override
-    public Item getItemByName(String itemName) {
+    public Item getItemByName(String itemName) throws NullNameException {
+
+        if(itemName == null)
+            throw new NullNameException("ERROR: Tried to get an item with a null name.");
+
         List<Item> toReturn = template.query("select * from \"Items\" where \"itemName\" = ?;", new PostgresItemDao.ItemMapper(), itemName);
 
         return toReturn.get(0);

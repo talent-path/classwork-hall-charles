@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.interfaces;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.models.Item;
 
@@ -11,7 +12,8 @@ public interface ChampionDao {
 
     //READ
     List<Champion> getAllChampions();
-    Champion getChampionByName(String championName);
+    Champion getChampionByName(String championName) throws NullNameException;
+
     //UPDATE
 
     //DELETE
