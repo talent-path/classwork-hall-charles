@@ -20,6 +20,9 @@ public class LeagueAppService {
     RuneDao runeDao;
 
     @Autowired
+    SummonerSpellDao summonerSpellDao;
+
+    @Autowired
     ItemSetDao itemSetDao;
 
     @Autowired
@@ -50,6 +53,14 @@ public class LeagueAppService {
 
     public Rune getRuneByName(String runeName) {
         return runeDao.getRuneByName(runeName);
+    }
+
+    public List<SummonerSpell> getAllSummonerSpells() {
+        return summonerSpellDao.getAllSummonerSpells();
+    }
+
+    public SummonerSpell getSummonerSpellByName(String summonerSpellName) {
+        return summonerSpellDao.getSummonerSpellByName(summonerSpellName);
     }
 
     public List<ItemSet> getAllItemSets() {
