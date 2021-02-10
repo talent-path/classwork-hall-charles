@@ -32,6 +32,7 @@ public class LeagueAppService {
     SummonerSpellSetDao summonerSpellSetDao;
 
     //Base component methods
+    //Champions
     public List<Champion> getAllChampions() {
         return championDao.getAllChampions();
     }
@@ -40,6 +41,7 @@ public class LeagueAppService {
         return championDao.getChampionByName(championName);
     }
 
+    //Items
     public List<Item> getAllItems() {
         return itemDao.getAllItems();
     }
@@ -48,6 +50,7 @@ public class LeagueAppService {
         return itemDao.getItemByName(itemName);
     }
 
+    //Runes
     public List<Rune> getAllRunes() {
         return runeDao.getAllRunes();
     }
@@ -56,6 +59,7 @@ public class LeagueAppService {
         return runeDao.getRuneByName(runeName);
     }
 
+    //Summoner Spells
     public List<SummonerSpell> getAllSummonerSpells() {
         return summonerSpellDao.getAllSummonerSpells();
     }
@@ -66,6 +70,7 @@ public class LeagueAppService {
 
 
     //Various Sets methods
+    //Item Sets
     public List<ItemSet> getAllItemSets() {
         return itemSetDao.getAllItemSets();
     }
@@ -78,6 +83,7 @@ public class LeagueAppService {
         return itemSetDao.createNewItemSet(toAdd);
     }
 
+    //Rune Sets
     public List<RuneSet> getAllRuneSets() {
         return runeSetDao.getAllRuneSets();
     }
@@ -90,6 +96,7 @@ public class LeagueAppService {
         return runeSetDao.createNewRuneSet(toAdd);
     }
 
+    //Summoner Spell Sets
     public List<SummonerSpellSet> getAllSummonerSpellSets() {
         return summonerSpellSetDao.getAllSummonerSpellSets();
     }
@@ -98,5 +105,7 @@ public class LeagueAppService {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
     }
 
-
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) {
+        return summonerSpellSetDao.createNewSummonerSpellSet(toAdd);
+    }
 }

@@ -6,9 +6,7 @@ import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +14,20 @@ import java.util.List;
 public class SummonerSpellSetController {
     @Autowired
     LeagueAppService service;
+
+    //User summonerSpellSetName in JSON request!!
+    @PostMapping("/new/summonerSpellSet")
+    public ResponseEntity createNewRuneSet(@RequestBody SummonerSpellSet toAdd) {
+        SummonerSpellSet toReturn = null;
+        try {
+            toReturn = service.createNewSummonerSpellSet(toAdd);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
 
     @GetMapping("/summonerSpellSets")
     public ResponseEntity getAllSummonerSpellSets() {

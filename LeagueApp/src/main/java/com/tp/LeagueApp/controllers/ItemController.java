@@ -21,7 +21,7 @@ public class ItemController {
 
     @GetMapping("/items")
     public ResponseEntity getAllItemSets() {
-        List<ItemSet> toReturn = service.getAllItemSets();
+        List<Item> toReturn = service.getAllItems();
 
         return ResponseEntity.ok(toReturn);
     }

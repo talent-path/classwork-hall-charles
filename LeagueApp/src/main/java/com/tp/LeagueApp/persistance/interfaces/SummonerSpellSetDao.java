@@ -8,4 +8,5 @@ import java.util.List;
 public interface SummonerSpellSetDao {
     List<SummonerSpellSet> getAllSummonerSpellSets();
     SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName);
+    SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd);
 }

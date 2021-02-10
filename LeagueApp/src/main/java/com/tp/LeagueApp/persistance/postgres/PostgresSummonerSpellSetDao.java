@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,19 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         return toReturn.get(0);
     }
 
+    @Override
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) {
+        Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?);",
+                new PostgresSummonerSpellSetDao.SummonerSpellSetIdMapper(),
+                toAdd.getSummonerSpellSetName(),
+                toAdd.getChampionId()
+        );
+
+        toAdd.setSummonerSpellSetId(summSpellSetId);
+
+        return toAdd;
+    }
+
     public class SummonerSpellSetMapper implements RowMapper<SummonerSpellSet> {
 
         @Override
@@ -42,6 +56,12 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
             mappedSummonerSpellSet.setChampionId(resultSet.getInt("championId"));
 
             return mappedSummonerSpellSet;
+        }
+    }
+
+    private class SummonerSpellSetIdMapper implements RowMapper<Integer>{
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("summSpellSetId");
         }
     }
 }
