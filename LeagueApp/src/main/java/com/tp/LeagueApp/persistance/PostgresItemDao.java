@@ -3,6 +3,7 @@ package com.tp.LeagueApp.persistance;
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.models.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Component
+@Profile({"production","daoTesting"})
 public class PostgresItemDao implements ItemDao {
     @Autowired
     JdbcTemplate template;

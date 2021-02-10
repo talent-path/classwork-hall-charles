@@ -2,6 +2,7 @@ package com.tp.LeagueApp.persistance;
 
 import com.tp.LeagueApp.models.ItemSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Component
+@Profile({"production","daoTesting"})
 public class PostgresItemSetDao implements ItemSetDao {
     @Autowired
     JdbcTemplate template;

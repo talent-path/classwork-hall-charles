@@ -86,6 +86,9 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
+    public RuneSet createNewRuneSet(RuneSet toAdd) {
+        return runeSetDao.createNewRuneSet(toAdd);
+    }
 
     public List<SummonerSpellSet> getAllSummonerSpellSets() {
         return summonerSpellSetDao.getAllSummonerSpellSets();

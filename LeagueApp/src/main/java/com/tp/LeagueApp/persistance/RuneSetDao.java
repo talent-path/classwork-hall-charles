@@ -8,4 +8,5 @@ import java.util.List;
 public interface RuneSetDao {
     List<RuneSet> getAllRuneSets();
     RuneSet getRuneSetByName(String runeSetName);
+    RuneSet createNewRuneSet(RuneSet toAdd);
 }

@@ -3,6 +3,7 @@ package com.tp.LeagueApp.persistance;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Component
+@Profile({"production","daoTesting"})
 public class PostgresRuneSetDao implements RuneSetDao {
 
     @Autowired
@@ -31,7 +33,20 @@ public class PostgresRuneSetDao implements RuneSetDao {
         return toReturn.get(0);
     }
 
-    public class RuneSetMapper implements RowMapper<RuneSet> {
+    @Override
+    public RuneSet createNewRuneSet(RuneSet toAdd) {
+        Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?);",
+                new PostgresRuneSetDao.RuneSetIdMapper(),
+                toAdd.getRuneSetName(),
+                toAdd.getChampionId()
+        );
+
+        toAdd.setRuneSetId(runeSetId);
+
+        return toAdd;
+    }
+
+    private class RuneSetMapper implements RowMapper<RuneSet> {
 
         @Override
         public RuneSet mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -41,6 +56,12 @@ public class PostgresRuneSetDao implements RuneSetDao {
             mappedRuneSet.setChampionId(resultSet.getInt("championId"));
 
             return mappedRuneSet;
+        }
+    }
+
+    private class RuneSetIdMapper implements RowMapper<Integer>{
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("runeSetId");
         }
     }
 
