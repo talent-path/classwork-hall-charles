@@ -1,6 +1,7 @@
-package com.tp.LeagueApp.persistance;
+package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.models.Champion;
+import com.tp.LeagueApp.persistance.interfaces.ChampionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,4 +1,4 @@
-package com.tp.LeagueApp.persistance;
+package com.tp.LeagueApp.persistance.interfaces;
 
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.models.Item;

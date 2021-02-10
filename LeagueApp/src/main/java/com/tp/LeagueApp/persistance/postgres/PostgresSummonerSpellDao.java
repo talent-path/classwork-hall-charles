@@ -1,7 +1,7 @@
-package com.tp.LeagueApp.persistance;
+package com.tp.LeagueApp.persistance.postgres;
 
-import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.models.SummonerSpell;
+import com.tp.LeagueApp.persistance.interfaces.SummonerSpellDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;

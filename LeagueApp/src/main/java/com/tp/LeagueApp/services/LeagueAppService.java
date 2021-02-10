@@ -1,7 +1,7 @@
 package com.tp.LeagueApp.services;
 
 import com.tp.LeagueApp.models.*;
-import com.tp.LeagueApp.persistance.*;
+import com.tp.LeagueApp.persistance.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
