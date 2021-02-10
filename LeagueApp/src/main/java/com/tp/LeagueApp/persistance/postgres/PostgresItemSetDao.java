@@ -34,7 +34,7 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     @Override
     public ItemSet createNewItemSet(ItemSet toAdd) {
-        Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?);",
+        Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
                 new ItemSetIdMapper(),
                 toAdd.getItemSetName(),
                 toAdd.getChampionId()

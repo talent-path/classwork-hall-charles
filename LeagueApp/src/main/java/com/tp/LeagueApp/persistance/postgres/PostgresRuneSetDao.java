@@ -35,7 +35,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
     @Override
     public RuneSet createNewRuneSet(RuneSet toAdd) {
-        Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?);",
+        Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?) RETURNING \"runeSetId\";",
                 new PostgresRuneSetDao.RuneSetIdMapper(),
                 toAdd.getRuneSetName(),
                 toAdd.getChampionId()

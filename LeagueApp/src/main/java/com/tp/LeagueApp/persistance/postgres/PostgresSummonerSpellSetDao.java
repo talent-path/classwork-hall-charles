@@ -35,7 +35,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
     @Override
     public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) {
-        Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?);",
+        Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?) RETURNING \"summSpellSetId\";",
                 new PostgresSummonerSpellSetDao.SummonerSpellSetIdMapper(),
                 toAdd.getSummonerSpellSetName(),
                 toAdd.getChampionId()
