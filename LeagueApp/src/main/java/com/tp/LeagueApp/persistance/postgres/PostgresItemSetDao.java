@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.interfaces.ItemSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,11 @@ public class PostgresItemSetDao implements ItemSetDao {
     }
 
     @Override
-    public ItemSet createNewItemSet(ItemSet toAdd) {
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
+
+        if(toAdd == null)
+            throw new NullSetException("ERROR: Tried to create a null item set.");
+
         Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
                 new ItemSetIdMapper(),
                 toAdd.getItemSetName(),

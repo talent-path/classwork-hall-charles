@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresSummonerSpellSetDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("daoTesting")
@@ -41,7 +42,12 @@ public class PostgresSummonerSpellSetDaoTests {
         summSetToAdd.setSummonerSpellSetName("Testing Summ Set");
         summSetToAdd.setChampionId(1);
 
-        SummonerSpellSet returnedSummonerSpellSet = toTest.createNewSummonerSpellSet(summSetToAdd);
+        SummonerSpellSet returnedSummonerSpellSet = null;
+        try {
+            returnedSummonerSpellSet = toTest.createNewSummonerSpellSet(summSetToAdd);
+        } catch (NullSetException e) {
+            fail();
+        }
 
         assertEquals( 1, returnedSummonerSpellSet.getSummonerSpellSetId() );
         assertEquals( "Testing Summ Set", returnedSummonerSpellSet.getSummonerSpellSetName() );
@@ -52,5 +58,10 @@ public class PostgresSummonerSpellSetDaoTests {
         assertEquals( 1, allItemSets.get(0).getSummonerSpellSetId() );
         assertEquals( "Testing Summ Set", allItemSets.get(0).getSummonerSpellSetName() );
         assertEquals( 1, allItemSets.get(0).getChampionId());
+    }
+
+    @Test
+    public void createNewSummonerSpellSetNullSummonerSpellSetTest() {
+        assertThrows(NullSetException.class, () -> toTest.createNewSummonerSpellSet(null));
     }
 }

@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresItemSetDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,7 +42,12 @@ public class PostgresItemSetDaoTests {
         itemSetToAdd.setItemSetName("Testing Item Set");
         itemSetToAdd.setChampionId(1);
 
-        ItemSet returnedItemSet = toTest.createNewItemSet(itemSetToAdd);
+        ItemSet returnedItemSet = null;
+        try {
+            returnedItemSet = toTest.createNewItemSet(itemSetToAdd);
+        } catch (NullSetException e) {
+            fail();
+        }
 
         assertEquals( 1, returnedItemSet.getItemSetId() );
         assertEquals( "Testing Item Set", returnedItemSet.getItemSetName() );
@@ -52,7 +58,11 @@ public class PostgresItemSetDaoTests {
         assertEquals( 1, allItemSets.get(0).getItemSetId() );
         assertEquals( "Testing Item Set", allItemSets.get(0).getItemSetName() );
         assertEquals( 1, allItemSets.get(0).getChampionId());
+    }
 
+    @Test
+    public void createNewItemSetNullItemSetTest() {
+        assertThrows(NullSetException.class, () -> toTest.createNewItemSet(null));
     }
 
 }

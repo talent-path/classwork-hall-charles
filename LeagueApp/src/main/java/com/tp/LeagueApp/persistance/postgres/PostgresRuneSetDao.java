@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.interfaces.RuneSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,11 @@ public class PostgresRuneSetDao implements RuneSetDao {
     }
 
     @Override
-    public RuneSet createNewRuneSet(RuneSet toAdd) {
+    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
+
+        if(toAdd == null)
+            throw new NullSetException("ERROR: Tried to create a null rune set.");
+
         Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?) RETURNING \"runeSetId\";",
                 new PostgresRuneSetDao.RuneSetIdMapper(),
                 toAdd.getRuneSetName(),

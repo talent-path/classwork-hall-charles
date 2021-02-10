@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresRuneSetDao;
@@ -12,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("daoTesting")
@@ -37,12 +38,17 @@ public class PostgresRuneSetDaoTests {
     }
 
     @Test
-    public void createNewItemSetGoldenPath() {
+    public void createNewRuneSetGoldenPath() {
         RuneSet runeSetToAdd = new RuneSet();
         runeSetToAdd.setRuneSetName("Testing Rune Set");
         runeSetToAdd.setChampionId(1);
 
-        RuneSet returnedRuneSet = toTest.createNewRuneSet(runeSetToAdd);
+        RuneSet returnedRuneSet = null;
+        try {
+            returnedRuneSet = toTest.createNewRuneSet(runeSetToAdd);
+        } catch (NullSetException e) {
+            fail();
+        }
 
         assertEquals( 1, returnedRuneSet.getRuneSetId() );
         assertEquals( "Testing Rune Set", returnedRuneSet.getRuneSetName() );
@@ -53,6 +59,10 @@ public class PostgresRuneSetDaoTests {
         assertEquals( 1, allRuneSets.get(0).getRuneSetId() );
         assertEquals( "Testing Rune Set", allRuneSets.get(0).getRuneSetName() );
         assertEquals( 1, allRuneSets.get(0).getChampionId());
+    }
 
+    @Test
+    public void createNewRuneSetNullRuneSetTest() {
+        assertThrows(NullSetException.class, () -> toTest.createNewRuneSet(null));
     }
 }

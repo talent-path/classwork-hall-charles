@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.services;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.*;
 import com.tp.LeagueApp.persistance.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,7 @@ public class LeagueAppService {
         return itemSetDao.getItemSetByName(itemSetName);
     }
 
-    public ItemSet createNewItemSet(ItemSet toAdd) {
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
         return itemSetDao.createNewItemSet(toAdd);
     }
 
@@ -92,7 +93,7 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
-    public RuneSet createNewRuneSet(RuneSet toAdd) {
+    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
         return runeSetDao.createNewRuneSet(toAdd);
     }
 
@@ -105,7 +106,7 @@ public class LeagueAppService {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
     }
 
-    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) {
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
         return summonerSpellSetDao.createNewSummonerSpellSet(toAdd);
     }
 }

@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
@@ -34,7 +35,11 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
     }
 
     @Override
-    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) {
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
+
+        if(toAdd == null)
+            throw new NullSetException("ERROR: Tried to create a null summoner spell set.");
+
         Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?) RETURNING \"summSpellSetId\";",
                 new PostgresSummonerSpellSetDao.SummonerSpellSetIdMapper(),
                 toAdd.getSummonerSpellSetName(),
