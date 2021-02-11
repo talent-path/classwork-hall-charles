@@ -143,4 +143,24 @@ public class PostgresSummonerSpellSetDaoTests {
     public void updateSummonerSpellSetNullRuneSetTest() {
         assertThrows(NullSetException.class, () -> toTest.updateSummonerSpellSet(null));
     }
+
+    @Test
+    public void deleteSummonerSpellSetGoldenPath() {
+        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
+
+        try {
+            toTest.deleteSummonerSpellSet("Testing Summoner Spell Set");
+        } catch (NullNameException e) {
+            fail();
+        }
+
+        List<SummonerSpellSet> toCheck = toTest.getAllSummonerSpellSets();
+
+        assertEquals(0, toCheck.size());
+    }
+
+    @Test
+    public void deleteSummonerSpellSetNullNameTest() {
+        assertThrows(NullNameException.class, () -> toTest.deleteSummonerSpellSet(null));
+    }
 }

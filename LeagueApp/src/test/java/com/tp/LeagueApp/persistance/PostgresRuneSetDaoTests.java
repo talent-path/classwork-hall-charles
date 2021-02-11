@@ -142,4 +142,24 @@ public class PostgresRuneSetDaoTests {
     public void updateRuneSetNullRuneSetTest() {
         assertThrows(NullSetException.class, () -> toTest.updateRuneSet(null));
     }
+
+    @Test
+    public void deleteRuneSetGoldenPath() {
+        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
+
+        try {
+            toTest.deleteRuneSet("Testing Rune Set");
+        } catch (NullNameException e) {
+            fail();
+        }
+
+        List<RuneSet> toCheck = toTest.getAllRuneSets();
+
+        assertEquals(0, toCheck.size());
+    }
+
+    @Test
+    public void deleteRuneSetNullNameTest() {
+        assertThrows(NullNameException.class, () -> toTest.deleteRuneSet(null));
+    }
 }

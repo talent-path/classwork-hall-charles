@@ -3,6 +3,7 @@ package com.tp.LeagueApp.persistance;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.Champion;
+import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresItemSetDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -142,6 +143,26 @@ public class PostgresItemSetDaoTests {
     @Test
     public void updateItemSetNullItemSetTest() {
         assertThrows(NullSetException.class, () -> toTest.updateItemSet(null));
+    }
+
+    @Test
+    public void deleteItemSetGoldenPath() {
+        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
+
+        try {
+            toTest.deleteItemSet("Testing Item Set");
+        } catch (NullNameException e) {
+            fail();
+        }
+
+        List<ItemSet> toCheck = toTest.getAllItemSets();
+
+        assertEquals(0, toCheck.size());
+    }
+
+    @Test
+    public void deleteItemSetNullNameTest() {
+        assertThrows(NullNameException.class, () -> toTest.deleteItemSet(null));
     }
 
 }
