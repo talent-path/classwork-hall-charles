@@ -147,6 +147,16 @@ public class PostgresItemSetDaoTests {
     }
 
     @Test
+    public void updateItemSetNullIdTest() {
+        ItemSet toCheck = new ItemSet();
+        toCheck.setItemSetId(null);
+        toCheck.setItemSetName("Test");
+        toCheck.setChampionId(1);
+
+        assertThrows(NullIdException.class, () -> toTest.updateItemSet(toCheck));
+    }
+
+    @Test
     public void deleteItemSetGoldenPath() {
         template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
 

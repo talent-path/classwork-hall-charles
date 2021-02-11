@@ -146,6 +146,16 @@ public class PostgresSummonerSpellSetDaoTests {
     }
 
     @Test
+    public void updateSummonerSpellSetNullIdTest() {
+        SummonerSpellSet toCheck = new SummonerSpellSet();
+        toCheck.setSummonerSpellSetId(null);
+        toCheck.setSummonerSpellSetName("Test");
+        toCheck.setChampionId(1);
+
+        assertThrows(NullIdException.class, () -> toTest.updateSummonerSpellSet(toCheck));
+    }
+
+    @Test
     public void deleteSummonerSpellSetGoldenPath() {
         template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
 

@@ -145,6 +145,16 @@ public class PostgresRuneSetDaoTests {
     }
 
     @Test
+    public void updateRuneSetNullIdTest() {
+        RuneSet toCheck = new RuneSet();
+        toCheck.setRuneSetId(null);
+        toCheck.setRuneSetName("Test");
+        toCheck.setChampionId(1);
+
+        assertThrows(NullIdException.class, () -> toTest.updateRuneSet(toCheck));
+    }
+
+    @Test
     public void deleteRuneSetGoldenPath() {
         template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
 
