@@ -107,4 +107,39 @@ public class PostgresRuneSetDaoTests {
     public void getRuneSetByNameNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.getRuneSetByName(null));
     }
+
+    @Test
+    public void updateRuneSetGoldenPathTest() {
+        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
+        template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +
+                "values ('Test','Test Description', '1','1','1','1')");
+
+        RuneSet newUpdateRuneSet = new RuneSet();
+        newUpdateRuneSet.setRuneSetId(1);
+        newUpdateRuneSet.setRuneSetName("New Update");
+        newUpdateRuneSet.setChampionId(2);
+
+        try {
+            toTest.updateRuneSet(newUpdateRuneSet);
+        } catch (NullSetException e) {
+            fail();
+        }
+
+        RuneSet toCheck = null;
+        try {
+            toCheck = toTest.getRuneSetByName("New Update");
+        } catch (NullNameException e) {
+            fail();
+        }
+
+        assertEquals( 1, toCheck.getRuneSetId() );
+        assertEquals( "New Update", toCheck.getRuneSetName() );
+        assertEquals( 2, toCheck.getChampionId());
+
+    }
+
+    @Test
+    public void updateRuneSetNullRuneSetTest() {
+        assertThrows(NullSetException.class, () -> toTest.updateRuneSet(null));
+    }
 }
