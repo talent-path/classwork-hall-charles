@@ -114,6 +114,10 @@ public class LeagueAppService {
         itemSetDao.deleteItemSet(toDelete);
     }
 
+    public void deleteItemSetById(Integer toDeleteId) throws NullIdException {
+        itemSetDao.deleteItemSetById(toDeleteId);
+    }
+
     //Rune Sets
     public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
         return runeSetDao.createNewRuneSet(toAdd);
@@ -139,6 +143,10 @@ public class LeagueAppService {
         runeSetDao.deleteRuneSet(toDelete);
     }
 
+    public void deleteRuneSetById(Integer toDeleteId) throws NullIdException {
+        runeSetDao.deleteRuneSetById(toDeleteId);
+    }
+
     //Summoner Spell Sets
     public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
         return summonerSpellSetDao.createNewSummonerSpellSet(toAdd);
@@ -162,6 +170,10 @@ public class LeagueAppService {
 
     public void deleteSummonerSpellSet(String toDelete) throws NullNameException {
         summonerSpellSetDao.deleteSummonerSpellSet(toDelete);
+    }
+
+    public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException {
+        summonerSpellSetDao.deleteSummonerSpellSetById(toDeleteId);
     }
 
 }

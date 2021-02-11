@@ -109,6 +109,14 @@ public class PostgresItemSetDao implements ItemSetDao {
         template.update("delete from \"ItemSets\" where \"itemSetName\" = ?;", toDelete);
     }
 
+    @Override
+    public void deleteItemSetById(Integer toDeleteId) throws NullIdException {
+        if(toDeleteId == null)
+            throw new NullIdException("ERROR: Tried to delete an item set with a null id.");
+
+        template.update("delete from \"ItemSets\" where \"itemSetId\" = ?;", toDeleteId);
+    }
+
     private class ItemSetMapper implements RowMapper<ItemSet> {
 
         @Override

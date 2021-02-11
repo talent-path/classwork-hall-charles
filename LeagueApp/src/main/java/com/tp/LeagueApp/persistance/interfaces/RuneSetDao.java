@@ -23,4 +23,5 @@ public interface RuneSetDao {
     //CREATE
     void deleteRuneSet(String toDelete) throws NullNameException;
 
+    void deleteRuneSetById(Integer toDeleteId) throws NullIdException;
 }

@@ -77,11 +77,22 @@ public class ItemSetController {
     }
 
     //DELETE
-    @DeleteMapping("/delete/itemSet/{itemSetName}")
+    @DeleteMapping("/delete/itemSet/name/{itemSetName}")
     public String deleteItemSet(@PathVariable String itemSetName) {
         try {
             service.deleteItemSet(itemSetName);
             return "Item Set " + itemSetName + " successfully deleted.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    @DeleteMapping("/delete/itemSet/id/{itemSetId}")
+    public String deleteItemSetById(@PathVariable Integer itemSetId) {
+        try {
+            service.deleteItemSetById(itemSetId);
+            return "Item Set " + itemSetId + " successfully deleted.";
         }
         catch(Exception e) {
             return e.getMessage();

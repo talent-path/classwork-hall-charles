@@ -23,5 +23,7 @@ public interface ItemSetDao {
 
     //DELETE
     void deleteItemSet(String toDelete) throws NullNameException;
+    void deleteItemSetById(Integer toDeleteId) throws NullIdException;
+
 
 }

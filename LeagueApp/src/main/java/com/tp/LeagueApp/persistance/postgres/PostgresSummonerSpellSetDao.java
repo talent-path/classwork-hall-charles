@@ -93,6 +93,15 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         template.update("delete from \"SummonerSpellSets\" where \"summSpellSetName\" = ?;", toDelete);
     }
 
+    @Override
+    public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException {
+
+        if(toDeleteId == null)
+            throw new NullIdException("ERROR: Tried to delete a summoner spell set with a null id.");
+
+        template.update("delete from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", toDeleteId);
+    }
+
     public class SummonerSpellSetMapper implements RowMapper<SummonerSpellSet> {
 
         @Override

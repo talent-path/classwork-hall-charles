@@ -25,4 +25,5 @@ public interface SummonerSpellSetDao {
     //DELETE
     void deleteSummonerSpellSet(String toDelete) throws NullNameException;
 
+    void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException;
 }

@@ -76,11 +76,22 @@ public class RuneSetController {
     }
 
     //DELETE
-    @DeleteMapping("/delete/runeSet/{runeSetName}")
+    @DeleteMapping("/delete/runeSet/name/{runeSetName}")
     public String deleteRuneSet(@PathVariable String runeSetName) {
         try {
             service.deleteRuneSet(runeSetName);
             return "Rune Set " + runeSetName + " successfully deleted.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    @DeleteMapping("/delete/runeSet/id/{runeSetId}")
+    public String deleteRuneSet(@PathVariable Integer runeSetId) {
+        try {
+            service.deleteRuneSetById(runeSetId);
+            return "Rune Set " + runeSetId + " successfully deleted.";
         }
         catch(Exception e) {
             return e.getMessage();

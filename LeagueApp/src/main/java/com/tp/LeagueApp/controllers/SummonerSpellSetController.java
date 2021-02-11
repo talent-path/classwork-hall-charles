@@ -76,11 +76,22 @@ public class SummonerSpellSetController {
     }
 
     //DELETE
-    @DeleteMapping("/delete/summonerSpellSet/{summSpellSetName}")
+    @DeleteMapping("/delete/summonerSpellSet/name/{summSpellSetName}")
     public String deleteSummonerSpellSet(@PathVariable String summSpellSetName) {
         try {
             service.deleteSummonerSpellSet(summSpellSetName);
             return "Summoner Spell Set " + summSpellSetName + " successfully deleted.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    @DeleteMapping("/delete/summonerSpellSet/id/{summSpellSetId}")
+    public String deleteSummonerSpellSetById(@PathVariable Integer summSpellSetId) {
+        try {
+            service.deleteSummonerSpellSetById(summSpellSetId);
+            return "Summoner Spell Set " + summSpellSetId + " successfully deleted.";
         }
         catch(Exception e) {
             return e.getMessage();
