@@ -21,6 +21,23 @@ public class PostgresItemSetDao implements ItemSetDao {
     JdbcTemplate template;
 
     @Override
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
+
+        if(toAdd == null)
+            throw new NullSetException("ERROR: Tried to create a null item set.");
+
+        Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
+                new ItemSetIdMapper(),
+                toAdd.getItemSetName(),
+                toAdd.getChampionId()
+        );
+
+        toAdd.setItemSetId(itemSetId);
+
+        return toAdd;
+    }
+
+    @Override
     public List<ItemSet> getAllItemSets() {
         List<ItemSet> allItemSets = template.query("select * from \"ItemSets\"", new PostgresItemSetDao.ItemSetMapper());
 
@@ -36,23 +53,6 @@ public class PostgresItemSetDao implements ItemSetDao {
         List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetName\" = ?;", new PostgresItemSetDao.ItemSetMapper(), itemSetName);
 
         return toReturn.get(0);
-    }
-
-    @Override
-    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
-
-        if(toAdd == null)
-            throw new NullSetException("ERROR: Tried to create a null item set.");
-
-        Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
-                new ItemSetIdMapper(),
-                toAdd.getItemSetName(),
-                toAdd.getChampionId()
-        );
-
-        toAdd.setItemSetId(itemSetId);
-
-        return toAdd;
     }
 
     private class ItemSetMapper implements RowMapper<ItemSet> {

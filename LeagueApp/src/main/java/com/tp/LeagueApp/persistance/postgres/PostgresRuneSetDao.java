@@ -22,6 +22,23 @@ public class PostgresRuneSetDao implements RuneSetDao {
     JdbcTemplate template;
 
     @Override
+    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
+
+        if(toAdd == null)
+            throw new NullSetException("ERROR: Tried to create a null rune set.");
+
+        Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?) RETURNING \"runeSetId\";",
+                new PostgresRuneSetDao.RuneSetIdMapper(),
+                toAdd.getRuneSetName(),
+                toAdd.getChampionId()
+        );
+
+        toAdd.setRuneSetId(runeSetId);
+
+        return toAdd;
+    }
+
+    @Override
     public List<RuneSet> getAllRuneSets() {
         List<RuneSet> allRuneSets = template.query("select * from \"RuneSets\"", new PostgresRuneSetDao.RuneSetMapper());
 
@@ -37,23 +54,6 @@ public class PostgresRuneSetDao implements RuneSetDao {
         List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetName\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetName);
 
         return toReturn.get(0);
-    }
-
-    @Override
-    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
-
-        if(toAdd == null)
-            throw new NullSetException("ERROR: Tried to create a null rune set.");
-
-        Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?) RETURNING \"runeSetId\";",
-                new PostgresRuneSetDao.RuneSetIdMapper(),
-                toAdd.getRuneSetName(),
-                toAdd.getChampionId()
-        );
-
-        toAdd.setRuneSetId(runeSetId);
-
-        return toAdd;
     }
 
     private class RuneSetMapper implements RowMapper<RuneSet> {

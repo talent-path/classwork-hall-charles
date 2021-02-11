@@ -22,6 +22,23 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
     JdbcTemplate template;
 
     @Override
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
+
+        if(toAdd == null)
+            throw new NullSetException("ERROR: Tried to create a null summoner spell set.");
+
+        Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?) RETURNING \"summSpellSetId\";",
+                new PostgresSummonerSpellSetDao.SummonerSpellSetIdMapper(),
+                toAdd.getSummonerSpellSetName(),
+                toAdd.getChampionId()
+        );
+
+        toAdd.setSummonerSpellSetId(summSpellSetId);
+
+        return toAdd;
+    }
+
+    @Override
     public List<SummonerSpellSet> getAllSummonerSpellSets() {
         List<SummonerSpellSet> allSummonerSpellSets = template.query("select * from \"SummonerSpellSets\"", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper());
 
@@ -37,23 +54,6 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         List<SummonerSpellSet> toReturn = template.query("select * from \"SummonerSpellSets\" where \"summSpellSetName\" = ?;", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper(), summonerSpellSetName);
 
         return toReturn.get(0);
-    }
-
-    @Override
-    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
-
-        if(toAdd == null)
-            throw new NullSetException("ERROR: Tried to create a null summoner spell set.");
-
-        Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?) RETURNING \"summSpellSetId\";",
-                new PostgresSummonerSpellSetDao.SummonerSpellSetIdMapper(),
-                toAdd.getSummonerSpellSetName(),
-                toAdd.getChampionId()
-        );
-
-        toAdd.setSummonerSpellSetId(summSpellSetId);
-
-        return toAdd;
     }
 
     public class SummonerSpellSetMapper implements RowMapper<SummonerSpellSet> {
