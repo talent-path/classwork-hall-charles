@@ -3,6 +3,7 @@ package com.tp.LeagueApp.persistance;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
+import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresSummonerSpellSetDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -106,5 +107,40 @@ public class PostgresSummonerSpellSetDaoTests {
     @Test
     public void getSummonerSpellSetByNameNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.getSummonerSpellSetByName(null));
+    }
+
+    @Test
+    public void updateRuneSetGoldenPathTest() {
+        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
+        template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +
+                "values ('Test','Test Description', '1','1','1','1')");
+
+        SummonerSpellSet newUpdateSummonerSpellSet = new SummonerSpellSet();
+        newUpdateSummonerSpellSet.setSummonerSpellSetId(1);
+        newUpdateSummonerSpellSet.setSummonerSpellSetName("New Update");
+        newUpdateSummonerSpellSet.setChampionId(2);
+
+        try {
+            toTest.updateSummonerSpellSet(newUpdateSummonerSpellSet);
+        } catch (NullSetException e) {
+            fail();
+        }
+
+        SummonerSpellSet toCheck = null;
+        try {
+            toCheck = toTest.getSummonerSpellSetByName("New Update");
+        } catch (NullNameException e) {
+            fail();
+        }
+
+        assertEquals( 1, toCheck.getSummonerSpellSetId() );
+        assertEquals( "New Update", toCheck.getSummonerSpellSetName() );
+        assertEquals( 2, toCheck.getChampionId());
+
+    }
+
+    @Test
+    public void updateSummonerSpellSetNullRuneSetTest() {
+        assertThrows(NullSetException.class, () -> toTest.updateSummonerSpellSet(null));
     }
 }
