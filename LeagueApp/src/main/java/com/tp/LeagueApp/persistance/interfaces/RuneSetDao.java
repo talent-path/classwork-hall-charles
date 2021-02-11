@@ -3,7 +3,6 @@ package com.tp.LeagueApp.persistance.interfaces;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
-import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 
 import java.util.List;
@@ -16,6 +15,7 @@ public interface RuneSetDao {
     //READ
     List<RuneSet> getAllRuneSets();
     RuneSet getRuneSetByName(String runeSetName) throws NullNameException;
+    RuneSet getRuneSetById(Integer runeSetId) throws NullIdException;
 
     //UPDATE
     void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException;

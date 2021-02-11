@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.SummonerSpell;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellDao;
@@ -34,6 +35,16 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
             throw new NullNameException("ERROR: Tried to get a summoner spell with a null name.");
 
         List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellName\" = ?;", new PostgresSummonerSpellDao.SummonerSpellMapper(), summonerSpellName);
+
+        return toReturn.get(0);
+    }
+
+    @Override
+    public SummonerSpell getSummonerSpellById(Integer summonerSpellId) throws NullIdException {
+        if(summonerSpellId == null)
+            throw new NullIdException("ERROR: Tried to get a summoner spell with a null id.");
+
+        List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellId\" = ?;", new PostgresSummonerSpellDao.SummonerSpellMapper(), summonerSpellId);
 
         return toReturn.get(0);
     }

@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.persistance.interfaces.RuneDao;
@@ -38,6 +39,15 @@ public class PostgresRuneDao implements RuneDao {
 
         return toReturn.get(0);
     }
+
+    @Override
+    public Rune getRuneById(Integer runeId) throws NullIdException {
+        if(runeId == null)
+            throw new NullIdException("ERROR: Tried to get a rune with a null id.");
+
+        List<Rune> toReturn = template.query("select * from \"Runes\" where \"runeId\" = ?;", new PostgresRuneDao.RuneMapper(), runeId);
+
+        return toReturn.get(0);    }
 
     public class RuneMapper implements RowMapper<Rune> {
 

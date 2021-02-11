@@ -73,6 +73,18 @@ public class PostgresItemSetDao implements ItemSetDao {
         return toReturn.get(0);
     }
 
+    @Override
+    public ItemSet getItemSetById(Integer itemSetId) throws NullIdException{
+
+        if(itemSetId == null)
+            throw new NullIdException("ERROR: Tried to get an item set with a null id.");
+
+        List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetId\" = ?;",
+                new PostgresItemSetDao.ItemSetMapper(), itemSetId);
+
+        return toReturn.get(0);
+    }
+
     //UPDATE
     @Override
     public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException {

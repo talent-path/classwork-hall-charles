@@ -37,11 +37,24 @@ public class SummonerSpellSetController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/summonerSpellSets/{summonerSpellSetName}")
+    @GetMapping("/summonerSpellSets/name/{summonerSpellSetName}")
     public ResponseEntity getSummonerSpellSetsByName(@PathVariable String summonerSpellSetName) {
         SummonerSpellSet toReturn = new SummonerSpellSet();
         try {
             toReturn = service.getSummonerSpellSetByName(summonerSpellSetName);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/summonerSpellSets/id/{summonerSpellSetId}")
+    public ResponseEntity getSummonerSpellSetsById(@PathVariable Integer summonerSpellSetId) {
+        SummonerSpellSet toReturn = new SummonerSpellSet();
+        try {
+            toReturn = service.getSummonerSpellSetById(summonerSpellSetId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.persistance.interfaces.ItemDao;
@@ -34,6 +35,16 @@ public class PostgresItemDao implements ItemDao {
             throw new NullNameException("ERROR: Tried to get an item with a null name.");
 
         List<Item> toReturn = template.query("select * from \"Items\" where \"itemName\" = ?;", new PostgresItemDao.ItemMapper(), itemName);
+
+        return toReturn.get(0);
+    }
+
+    @Override
+    public Item getItemById(Integer itemId) throws NullIdException {
+        if(itemId == null)
+            throw new NullIdException("ERROR: Tried to get an item with a null id.");
+
+        List<Item> toReturn = template.query("select * from \"Items\" where \"itemId\" = ?;", new PostgresItemDao.ItemMapper(), itemId);
 
         return toReturn.get(0);
     }

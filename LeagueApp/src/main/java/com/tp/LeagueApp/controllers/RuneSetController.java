@@ -37,11 +37,24 @@ public class RuneSetController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/runeSets/{runeSetName}")
+    @GetMapping("/runeSets/name/{runeSetName}")
     public ResponseEntity getRuneSetsByName(@PathVariable String runeSetName) {
         RuneSet toReturn = new RuneSet();
         try {
             toReturn = service.getRuneSetByName(runeSetName);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/runeSets/id/{runeSetId}")
+    public ResponseEntity getRuneSetsById(@PathVariable Integer runeSetId) {
+        RuneSet toReturn = new RuneSet();
+        try {
+            toReturn = service.getRuneSetById(runeSetId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

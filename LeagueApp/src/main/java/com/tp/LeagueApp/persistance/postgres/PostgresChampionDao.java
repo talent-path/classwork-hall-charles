@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.persistance.interfaces.ChampionDao;
@@ -38,6 +39,15 @@ public class PostgresChampionDao implements ChampionDao {
 
         return toReturn.get(0);
     }
+
+    @Override
+    public Champion getChampionById(Integer championId) throws NullIdException {
+        if(championId == null)
+            throw new NullIdException("ERROR: Tried to get champion with null id.");
+
+        List<Champion> toReturn = template.query("select * from \"Champions\" where \"championId\" = ?;", new ChampionMapper(), championId);
+
+        return toReturn.get(0);    }
 
     class ChampionMapper implements RowMapper<Champion> {
 

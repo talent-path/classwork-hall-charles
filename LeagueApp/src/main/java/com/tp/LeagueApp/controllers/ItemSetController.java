@@ -38,11 +38,24 @@ public class ItemSetController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/itemSets/{itemSetName}")
+    @GetMapping("/itemSets/name/{itemSetName}")
     public ResponseEntity getItemSetsByName(@PathVariable String itemSetName) {
         ItemSet toReturn = new ItemSet();
         try {
             toReturn = service.getItemSetByName(itemSetName);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/itemSets/id/{itemSetId}")
+    public ResponseEntity getItemSetsById(@PathVariable Integer itemSetId) {
+        ItemSet toReturn = new ItemSet();
+        try {
+            toReturn = service.getItemSetById(itemSetId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

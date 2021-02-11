@@ -45,6 +45,10 @@ public class LeagueAppService {
         return championDao.getChampionByName(championName);
     }
 
+    public Champion getChampionById(Integer championId) throws NullIdException {
+        return championDao.getChampionById(championId);
+    }
+
     //Items
     public List<Item> getAllItems() {
         return itemDao.getAllItems();
@@ -52,6 +56,10 @@ public class LeagueAppService {
 
     public Item getItemByName(String itemName) throws NullNameException {
         return itemDao.getItemByName(itemName);
+    }
+
+    public Item getItemById(Integer itemId) throws NullIdException {
+        return itemDao.getItemById(itemId);
     }
 
     //Runes
@@ -63,6 +71,10 @@ public class LeagueAppService {
         return runeDao.getRuneByName(runeName);
     }
 
+    public Rune getRuneById(Integer runeId) throws NullIdException {
+        return runeDao.getRuneById(runeId);
+    }
+
     //Summoner Spells
     public List<SummonerSpell> getAllSummonerSpells() {
         return summonerSpellDao.getAllSummonerSpells();
@@ -72,6 +84,9 @@ public class LeagueAppService {
         return summonerSpellDao.getSummonerSpellByName(summonerSpellName);
     }
 
+    public SummonerSpell getSummonerSpellById(Integer summonerSpellId) throws NullIdException {
+        return summonerSpellDao.getSummonerSpellById(summonerSpellId);
+    }
 
     //Various Sets methods
     //Item Sets
@@ -85,6 +100,10 @@ public class LeagueAppService {
 
     public ItemSet getItemSetByName(String itemSetName) throws NullNameException {
         return itemSetDao.getItemSetByName(itemSetName);
+    }
+
+    public ItemSet getItemSetById(Integer itemSetId) throws NullIdException {
+        return itemSetDao.getItemSetById(itemSetId);
     }
 
     public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException {
@@ -108,6 +127,10 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
+    public RuneSet getRuneSetById(Integer runeSetId) throws NullIdException {
+        return runeSetDao.getRuneSetById(runeSetId);
+    }
+
     public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException {
         runeSetDao.updateRuneSet(toUpdate);
     }
@@ -127,6 +150,10 @@ public class LeagueAppService {
 
     public SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName) throws NullNameException {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
+    }
+
+    public SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId) throws NullIdException {
+        return summonerSpellSetDao.getSummonerSpellSetById(summonerSpellSetId);
     }
 
     public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException {

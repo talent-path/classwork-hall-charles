@@ -38,4 +38,17 @@ public class ChampionController {
         return ResponseEntity.ok(toReturn);
     }
 
+    @GetMapping("/champions/id/{championId}")
+    public ResponseEntity getChampionById(@PathVariable Integer championId) {
+        Champion toReturn = new Champion();
+        try {
+            toReturn = service.getChampionById(championId);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
 }

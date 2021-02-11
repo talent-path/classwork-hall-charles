@@ -25,11 +25,24 @@ public class ItemController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/items/{itemName}")
+    @GetMapping("/items/name/{itemName}")
     public ResponseEntity getItemByName(@PathVariable String itemName) {
         Item toReturn = new Item();
         try {
             toReturn = service.getItemByName(itemName);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/items/id/{itemId}")
+    public ResponseEntity getItemById(@PathVariable Integer itemId) {
+        Item toReturn = new Item();
+        try {
+            toReturn = service.getItemById(itemId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

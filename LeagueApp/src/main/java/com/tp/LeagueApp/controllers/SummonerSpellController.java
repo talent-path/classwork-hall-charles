@@ -24,11 +24,24 @@ public class SummonerSpellController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/summonerSpells/{summonerSpellName}")
+    @GetMapping("/summonerSpells/name/{summonerSpellName}")
     public ResponseEntity getSummonerSpellByName(@PathVariable String summonerSpellName) {
         SummonerSpell toReturn = new SummonerSpell();
         try {
             toReturn = service.getSummonerSpellByName(summonerSpellName);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/summonerSpells/id/{summonerSpellId}")
+    public ResponseEntity getSummonerSpellById(@PathVariable Integer summonerSpellId) {
+        SummonerSpell toReturn = new SummonerSpell();
+        try {
+            toReturn = service.getSummonerSpellById(summonerSpellId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

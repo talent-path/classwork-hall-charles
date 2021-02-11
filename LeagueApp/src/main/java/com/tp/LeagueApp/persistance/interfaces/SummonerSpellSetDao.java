@@ -17,6 +17,7 @@ public interface SummonerSpellSetDao {
     //READ
     List<SummonerSpellSet> getAllSummonerSpellSets();
     SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName)throws NullNameException;
+    SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId)throws NullIdException;
 
     //UPDATE
     void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException;

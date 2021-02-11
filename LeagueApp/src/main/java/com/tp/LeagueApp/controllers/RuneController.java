@@ -25,11 +25,24 @@ public class RuneController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/runes/{runeName}")
+    @GetMapping("/runes/name/{runeName}")
     public ResponseEntity getRuneByName(@PathVariable String runeName) {
         Rune toReturn = new Rune();
         try {
             toReturn = service.getRuneByName(runeName);
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("/runes/id/{runeId}")
+    public ResponseEntity getRuneByName(@PathVariable Integer runeId) {
+        Rune toReturn = new Rune();
+        try {
+            toReturn = service.getRuneById(runeId);
         }
         catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

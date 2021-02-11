@@ -16,6 +16,7 @@ public interface ItemSetDao {
     //READ
     List<ItemSet> getAllItemSets();
     ItemSet getItemSetByName(String itemSetName) throws NullNameException;
+    ItemSet getItemSetById(Integer itemSetId) throws NullIdException;
 
     //UPDATE
     void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException;

@@ -58,6 +58,17 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         return toReturn.get(0);
     }
 
+    @Override
+    public SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId) throws NullIdException {
+
+        if(summonerSpellSetId == null)
+            throw new NullIdException("ERROR: Tried to get a summoner spell set with a null name.");
+
+        List<SummonerSpellSet> toReturn = template.query("select * from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper(), summonerSpellSetId);
+
+        return toReturn.get(0);
+    }
+
     //UPDATE
     @Override
     public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException {
