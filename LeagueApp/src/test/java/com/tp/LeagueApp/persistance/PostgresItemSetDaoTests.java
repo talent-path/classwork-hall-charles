@@ -113,6 +113,30 @@ public class PostgresItemSetDaoTests {
     }
 
     @Test
+    public void getItemSetByIdGoldenPath() {
+
+        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
+
+        ItemSet itemSetToCheck = null;
+        try {
+            itemSetToCheck = toTest.getItemSetById(1);
+        }
+        catch(NullIdException e) {
+            fail();
+        }
+
+        assertEquals( 1, itemSetToCheck.getItemSetId() );
+        assertEquals( "Testing Item Set", itemSetToCheck.getItemSetName() );
+        assertEquals( 1, itemSetToCheck.getChampionId());
+
+    }
+
+    @Test
+    public void getItemSetByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.getItemSetById(null));
+    }
+
+    @Test
     public void updateItemSetGoldenPathTest() {
         template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
         template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +

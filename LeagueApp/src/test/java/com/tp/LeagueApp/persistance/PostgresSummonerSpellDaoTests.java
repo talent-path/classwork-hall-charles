@@ -1,6 +1,7 @@
 package com.tp.LeagueApp.persistance;
 
 import com.jayway.jsonpath.internal.function.numeric.Sum;
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.models.SummonerSpell;
@@ -77,6 +78,29 @@ public class PostgresSummonerSpellDaoTests {
     @Test
     public void getSummonerSpellByNameNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.getSummonerSpellByName(null));
+    }
+
+    @Test
+    public void getSummonerSpellByIdGoldenPath() {
+        template.update("insert into \"SummonerSpells\" (\"summSpellName\", \"summSpellDescription\") values ('Test', 'Test Description')");
+
+        SummonerSpell toCheck = null;
+        try {
+            toCheck = toTest.getSummonerSpellById(1);
+        }
+        catch(NullIdException e) {
+            fail();
+        }
+
+        assertEquals(1, toCheck.getSummonerSpellId());
+        assertEquals("Test", toCheck.getSummonerSpellName());
+        assertEquals("Test Description", toCheck.getSummonerSpellDescription());
+
+    }
+
+    @Test
+    public void getSummonerSpellByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.getSummonerSpellById(null));
     }
 
 }

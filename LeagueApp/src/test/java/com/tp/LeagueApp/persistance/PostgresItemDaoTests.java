@@ -1,4 +1,5 @@
 package com.tp.LeagueApp.persistance;
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.persistance.postgres.PostgresItemDao;
@@ -76,5 +77,29 @@ public class PostgresItemDaoTests {
     @Test
     public void getItemByNameNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.getItemByName(null));
+    }
+
+    @Test
+    public void getItemByIdGoldenPath() {
+        template.update("insert into \"Items\" (\"itemName\", \"itemDescription\", \"itemCost\") values ('Test', 'Test Description', '1000')");
+
+        Item toCheck = null;
+        try {
+            toCheck = toTest.getItemById(1);
+        }
+        catch(NullIdException e) {
+            fail();
+        }
+
+        assertEquals(1, toCheck.getItemId());
+        assertEquals("Test", toCheck.getItemName());
+        assertEquals("Test Description", toCheck.getItemDescription());
+        assertEquals(1000, toCheck.getItemCost());
+
+    }
+
+    @Test
+    public void getItemByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.getItemById(null));
     }
 }

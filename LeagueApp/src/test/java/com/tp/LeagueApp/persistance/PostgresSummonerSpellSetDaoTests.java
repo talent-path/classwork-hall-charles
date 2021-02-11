@@ -111,6 +111,30 @@ public class PostgresSummonerSpellSetDaoTests {
     }
 
     @Test
+    public void getSummonerSpellSetByIdGoldenPath() {
+
+        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
+
+        SummonerSpellSet summSpellSetToCheck = null;
+        try {
+            summSpellSetToCheck = toTest.getSummonerSpellSetById(1);
+        }
+        catch(NullIdException e) {
+            fail();
+        }
+
+        assertEquals( 1, summSpellSetToCheck.getSummonerSpellSetId() );
+        assertEquals( "Testing Summoner Spell Set", summSpellSetToCheck.getSummonerSpellSetName() );
+        assertEquals( 1, summSpellSetToCheck.getChampionId());
+
+    }
+
+    @Test
+    public void getSummonerSpellSetByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.getSummonerSpellSetById(null));
+    }
+
+    @Test
     public void updateRuneSetGoldenPathTest() {
         template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
         template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +

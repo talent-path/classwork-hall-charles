@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.Champion;
@@ -90,6 +91,33 @@ public class PostgresChampionDaoTests {
     @Test
     public void getChampionByNameNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.getChampionByName(null));
+    }
+
+    @Test
+    public void getChampionByIdGoldenPath() {
+
+        Champion toCheck = null;
+        try {
+            toCheck = toTest.getChampionById(1);
+        } catch (NullIdException e) {
+            fail();
+        }
+
+        BigDecimal one = BigDecimal.valueOf(1);
+
+        assertEquals(1, toCheck.getChampionId());
+        assertEquals("Test", toCheck.getChampionName());
+        assertEquals("Test Description", toCheck.getChampionDescription());
+        assertEquals(one, toCheck.getWinRate());
+        assertEquals(one, toCheck.getPickRate());
+        assertEquals(one, toCheck.getBanRate());
+        assertEquals(one, toCheck.getAvgKDA());
+
+    }
+
+    @Test
+    public void getChampionByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.getChampionById(null));
     }
 
 }

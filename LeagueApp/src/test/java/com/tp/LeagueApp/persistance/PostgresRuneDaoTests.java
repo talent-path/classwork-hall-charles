@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.Rune;
@@ -75,5 +76,28 @@ public class PostgresRuneDaoTests {
     @Test
     public void getRuneByNameNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.getRuneByName(null));
+    }
+
+    @Test
+    public void getRuneByIdGoldenPath() {
+        template.update("insert into \"Runes\" (\"runeName\", \"runeDescription\") values ('Test', 'Test Description')");
+
+        Rune toCheck = null;
+        try {
+            toCheck = toTest.getRuneById(1);
+        }
+        catch(NullIdException e) {
+            fail();
+        }
+
+        assertEquals(1, toCheck.getRuneId());
+        assertEquals("Test", toCheck.getRuneName());
+        assertEquals("Test Description", toCheck.getRuneDescription());
+
+    }
+
+    @Test
+    public void getRuneByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.getRuneById(null));
     }
 }
