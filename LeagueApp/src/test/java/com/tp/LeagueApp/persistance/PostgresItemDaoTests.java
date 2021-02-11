@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -31,6 +33,25 @@ public class PostgresItemDaoTests {
 
         template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +
                 "values ('Test','Test Description', '1','1','1','1')");
+    }
+
+    @Test
+    public void getAllItemsGoldenPath() {
+        template.update("insert into \"Items\" (\"itemName\", \"itemDescription\", \"itemCost\") values ('Test', 'Test Description', '1000')");
+        template.update("insert into \"Items\" (\"itemName\", \"itemDescription\", \"itemCost\") values ('Test2', 'Test2 Description', '2000')");
+
+        List<Item> toCheck = toTest.getAllItems();
+
+        assertEquals(1, toCheck.get(0).getItemId());
+        assertEquals("Test", toCheck.get(0).getItemName());
+        assertEquals("Test Description", toCheck.get(0).getItemDescription());
+        assertEquals(1000, toCheck.get(0).getItemCost());
+
+        assertEquals(2, toCheck.get(1).getItemId());
+        assertEquals("Test2", toCheck.get(1).getItemName());
+        assertEquals("Test2 Description", toCheck.get(1).getItemDescription());
+        assertEquals(2000, toCheck.get(1).getItemCost());
+
     }
 
     @Test

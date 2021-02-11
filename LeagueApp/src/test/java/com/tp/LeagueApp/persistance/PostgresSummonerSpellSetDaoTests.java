@@ -68,7 +68,24 @@ public class PostgresSummonerSpellSetDaoTests {
     }
 
     @Test
-    public void getSummonerSPellSetByNameGoldenPath() {
+    public void getAllSummonerSpellSetsGoldenPath() {
+        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
+        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing2 Summoner Spell Set\', \'1\')");
+
+        List<SummonerSpellSet> toCheck = toTest.getAllSummonerSpellSets();
+
+        assertEquals( 1, toCheck.get(0).getSummonerSpellSetId() );
+        assertEquals( "Testing Summoner Spell Set", toCheck.get(0).getSummonerSpellSetName() );
+        assertEquals( 1, toCheck.get(0).getChampionId());
+
+        assertEquals( 2, toCheck.get(1).getSummonerSpellSetId() );
+        assertEquals( "Testing2 Summoner Spell Set", toCheck.get(1).getSummonerSpellSetName() );
+        assertEquals( 1, toCheck.get(1).getChampionId());
+
+    }
+
+    @Test
+    public void getSummonerSpellSetByNameGoldenPath() {
 
         template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
 

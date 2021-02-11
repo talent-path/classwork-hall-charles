@@ -1,8 +1,10 @@
 package com.tp.LeagueApp.persistance;
 
+import com.jayway.jsonpath.internal.function.numeric.Sum;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.models.SummonerSpell;
+import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresSummonerSpellDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,7 +40,24 @@ public class PostgresSummonerSpellDaoTests {
     }
 
     @Test
-    public void getRuneByNameGoldenPath() {
+    public void getAllSummonerSpellsGoldenPath() {
+        template.update("insert into \"SummonerSpells\" (\"summSpellName\", \"summSpellDescription\") values ('Test', 'Test Description')");
+        template.update("insert into \"SummonerSpells\" (\"summSpellName\", \"summSpellDescription\") values ('Test2', 'Test2 Description')");
+
+        List<SummonerSpell> toCheck = toTest.getAllSummonerSpells();
+
+        assertEquals(1, toCheck.get(0).getSummonerSpellId());
+        assertEquals("Test", toCheck.get(0).getSummonerSpellName());
+        assertEquals("Test Description", toCheck.get(0).getSummonerSpellDescription());
+
+        assertEquals(2, toCheck.get(1).getSummonerSpellId());
+        assertEquals("Test2", toCheck.get(1).getSummonerSpellName());
+        assertEquals("Test2 Description", toCheck.get(1).getSummonerSpellDescription());
+
+    }
+
+    @Test
+    public void getSummonerSpellByNameGoldenPath() {
         template.update("insert into \"SummonerSpells\" (\"summSpellName\", \"summSpellDescription\") values ('Test', 'Test Description')");
 
         SummonerSpell toCheck = null;
@@ -54,7 +75,7 @@ public class PostgresSummonerSpellDaoTests {
     }
 
     @Test
-    public void getRuneByNameNullNameTest() {
+    public void getSummonerSpellByNameNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.getSummonerSpellByName(null));
     }
 

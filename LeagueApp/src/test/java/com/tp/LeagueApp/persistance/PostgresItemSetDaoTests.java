@@ -69,6 +69,23 @@ public class PostgresItemSetDaoTests {
     }
 
     @Test
+    public void getAllItemSetsGoldenPath() {
+        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
+        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing2 Item Set\', \'1\')");
+
+        List<ItemSet> toCheck = toTest.getAllItemSets();
+
+        assertEquals( 1, toCheck.get(0).getItemSetId() );
+        assertEquals( "Testing Item Set", toCheck.get(0).getItemSetName() );
+        assertEquals( 1, toCheck.get(0).getChampionId());
+
+        assertEquals( 2, toCheck.get(1).getItemSetId() );
+        assertEquals( "Testing2 Item Set", toCheck.get(1).getItemSetName() );
+        assertEquals( 1, toCheck.get(1).getChampionId());
+
+    }
+
+    @Test
     public void getItemSetByNameGoldenPath() {
 
         template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");

@@ -68,6 +68,23 @@ public class PostgresRuneSetDaoTests {
     }
 
     @Test
+    public void getAllRuneSetsGoldenPath() {
+        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
+        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing2 Rune Set\', \'1\')");
+
+        List<RuneSet> toCheck = toTest.getAllRuneSets();
+
+        assertEquals( 1, toCheck.get(0).getRuneSetId() );
+        assertEquals( "Testing Rune Set", toCheck.get(0).getRuneSetName() );
+        assertEquals( 1, toCheck.get(0).getChampionId());
+
+        assertEquals( 2, toCheck.get(1).getRuneSetId() );
+        assertEquals( "Testing2 Rune Set", toCheck.get(1).getRuneSetName() );
+        assertEquals( 1, toCheck.get(1).getChampionId());
+
+    }
+
+    @Test
     public void getRuneSetByNameGoldenPath() {
 
         template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
