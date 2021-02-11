@@ -119,6 +119,8 @@ public class LeagueAppService {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
     }
 
-
+    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException {
+        summonerSpellSetDao.updateSummonerSpellSet(toUpdate);
+    }
 
 }

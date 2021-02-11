@@ -48,4 +48,15 @@ public class SummonerSpellSetController {
 
         return ResponseEntity.ok(toReturn);
     }
+
+    @PutMapping("/update/summonerSpellSet")
+    public String updateSummonerSpellSet(@RequestBody SummonerSpellSet toUpdate) {
+        try {
+            service.updateSummonerSpellSet(toUpdate);
+            return "Summoner Spell Set " + toUpdate.getSummonerSpellSetId() + " successfully updated.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
 }

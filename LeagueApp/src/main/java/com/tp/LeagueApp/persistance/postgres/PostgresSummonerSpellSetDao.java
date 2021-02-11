@@ -56,6 +56,17 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         return toReturn.get(0);
     }
 
+    @Override
+    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException {
+
+        if(toUpdate == null)
+            throw new NullSetException("ERROR: Tried to update summoner spell set with a null summoner spell set.");
+
+        template.update("update \"SummonerSpellSets\" set \"summSpellSetName\" = ?, \"championId\" = ? where \"summSpellSetId\" = ?",
+                toUpdate.getSummonerSpellSetName(), toUpdate.getChampionId(), toUpdate.getSummonerSpellSetId());
+
+    }
+
     public class SummonerSpellSetMapper implements RowMapper<SummonerSpellSet> {
 
         @Override
