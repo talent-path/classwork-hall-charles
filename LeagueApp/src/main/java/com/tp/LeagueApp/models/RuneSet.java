@@ -1,10 +1,13 @@
 package com.tp.LeagueApp.models;
 
+import java.util.List;
+
 public class RuneSet {
 
     Integer runeSetId;
     String runeSetName;
     Integer championId;
+    List<Rune> runeList;
 
     public Integer getRuneSetId() {
         return runeSetId;
@@ -28,5 +31,13 @@ public class RuneSet {
 
     public void setChampionId(Integer championId) {
         this.championId = championId;
+    }
+
+    public List<Rune> getRuneList() {
+        return runeList;
+    }
+
+    public void setRuneList(List<Rune> runeList) {
+        this.runeList = runeList;
     }
 }

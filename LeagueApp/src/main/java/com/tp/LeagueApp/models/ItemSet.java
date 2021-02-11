@@ -7,6 +7,7 @@ public class ItemSet {
     Integer itemSetId;
     String itemSetName;
     Integer championId;
+    List<Item> itemList;
 
     public Integer getItemSetId() {
         return itemSetId;
@@ -30,5 +31,13 @@ public class ItemSet {
 
     public void setChampionId(Integer championId) {
         this.championId = championId;
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
     }
 }
