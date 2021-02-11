@@ -16,6 +16,7 @@ public class RuneSetController {
     @Autowired
     LeagueAppService service;
 
+    //CREATE
     @PostMapping("/new/runeSet")
     public ResponseEntity createNewRuneSet(@RequestBody RuneSet toAdd) {
         RuneSet toReturn = null;
@@ -29,6 +30,7 @@ public class RuneSetController {
         return ResponseEntity.ok(toReturn);
     }
 
+    //READ
     @GetMapping("/runeSets")
     public ResponseEntity getAllRuneSets() {
         List<RuneSet> toReturn = service.getAllRuneSets();
@@ -49,6 +51,7 @@ public class RuneSetController {
         return ResponseEntity.ok(toReturn);
     }
 
+    //UPDATE
     @PutMapping("/update/runeSet")
     public String updateRuneSet(@RequestBody RuneSet toUpdate) {
         try {
@@ -60,6 +63,7 @@ public class RuneSetController {
         }
     }
 
+    //DELETE
     @DeleteMapping("/delete/runeSet/{runeSetName}")
     public String deleteRuneSet(@PathVariable String runeSetName) {
         try {

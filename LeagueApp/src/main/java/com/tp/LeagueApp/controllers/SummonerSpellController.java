@@ -17,6 +17,7 @@ public class SummonerSpellController {
     @Autowired
     LeagueAppService service;
 
+    //READ
     @GetMapping("/summonerSpells")
     public ResponseEntity getAllSummonerSpells() {
         List<SummonerSpell> toReturn = service.getAllSummonerSpells();

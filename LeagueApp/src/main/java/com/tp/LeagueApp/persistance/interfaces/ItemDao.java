@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ItemDao {
 
+    //READ
     List<Item> getAllItems();
     Item getItemByName(String itemName) throws NullNameException;
+
 }

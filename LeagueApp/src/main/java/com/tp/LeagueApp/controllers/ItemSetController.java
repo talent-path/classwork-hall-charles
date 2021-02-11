@@ -52,6 +52,7 @@ public class ItemSetController {
         return ResponseEntity.ok(toReturn);
     }
 
+    //UPDATE
     @PutMapping("/update/itemSet")
     public String updateItemSet(@RequestBody ItemSet toUpdate) {
         try {
@@ -63,6 +64,7 @@ public class ItemSetController {
         }
     }
 
+    //DELETE
     @DeleteMapping("/delete/itemSet/{itemSetName}")
     public String deleteItemSet(@PathVariable String itemSetName) {
         try {

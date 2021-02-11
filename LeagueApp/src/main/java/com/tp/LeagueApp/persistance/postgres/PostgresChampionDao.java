@@ -20,6 +20,7 @@ public class PostgresChampionDao implements ChampionDao {
     @Autowired
     JdbcTemplate template;
 
+    //READ
     @Override
     public List<Champion> getAllChampions() {
         List<Champion> allChampions = template.query("select * from \"Champions\"", new ChampionMapper());

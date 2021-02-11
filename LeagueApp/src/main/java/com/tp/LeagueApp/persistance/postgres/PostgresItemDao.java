@@ -19,6 +19,7 @@ public class PostgresItemDao implements ItemDao {
     @Autowired
     JdbcTemplate template;
 
+    //READ
     @Override
     public List<Item> getAllItems() {
         List<Item> allItems = template.query("select * from \"Items\"", new PostgresItemDao.ItemMapper());

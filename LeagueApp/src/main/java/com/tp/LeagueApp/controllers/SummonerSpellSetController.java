@@ -16,6 +16,7 @@ public class SummonerSpellSetController {
     LeagueAppService service;
 
     //User summonerSpellSetName in JSON request!!
+    //CREATE
     @PostMapping("/new/summonerSpellSet")
     public ResponseEntity createNewRuneSet(@RequestBody SummonerSpellSet toAdd) {
         SummonerSpellSet toReturn = null;
@@ -29,6 +30,7 @@ public class SummonerSpellSetController {
         return ResponseEntity.ok(toReturn);
     }
 
+    //READ
     @GetMapping("/summonerSpellSets")
     public ResponseEntity getAllSummonerSpellSets() {
         List<SummonerSpellSet> toReturn = service.getAllSummonerSpellSets();
@@ -49,6 +51,7 @@ public class SummonerSpellSetController {
         return ResponseEntity.ok(toReturn);
     }
 
+    //UPDATE
     @PutMapping("/update/summonerSpellSet")
     public String updateSummonerSpellSet(@RequestBody SummonerSpellSet toUpdate) {
         try {
@@ -60,6 +63,7 @@ public class SummonerSpellSetController {
         }
     }
 
+    //DELETE
     @DeleteMapping("/delete/summonerSpellSet/{summSpellSetName}")
     public String deleteSummonerSpellSet(@PathVariable String summSpellSetName) {
         try {

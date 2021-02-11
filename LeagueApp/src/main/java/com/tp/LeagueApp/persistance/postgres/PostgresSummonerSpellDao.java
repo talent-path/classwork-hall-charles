@@ -20,6 +20,7 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
     @Autowired
     JdbcTemplate template;
 
+    //READ
     @Override
     public List<SummonerSpell> getAllSummonerSpells() {
         List<SummonerSpell> allSummonerSpells = template.query("select * from \"SummonerSpells\"", new PostgresSummonerSpellDao.SummonerSpellMapper());

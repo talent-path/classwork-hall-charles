@@ -21,6 +21,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
     @Autowired
     JdbcTemplate template;
 
+    //CREATE
     @Override
     public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
 
@@ -38,6 +39,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         return toAdd;
     }
 
+    //READ
     @Override
     public List<SummonerSpellSet> getAllSummonerSpellSets() {
         List<SummonerSpellSet> allSummonerSpellSets = template.query("select * from \"SummonerSpellSets\"", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper());
@@ -56,6 +58,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         return toReturn.get(0);
     }
 
+    //UPDATE
     @Override
     public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException {
 
@@ -67,6 +70,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
     }
 
+    //DELETE
     @Override
     public void deleteSummonerSpellSet(String toDelete) throws NullNameException {
 

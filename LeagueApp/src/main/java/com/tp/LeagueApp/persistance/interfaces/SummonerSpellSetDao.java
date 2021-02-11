@@ -9,9 +9,18 @@ import com.tp.LeagueApp.models.SummonerSpellSet;
 import java.util.List;
 
 public interface SummonerSpellSetDao {
+
+    //CREATE
     SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException;
+
+    //READ
     List<SummonerSpellSet> getAllSummonerSpellSets();
     SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName)throws NullNameException;
+
+    //UPDATE
     void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException;
+
+    //DELETE
     void deleteSummonerSpellSet(String toDelete) throws NullNameException;
+
 }

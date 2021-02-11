@@ -19,6 +19,7 @@ public class ItemController {
     @Autowired
     LeagueAppService service;
 
+    //READ
     @GetMapping("/items")
     public ResponseEntity getAllItemSets() {
         List<Item> toReturn = service.getAllItems();

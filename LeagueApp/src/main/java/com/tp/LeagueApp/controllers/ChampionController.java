@@ -17,6 +17,7 @@ public class ChampionController {
     @Autowired
     LeagueAppService service;
 
+    //READ
     @GetMapping("/champions")
     public ResponseEntity getAllChampions() {
         List<Champion> toReturn = service.getAllChampions();

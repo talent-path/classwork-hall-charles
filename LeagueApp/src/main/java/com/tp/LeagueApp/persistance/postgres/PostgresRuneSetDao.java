@@ -22,6 +22,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
     @Autowired
     JdbcTemplate template;
 
+    //CREATE
     @Override
     public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
 
@@ -39,6 +40,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
         return toAdd;
     }
 
+    //READ
     @Override
     public List<RuneSet> getAllRuneSets() {
         List<RuneSet> allRuneSets = template.query("select * from \"RuneSets\"", new PostgresRuneSetDao.RuneSetMapper());
@@ -57,6 +59,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
         return toReturn.get(0);
     }
 
+    //UPDATE
     @Override
     public void updateRuneSet(RuneSet toUpdate) throws NullSetException {
 
@@ -68,6 +71,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
     }
 
+    //DELETE
     @Override
     public void deleteRuneSet(String toDelete) throws NullNameException {
 

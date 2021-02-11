@@ -20,6 +20,7 @@ public class PostgresRuneDao implements RuneDao {
     @Autowired
     JdbcTemplate template;
 
+    //READ
     @Override
     public List<Rune> getAllRunes() {
         List<Rune> allRunes = template.query("select * from \"Runes\"", new PostgresRuneDao.RuneMapper());

@@ -20,6 +20,7 @@ public class PostgresItemSetDao implements ItemSetDao {
     @Autowired
     JdbcTemplate template;
 
+    //CREATE
     @Override
     public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
 
@@ -37,6 +38,7 @@ public class PostgresItemSetDao implements ItemSetDao {
         return toAdd;
     }
 
+    //READ
     @Override
     public List<ItemSet> getAllItemSets() {
         List<ItemSet> allItemSets = template.query("select * from \"ItemSets\"",
@@ -57,6 +59,7 @@ public class PostgresItemSetDao implements ItemSetDao {
         return toReturn.get(0);
     }
 
+    //UPDATE
     @Override
     public void updateItemSet(ItemSet toUpdate) throws NullSetException {
 
@@ -68,6 +71,7 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     }
 
+    //DELETE
     @Override
     public void deleteItemSet(String toDelete) throws NullNameException {
 

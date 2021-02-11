@@ -18,6 +18,7 @@ public class RuneController {
     @Autowired
     LeagueAppService service;
 
+    //READ
     @GetMapping("/runes")
     public ResponseEntity getAllRunes() {
         List<Rune> toReturn = service.getAllRunes();

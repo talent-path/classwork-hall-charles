@@ -6,6 +6,9 @@ import com.tp.LeagueApp.models.SummonerSpell;
 import java.util.List;
 
 public interface SummonerSpellDao {
+
+    //READ
     List<SummonerSpell> getAllSummonerSpells();
     SummonerSpell getSummonerSpellByName(String summonerSpellName) throws NullNameException;
+
 }
