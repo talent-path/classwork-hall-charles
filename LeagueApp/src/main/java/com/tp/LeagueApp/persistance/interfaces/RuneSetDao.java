@@ -12,4 +12,5 @@ public interface RuneSetDao {
     List<RuneSet> getAllRuneSets();
     RuneSet getRuneSetByName(String runeSetName) throws NullNameException;
     void updateRuneSet(RuneSet toUpdate) throws NullSetException;
+    void deleteRuneSet(String runeSetName) throws NullNameException;
 }

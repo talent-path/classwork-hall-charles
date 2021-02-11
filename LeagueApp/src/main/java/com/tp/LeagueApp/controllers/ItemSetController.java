@@ -63,4 +63,15 @@ public class ItemSetController {
         }
     }
 
+    @DeleteMapping("/delete/itemSet/{itemSetName}")
+    public String deleteItemSet(@PathVariable String itemSetName) {
+        try {
+            service.deleteItemSet(itemSetName);
+            return "Item Set " + itemSetName + " successfully deleted.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
+
 }

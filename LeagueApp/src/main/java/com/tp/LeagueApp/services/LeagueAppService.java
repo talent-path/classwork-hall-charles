@@ -89,6 +89,10 @@ public class LeagueAppService {
         itemSetDao.updateItemSet(toUpdate);
     }
 
+    public void deleteItemSet(String toDelete) throws NullNameException {
+        itemSetDao.deleteItemSet(toDelete);
+    }
+
     //Rune Sets
     public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
         return runeSetDao.createNewRuneSet(toAdd);
@@ -104,6 +108,10 @@ public class LeagueAppService {
 
     public void updateRuneSet(RuneSet toUpdate) throws NullSetException {
         runeSetDao.updateRuneSet(toUpdate);
+    }
+
+    public void deleteRuneSet(String toDelete) throws NullNameException {
+        runeSetDao.deleteRuneSet(toDelete);
     }
 
     //Summoner Spell Sets

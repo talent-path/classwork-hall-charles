@@ -68,6 +68,15 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     }
 
+    @Override
+    public void deleteItemSet(String toDelete) throws NullNameException {
+
+        if(toDelete == null)
+            throw new NullNameException("ERROR: Tried to delete an item set with a null name.");
+
+        template.update("delete from \"ItemSets\" where \"itemSetName\" = ?;", toDelete);
+    }
+
     private class ItemSetMapper implements RowMapper<ItemSet> {
 
         @Override

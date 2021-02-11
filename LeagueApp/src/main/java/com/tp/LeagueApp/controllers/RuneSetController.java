@@ -59,4 +59,15 @@ public class RuneSetController {
             return e.getMessage();
         }
     }
+
+    @DeleteMapping("/delete/runeSet/{runeSetName}")
+    public String deleteRuneSet(@PathVariable String runeSetName) {
+        try {
+            service.deleteRuneSet(runeSetName);
+            return "Rune Set " + runeSetName + " successfully deleted.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
 }

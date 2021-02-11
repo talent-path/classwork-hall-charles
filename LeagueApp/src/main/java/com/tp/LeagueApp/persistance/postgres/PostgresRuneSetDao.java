@@ -68,6 +68,15 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
     }
 
+    @Override
+    public void deleteRuneSet(String toDelete) throws NullNameException {
+
+        if(toDelete == null)
+            throw new NullNameException("ERROR: Tried to delete a rune set with a null name.");
+
+        template.update("delete from \"RuneSets\" where \"runeSetName\" = ?;", toDelete);
+    }
+
     private class RuneSetMapper implements RowMapper<RuneSet> {
 
         @Override
