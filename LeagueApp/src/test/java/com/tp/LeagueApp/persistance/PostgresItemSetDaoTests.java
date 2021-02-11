@@ -109,4 +109,39 @@ public class PostgresItemSetDaoTests {
         assertThrows(NullNameException.class, () -> toTest.getItemSetByName(null));
     }
 
+    @Test
+    public void updateItemSetGoldenPathTest() {
+        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
+        template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +
+                "values ('Test','Test Description', '1','1','1','1')");
+
+        ItemSet newUpdateItemSet = new ItemSet();
+        newUpdateItemSet.setItemSetId(1);
+        newUpdateItemSet.setItemSetName("New Update");
+        newUpdateItemSet.setChampionId(2);
+
+        try {
+            toTest.updateItemSet(newUpdateItemSet);
+        } catch (NullSetException e) {
+            fail();
+        }
+
+        ItemSet toCheck = null;
+        try {
+            toCheck = toTest.getItemSetByName("New Update");
+        } catch (NullNameException e) {
+            fail();
+        }
+
+        assertEquals( 1, toCheck.getItemSetId() );
+        assertEquals( "New Update", toCheck.getItemSetName() );
+        assertEquals( 2, toCheck.getChampionId());
+
+    }
+
+    @Test
+    public void updateItemSetNullItemSetTest() {
+        assertThrows(NullSetException.class, () -> toTest.updateItemSet(null));
+    }
+
 }
