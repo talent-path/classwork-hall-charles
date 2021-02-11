@@ -1,6 +1,8 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresSummonerSpellSetDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,5 +65,29 @@ public class PostgresSummonerSpellSetDaoTests {
     @Test
     public void createNewSummonerSpellSetNullSummonerSpellSetTest() {
         assertThrows(NullSetException.class, () -> toTest.createNewSummonerSpellSet(null));
+    }
+
+    @Test
+    public void getSummonerSPellSetByNameGoldenPath() {
+
+        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
+
+        SummonerSpellSet summSpellSetToCheck = null;
+        try {
+            summSpellSetToCheck = toTest.getSummonerSpellSetByName("Testing Summoner Spell Set");
+        }
+        catch(NullNameException e) {
+            fail();
+        }
+
+        assertEquals( 1, summSpellSetToCheck.getSummonerSpellSetId() );
+        assertEquals( "Testing Summoner Spell Set", summSpellSetToCheck.getSummonerSpellSetName() );
+        assertEquals( 1, summSpellSetToCheck.getChampionId());
+
+    }
+
+    @Test
+    public void getSummonerSpellSetByNameNullNameTest() {
+        assertThrows(NullNameException.class, () -> toTest.getSummonerSpellSetByName(null));
     }
 }

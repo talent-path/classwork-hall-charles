@@ -1,6 +1,8 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresItemSetDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,6 +66,30 @@ public class PostgresItemSetDaoTests {
     @Test
     public void createNewItemSetNullItemSetTest() {
         assertThrows(NullSetException.class, () -> toTest.createNewItemSet(null));
+    }
+
+    @Test
+    public void getItemSetByNameGoldenPath() {
+
+        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
+
+        ItemSet itemSetToCheck = null;
+        try {
+            itemSetToCheck = toTest.getItemSetByName("Testing Item Set");
+        }
+        catch(NullNameException e) {
+            fail();
+        }
+
+        assertEquals( 1, itemSetToCheck.getItemSetId() );
+        assertEquals( "Testing Item Set", itemSetToCheck.getItemSetName() );
+        assertEquals( 1, itemSetToCheck.getChampionId());
+
+    }
+
+    @Test
+    public void getItemSetByNameNullNameTest() {
+        assertThrows(NullNameException.class, () -> toTest.getItemSetByName(null));
     }
 
 }

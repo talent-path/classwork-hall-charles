@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
@@ -64,5 +65,29 @@ public class PostgresRuneSetDaoTests {
     @Test
     public void createNewRuneSetNullRuneSetTest() {
         assertThrows(NullSetException.class, () -> toTest.createNewRuneSet(null));
+    }
+
+    @Test
+    public void getRuneSetByNameGoldenPath() {
+
+        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
+
+        RuneSet runeSetToCheck = null;
+        try {
+            runeSetToCheck = toTest.getRuneSetByName("Testing Rune Set");
+        }
+        catch(NullNameException e) {
+            fail();
+        }
+
+        assertEquals( 1, runeSetToCheck.getRuneSetId() );
+        assertEquals( "Testing Rune Set", runeSetToCheck.getRuneSetName() );
+        assertEquals( 1, runeSetToCheck.getChampionId());
+
+    }
+
+    @Test
+    public void getRuneSetByNameNullNameTest() {
+        assertThrows(NullNameException.class, () -> toTest.getRuneSetByName(null));
     }
 }
