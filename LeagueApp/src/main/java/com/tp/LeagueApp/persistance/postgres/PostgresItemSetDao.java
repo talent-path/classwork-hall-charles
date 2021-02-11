@@ -1,8 +1,10 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.InvalidItemException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.interfaces.ItemSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,21 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     //CREATE
     @Override
-    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException, InvalidItemException {
 
         if(toAdd == null)
             throw new NullSetException("ERROR: Tried to create a null item set.");
+
+        //TODO Figure out proper way to check if items exist.
+//        for(Item toCheck : toAdd.getItemList()) {
+//            List<Integer> returnedId = template.query("select \"itemId\" from \"Items\" where \"itemName\" = ?;",
+//                    new ItemSetIdMapper(),
+//                    toCheck.getItemName());
+//
+//            if(returnedId.get(0) == null)
+//                throw new InvalidItemException("ERROR: Tried to create an item set with non-existent items.");
+//
+//        }
 
         Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
                 new ItemSetIdMapper(),

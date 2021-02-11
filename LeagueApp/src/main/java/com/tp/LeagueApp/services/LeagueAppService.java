@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.services;
 
+import com.tp.LeagueApp.exceptions.InvalidItemException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
@@ -74,7 +75,7 @@ public class LeagueAppService {
 
     //Various Sets methods
     //Item Sets
-    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException, InvalidItemException {
         return itemSetDao.createNewItemSet(toAdd);
     }
 
