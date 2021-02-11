@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.services;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.*;
@@ -85,7 +86,7 @@ public class LeagueAppService {
         return itemSetDao.getItemSetByName(itemSetName);
     }
 
-    public void updateItemSet(ItemSet toUpdate) throws NullSetException {
+    public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException {
         itemSetDao.updateItemSet(toUpdate);
     }
 
@@ -106,7 +107,7 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
-    public void updateRuneSet(RuneSet toUpdate) throws NullSetException {
+    public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException {
         runeSetDao.updateRuneSet(toUpdate);
     }
 
@@ -127,7 +128,7 @@ public class LeagueAppService {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
     }
 
-    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException {
+    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException {
         summonerSpellSetDao.updateSummonerSpellSet(toUpdate);
     }
 

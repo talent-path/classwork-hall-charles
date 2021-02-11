@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
@@ -61,10 +62,12 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     //UPDATE
     @Override
-    public void updateItemSet(ItemSet toUpdate) throws NullSetException {
+    public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException {
 
         if(toUpdate == null)
             throw new NullSetException("ERROR: Tried to update item set with a null item set.");
+        if(toUpdate.getItemSetId() == null)
+            throw new NullIdException("ERROR: Tried to update an item set with a null id.");
 
         template.update("update \"ItemSets\" set \"itemSetName\" = ?, \"championId\" = ? where \"itemSetId\" = ?",
                 toUpdate.getItemSetName(), toUpdate.getChampionId(), toUpdate.getItemSetId());

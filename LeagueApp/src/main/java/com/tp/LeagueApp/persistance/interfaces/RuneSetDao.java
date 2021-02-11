@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.interfaces;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
@@ -17,7 +18,7 @@ public interface RuneSetDao {
     RuneSet getRuneSetByName(String runeSetName) throws NullNameException;
 
     //UPDATE
-    void updateRuneSet(RuneSet toUpdate) throws NullSetException;
+    void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException;
 
     //CREATE
     void deleteRuneSet(String toDelete) throws NullNameException;

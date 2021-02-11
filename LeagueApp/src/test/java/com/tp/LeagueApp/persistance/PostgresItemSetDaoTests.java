@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.Champion;
@@ -123,7 +124,7 @@ public class PostgresItemSetDaoTests {
 
         try {
             toTest.updateItemSet(newUpdateItemSet);
-        } catch (NullSetException e) {
+        } catch (NullSetException | NullIdException e) {
             fail();
         }
 

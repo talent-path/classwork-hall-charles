@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.SummonerSpellSet;
@@ -59,10 +60,12 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
     //UPDATE
     @Override
-    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException {
+    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException {
 
         if(toUpdate == null)
             throw new NullSetException("ERROR: Tried to update summoner spell set with a null summoner spell set.");
+        if(toUpdate.getSummonerSpellSetId() == null)
+            throw new NullIdException("ERROR: Tried to update a summoner spell set with a null id.");
 
         template.update("update \"SummonerSpellSets\" set \"summSpellSetName\" = ?, \"championId\" = ? where \"summSpellSetId\" = ?",
                 toUpdate.getSummonerSpellSetName(), toUpdate.getChampionId(), toUpdate.getSummonerSpellSetId());

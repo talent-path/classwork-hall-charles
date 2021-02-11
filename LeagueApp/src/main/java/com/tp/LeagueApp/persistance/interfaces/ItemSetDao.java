@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.interfaces;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.ItemSet;
@@ -16,7 +17,7 @@ public interface ItemSetDao {
     ItemSet getItemSetByName(String itemSetName) throws NullNameException;
 
     //UPDATE
-    void updateItemSet(ItemSet toUpdate) throws NullSetException;
+    void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException;
 
     //DELETE
     void deleteItemSet(String toDelete) throws NullNameException;

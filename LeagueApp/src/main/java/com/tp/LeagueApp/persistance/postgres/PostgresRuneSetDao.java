@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.RuneSet;
@@ -60,10 +61,12 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
     //UPDATE
     @Override
-    public void updateRuneSet(RuneSet toUpdate) throws NullSetException {
+    public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException {
 
         if(toUpdate == null)
             throw new NullSetException("ERROR: Tried to update rune set with a null rune set.");
+        if(toUpdate.getRuneSetId() == null)
+            throw new NullIdException("ERROR: Tried to update a rune set with a null id.");
 
         template.update("update \"RuneSets\" set \"runeSetName\" = ?, \"championId\" = ? where \"runeSetId\" = ?",
                 toUpdate.getRuneSetName(), toUpdate.getChampionId(), toUpdate.getRuneSetId());
