@@ -1,7 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.SummonerSpell;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellDao;
 import org.springframework.beans.factory.annotation.Autowired;

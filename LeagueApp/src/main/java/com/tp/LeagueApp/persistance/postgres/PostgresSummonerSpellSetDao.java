@@ -2,7 +2,6 @@ package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
-import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
 import org.springframework.beans.factory.annotation.Autowired;

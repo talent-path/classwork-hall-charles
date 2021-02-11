@@ -1,6 +1,5 @@
 package com.tp.LeagueApp.controllers;
 
-import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
