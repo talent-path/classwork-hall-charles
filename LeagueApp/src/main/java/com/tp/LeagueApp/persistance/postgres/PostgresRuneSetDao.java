@@ -2,6 +2,7 @@ package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.interfaces.RuneSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,17 @@ public class PostgresRuneSetDao implements RuneSetDao {
         List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetName\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetName);
 
         return toReturn.get(0);
+    }
+
+    @Override
+    public void updateRuneSet(RuneSet toUpdate) throws NullSetException {
+
+        if(toUpdate == null)
+            throw new NullSetException("ERROR: Tried to update rune set with a null rune set.");
+
+        template.update("update \"RuneSets\" set \"runeSetName\" = ?, \"championId\" = ? where \"runeSetId\" = ?",
+                toUpdate.getRuneSetName(), toUpdate.getChampionId(), toUpdate.getRuneSetId());
+
     }
 
     private class RuneSetMapper implements RowMapper<RuneSet> {

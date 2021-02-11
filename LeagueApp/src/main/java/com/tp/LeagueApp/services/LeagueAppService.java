@@ -102,6 +102,10 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
+    public void updateRuneSet(RuneSet toUpdate) throws NullSetException {
+        runeSetDao.updateRuneSet(toUpdate);
+    }
+
     //Summoner Spell Sets
     public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
         return summonerSpellSetDao.createNewSummonerSpellSet(toAdd);

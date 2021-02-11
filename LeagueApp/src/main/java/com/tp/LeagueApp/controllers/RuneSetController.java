@@ -48,4 +48,15 @@ public class RuneSetController {
 
         return ResponseEntity.ok(toReturn);
     }
+
+    @PutMapping("/update/runeSet")
+    public String updateRuneSet(@RequestBody RuneSet toUpdate) {
+        try {
+            service.updateRuneSet(toUpdate);
+            return "Rune Set " + toUpdate.getRuneSetId() + " successfully updated.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
 }
