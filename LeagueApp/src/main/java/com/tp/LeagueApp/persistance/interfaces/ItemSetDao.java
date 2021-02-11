@@ -7,7 +7,8 @@ import com.tp.LeagueApp.models.ItemSet;
 import java.util.List;
 
 public interface ItemSetDao {
+    ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException;
     List<ItemSet> getAllItemSets();
     ItemSet getItemSetByName(String itemSetName) throws NullNameException;
-    ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException;
+    void updateItemSet(ItemSet toUpdate) throws NullSetException;
 }

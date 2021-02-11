@@ -39,7 +39,8 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     @Override
     public List<ItemSet> getAllItemSets() {
-        List<ItemSet> allItemSets = template.query("select * from \"ItemSets\"", new PostgresItemSetDao.ItemSetMapper());
+        List<ItemSet> allItemSets = template.query("select * from \"ItemSets\"",
+                new PostgresItemSetDao.ItemSetMapper());
 
         return allItemSets;
     }
@@ -50,9 +51,21 @@ public class PostgresItemSetDao implements ItemSetDao {
         if(itemSetName == null)
             throw new NullNameException("ERROR: Tried to get an item set with a null name.");
 
-        List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetName\" = ?;", new PostgresItemSetDao.ItemSetMapper(), itemSetName);
+        List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetName\" = ?;",
+                new PostgresItemSetDao.ItemSetMapper(), itemSetName);
 
         return toReturn.get(0);
+    }
+
+    @Override
+    public void updateItemSet(ItemSet toUpdate) throws NullSetException {
+
+        if(toUpdate == null)
+            throw new NullSetException("ERROR: Tried to update item set with a null item set.");
+
+        template.update("update \"ItemSets\" set \"itemSetName\" = ?, \"championId\" = ? where \"itemSetId\" = ?",
+                toUpdate.getItemSetName(), toUpdate.getChampionId(), toUpdate.getItemSetId());
+
     }
 
     private class ItemSetMapper implements RowMapper<ItemSet> {

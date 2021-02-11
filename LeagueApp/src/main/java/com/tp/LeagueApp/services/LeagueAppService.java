@@ -73,6 +73,10 @@ public class LeagueAppService {
 
     //Various Sets methods
     //Item Sets
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
+        return itemSetDao.createNewItemSet(toAdd);
+    }
+
     public List<ItemSet> getAllItemSets() {
         return itemSetDao.getAllItemSets();
     }
@@ -81,11 +85,15 @@ public class LeagueAppService {
         return itemSetDao.getItemSetByName(itemSetName);
     }
 
-    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException {
-        return itemSetDao.createNewItemSet(toAdd);
+    public void updateItemSet(ItemSet toUpdate) throws NullSetException {
+        itemSetDao.updateItemSet(toUpdate);
     }
 
     //Rune Sets
+    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
+        return runeSetDao.createNewRuneSet(toAdd);
+    }
+
     public List<RuneSet> getAllRuneSets() {
         return runeSetDao.getAllRuneSets();
     }
@@ -94,11 +102,11 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
-    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
-        return runeSetDao.createNewRuneSet(toAdd);
+    //Summoner Spell Sets
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
+        return summonerSpellSetDao.createNewSummonerSpellSet(toAdd);
     }
 
-    //Summoner Spell Sets
     public List<SummonerSpellSet> getAllSummonerSpellSets() {
         return summonerSpellSetDao.getAllSummonerSpellSets();
     }
@@ -107,7 +115,6 @@ public class LeagueAppService {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
     }
 
-    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
-        return summonerSpellSetDao.createNewSummonerSpellSet(toAdd);
-    }
+
+
 }

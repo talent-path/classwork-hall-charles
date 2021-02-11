@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.controllers;
 
+import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.services.LeagueAppService;
@@ -51,5 +52,15 @@ public class ItemSetController {
         return ResponseEntity.ok(toReturn);
     }
 
+    @PutMapping("/update/itemSet")
+    public String updateItemSet(@RequestBody ItemSet toUpdate) {
+        try {
+            service.updateItemSet(toUpdate);
+            return "Item Set " + toUpdate.getItemSetId() + " successfully updated.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
 
 }

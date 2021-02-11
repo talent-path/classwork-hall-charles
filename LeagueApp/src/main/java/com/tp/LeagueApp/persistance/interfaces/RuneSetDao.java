@@ -8,7 +8,7 @@ import com.tp.LeagueApp.models.RuneSet;
 import java.util.List;
 
 public interface RuneSetDao {
+    RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException;
     List<RuneSet> getAllRuneSets();
     RuneSet getRuneSetByName(String runeSetName) throws NullNameException;
-    RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException;
 }
