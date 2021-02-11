@@ -67,6 +67,15 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
     }
 
+    @Override
+    public void deleteSummonerSpellSet(String toDelete) throws NullNameException {
+
+        if(toDelete == null)
+            throw new NullNameException("ERROR: Tried to delete a summoner spell set with a null name.");
+
+        template.update("delete from \"SummonerSpellSets\" where \"summSpellSetName\" = ?;", toDelete);
+    }
+
     public class SummonerSpellSetMapper implements RowMapper<SummonerSpellSet> {
 
         @Override

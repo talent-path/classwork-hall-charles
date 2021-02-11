@@ -131,4 +131,8 @@ public class LeagueAppService {
         summonerSpellSetDao.updateSummonerSpellSet(toUpdate);
     }
 
+    public void deleteSummonerSpellSet(String toDelete) throws NullNameException {
+        summonerSpellSetDao.deleteSummonerSpellSet(toDelete);
+    }
+
 }

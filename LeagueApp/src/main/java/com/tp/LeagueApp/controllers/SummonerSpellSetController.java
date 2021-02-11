@@ -59,4 +59,15 @@ public class SummonerSpellSetController {
             return e.getMessage();
         }
     }
+
+    @DeleteMapping("/delete/summonerSpellSet/{summSpellSetName}")
+    public String deleteSummonerSpellSet(@PathVariable String summSpellSetName) {
+        try {
+            service.deleteSummonerSpellSet(summSpellSetName);
+            return "Summoner Spell Set " + summSpellSetName + " successfully deleted.";
+        }
+        catch(Exception e) {
+            return e.getMessage();
+        }
+    }
 }
