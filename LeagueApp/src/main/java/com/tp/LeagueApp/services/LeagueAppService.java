@@ -146,7 +146,7 @@ public class LeagueAppService {
     }
 
     //Summoner Spell Sets
-    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException, InvalidSummonerSpellException, EmptySummonerSpellListException {
         return summonerSpellSetDao.createNewSummonerSpellSet(toAdd);
     }
 

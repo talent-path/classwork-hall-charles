@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +21,16 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
     //CREATE
     @Override
-    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException {
+    public SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException, EmptySummonerSpellListException, InvalidSummonerSpellException {
 
         if(toAdd == null)
             throw new NullSetException("ERROR: Tried to create a null summoner spell set.");
+        if(toAdd.getSummonerSpellIdList().size() == 0)
+            throw new EmptySummonerSpellListException("ERROR: Empty item list.");
+
+        //Add validate items
+        if(!validateSummonerSpellList(toAdd.getSummonerSpellIdList()))
+            throw new InvalidSummonerSpellException("Summoner spell in list is not valid.");
 
         Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?) RETURNING \"summSpellSetId\";",
                 new PostgresSummonerSpellSetDao.SummonerSpellSetIdMapper(),
@@ -34,9 +38,31 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
                 toAdd.getChampionId()
         );
 
+        //Add insert into bridge
+        for(Integer summSpellIdToAdd : toAdd.getSummonerSpellIdList()) {
+            template.update("insert into \"SummonerSpellSetSummonerSpells\" (\"summSpellSetId\", \"summSpellId\") values ('"+summSpellSetId+"', '"+summSpellIdToAdd+"')");
+        }
+
         toAdd.setSummonerSpellSetId(summSpellSetId);
 
         return toAdd;
+    }
+
+    private boolean validateSummonerSpellList(List<Integer> toCheck) {
+        boolean equal = true;
+
+        Integer queryCount = 0;
+
+        for(Integer toValidate : toCheck) {
+            queryCount += template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
+        }
+
+        Integer toCheckCount = toCheck.size();
+
+        if(!queryCount.equals(toCheckCount))
+            equal = false;
+
+        return equal;
     }
 
     //READ
@@ -116,9 +142,17 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         }
     }
 
-    private class SummonerSpellSetIdMapper implements RowMapper<Integer>{
+    private class SummonerSpellSetIdMapper implements RowMapper<Integer> {
         public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
             return resultSet.getInt("summSpellSetId");
+        }
+    }
+
+    private class SummonerSpellSetCountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("count");
         }
     }
 }

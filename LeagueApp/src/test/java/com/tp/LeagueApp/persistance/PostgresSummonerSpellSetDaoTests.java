@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
@@ -49,7 +47,7 @@ public class PostgresSummonerSpellSetDaoTests {
         SummonerSpellSet returnedSummonerSpellSet = null;
         try {
             returnedSummonerSpellSet = toTest.createNewSummonerSpellSet(summSetToAdd);
-        } catch (NullSetException e) {
+        } catch (NullSetException | EmptySummonerSpellListException | InvalidSummonerSpellException e) {
             fail();
         }
 

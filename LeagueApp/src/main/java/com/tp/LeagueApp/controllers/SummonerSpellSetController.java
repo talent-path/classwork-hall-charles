@@ -1,5 +1,7 @@
 package com.tp.LeagueApp.controllers;
 
+import com.tp.LeagueApp.exceptions.EmptySummonerSpellListException;
+import com.tp.LeagueApp.exceptions.InvalidSummonerSpellException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.SummonerSpellSet;
@@ -24,7 +26,7 @@ public class SummonerSpellSetController {
         try {
             toReturn = service.createNewSummonerSpellSet(toAdd);
         }
-        catch(Exception e) {
+        catch(Exception | InvalidSummonerSpellException | EmptySummonerSpellListException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

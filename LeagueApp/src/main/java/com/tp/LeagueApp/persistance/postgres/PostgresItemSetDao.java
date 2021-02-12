@@ -53,7 +53,6 @@ public class PostgresItemSetDao implements ItemSetDao {
     private boolean validateItemList(List<Integer> toCheck) {
         boolean equal = true;
 
-        //TODO figure out mapping part
         Integer queryCount = 0;
 
         for(Integer toValidate : toCheck) {

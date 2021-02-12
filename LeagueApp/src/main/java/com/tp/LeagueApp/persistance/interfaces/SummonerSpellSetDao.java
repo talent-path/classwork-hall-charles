@@ -1,9 +1,7 @@
 package com.tp.LeagueApp.persistance.interfaces;
 
 
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 
@@ -12,7 +10,7 @@ import java.util.List;
 public interface SummonerSpellSetDao {
 
     //CREATE
-    SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException;
+    SummonerSpellSet createNewSummonerSpellSet(SummonerSpellSet toAdd) throws NullSetException, EmptySummonerSpellListException, InvalidSummonerSpellException;
 
     //READ
     List<SummonerSpellSet> getAllSummonerSpellSets();
