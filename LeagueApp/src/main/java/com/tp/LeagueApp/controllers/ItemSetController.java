@@ -1,9 +1,6 @@
 package com.tp.LeagueApp.controllers;
 
-import com.tp.LeagueApp.exceptions.EmptyItemListException;
-import com.tp.LeagueApp.exceptions.InvalidItemException;
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +23,7 @@ public class ItemSetController {
         try {
             toReturn = service.createNewItemSet(toAdd);
         }
-        catch(Exception | InvalidItemException | EmptyItemListException e) {
+        catch(EmptyItemListException | NullSetException | InvalidItemException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

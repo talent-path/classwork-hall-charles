@@ -1,7 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.*;
-import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.interfaces.ItemSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +25,14 @@ public class PostgresItemSetDao implements ItemSetDao {
 
         if(toAdd == null)
             throw new NullSetException("ERROR: Tried to create a null item set.");
-        if(toAdd.getItemList().size() == 0)
+        if(toAdd.getItemIdList().size() == 0)
             throw new EmptyItemListException("ERROR: Empty item list.");
 
         //Add validate items
-        if(!validateItemList(toAdd.getItemList()))
-            throw new UnsupportedOperationException();
+        if(!validateItemList(toAdd.getItemIdList()))
+            throw new InvalidItemException("Item in list is not valid.");
+
+        //TODO validate itemId in itemIdList
 
         Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
                 new ItemSetIdMapper(),
@@ -40,22 +41,29 @@ public class PostgresItemSetDao implements ItemSetDao {
         );
 
         //Add insert into bridge
+        for(Integer itemIdToAdd : toAdd.getItemIdList()) {
+            template.update("insert into \"ItemSetItems\" (\"itemSetId\", \"itemId\") values ('"+itemSetId+"', '"+itemIdToAdd+"')");
+        }
 
         toAdd.setItemSetId(itemSetId);
 
         return toAdd;
     }
 
-    private boolean validateItemList(List<Item> toCheck) {
+    private boolean validateItemList(List<Integer> toCheck) {
         boolean equal = true;
 
-//        //TODO figure out mapping part
-//        Integer queryCount = template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in ('1','2','3','4')", ???, ???);
-//
-//        Integer toCheckCount = toCheck.size();
-//
-//        if(!queryCount.equals(toCheckCount))
-//            equal = false;
+        //TODO figure out mapping part
+        Integer queryCount = 0;
+
+        for(Integer toValidate : toCheck) {
+            queryCount += template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in (?)", new ItemSetCountMapper(), toValidate);
+        }
+
+        Integer toCheckCount = toCheck.size();
+
+        if(!queryCount.equals(toCheckCount))
+            equal = false;
 
         return equal;
     }
@@ -126,6 +134,8 @@ public class PostgresItemSetDao implements ItemSetDao {
         template.update("delete from \"ItemSets\" where \"itemSetId\" = ?;", toDeleteId);
     }
 
+    //MAPPERS
+
     private class ItemSetMapper implements RowMapper<ItemSet> {
 
         @Override
@@ -139,9 +149,19 @@ public class PostgresItemSetDao implements ItemSetDao {
         }
     }
 
-    private class ItemSetIdMapper implements RowMapper<Integer>{
+    private class ItemSetIdMapper implements RowMapper<Integer> {
+
+        @Override
         public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
             return resultSet.getInt("itemSetId");
+        }
+    }
+
+    private class ItemSetCountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("count");
         }
     }
 }

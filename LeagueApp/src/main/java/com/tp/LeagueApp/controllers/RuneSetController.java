@@ -1,7 +1,6 @@
 package com.tp.LeagueApp.controllers;
 
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class RuneSetController {
         try {
             toReturn = service.createNewRuneSet(toAdd);
         }
-        catch(Exception e) {
+        catch(NullSetException | EmptyItemListException | InvalidRuneException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

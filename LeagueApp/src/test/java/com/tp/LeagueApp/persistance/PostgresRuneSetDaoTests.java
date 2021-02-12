@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresRuneSetDao;
@@ -48,7 +46,7 @@ public class PostgresRuneSetDaoTests {
         RuneSet returnedRuneSet = null;
         try {
             returnedRuneSet = toTest.createNewRuneSet(runeSetToAdd);
-        } catch (NullSetException e) {
+        } catch (NullSetException | InvalidRuneException | EmptyItemListException e) {
             fail();
         }
 

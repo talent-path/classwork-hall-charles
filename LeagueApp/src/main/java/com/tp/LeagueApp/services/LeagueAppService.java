@@ -117,7 +117,7 @@ public class LeagueAppService {
     }
 
     //Rune Sets
-    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
+    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException, EmptyItemListException, InvalidRuneException {
         return runeSetDao.createNewRuneSet(toAdd);
     }
 

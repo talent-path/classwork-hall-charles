@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance.interfaces;
 
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.RuneSet;
 
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
 public interface RuneSetDao {
 
     //CREATE
-    RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException;
+    RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException, EmptyItemListException, InvalidRuneException;
 
     //READ
     List<RuneSet> getAllRuneSets();

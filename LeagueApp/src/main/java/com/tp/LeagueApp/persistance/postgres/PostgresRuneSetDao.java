@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.interfaces.RuneSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,18 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
     //CREATE
     @Override
-    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException {
+    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException, InvalidRuneException, EmptyItemListException {
 
         if(toAdd == null)
             throw new NullSetException("ERROR: Tried to create a null rune set.");
+        if(toAdd.getRuneIdList().size() == 0)
+            throw new EmptyItemListException("ERROR: Empty item list.");
+
+        //Add validate items
+        if(!validateRuneList(toAdd.getRuneIdList()))
+            throw new InvalidRuneException("Rune in list is not valid.");
+
+        //TODO validate runeId in runeIdList
 
         Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?) RETURNING \"runeSetId\";",
                 new PostgresRuneSetDao.RuneSetIdMapper(),
@@ -35,9 +41,31 @@ public class PostgresRuneSetDao implements RuneSetDao {
                 toAdd.getChampionId()
         );
 
+        //Add insert into bridge
+        for(Integer runeIdToAdd : toAdd.getRuneIdList()) {
+            template.update("insert into \"RuneSetRunes\" (\"runeSetId\", \"runeId\") values ('"+runeSetId+"', '"+runeIdToAdd+"')");
+        }
+
         toAdd.setRuneSetId(runeSetId);
 
         return toAdd;
+    }
+
+    private boolean validateRuneList(List<Integer> toCheck) {
+        boolean equal = true;
+
+        Integer queryCount = 0;
+
+        for(Integer toValidate : toCheck) {
+            queryCount += template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)", new RuneSetCountMapper(), toValidate);
+        }
+
+        Integer toCheckCount = toCheck.size();
+
+        if(!queryCount.equals(toCheckCount))
+            equal = false;
+
+        return equal;
     }
 
     //READ
@@ -104,6 +132,8 @@ public class PostgresRuneSetDao implements RuneSetDao {
         template.update("delete from \"RuneSets\" where \"runeSetId\" = ?;", toDeleteId);
     }
 
+    //MAPPERS
+
     private class RuneSetMapper implements RowMapper<RuneSet> {
 
         @Override
@@ -120,6 +150,14 @@ public class PostgresRuneSetDao implements RuneSetDao {
     private class RuneSetIdMapper implements RowMapper<Integer>{
         public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
             return resultSet.getInt("runeSetId");
+        }
+    }
+
+    private class RuneSetCountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("count");
         }
     }
 

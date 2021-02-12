@@ -7,7 +7,7 @@ public class RuneSet {
     Integer runeSetId;
     String runeSetName;
     Integer championId;
-    List<Rune> runeList;
+    List<Integer> runeIdList;
 
     public Integer getRuneSetId() {
         return runeSetId;
@@ -33,11 +33,11 @@ public class RuneSet {
         this.championId = championId;
     }
 
-    public List<Rune> getRuneList() {
-        return runeList;
+    public List<Integer> getRuneIdList() {
+        return runeIdList;
     }
 
-    public void setRuneList(List<Rune> runeList) {
-        this.runeList = runeList;
+    public void setRuneIdList(List<Integer> runeIdList) {
+        this.runeIdList = runeIdList;
     }
 }

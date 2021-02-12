@@ -6,7 +6,7 @@ public class SummonerSpellSet {
     Integer summonerSpellSetId;
     String summonerSpellSetName;
     Integer championId;
-    List<SummonerSpell> summonerSpellList;
+    List<Integer> summonerSpellIdList;
 
     public Integer getSummonerSpellSetId() {
         return summonerSpellSetId;
@@ -32,11 +32,11 @@ public class SummonerSpellSet {
         this.championId = championId;
     }
 
-    public List<SummonerSpell> getSummonerSpellList() {
-        return summonerSpellList;
+    public List<Integer> getSummonerSpellIdList() {
+        return summonerSpellIdList;
     }
 
-    public void setSummonerSpellList(List<SummonerSpell> summonerSpellList) {
-        this.summonerSpellList = summonerSpellList;
+    public void setSummonerSpellIdList(List<Integer> summonerSpellIdList) {
+        this.summonerSpellIdList = summonerSpellIdList;
     }
 }
