@@ -1,6 +1,7 @@
 package com.tp.LeagueApp.persistance;
 
 import com.jayway.jsonpath.internal.function.numeric.Sum;
+import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Rune;
@@ -88,7 +89,7 @@ public class PostgresSummonerSpellDaoTests {
         try {
             toCheck = toTest.getSummonerSpellById(1);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -101,6 +102,11 @@ public class PostgresSummonerSpellDaoTests {
     @Test
     public void getSummonerSpellByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.getSummonerSpellById(null));
+    }
+
+    @Test
+    public void getSummonerSpellSetByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.getSummonerSpellById(100000));
     }
 
 }

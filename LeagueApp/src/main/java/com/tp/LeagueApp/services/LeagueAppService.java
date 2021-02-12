@@ -82,7 +82,7 @@ public class LeagueAppService {
         return summonerSpellDao.getSummonerSpellByName(summonerSpellName);
     }
 
-    public SummonerSpell getSummonerSpellById(Integer summonerSpellId) throws NullIdException {
+    public SummonerSpell getSummonerSpellById(Integer summonerSpellId) throws NullIdException, InvalidSetException {
         return summonerSpellDao.getSummonerSpellById(summonerSpellId);
     }
 
@@ -158,7 +158,7 @@ public class LeagueAppService {
         return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
     }
 
-    public SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId) throws NullIdException {
+    public SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId) throws NullIdException, InvalidSetException {
         return summonerSpellSetDao.getSummonerSpellSetById(summonerSpellSetId);
     }
 

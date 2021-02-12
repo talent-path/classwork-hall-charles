@@ -57,7 +57,7 @@ public class SummonerSpellSetController {
         try {
             toReturn = service.getSummonerSpellSetById(summonerSpellSetId);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

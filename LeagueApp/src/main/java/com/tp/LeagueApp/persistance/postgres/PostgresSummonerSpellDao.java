@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.SummonerSpell;
@@ -40,13 +41,29 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
     }
 
     @Override
-    public SummonerSpell getSummonerSpellById(Integer summonerSpellId) throws NullIdException {
+    public SummonerSpell getSummonerSpellById(Integer summonerSpellId) throws NullIdException, InvalidSetException {
         if(summonerSpellId == null)
             throw new NullIdException("ERROR: Tried to get a summoner spell with a null id.");
+        if(!validateId(summonerSpellId))
+            throw new InvalidSetException("ERROR: Tried to get a summoner spell with an invalid id.");
 
         List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellId\" = ?;", new PostgresSummonerSpellDao.SummonerSpellMapper(), summonerSpellId);
 
         return toReturn.get(0);
+    }
+
+    private boolean validateId(Integer toValidate) {
+
+        boolean exists = true;
+
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
+
+        Integer zero = 0;
+
+        if(returnCount.equals(zero))
+            exists = false;
+
+        return exists;
     }
 
     public class SummonerSpellMapper implements RowMapper<SummonerSpell> {
@@ -59,6 +76,14 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
             mappedSummonerSpell.setSummonerSpellDescription(resultSet.getString("summSpellDescription"));
 
             return mappedSummonerSpell;
+        }
+    }
+
+    private class SummonerSpellSetCountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("count");
         }
     }
 }

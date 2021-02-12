@@ -149,7 +149,7 @@ public class PostgresSummonerSpellSetDaoTests {
         try {
             summSpellSetToCheck = toTest.getSummonerSpellSetById(1);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -162,6 +162,11 @@ public class PostgresSummonerSpellSetDaoTests {
     @Test
     public void getSummonerSpellSetByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.getSummonerSpellSetById(null));
+    }
+
+    @Test
+    public void getSummonerSpellSetByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.getSummonerSpellSetById(100000));
     }
 
     @Test
