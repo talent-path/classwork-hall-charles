@@ -74,7 +74,7 @@ public class PostgresRuneSetDaoTests {
     }
 
     @Test
-    public void createNewRuneSetEmptyRuneListTest() {
+    public void createNewRuneSetEmptyRuneIdListTest() {
         RuneSet testRuneSet = new RuneSet();
         testRuneSet.setRuneSetId(1);
         testRuneSet.setRuneSetName("Test");

@@ -75,7 +75,7 @@ public class PostgresItemSetDaoTests {
     }
 
     @Test
-    public void createNewItemSetEmptyItemListTest() {
+    public void createNewItemSetEmptyItemIdListTest() {
         ItemSet testItemSet = new ItemSet();
         testItemSet.setItemSetId(1);
         testItemSet.setItemSetName("Test");

@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,6 +37,9 @@ public class PostgresSummonerSpellSetDaoTests {
 
         template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +
                 "values ('Test','Test Description', '1','1','1','1')");
+
+        template.update("insert into \"SummonerSpells\" (\"summSpellName\", \"summSpellDescription\") values ('Test', 'Test Description')");
+
     }
 
     @Test
@@ -43,6 +47,9 @@ public class PostgresSummonerSpellSetDaoTests {
         SummonerSpellSet summSetToAdd = new SummonerSpellSet();
         summSetToAdd.setSummonerSpellSetName("Testing Summ Set");
         summSetToAdd.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testList.add(1);
+        summSetToAdd.setSummonerSpellIdList(testList);
 
         SummonerSpellSet returnedSummonerSpellSet = null;
         try {
@@ -65,6 +72,18 @@ public class PostgresSummonerSpellSetDaoTests {
     @Test
     public void createNewSummonerSpellSetNullSummonerSpellSetTest() {
         assertThrows(NullSetException.class, () -> toTest.createNewSummonerSpellSet(null));
+    }
+
+    @Test
+    public void createNewSummonerSpellSetEmptySummonerSpellIdListTest() {
+        SummonerSpellSet testSummSpellSet = new SummonerSpellSet();
+        testSummSpellSet.setSummonerSpellSetId(1);
+        testSummSpellSet.setSummonerSpellSetName("Test");
+        testSummSpellSet.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testSummSpellSet.setSummonerSpellIdList(testList);
+
+        assertThrows(EmptySummonerSpellListException.class, () -> toTest.createNewSummonerSpellSet(testSummSpellSet));
     }
 
     @Test
