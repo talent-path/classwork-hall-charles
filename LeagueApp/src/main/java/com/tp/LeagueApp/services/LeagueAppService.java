@@ -43,7 +43,7 @@ public class LeagueAppService {
         return championDao.getChampionByName(championName);
     }
 
-    public Champion getChampionById(Integer championId) throws NullIdException {
+    public Champion getChampionById(Integer championId) throws NullIdException, InvalidSetException {
         return championDao.getChampionById(championId);
     }
 
@@ -56,7 +56,7 @@ public class LeagueAppService {
         return itemDao.getItemByName(itemName);
     }
 
-    public Item getItemById(Integer itemId) throws NullIdException {
+    public Item getItemById(Integer itemId) throws NullIdException, InvalidSetException {
         return itemDao.getItemById(itemId);
     }
 
@@ -100,7 +100,7 @@ public class LeagueAppService {
         return itemSetDao.getItemSetByName(itemSetName);
     }
 
-    public ItemSet getItemSetById(Integer itemSetId) throws NullIdException {
+    public ItemSet getItemSetById(Integer itemSetId) throws NullIdException, InvalidSetException {
         return itemSetDao.getItemSetById(itemSetId);
     }
 

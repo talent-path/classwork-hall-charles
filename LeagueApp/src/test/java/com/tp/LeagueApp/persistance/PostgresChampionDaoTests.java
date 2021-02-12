@@ -1,8 +1,8 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.persistance.postgres.PostgresChampionDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -99,7 +99,7 @@ public class PostgresChampionDaoTests {
         Champion toCheck = null;
         try {
             toCheck = toTest.getChampionById(1);
-        } catch (NullIdException e) {
+        } catch (NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -118,6 +118,11 @@ public class PostgresChampionDaoTests {
     @Test
     public void getChampionByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.getChampionById(null));
+    }
+
+    @Test
+    public void getChampionByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.getChampionById(100000));
     }
 
 }

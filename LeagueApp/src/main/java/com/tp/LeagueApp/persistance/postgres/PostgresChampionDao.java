@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Champion;
@@ -41,13 +42,30 @@ public class PostgresChampionDao implements ChampionDao {
     }
 
     @Override
-    public Champion getChampionById(Integer championId) throws NullIdException {
+    public Champion getChampionById(Integer championId) throws NullIdException, InvalidSetException {
         if(championId == null)
             throw new NullIdException("ERROR: Tried to get champion with null id.");
+        if(!validateId(championId))
+            throw new InvalidSetException("ERROR: Tried to get a champion that doesn't exist.");
 
         List<Champion> toReturn = template.query("select * from \"Champions\" where \"championId\" = ?;", new ChampionMapper(), championId);
 
-        return toReturn.get(0);    }
+        return toReturn.get(0);
+    }
+
+    private boolean validateId(Integer toValidate) {
+
+        boolean exists = true;
+
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"Champions\" where \"championId\" in (?)", new ChampionCountMapper(), toValidate);
+
+        Integer zero = 0;
+
+        if(returnCount.equals(zero))
+            exists = false;
+
+        return exists;
+    }
 
     class ChampionMapper implements RowMapper<Champion> {
 
@@ -63,6 +81,14 @@ public class PostgresChampionDao implements ChampionDao {
             mappedChampion.setAvgKDA(resultSet.getBigDecimal("avgKDA"));
 
             return mappedChampion;
+        }
+    }
+
+    private class ChampionCountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("count");
         }
     }
 }

@@ -1,12 +1,9 @@
 package com.tp.LeagueApp.persistance;
 
-import com.jayway.jsonpath.internal.function.numeric.Sum;
 import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.models.SummonerSpell;
-import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresSummonerSpellDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

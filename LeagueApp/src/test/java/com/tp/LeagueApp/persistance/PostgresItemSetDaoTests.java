@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
 import com.tp.LeagueApp.exceptions.*;
-import com.tp.LeagueApp.models.Champion;
-import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresItemSetDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -149,7 +147,7 @@ public class PostgresItemSetDaoTests {
         try {
             itemSetToCheck = toTest.getItemSetById(1);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -162,6 +160,11 @@ public class PostgresItemSetDaoTests {
     @Test
     public void getItemSetByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.getItemSetById(null));
+    }
+
+    @Test
+    public void getItemSetByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.getItemSetById(100000));
     }
 
     @Test

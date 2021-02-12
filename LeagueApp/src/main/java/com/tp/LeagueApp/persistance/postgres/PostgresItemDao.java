@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Item;
@@ -40,13 +41,29 @@ public class PostgresItemDao implements ItemDao {
     }
 
     @Override
-    public Item getItemById(Integer itemId) throws NullIdException {
+    public Item getItemById(Integer itemId) throws NullIdException, InvalidSetException {
         if(itemId == null)
             throw new NullIdException("ERROR: Tried to get an item with a null id.");
+        if(!validateId(itemId))
+            throw new InvalidSetException("ERROR: Tried to get an item that doesn't exist.");
 
         List<Item> toReturn = template.query("select * from \"Items\" where \"itemId\" = ?;", new PostgresItemDao.ItemMapper(), itemId);
 
         return toReturn.get(0);
+    }
+
+    private boolean validateId(Integer toValidate) {
+
+        boolean exists = true;
+
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in (?)", new ItemCountMapper(), toValidate);
+
+        Integer zero = 0;
+
+        if(returnCount.equals(zero))
+            exists = false;
+
+        return exists;
     }
 
     private class ItemMapper implements RowMapper<Item> {
@@ -59,6 +76,14 @@ public class PostgresItemDao implements ItemDao {
             mappedItem.setItemCost(resultSet.getInt("itemCost"));
 
             return mappedItem;
+        }
+    }
+
+    private class ItemCountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("count");
         }
     }
 }

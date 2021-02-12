@@ -13,7 +13,7 @@ public interface ItemSetDao {
     //READ
     List<ItemSet> getAllItemSets();
     ItemSet getItemSetByName(String itemSetName) throws NullNameException;
-    ItemSet getItemSetById(Integer itemSetId) throws NullIdException;
+    ItemSet getItemSetById(Integer itemSetId) throws NullIdException, InvalidSetException;
 
     //UPDATE
     void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException, InvalidSetException;

@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
 import com.tp.LeagueApp.exceptions.*;
-import com.tp.LeagueApp.models.ItemSet;
-import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.postgres.PostgresSummonerSpellSetDao;
 import org.junit.jupiter.api.BeforeEach;

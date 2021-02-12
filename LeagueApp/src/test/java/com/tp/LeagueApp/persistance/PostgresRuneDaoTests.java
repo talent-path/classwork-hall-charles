@@ -3,7 +3,6 @@ package com.tp.LeagueApp.persistance;
 import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.persistance.postgres.PostgresRuneDao;
 import org.junit.jupiter.api.BeforeEach;

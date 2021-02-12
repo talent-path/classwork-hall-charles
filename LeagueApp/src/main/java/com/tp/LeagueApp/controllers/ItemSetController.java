@@ -57,7 +57,7 @@ public class ItemSetController {
         try {
             toReturn = service.getItemSetById(itemSetId);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
