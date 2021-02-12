@@ -86,6 +86,19 @@ public class PostgresRuneSetDaoTests {
     }
 
     @Test
+    public void createNewRuneSetInvalidRuneListTest() {
+        RuneSet testRuneSet = new RuneSet();
+        testRuneSet.setRuneSetId(1);
+        testRuneSet.setRuneSetName("Test");
+        testRuneSet.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testList.add(100000);
+        testRuneSet.setRuneIdList(testList);
+
+        assertThrows(InvalidRuneException.class, () -> toTest.createNewRuneSet(testRuneSet));
+    }
+
+    @Test
     public void getAllRuneSetsGoldenPath() {
         template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
         template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing2 Rune Set\', \'1\')");

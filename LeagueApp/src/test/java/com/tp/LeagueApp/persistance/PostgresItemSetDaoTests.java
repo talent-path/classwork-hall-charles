@@ -87,6 +87,19 @@ public class PostgresItemSetDaoTests {
     }
 
     @Test
+    public void createNewItemSetInvalidItemTest() {
+        ItemSet testItemSet = new ItemSet();
+        testItemSet.setItemSetId(1);
+        testItemSet.setItemSetName("Test");
+        testItemSet.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testList.add(100000);
+        testItemSet.setItemIdList(testList);
+
+        assertThrows(InvalidItemException.class, () -> toTest.createNewItemSet(testItemSet));
+    }
+
+    @Test
     public void getAllItemSetsGoldenPath() {
         template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
         template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing2 Item Set\', \'1\')");

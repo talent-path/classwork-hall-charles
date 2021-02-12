@@ -87,6 +87,19 @@ public class PostgresSummonerSpellSetDaoTests {
     }
 
     @Test
+    public void createNewSummonerSpellSetInvalidSummonerSpellTest() {
+        SummonerSpellSet testSummSpellSet = new SummonerSpellSet();
+        testSummSpellSet.setSummonerSpellSetId(1);
+        testSummSpellSet.setSummonerSpellSetName("Test");
+        testSummSpellSet.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testList.add(100000);
+        testSummSpellSet.setSummonerSpellIdList(testList);
+
+        assertThrows(InvalidSummonerSpellException.class, () -> toTest.createNewSummonerSpellSet(testSummSpellSet));
+    }
+
+    @Test
     public void getAllSummonerSpellSetsGoldenPath() {
         template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
         template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing2 Summoner Spell Set\', \'1\')");
