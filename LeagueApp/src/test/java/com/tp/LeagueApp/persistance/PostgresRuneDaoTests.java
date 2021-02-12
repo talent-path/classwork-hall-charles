@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
+import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Item;
@@ -86,7 +87,7 @@ public class PostgresRuneDaoTests {
         try {
             toCheck = toTest.getRuneById(1);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -99,5 +100,10 @@ public class PostgresRuneDaoTests {
     @Test
     public void getRuneByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.getRuneById(null));
+    }
+
+    @Test
+    public void getRuneByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.getRuneById(100000));
     }
 }

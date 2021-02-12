@@ -69,7 +69,7 @@ public class LeagueAppService {
         return runeDao.getRuneByName(runeName);
     }
 
-    public Rune getRuneById(Integer runeId) throws NullIdException {
+    public Rune getRuneById(Integer runeId) throws NullIdException, InvalidSetException {
         return runeDao.getRuneById(runeId);
     }
 
@@ -129,7 +129,7 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetByName(runeSetName);
     }
 
-    public RuneSet getRuneSetById(Integer runeSetId) throws NullIdException {
+    public RuneSet getRuneSetById(Integer runeSetId) throws NullIdException, InvalidSetException {
         return runeSetDao.getRuneSetById(runeSetId);
     }
 

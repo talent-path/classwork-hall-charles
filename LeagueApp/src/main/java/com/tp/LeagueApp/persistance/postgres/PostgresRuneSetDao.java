@@ -86,10 +86,12 @@ public class PostgresRuneSetDao implements RuneSetDao {
     }
 
     @Override
-    public RuneSet getRuneSetById(Integer runeSetId) throws NullIdException {
+    public RuneSet getRuneSetById(Integer runeSetId) throws NullIdException, InvalidSetException {
 
         if(runeSetId == null)
             throw new NullIdException("ERROR: Tried to get a rune set with a null id.");
+        if(!validateId(runeSetId))
+            throw new InvalidSetException("ERROR: Tried to get a rune set that doesn't exist.");
 
         List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetId\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetId);
 

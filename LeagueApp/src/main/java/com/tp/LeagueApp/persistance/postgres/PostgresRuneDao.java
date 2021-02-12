@@ -1,5 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
+import com.tp.LeagueApp.exceptions.InvalidSetException;
 import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Rune;
@@ -41,13 +42,30 @@ public class PostgresRuneDao implements RuneDao {
     }
 
     @Override
-    public Rune getRuneById(Integer runeId) throws NullIdException {
+    public Rune getRuneById(Integer runeId) throws NullIdException, InvalidSetException {
         if(runeId == null)
             throw new NullIdException("ERROR: Tried to get a rune with a null id.");
+        if(!validateId(runeId))
+            throw new InvalidSetException("ERROR: Tried to get a rune that doesn't exist.");
 
         List<Rune> toReturn = template.query("select * from \"Runes\" where \"runeId\" = ?;", new PostgresRuneDao.RuneMapper(), runeId);
 
-        return toReturn.get(0);    }
+        return toReturn.get(0);
+    }
+
+    private boolean validateId(Integer toValidate) {
+
+        boolean exists = true;
+
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)", new RuneCountMapper(), toValidate);
+
+        Integer zero = 0;
+
+        if(returnCount.equals(zero))
+            exists = false;
+
+        return exists;
+    }
 
     public class RuneMapper implements RowMapper<Rune> {
 
@@ -59,6 +77,14 @@ public class PostgresRuneDao implements RuneDao {
             mappedRune.setRuneDescription(resultSet.getString("runeDescription"));
 
             return mappedRune;
+        }
+    }
+
+    private class RuneCountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("count");
         }
     }
 }

@@ -56,7 +56,7 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellCountMapper(), toValidate);
 
         Integer zero = 0;
 
@@ -79,7 +79,7 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
         }
     }
 
-    private class SummonerSpellSetCountMapper implements RowMapper<Integer> {
+    private class SummonerSpellCountMapper implements RowMapper<Integer> {
 
         @Override
         public Integer mapRow(ResultSet resultSet, int i) throws SQLException {

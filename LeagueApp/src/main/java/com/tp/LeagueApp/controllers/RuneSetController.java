@@ -57,7 +57,7 @@ public class RuneSetController {
         try {
             toReturn = service.getRuneSetById(runeSetId);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

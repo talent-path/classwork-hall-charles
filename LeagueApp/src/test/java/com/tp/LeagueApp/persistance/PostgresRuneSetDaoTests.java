@@ -148,7 +148,7 @@ public class PostgresRuneSetDaoTests {
         try {
             runeSetToCheck = toTest.getRuneSetById(1);
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -161,6 +161,11 @@ public class PostgresRuneSetDaoTests {
     @Test
     public void getRuneSetByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.getRuneSetById(null));
+    }
+
+    @Test
+    public void getRuneSetByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.getRuneSetById(100000));
     }
 
     @Test
