@@ -1,9 +1,6 @@
 package com.tp.LeagueApp.controllers;
 
-import com.tp.LeagueApp.exceptions.EmptySummonerSpellListException;
-import com.tp.LeagueApp.exceptions.InvalidSummonerSpellException;
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +94,7 @@ public class SummonerSpellSetController {
             service.deleteSummonerSpellSetById(summSpellSetId);
             return "Summoner Spell Set " + summSpellSetId + " successfully deleted.";
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             return e.getMessage();
         }
     }

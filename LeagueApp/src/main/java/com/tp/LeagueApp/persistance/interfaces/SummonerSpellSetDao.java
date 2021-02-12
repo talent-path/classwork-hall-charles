@@ -18,10 +18,10 @@ public interface SummonerSpellSetDao {
     SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId)throws NullIdException;
 
     //UPDATE
-    void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException;
+    void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException, InvalidSetException;
 
     //DELETE
     void deleteSummonerSpellSet(String toDelete) throws NullNameException;
 
-    void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException;
+    void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException, InvalidSetException;
 }

@@ -177,7 +177,7 @@ public class PostgresSummonerSpellSetDaoTests {
 
         try {
             toTest.updateSummonerSpellSet(newUpdateSummonerSpellSet);
-        } catch (NullSetException | NullIdException e) {
+        } catch (NullSetException | NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -197,6 +197,16 @@ public class PostgresSummonerSpellSetDaoTests {
     @Test
     public void updateSummonerSpellSetNullRuneSetTest() {
         assertThrows(NullSetException.class, () -> toTest.updateSummonerSpellSet(null));
+    }
+
+    @Test
+    public void updateSummonerSpellSetInvalidSummonerSpellSetTest() {
+        SummonerSpellSet newUpdateSummSpellSet = new SummonerSpellSet();
+        newUpdateSummSpellSet.setSummonerSpellSetId(100000);
+        newUpdateSummSpellSet.setSummonerSpellSetName("New Update");
+        newUpdateSummSpellSet.setChampionId(2);
+
+        assertThrows(InvalidSetException.class, () -> toTest.updateSummonerSpellSet(newUpdateSummSpellSet));
     }
 
     @Test
@@ -235,7 +245,7 @@ public class PostgresSummonerSpellSetDaoTests {
 
         try {
             toTest.deleteSummonerSpellSetById(1);
-        } catch (NullIdException e) {
+        } catch (NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -247,5 +257,10 @@ public class PostgresSummonerSpellSetDaoTests {
     @Test
     public void deleteSummonerSpellSetByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.deleteSummonerSpellSetById(null));
+    }
+
+    @Test
+    public void deleteSummonerSPellSetByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.deleteSummonerSpellSetById(100000));
     }
 }

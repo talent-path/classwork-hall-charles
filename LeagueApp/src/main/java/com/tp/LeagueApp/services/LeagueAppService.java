@@ -162,7 +162,7 @@ public class LeagueAppService {
         return summonerSpellSetDao.getSummonerSpellSetById(summonerSpellSetId);
     }
 
-    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException {
+    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
         summonerSpellSetDao.updateSummonerSpellSet(toUpdate);
     }
 
@@ -170,7 +170,7 @@ public class LeagueAppService {
         summonerSpellSetDao.deleteSummonerSpellSet(toDelete);
     }
 
-    public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException {
+    public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
         summonerSpellSetDao.deleteSummonerSpellSetById(toDeleteId);
     }
 

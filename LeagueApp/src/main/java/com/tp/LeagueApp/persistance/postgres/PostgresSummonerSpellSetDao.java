@@ -97,12 +97,14 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
     //UPDATE
     @Override
-    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException {
+    public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
 
         if(toUpdate == null)
             throw new NullSetException("ERROR: Tried to update summoner spell set with a null summoner spell set.");
         if(toUpdate.getSummonerSpellSetId() == null)
             throw new NullIdException("ERROR: Tried to update a summoner spell set with a null id.");
+        if(!validateId(toUpdate.getSummonerSpellSetId()))
+            throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("update \"SummonerSpellSets\" set \"summSpellSetName\" = ?, \"championId\" = ? where \"summSpellSetId\" = ?",
                 toUpdate.getSummonerSpellSetName(), toUpdate.getChampionId(), toUpdate.getSummonerSpellSetId());
@@ -120,13 +122,29 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
     }
 
     @Override
-    public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException {
+    public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
 
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete a summoner spell set with a null id.");
+        if(!validateId(toDeleteId))
+            throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("delete from \"SummonerSpellSetSummonerSpells\" where \"summSpellSetId\" = ?;", toDeleteId);
         template.update("delete from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", toDeleteId);
+    }
+
+    private boolean validateId(Integer toValidate) {
+
+        boolean exists = true;
+
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
+
+        Integer zero = 0;
+
+        if(returnCount.equals(zero))
+            exists = false;
+
+        return exists;
     }
 
     public class SummonerSpellSetMapper implements RowMapper<SummonerSpellSet> {
