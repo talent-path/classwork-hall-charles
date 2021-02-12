@@ -1,9 +1,6 @@
 package com.tp.LeagueApp.persistance;
 
-import com.tp.LeagueApp.exceptions.InvalidItemException;
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.ItemSet;
@@ -51,7 +48,7 @@ public class PostgresItemSetDaoTests {
         ItemSet returnedItemSet = null;
         try {
             returnedItemSet = toTest.createNewItemSet(itemSetToAdd);
-        } catch (NullSetException | InvalidItemException e) {
+        } catch (NullSetException | InvalidItemException | EmptyItemListException e) {
             fail();
         }
 

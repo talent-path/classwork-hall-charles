@@ -1,5 +1,7 @@
 package com.tp.LeagueApp.controllers;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.SummonerSpell;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class SummonerSpellController {
         try {
             toReturn = service.getSummonerSpellByName(summonerSpellName);
         }
-        catch(Exception e) {
+        catch(NullNameException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -43,7 +45,7 @@ public class SummonerSpellController {
         try {
             toReturn = service.getSummonerSpellById(summonerSpellId);
         }
-        catch(Exception e) {
+        catch(NullIdException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

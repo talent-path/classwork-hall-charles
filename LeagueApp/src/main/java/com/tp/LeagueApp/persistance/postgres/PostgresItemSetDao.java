@@ -1,9 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
-import com.tp.LeagueApp.exceptions.InvalidItemException;
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.Item;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.interfaces.ItemSetDao;
@@ -25,21 +22,16 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     //CREATE
     @Override
-    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException, InvalidItemException {
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException, InvalidItemException, EmptyItemListException {
 
         if(toAdd == null)
             throw new NullSetException("ERROR: Tried to create a null item set.");
+        if(toAdd.getItemList().size() == 0)
+            throw new EmptyItemListException("ERROR: Empty item list.");
 
-        //TODO Figure out proper way to check if items exist.
-//        for(Item toCheck : toAdd.getItemList()) {
-//            List<Integer> returnedId = template.query("select \"itemId\" from \"Items\" where \"itemName\" = ?;",
-//                    new ItemSetIdMapper(),
-//                    toCheck.getItemName());
-//
-//            if(returnedId.get(0) == null)
-//                throw new InvalidItemException("ERROR: Tried to create an item set with non-existent items.");
-//
-//        }
+        //Add validate items
+        if(!validateItemList(toAdd.getItemList()))
+            throw new UnsupportedOperationException();
 
         Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
                 new ItemSetIdMapper(),
@@ -47,9 +39,25 @@ public class PostgresItemSetDao implements ItemSetDao {
                 toAdd.getChampionId()
         );
 
+        //Add insert into bridge
+
         toAdd.setItemSetId(itemSetId);
 
         return toAdd;
+    }
+
+    private boolean validateItemList(List<Item> toCheck) {
+        boolean equal = true;
+
+//        //TODO figure out mapping part
+//        Integer queryCount = template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in ('1','2','3','4')", ???, ???);
+//
+//        Integer toCheckCount = toCheck.size();
+//
+//        if(!queryCount.equals(toCheckCount))
+//            equal = false;
+
+        return equal;
     }
 
     //READ
@@ -114,6 +122,7 @@ public class PostgresItemSetDao implements ItemSetDao {
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete an item set with a null id.");
 
+        template.update("delete from \"ItemSetItems\" where \"itemSetId\" = ?;", toDeleteId);
         template.update("delete from \"ItemSets\" where \"itemSetId\" = ?;", toDeleteId);
     }
 

@@ -100,6 +100,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete a rune set with a null id.");
 
+        template.update("delete from \"RuneSetRunes\" where \"runeSetId\" = ?;", toDeleteId);
         template.update("delete from \"RuneSets\" where \"runeSetId\" = ?;", toDeleteId);
     }
 

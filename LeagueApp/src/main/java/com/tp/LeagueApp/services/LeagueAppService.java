@@ -1,12 +1,10 @@
 package com.tp.LeagueApp.services;
 
-import com.tp.LeagueApp.exceptions.InvalidItemException;
-import com.tp.LeagueApp.exceptions.NullIdException;
-import com.tp.LeagueApp.exceptions.NullNameException;
-import com.tp.LeagueApp.exceptions.NullSetException;
+import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.*;
 import com.tp.LeagueApp.persistance.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -90,7 +88,7 @@ public class LeagueAppService {
 
     //Various Sets methods
     //Item Sets
-    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException, InvalidItemException {
+    public ItemSet createNewItemSet(ItemSet toAdd) throws NullSetException, InvalidItemException, EmptyItemListException {
         return itemSetDao.createNewItemSet(toAdd);
     }
 

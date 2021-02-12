@@ -99,6 +99,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete a summoner spell set with a null id.");
 
+        template.update("delete from \"SummonerSpellSetSummonerSpells\" where \"summSpellSetId\" = ?;", toDeleteId);
         template.update("delete from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", toDeleteId);
     }
 

@@ -1,5 +1,7 @@
 package com.tp.LeagueApp.controllers;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,7 @@ public class RuneSetController {
         try {
             toReturn = service.getRuneSetByName(runeSetName);
         }
-        catch(Exception e) {
+        catch(NullNameException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -56,7 +58,7 @@ public class RuneSetController {
         try {
             toReturn = service.getRuneSetById(runeSetId);
         }
-        catch(Exception e) {
+        catch(NullIdException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -82,7 +84,7 @@ public class RuneSetController {
             service.deleteRuneSet(runeSetName);
             return "Rune Set " + runeSetName + " successfully deleted.";
         }
-        catch(Exception e) {
+        catch(NullNameException e) {
             return e.getMessage();
         }
     }
@@ -93,7 +95,7 @@ public class RuneSetController {
             service.deleteRuneSetById(runeSetId);
             return "Rune Set " + runeSetId + " successfully deleted.";
         }
-        catch(Exception e) {
+        catch(NullIdException e) {
             return e.getMessage();
         }
     }

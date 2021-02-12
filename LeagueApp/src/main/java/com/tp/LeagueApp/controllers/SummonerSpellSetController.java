@@ -1,5 +1,7 @@
 package com.tp.LeagueApp.controllers;
 
+import com.tp.LeagueApp.exceptions.NullIdException;
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,7 @@ public class SummonerSpellSetController {
         try {
             toReturn = service.getSummonerSpellSetByName(summonerSpellSetName);
         }
-        catch(Exception e) {
+        catch(NullNameException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -56,7 +58,7 @@ public class SummonerSpellSetController {
         try {
             toReturn = service.getSummonerSpellSetById(summonerSpellSetId);
         }
-        catch(Exception e) {
+        catch(NullIdException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -82,7 +84,7 @@ public class SummonerSpellSetController {
             service.deleteSummonerSpellSet(summSpellSetName);
             return "Summoner Spell Set " + summSpellSetName + " successfully deleted.";
         }
-        catch(Exception e) {
+        catch(NullNameException e) {
             return e.getMessage();
         }
     }
@@ -93,7 +95,7 @@ public class SummonerSpellSetController {
             service.deleteSummonerSpellSetById(summSpellSetId);
             return "Summoner Spell Set " + summSpellSetId + " successfully deleted.";
         }
-        catch(Exception e) {
+        catch(NullIdException e) {
             return e.getMessage();
         }
     }

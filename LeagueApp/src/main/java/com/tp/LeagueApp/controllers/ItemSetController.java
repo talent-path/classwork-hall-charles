@@ -1,6 +1,9 @@
 package com.tp.LeagueApp.controllers;
 
+import com.tp.LeagueApp.exceptions.EmptyItemListException;
 import com.tp.LeagueApp.exceptions.InvalidItemException;
+import com.tp.LeagueApp.exceptions.NullIdException;
+import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.services.LeagueAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,7 @@ public class ItemSetController {
         try {
             toReturn = service.createNewItemSet(toAdd);
         }
-        catch(Exception | InvalidItemException e) {
+        catch(Exception | InvalidItemException | EmptyItemListException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -44,7 +47,7 @@ public class ItemSetController {
         try {
             toReturn = service.getItemSetByName(itemSetName);
         }
-        catch(Exception e) {
+        catch(NullNameException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -57,7 +60,7 @@ public class ItemSetController {
         try {
             toReturn = service.getItemSetById(itemSetId);
         }
-        catch(Exception e) {
+        catch(NullIdException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
@@ -83,7 +86,7 @@ public class ItemSetController {
             service.deleteItemSet(itemSetName);
             return "Item Set " + itemSetName + " successfully deleted.";
         }
-        catch(Exception e) {
+        catch(NullNameException e) {
             return e.getMessage();
         }
     }
@@ -94,7 +97,7 @@ public class ItemSetController {
             service.deleteItemSetById(itemSetId);
             return "Item Set " + itemSetId + " successfully deleted.";
         }
-        catch(Exception e) {
+        catch(NullIdException e) {
             return e.getMessage();
         }
     }
