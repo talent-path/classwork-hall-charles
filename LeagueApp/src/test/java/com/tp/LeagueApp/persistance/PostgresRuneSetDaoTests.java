@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,6 +36,9 @@ public class PostgresRuneSetDaoTests {
 
         template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +
                 "values ('Test','Test Description', '1','1','1','1')");
+
+        template.update("insert into \"Runes\" (\"runeName\", \"runeDescription\") values ('Test', 'Test Description')");
+
     }
 
     @Test
@@ -42,11 +46,14 @@ public class PostgresRuneSetDaoTests {
         RuneSet runeSetToAdd = new RuneSet();
         runeSetToAdd.setRuneSetName("Testing Rune Set");
         runeSetToAdd.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testList.add(1);
+        runeSetToAdd.setRuneIdList(testList);
 
         RuneSet returnedRuneSet = null;
         try {
             returnedRuneSet = toTest.createNewRuneSet(runeSetToAdd);
-        } catch (NullSetException | InvalidRuneException | EmptyItemListException e) {
+        } catch (NullSetException | InvalidRuneException | EmptyRuneListException e) {
             fail();
         }
 
@@ -64,6 +71,18 @@ public class PostgresRuneSetDaoTests {
     @Test
     public void createNewRuneSetNullRuneSetTest() {
         assertThrows(NullSetException.class, () -> toTest.createNewRuneSet(null));
+    }
+
+    @Test
+    public void createNewRuneSetEmptyRuneListTest() {
+        RuneSet testRuneSet = new RuneSet();
+        testRuneSet.setRuneSetId(1);
+        testRuneSet.setRuneSetName("Test");
+        testRuneSet.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testRuneSet.setRuneIdList(testList);
+
+        assertThrows(EmptyRuneListException.class, () -> toTest.createNewRuneSet(testRuneSet));
     }
 
     @Test

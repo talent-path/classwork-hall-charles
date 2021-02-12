@@ -23,7 +23,7 @@ public class RuneSetController {
         try {
             toReturn = service.createNewRuneSet(toAdd);
         }
-        catch(NullSetException | EmptyItemListException | InvalidRuneException e) {
+        catch(NullSetException | EmptyRuneListException | InvalidRuneException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 

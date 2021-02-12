@@ -22,12 +22,12 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
     //CREATE
     @Override
-    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException, InvalidRuneException, EmptyItemListException {
+    public RuneSet createNewRuneSet(RuneSet toAdd) throws NullSetException, InvalidRuneException, EmptyRuneListException {
 
         if(toAdd == null)
             throw new NullSetException("ERROR: Tried to create a null rune set.");
         if(toAdd.getRuneIdList().size() == 0)
-            throw new EmptyItemListException("ERROR: Empty item list.");
+            throw new EmptyRuneListException("ERROR: Empty rune list.");
 
         //Add validate items
         if(!validateRuneList(toAdd.getRuneIdList()))

@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,6 +38,8 @@ public class PostgresItemSetDaoTests {
 
         template.update("insert into \"Champions\" (\"championName\", \"championDescription\",\"winRate\",\"pickRate\",\"banRate\",\"avgKDA\")\n" +
                 "values ('Test','Test Description', '1','1','1','1')");
+
+        template.update("insert into \"Items\" (\"itemName\", \"itemDescription\", \"itemCost\") values ('Test', 'Test Description', '1000')");
     }
 
     @Test
@@ -44,6 +47,9 @@ public class PostgresItemSetDaoTests {
         ItemSet itemSetToAdd = new ItemSet();
         itemSetToAdd.setItemSetName("Testing Item Set");
         itemSetToAdd.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testList.add(1);
+        itemSetToAdd.setItemIdList(testList);
 
         ItemSet returnedItemSet = null;
         try {
@@ -66,6 +72,18 @@ public class PostgresItemSetDaoTests {
     @Test
     public void createNewItemSetNullItemSetTest() {
         assertThrows(NullSetException.class, () -> toTest.createNewItemSet(null));
+    }
+
+    @Test
+    public void createNewItemSetEmptyItemListTest() {
+        ItemSet testItemSet = new ItemSet();
+        testItemSet.setItemSetId(1);
+        testItemSet.setItemSetName("Test");
+        testItemSet.setChampionId(1);
+        List<Integer> testList = new ArrayList<>();
+        testItemSet.setItemIdList(testList);
+
+        assertThrows(EmptyItemListException.class, () -> toTest.createNewItemSet(testItemSet));
     }
 
     @Test
