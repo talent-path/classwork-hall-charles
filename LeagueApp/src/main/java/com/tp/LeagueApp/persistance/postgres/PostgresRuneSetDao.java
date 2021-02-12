@@ -33,8 +33,6 @@ public class PostgresRuneSetDao implements RuneSetDao {
         if(!validateRuneList(toAdd.getRuneIdList()))
             throw new InvalidRuneException("Rune in list is not valid.");
 
-        //TODO validate runeId in runeIdList
-
         Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?) RETURNING \"runeSetId\";",
                 new PostgresRuneSetDao.RuneSetIdMapper(),
                 toAdd.getRuneSetName(),
@@ -100,12 +98,14 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
     //UPDATE
     @Override
-    public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException {
+    public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
 
         if(toUpdate == null)
             throw new NullSetException("ERROR: Tried to update rune set with a null rune set.");
         if(toUpdate.getRuneSetId() == null)
             throw new NullIdException("ERROR: Tried to update a rune set with a null id.");
+        if(!validateId(toUpdate.getRuneSetId()))
+            throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("update \"RuneSets\" set \"runeSetName\" = ?, \"championId\" = ? where \"runeSetId\" = ?",
                 toUpdate.getRuneSetName(), toUpdate.getChampionId(), toUpdate.getRuneSetId());
@@ -123,13 +123,29 @@ public class PostgresRuneSetDao implements RuneSetDao {
     }
 
     @Override
-    public void deleteRuneSetById(Integer toDeleteId) throws NullIdException {
+    public void deleteRuneSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
 
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete a rune set with a null id.");
+        if(!validateId(toDeleteId))
+            throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("delete from \"RuneSetRunes\" where \"runeSetId\" = ?;", toDeleteId);
         template.update("delete from \"RuneSets\" where \"runeSetId\" = ?;", toDeleteId);
+    }
+
+    private boolean validateId(Integer toValidate) {
+
+        boolean exists = true;
+
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)", new RuneSetCountMapper(), toValidate);
+
+        Integer zero = 0;
+
+        if(returnCount.equals(zero))
+            exists = false;
+
+        return exists;
     }
 
     //MAPPERS

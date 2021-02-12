@@ -94,7 +94,7 @@ public class RuneSetController {
             service.deleteRuneSetById(runeSetId);
             return "Rune Set " + runeSetId + " successfully deleted.";
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             return e.getMessage();
         }
     }

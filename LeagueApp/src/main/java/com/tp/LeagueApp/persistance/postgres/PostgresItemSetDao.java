@@ -32,8 +32,6 @@ public class PostgresItemSetDao implements ItemSetDao {
         if(!validateItemList(toAdd.getItemIdList()))
             throw new InvalidItemException("Item in list is not valid.");
 
-        //TODO validate itemId in itemIdList
-
         Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
                 new ItemSetIdMapper(),
                 toAdd.getItemSetName(),

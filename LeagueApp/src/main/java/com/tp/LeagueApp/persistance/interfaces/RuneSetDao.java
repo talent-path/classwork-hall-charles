@@ -16,10 +16,10 @@ public interface RuneSetDao {
     RuneSet getRuneSetById(Integer runeSetId) throws NullIdException;
 
     //UPDATE
-    void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException;
+    void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException, InvalidSetException;
 
     //CREATE
     void deleteRuneSet(String toDelete) throws NullNameException;
 
-    void deleteRuneSetById(Integer toDeleteId) throws NullIdException;
+    void deleteRuneSetById(Integer toDeleteId) throws NullIdException, InvalidSetException;
 }

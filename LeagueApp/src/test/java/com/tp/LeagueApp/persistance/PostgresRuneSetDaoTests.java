@@ -176,7 +176,7 @@ public class PostgresRuneSetDaoTests {
 
         try {
             toTest.updateRuneSet(newUpdateRuneSet);
-        } catch (NullSetException | NullIdException e) {
+        } catch (NullSetException | NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -196,6 +196,16 @@ public class PostgresRuneSetDaoTests {
     @Test
     public void updateRuneSetNullRuneSetTest() {
         assertThrows(NullSetException.class, () -> toTest.updateRuneSet(null));
+    }
+
+    @Test
+    public void updateRuneSetInvalidRuneSetTest() {
+        RuneSet newUpdateRuneSet = new RuneSet();
+        newUpdateRuneSet.setRuneSetId(100000);
+        newUpdateRuneSet.setRuneSetName("New Update");
+        newUpdateRuneSet.setChampionId(2);
+
+        assertThrows(InvalidSetException.class, () -> toTest.updateRuneSet(newUpdateRuneSet));
     }
 
     @Test
@@ -234,7 +244,7 @@ public class PostgresRuneSetDaoTests {
 
         try {
             toTest.deleteRuneSetById(1);
-        } catch (NullIdException e) {
+        } catch (NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -246,5 +256,10 @@ public class PostgresRuneSetDaoTests {
     @Test
     public void deleteRuneSetByIdNullIdTest() {
         assertThrows(NullIdException.class, () -> toTest.deleteRuneSetById(null));
+    }
+
+    @Test
+    public void deleteRuneSetByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.deleteRuneSetById(100000));
     }
 }

@@ -133,7 +133,7 @@ public class LeagueAppService {
         return runeSetDao.getRuneSetById(runeSetId);
     }
 
-    public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException {
+    public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
         runeSetDao.updateRuneSet(toUpdate);
     }
 
@@ -141,7 +141,7 @@ public class LeagueAppService {
         runeSetDao.deleteRuneSet(toDelete);
     }
 
-    public void deleteRuneSetById(Integer toDeleteId) throws NullIdException {
+    public void deleteRuneSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
         runeSetDao.deleteRuneSetById(toDeleteId);
     }
 
