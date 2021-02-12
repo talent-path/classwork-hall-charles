@@ -94,7 +94,7 @@ public class ItemSetController {
             service.deleteItemSetById(itemSetId);
             return "Item Set " + itemSetId + " successfully deleted.";
         }
-        catch(NullIdException e) {
+        catch(NullIdException | InvalidSetException e) {
             return e.getMessage();
         }
     }

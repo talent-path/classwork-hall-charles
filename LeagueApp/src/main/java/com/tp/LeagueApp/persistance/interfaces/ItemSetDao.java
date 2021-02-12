@@ -16,11 +16,11 @@ public interface ItemSetDao {
     ItemSet getItemSetById(Integer itemSetId) throws NullIdException;
 
     //UPDATE
-    void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException;
+    void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException, InvalidSetException;
 
     //DELETE
     void deleteItemSet(String toDelete) throws NullNameException;
-    void deleteItemSetById(Integer toDeleteId) throws NullIdException;
+    void deleteItemSetById(Integer toDeleteId) throws NullIdException, InvalidSetException;
 
 
 }

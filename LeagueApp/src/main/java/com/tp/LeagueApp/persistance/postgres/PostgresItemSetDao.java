@@ -102,12 +102,14 @@ public class PostgresItemSetDao implements ItemSetDao {
 
     //UPDATE
     @Override
-    public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException {
+    public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
 
         if(toUpdate == null)
             throw new NullSetException("ERROR: Tried to update item set with a null item set.");
         if(toUpdate.getItemSetId() == null)
             throw new NullIdException("ERROR: Tried to update an item set with a null id.");
+        if(!validateId(toUpdate.getItemSetId()))
+            throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("update \"ItemSets\" set \"itemSetName\" = ?, \"championId\" = ? where \"itemSetId\" = ?",
                 toUpdate.getItemSetName(), toUpdate.getChampionId(), toUpdate.getItemSetId());
@@ -125,12 +127,28 @@ public class PostgresItemSetDao implements ItemSetDao {
     }
 
     @Override
-    public void deleteItemSetById(Integer toDeleteId) throws NullIdException {
+    public void deleteItemSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete an item set with a null id.");
+        if(!validateId(toDeleteId))
+            throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("delete from \"ItemSetItems\" where \"itemSetId\" = ?;", toDeleteId);
         template.update("delete from \"ItemSets\" where \"itemSetId\" = ?;", toDeleteId);
+    }
+
+    private boolean validateId(Integer toValidate) {
+
+        boolean exists = true;
+
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in (?)", new ItemSetCountMapper(), toValidate);
+
+        Integer zero = 0;
+
+        if(returnCount.equals(zero))
+            exists = false;
+
+        return exists;
     }
 
     //MAPPERS

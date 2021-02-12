@@ -177,7 +177,7 @@ public class PostgresItemSetDaoTests {
 
         try {
             toTest.updateItemSet(newUpdateItemSet);
-        } catch (NullSetException | NullIdException e) {
+        } catch (NullSetException | NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -197,6 +197,16 @@ public class PostgresItemSetDaoTests {
     @Test
     public void updateItemSetNullItemSetTest() {
         assertThrows(NullSetException.class, () -> toTest.updateItemSet(null));
+    }
+
+    @Test
+    public void updateItemSetInvalidItemSetTest() {
+        ItemSet newUpdateItemSet = new ItemSet();
+        newUpdateItemSet.setItemSetId(100000);
+        newUpdateItemSet.setItemSetName("New Update");
+        newUpdateItemSet.setChampionId(2);
+
+        assertThrows(InvalidSetException.class, () -> toTest.updateItemSet(newUpdateItemSet));
     }
 
     @Test
@@ -235,7 +245,7 @@ public class PostgresItemSetDaoTests {
 
         try {
             toTest.deleteItemSetById(1);
-        } catch (NullIdException e) {
+        } catch (NullIdException | InvalidSetException e) {
             fail();
         }
 
@@ -249,4 +259,8 @@ public class PostgresItemSetDaoTests {
         assertThrows(NullIdException.class, () -> toTest.deleteItemSetById(null));
     }
 
+    @Test
+    public void deleteItemSetByIdInvalidSetTest() {
+        assertThrows(InvalidSetException.class, () -> toTest.deleteItemSetById(100000));
+    }
 }

@@ -104,7 +104,7 @@ public class LeagueAppService {
         return itemSetDao.getItemSetById(itemSetId);
     }
 
-    public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException {
+    public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
         itemSetDao.updateItemSet(toUpdate);
     }
 
@@ -112,7 +112,7 @@ public class LeagueAppService {
         itemSetDao.deleteItemSet(toDelete);
     }
 
-    public void deleteItemSetById(Integer toDeleteId) throws NullIdException {
+    public void deleteItemSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
         itemSetDao.deleteItemSetById(toDeleteId);
     }
 
