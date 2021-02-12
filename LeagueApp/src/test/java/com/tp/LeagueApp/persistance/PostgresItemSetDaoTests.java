@@ -201,4 +201,24 @@ public class PostgresItemSetDaoTests {
         assertThrows(NullNameException.class, () -> toTest.deleteItemSet(null));
     }
 
+    @Test
+    public void deleteItemSetByIdGoldenPath() {
+        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
+
+        try {
+            toTest.deleteItemSetById(1);
+        } catch (NullIdException e) {
+            fail();
+        }
+
+        List<ItemSet> toCheck = toTest.getAllItemSets();
+
+        assertEquals(0, toCheck.size());
+    }
+
+    @Test
+    public void deleteItemSetByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.deleteItemSetById(null));
+    }
+
 }

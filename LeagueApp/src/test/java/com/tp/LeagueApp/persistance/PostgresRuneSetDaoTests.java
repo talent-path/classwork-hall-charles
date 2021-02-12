@@ -197,4 +197,24 @@ public class PostgresRuneSetDaoTests {
     public void deleteRuneSetNullNameTest() {
         assertThrows(NullNameException.class, () -> toTest.deleteRuneSet(null));
     }
+
+    @Test
+    public void deleteRuneSetByIdGoldenPath() {
+        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
+
+        try {
+            toTest.deleteRuneSetById(1);
+        } catch (NullIdException e) {
+            fail();
+        }
+
+        List<RuneSet> toCheck = toTest.getAllRuneSets();
+
+        assertEquals(0, toCheck.size());
+    }
+
+    @Test
+    public void deleteRuneSetByIdNullIdTest() {
+        assertThrows(NullIdException.class, () -> toTest.deleteRuneSetById(null));
+    }
 }
