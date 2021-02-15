@@ -3,6 +3,7 @@ package com.tp.LeagueApp.persistance.postgres;
 import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.interfaces.ItemSetDao;
+import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,7 +34,7 @@ public class PostgresItemSetDao implements ItemSetDao {
             throw new InvalidItemException("Item in list is not valid.");
 
         Integer itemSetId = template.queryForObject("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (?, ?) RETURNING \"itemSetId\";",
-                new ItemSetIdMapper(),
+                new IntegerMapper("itemSetId"),
                 toAdd.getItemSetName(),
                 toAdd.getChampionId()
         );
@@ -54,7 +55,8 @@ public class PostgresItemSetDao implements ItemSetDao {
         Integer queryCount = 0;
 
         for(Integer toValidate : toCheck) {
-            queryCount += template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in (?)", new ItemSetCountMapper(), toValidate);
+            queryCount += template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in (?)",
+                    new IntegerMapper("count"), toValidate);
         }
 
         Integer toCheckCount = toCheck.size();
@@ -74,20 +76,12 @@ public class PostgresItemSetDao implements ItemSetDao {
         for(ItemSet toGet : allItemSets) {
             List<Integer> itemIds = template.query("select isi.\"itemId\"\n" +
                     "from \"ItemSetItems\" as isi\n" +
-                    "where isi.\"itemSetId\" = ?;", new ItemIdMapper(), toGet.getItemSetId());
+                    "where isi.\"itemSetId\" = ?;", new IntegerMapper("itemId"), toGet.getItemSetId());
 
             toGet.setItemIdList(itemIds);
         }
 
         return allItemSets;
-    }
-
-    private class ItemIdMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("itemId");
-        }
     }
 
     @Override
@@ -103,7 +97,7 @@ public class PostgresItemSetDao implements ItemSetDao {
 
         List<Integer> itemIds = template.query("select isi.\"itemId\"\n" +
                 "from \"ItemSetItems\" as isi\n" +
-                "where isi.\"itemSetId\" = "+itemSetId+";", new ItemIdMapper());
+                "where isi.\"itemSetId\" = "+itemSetId+";", new IntegerMapper("itemId"));
 
         toReturn.get(0).setItemIdList(itemIds);
 
@@ -143,7 +137,8 @@ public class PostgresItemSetDao implements ItemSetDao {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"ItemSets\" where \"itemSetId\" in (?)", new ItemSetCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"ItemSets\" where \"itemSetId\" in (?)",
+                new IntegerMapper("count"), toValidate);
 
         Integer zero = 0;
 
@@ -168,20 +163,5 @@ public class PostgresItemSetDao implements ItemSetDao {
             return mappedItemSet;
         }
     }
-
-    private class ItemSetIdMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("itemSetId");
-        }
-    }
-
-    private class ItemSetCountMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("count");
-        }
-    }
+    
 }
