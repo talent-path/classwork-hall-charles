@@ -87,8 +87,8 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
         if(summonerSpellSetId == null)
             throw new NullIdException("ERROR: Tried to get a summoner spell set with a null name.");
-        //if(!validateId(summonerSpellSetId))
-          //  throw new InvalidSetException("ERROR: Tried to get a summoner spell set that doesn't exist.");
+        if(!validateSummonerSpellSetId(summonerSpellSetId))
+            throw new InvalidSetException("ERROR: Tried to get a summoner spell set that doesn't exist.");
 
         List<SummonerSpellSet> toReturn = template.query("select * from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper(), summonerSpellSetId);
 
@@ -109,7 +109,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
             throw new NullSetException("ERROR: Tried to update summoner spell set with a null summoner spell set.");
         if(toUpdate.getSummonerSpellSetId() == null)
             throw new NullIdException("ERROR: Tried to update a summoner spell set with a null id.");
-        if(!validateId(toUpdate.getSummonerSpellSetId()))
+        if(!validateSummonerSpellSetId(toUpdate.getSummonerSpellSetId()))
             throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("update \"SummonerSpellSets\" set \"summSpellSetName\" = ?, \"championId\" = ? where \"summSpellSetId\" = ?",
@@ -123,18 +123,18 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete a summoner spell set with a null id.");
-        if(!validateId(toDeleteId))
+        if(!validateSummonerSpellSetId(toDeleteId))
             throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("delete from \"SummonerSpellSetSummonerSpells\" where \"summSpellSetId\" = ?;", toDeleteId);
         template.update("delete from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", toDeleteId);
     }
 
-    private boolean validateId(Integer toValidate) {
+    private boolean validateSummonerSpellSetId(Integer toValidate) {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpellSets\" where \"summSpellSetId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
 
         Integer zero = 0;
 
