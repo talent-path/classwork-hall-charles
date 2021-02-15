@@ -5,6 +5,7 @@ import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Champion;
 import com.tp.LeagueApp.persistance.interfaces.ChampionDao;
+import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -57,7 +58,8 @@ public class PostgresChampionDao implements ChampionDao {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"Champions\" where \"championId\" in (?)", new ChampionCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"Champions\" where \"championId\" in (?)",
+                new IntegerMapper("count"), toValidate);
 
         Integer zero = 0;
 
@@ -84,11 +86,4 @@ public class PostgresChampionDao implements ChampionDao {
         }
     }
 
-    private class ChampionCountMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("count");
-        }
-    }
 }
