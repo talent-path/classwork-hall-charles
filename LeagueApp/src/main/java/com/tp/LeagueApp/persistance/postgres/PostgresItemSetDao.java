@@ -163,5 +163,5 @@ public class PostgresItemSetDao implements ItemSetDao {
             return mappedItemSet;
         }
     }
-    
+
 }

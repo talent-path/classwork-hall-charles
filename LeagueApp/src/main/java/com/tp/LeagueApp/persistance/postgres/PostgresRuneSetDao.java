@@ -4,6 +4,7 @@ import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.interfaces.RuneSetDao;
+import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,7 +36,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
             throw new InvalidRuneException("Rune in list is not valid.");
 
         Integer runeSetId = template.queryForObject("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (?, ?) RETURNING \"runeSetId\";",
-                new PostgresRuneSetDao.RuneSetIdMapper(),
+                new IntegerMapper("runeSetId"),
                 toAdd.getRuneSetName(),
                 toAdd.getChampionId()
         );
@@ -56,7 +57,8 @@ public class PostgresRuneSetDao implements RuneSetDao {
         Integer queryCount = 0;
 
         for(Integer toValidate : toCheck) {
-            queryCount += template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)", new RuneSetCountMapper(), toValidate);
+            queryCount += template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)",
+                    new IntegerMapper("count"), toValidate);
         }
 
         Integer toCheckCount = toCheck.size();
@@ -75,7 +77,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
         for(RuneSet toGet : allRuneSets) {
             List<Integer> runeIds = template.query("select isi.\"runeId\"\n" +
                     "from \"RuneSetRunes\" as isi\n" +
-                    "where isi.\"runeSetId\" = ?;", new RuneIdMapper(), toGet.getRuneSetId());
+                    "where isi.\"runeSetId\" = ?;", new IntegerMapper("runeId"), toGet.getRuneSetId());
 
             toGet.setRuneIdList(runeIds);
         }
@@ -95,7 +97,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
         List<Integer> runeIds = template.query("select isi.\"runeId\"\n" +
                 "from \"RuneSetRunes\" as isi\n" +
-                "where isi.\"runeSetId\" = "+runeSetId+";", new RuneIdMapper());
+                "where isi.\"runeSetId\" = "+runeSetId+";", new IntegerMapper("runeId"));
 
         toReturn.get(0).setRuneIdList(runeIds);
 
@@ -135,7 +137,8 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"RuneSets\" where \"runeSetId\" in (?)", new RuneSetCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"RuneSets\" where \"runeSetId\" in (?)",
+                new IntegerMapper("count"), toValidate);
 
         Integer zero = 0;
 
@@ -146,7 +149,6 @@ public class PostgresRuneSetDao implements RuneSetDao {
     }
 
     //MAPPERS
-
     private class RuneSetMapper implements RowMapper<RuneSet> {
 
         @Override
@@ -160,26 +162,5 @@ public class PostgresRuneSetDao implements RuneSetDao {
         }
     }
 
-    private class RuneSetIdMapper implements RowMapper<Integer>{
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("runeSetId");
-        }
-    }
-
-    private class RuneSetCountMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("count");
-        }
-    }
-
-    private class RuneIdMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("runeId");
-        }
-    }
 
 }
