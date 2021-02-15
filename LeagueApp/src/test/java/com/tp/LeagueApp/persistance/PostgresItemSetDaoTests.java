@@ -115,30 +115,6 @@ public class PostgresItemSetDaoTests {
     }
 
     @Test
-    public void getItemSetByNameGoldenPath() {
-
-        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
-
-        ItemSet itemSetToCheck = null;
-        try {
-            itemSetToCheck = toTest.getItemSetByName("Testing Item Set");
-        }
-        catch(NullNameException e) {
-            fail();
-        }
-
-        assertEquals( 1, itemSetToCheck.getItemSetId() );
-        assertEquals( "Testing Item Set", itemSetToCheck.getItemSetName() );
-        assertEquals( 1, itemSetToCheck.getChampionId());
-
-    }
-
-    @Test
-    public void getItemSetByNameNullNameTest() {
-        assertThrows(NullNameException.class, () -> toTest.getItemSetByName(null));
-    }
-
-    @Test
     public void getItemSetByIdGoldenPath() {
 
         template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
@@ -186,9 +162,11 @@ public class PostgresItemSetDaoTests {
 
         ItemSet toCheck = null;
         try {
-            toCheck = toTest.getItemSetByName("New Update");
-        } catch (NullNameException e) {
-            fail();
+            toCheck = toTest.getItemSetById(1);
+        }catch (NullIdException e) {
+            e.printStackTrace();
+        } catch (InvalidSetException e) {
+            e.printStackTrace();
         }
 
         assertEquals( 1, toCheck.getItemSetId() );
@@ -220,26 +198,6 @@ public class PostgresItemSetDaoTests {
         toCheck.setChampionId(1);
 
         assertThrows(NullIdException.class, () -> toTest.updateItemSet(toCheck));
-    }
-
-    @Test
-    public void deleteItemSetGoldenPath() {
-        template.update("insert into \"ItemSets\" (\"itemSetName\", \"championId\") values (\'Testing Item Set\', \'1\')");
-
-        try {
-            toTest.deleteItemSet("Testing Item Set");
-        } catch (NullNameException e) {
-            fail();
-        }
-
-        List<ItemSet> toCheck = toTest.getAllItemSets();
-
-        assertEquals(0, toCheck.size());
-    }
-
-    @Test
-    public void deleteItemSetNullNameTest() {
-        assertThrows(NullNameException.class, () -> toTest.deleteItemSet(null));
     }
 
     @Test

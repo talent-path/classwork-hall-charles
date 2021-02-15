@@ -115,30 +115,6 @@ public class PostgresSummonerSpellSetDaoTests {
     }
 
     @Test
-    public void getSummonerSpellSetByNameGoldenPath() {
-
-        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
-
-        SummonerSpellSet summSpellSetToCheck = null;
-        try {
-            summSpellSetToCheck = toTest.getSummonerSpellSetByName("Testing Summoner Spell Set");
-        }
-        catch(NullNameException e) {
-            fail();
-        }
-
-        assertEquals( 1, summSpellSetToCheck.getSummonerSpellSetId() );
-        assertEquals( "Testing Summoner Spell Set", summSpellSetToCheck.getSummonerSpellSetName() );
-        assertEquals( 1, summSpellSetToCheck.getChampionId());
-
-    }
-
-    @Test
-    public void getSummonerSpellSetByNameNullNameTest() {
-        assertThrows(NullNameException.class, () -> toTest.getSummonerSpellSetByName(null));
-    }
-
-    @Test
     public void getSummonerSpellSetByIdGoldenPath() {
 
         template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
@@ -186,9 +162,11 @@ public class PostgresSummonerSpellSetDaoTests {
 
         SummonerSpellSet toCheck = null;
         try {
-            toCheck = toTest.getSummonerSpellSetByName("New Update");
-        } catch (NullNameException e) {
-            fail();
+            toCheck = toTest.getSummonerSpellSetById(1);
+        } catch (NullIdException e) {
+            e.printStackTrace();
+        } catch (InvalidSetException e) {
+            e.printStackTrace();
         }
 
         assertEquals( 1, toCheck.getSummonerSpellSetId() );
@@ -220,26 +198,6 @@ public class PostgresSummonerSpellSetDaoTests {
         toCheck.setChampionId(1);
 
         assertThrows(NullIdException.class, () -> toTest.updateSummonerSpellSet(toCheck));
-    }
-
-    @Test
-    public void deleteSummonerSpellSetGoldenPath() {
-        template.update("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (\'Testing Summoner Spell Set\', \'1\')");
-
-        try {
-            toTest.deleteSummonerSpellSet("Testing Summoner Spell Set");
-        } catch (NullNameException e) {
-            fail();
-        }
-
-        List<SummonerSpellSet> toCheck = toTest.getAllSummonerSpellSets();
-
-        assertEquals(0, toCheck.size());
-    }
-
-    @Test
-    public void deleteSummonerSpellSetNullNameTest() {
-        assertThrows(NullNameException.class, () -> toTest.deleteSummonerSpellSet(null));
     }
 
     @Test

@@ -114,29 +114,6 @@ public class PostgresRuneSetDaoTests {
 
     }
 
-    @Test
-    public void getRuneSetByNameGoldenPath() {
-
-        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
-
-        RuneSet runeSetToCheck = null;
-        try {
-            runeSetToCheck = toTest.getRuneSetByName("Testing Rune Set");
-        }
-        catch(NullNameException e) {
-            fail();
-        }
-
-        assertEquals( 1, runeSetToCheck.getRuneSetId() );
-        assertEquals( "Testing Rune Set", runeSetToCheck.getRuneSetName() );
-        assertEquals( 1, runeSetToCheck.getChampionId());
-
-    }
-
-    @Test
-    public void getRuneSetByNameNullNameTest() {
-        assertThrows(NullNameException.class, () -> toTest.getRuneSetByName(null));
-    }
 
     @Test
     public void getRuneSetByIdGoldenPath() {
@@ -186,9 +163,11 @@ public class PostgresRuneSetDaoTests {
 
         RuneSet toCheck = null;
         try {
-            toCheck = toTest.getRuneSetByName("New Update");
-        } catch (NullNameException e) {
-            fail();
+            toCheck = toTest.getRuneSetById(1);
+        } catch (NullIdException e) {
+            e.printStackTrace();
+        } catch (InvalidSetException e) {
+            e.printStackTrace();
         }
 
         assertEquals( 1, toCheck.getRuneSetId() );
@@ -220,26 +199,6 @@ public class PostgresRuneSetDaoTests {
         toCheck.setChampionId(1);
 
         assertThrows(NullIdException.class, () -> toTest.updateRuneSet(toCheck));
-    }
-
-    @Test
-    public void deleteRuneSetGoldenPath() {
-        template.update("insert into \"RuneSets\" (\"runeSetName\", \"championId\") values (\'Testing Rune Set\', \'1\')");
-
-        try {
-            toTest.deleteRuneSet("Testing Rune Set");
-        } catch (NullNameException e) {
-            fail();
-        }
-
-        List<RuneSet> toCheck = toTest.getAllRuneSets();
-
-        assertEquals(0, toCheck.size());
-    }
-
-    @Test
-    public void deleteRuneSetNullNameTest() {
-        assertThrows(NullNameException.class, () -> toTest.deleteRuneSet(null));
     }
 
     @Test
