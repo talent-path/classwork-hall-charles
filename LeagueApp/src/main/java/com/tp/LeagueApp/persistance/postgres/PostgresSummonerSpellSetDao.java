@@ -1,7 +1,6 @@
 package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.*;
-import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
 import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
@@ -9,11 +8,8 @@ import com.tp.LeagueApp.persistance.postgres.mappers.SummonerSpellSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component

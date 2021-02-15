@@ -1,8 +1,6 @@
 package com.tp.LeagueApp.persistance.interfaces;
 
-
 import com.tp.LeagueApp.exceptions.*;
-import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 
 import java.util.List;
