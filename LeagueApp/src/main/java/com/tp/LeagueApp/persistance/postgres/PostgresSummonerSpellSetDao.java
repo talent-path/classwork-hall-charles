@@ -4,6 +4,7 @@ import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
+import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,7 +35,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
             throw new InvalidSummonerSpellException("Summoner spell in list is not valid.");
 
         Integer summSpellSetId = template.queryForObject("insert into \"SummonerSpellSets\" (\"summSpellSetName\", \"championId\") values (?, ?) RETURNING \"summSpellSetId\";",
-                new PostgresSummonerSpellSetDao.SummonerSpellSetIdMapper(),
+                new IntegerMapper("summSpellSetId"),
                 toAdd.getSummonerSpellSetName(),
                 toAdd.getChampionId()
         );
@@ -55,7 +56,8 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         Integer queryCount = 0;
 
         for(Integer toValidate : toCheck) {
-            queryCount += template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
+            queryCount += template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)",
+                    new IntegerMapper("count"), toValidate);
         }
 
         Integer toCheckCount = toCheck.size();
@@ -74,7 +76,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         for(SummonerSpellSet toGet : allSummonerSpellSets) {
             List<Integer> summSpellIds = template.query("select isi.\"summSpellId\"\n" +
                     "from \"SummonerSpellSetSummonerSpells\" as isi\n" +
-                    "where isi.\"summSpellSetId\" = ?;", new SummonerSpellIdMapper(), toGet.getSummonerSpellSetId());
+                    "where isi.\"summSpellSetId\" = ?;", new IntegerMapper("summSpellId"), toGet.getSummonerSpellSetId());
 
             toGet.setSummonerSpellIdList(summSpellIds);
         }
@@ -94,7 +96,7 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
         List<Integer> summSpellIds = template.query("select isi.\"summSpellId\"\n" +
                 "from \"SummonerSpellSetSummonerSpells\" as isi\n" +
-                "where isi.\"summSpellSetId\" = "+summonerSpellSetId+";", new SummonerSpellIdMapper());
+                "where isi.\"summSpellSetId\" = "+summonerSpellSetId+";", new IntegerMapper("summSpellId"));
 
         toReturn.get(0).setSummonerSpellIdList(summSpellIds);
 
@@ -134,7 +136,8 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpellSets\" where \"summSpellSetId\" in (?)", new SummonerSpellSetCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpellSets\" where \"summSpellSetId\" in (?)",
+                new IntegerMapper("count"), toValidate);
 
         Integer zero = 0;
 
@@ -157,25 +160,4 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         }
     }
 
-    private class SummonerSpellSetIdMapper implements RowMapper<Integer> {
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("summSpellSetId");
-        }
-    }
-
-    private class SummonerSpellSetCountMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("count");
-        }
-    }
-
-    private class SummonerSpellIdMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("summSpellId");
-        }
-    }
 }
