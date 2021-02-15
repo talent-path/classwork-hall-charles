@@ -1,6 +1,7 @@
 package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.*;
+import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.interfaces.RuneSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,14 @@ public class PostgresRuneSetDao implements RuneSetDao {
     public List<RuneSet> getAllRuneSets() {
         List<RuneSet> allRuneSets = template.query("select * from \"RuneSets\"", new PostgresRuneSetDao.RuneSetMapper());
 
+        for(RuneSet toGet : allRuneSets) {
+            List<Integer> runeIds = template.query("select isi.\"runeId\"\n" +
+                    "from \"RuneSetRunes\" as isi\n" +
+                    "where isi.\"runeSetId\" = ?;", new RuneIdMapper(), toGet.getRuneSetId());
+
+            toGet.setRuneIdList(runeIds);
+        }
+
         return allRuneSets;
     }
 
@@ -90,10 +99,16 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
         if(runeSetId == null)
             throw new NullIdException("ERROR: Tried to get a rune set with a null id.");
-        if(!validateId(runeSetId))
-            throw new InvalidSetException("ERROR: Tried to get a rune set that doesn't exist.");
+        //if(!validateId(runeSetId))
+         //   throw new InvalidSetException("ERROR: Tried to get a rune set that doesn't exist.");
 
         List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetId\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetId);
+
+        List<Integer> runeIds = template.query("select isi.\"runeId\"\n" +
+                "from \"RuneSetRunes\" as isi\n" +
+                "where isi.\"runeSetId\" = "+runeSetId+";", new RuneIdMapper());
+
+        toReturn.get(0).setRuneIdList(runeIds);
 
         return toReturn.get(0);
     }
@@ -176,6 +191,14 @@ public class PostgresRuneSetDao implements RuneSetDao {
         @Override
         public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
             return resultSet.getInt("count");
+        }
+    }
+
+    private class RuneIdMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("runeId");
         }
     }
 
