@@ -95,8 +95,8 @@ public class PostgresItemSetDao implements ItemSetDao {
 
         if(itemSetId == null)
             throw new NullIdException("ERROR: Tried to get an item set with a null id.");
-        //if(!validateId(itemSetId))
-        //    throw new InvalidSetException("ERROR: Tried to get a set that doesn't exist.");
+        if(!validateItemSetId(itemSetId))
+            throw new InvalidSetException("ERROR: Tried to get a set that doesn't exist.");
 
         List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetId\" = ?;",
                 new PostgresItemSetDao.ItemSetMapper(), itemSetId);
@@ -119,7 +119,7 @@ public class PostgresItemSetDao implements ItemSetDao {
             throw new NullSetException("ERROR: Tried to update item set with a null item set.");
         if(toUpdate.getItemSetId() == null)
             throw new NullIdException("ERROR: Tried to update an item set with a null id.");
-        if(!validateId(toUpdate.getItemSetId()))
+        if(!validateItemSetId(toUpdate.getItemSetId()))
             throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("update \"ItemSets\" set \"itemSetName\" = ?, \"championId\" = ? where \"itemSetId\" = ?",
@@ -132,18 +132,18 @@ public class PostgresItemSetDao implements ItemSetDao {
     public void deleteItemSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete an item set with a null id.");
-        if(!validateId(toDeleteId))
+        if(!validateItemSetId(toDeleteId))
             throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("delete from \"ItemSetItems\" where \"itemSetId\" = ?;", toDeleteId);
         template.update("delete from \"ItemSets\" where \"itemSetId\" = ?;", toDeleteId);
     }
 
-    private boolean validateId(Integer toValidate) {
+    private boolean validateItemSetId(Integer toValidate) {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"Items\" where \"itemId\" in (?)", new ItemSetCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"ItemSets\" where \"itemSetId\" in (?)", new ItemSetCountMapper(), toValidate);
 
         Integer zero = 0;
 
