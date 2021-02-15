@@ -6,14 +6,12 @@ import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.SummonerSpell;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellDao;
 import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
+import com.tp.LeagueApp.persistance.postgres.mappers.SummonerSpellMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -25,7 +23,8 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
     //READ
     @Override
     public List<SummonerSpell> getAllSummonerSpells() {
-        List<SummonerSpell> allSummonerSpells = template.query("select * from \"SummonerSpells\"", new PostgresSummonerSpellDao.SummonerSpellMapper());
+        List<SummonerSpell> allSummonerSpells = template.query("select * from \"SummonerSpells\"",
+                new SummonerSpellMapper());
 
         return allSummonerSpells;
     }
@@ -36,7 +35,8 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
         if(summonerSpellName == null)
             throw new NullNameException("ERROR: Tried to get a summoner spell with a null name.");
 
-        List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellName\" = ?;", new PostgresSummonerSpellDao.SummonerSpellMapper(), summonerSpellName);
+        List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellName\" = ?;",
+                new SummonerSpellMapper(), summonerSpellName);
 
         return toReturn.get(0);
     }
@@ -48,7 +48,8 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
         if(!validateId(summonerSpellId))
             throw new InvalidSetException("ERROR: Tried to get a summoner spell with an invalid id.");
 
-        List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellId\" = ?;", new PostgresSummonerSpellDao.SummonerSpellMapper(), summonerSpellId);
+        List<SummonerSpell> toReturn = template.query("select * from \"SummonerSpells\" where \"summSpellId\" = ?;",
+                new SummonerSpellMapper(), summonerSpellId);
 
         return toReturn.get(0);
     }
@@ -66,19 +67,6 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
             exists = false;
 
         return exists;
-    }
-
-    public class SummonerSpellMapper implements RowMapper<SummonerSpell> {
-
-        @Override
-        public SummonerSpell mapRow(ResultSet resultSet, int i) throws SQLException {
-            SummonerSpell mappedSummonerSpell = new SummonerSpell();
-            mappedSummonerSpell.setSummonerSpellId(resultSet.getInt("summSpellId"));
-            mappedSummonerSpell.setSummonerSpellName(resultSet.getString("summSpellName"));
-            mappedSummonerSpell.setSummonerSpellDescription(resultSet.getString("summSpellDescription"));
-
-            return mappedSummonerSpell;
-        }
     }
 
 }

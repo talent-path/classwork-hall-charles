@@ -1,18 +1,15 @@
 package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.*;
-import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.persistance.interfaces.RuneSetDao;
 import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
+import com.tp.LeagueApp.persistance.postgres.mappers.RuneSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -72,7 +69,8 @@ public class PostgresRuneSetDao implements RuneSetDao {
     //READ
     @Override
     public List<RuneSet> getAllRuneSets() {
-        List<RuneSet> allRuneSets = template.query("select * from \"RuneSets\"", new PostgresRuneSetDao.RuneSetMapper());
+        List<RuneSet> allRuneSets = template.query("select * from \"RuneSets\"",
+                new RuneSetMapper());
 
         for(RuneSet toGet : allRuneSets) {
             List<Integer> runeIds = template.query("select isi.\"runeId\"\n" +
@@ -93,7 +91,8 @@ public class PostgresRuneSetDao implements RuneSetDao {
         if(!validateRuneSetId(runeSetId))
             throw new InvalidSetException("ERROR: Tried to get a rune set that doesn't exist.");
 
-        List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetId\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetId);
+        List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetId\" = ?;",
+                new RuneSetMapper(), runeSetId);
 
         List<Integer> runeIds = template.query("select isi.\"runeId\"\n" +
                 "from \"RuneSetRunes\" as isi\n" +
@@ -142,25 +141,9 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
         Integer zero = 0;
 
-        if(returnCount.equals(zero))
+        if (returnCount.equals(zero))
             exists = false;
 
         return exists;
     }
-
-    //MAPPERS
-    private class RuneSetMapper implements RowMapper<RuneSet> {
-
-        @Override
-        public RuneSet mapRow(ResultSet resultSet, int i) throws SQLException {
-            RuneSet mappedRuneSet = new RuneSet();
-            mappedRuneSet.setRuneSetId(resultSet.getInt("runeSetId"));
-            mappedRuneSet.setRuneSetName(resultSet.getString("runeSetName"));
-            mappedRuneSet.setChampionId(resultSet.getInt("championId"));
-
-            return mappedRuneSet;
-        }
-    }
-
-
 }

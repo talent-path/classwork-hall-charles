@@ -5,6 +5,7 @@ import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
 import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
+import com.tp.LeagueApp.persistance.postgres.mappers.SummonerSpellSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -71,7 +72,8 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
     //READ
     @Override
     public List<SummonerSpellSet> getAllSummonerSpellSets() {
-        List<SummonerSpellSet> allSummonerSpellSets = template.query("select * from \"SummonerSpellSets\"", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper());
+        List<SummonerSpellSet> allSummonerSpellSets = template.query("select * from \"SummonerSpellSets\"",
+                new SummonerSpellSetMapper());
 
         for(SummonerSpellSet toGet : allSummonerSpellSets) {
             List<Integer> summSpellIds = template.query("select isi.\"summSpellId\"\n" +
@@ -92,7 +94,8 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         if(!validateSummonerSpellSetId(summonerSpellSetId))
             throw new InvalidSetException("ERROR: Tried to get a summoner spell set that doesn't exist.");
 
-        List<SummonerSpellSet> toReturn = template.query("select * from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper(), summonerSpellSetId);
+        List<SummonerSpellSet> toReturn = template.query("select * from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;",
+                new SummonerSpellSetMapper(), summonerSpellSetId);
 
         List<Integer> summSpellIds = template.query("select isi.\"summSpellId\"\n" +
                 "from \"SummonerSpellSetSummonerSpells\" as isi\n" +
@@ -145,19 +148,6 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
             exists = false;
 
         return exists;
-    }
-
-    public class SummonerSpellSetMapper implements RowMapper<SummonerSpellSet> {
-
-        @Override
-        public SummonerSpellSet mapRow(ResultSet resultSet, int i) throws SQLException {
-            SummonerSpellSet mappedSummonerSpellSet = new SummonerSpellSet();
-            mappedSummonerSpellSet.setSummonerSpellSetId(resultSet.getInt("summSpellSetId"));
-            mappedSummonerSpellSet.setSummonerSpellSetName(resultSet.getString("summSpellSetName"));
-            mappedSummonerSpellSet.setChampionId(resultSet.getInt("championId"));
-
-            return mappedSummonerSpellSet;
-        }
     }
 
 }

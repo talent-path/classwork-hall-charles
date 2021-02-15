@@ -4,14 +4,12 @@ import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.ItemSet;
 import com.tp.LeagueApp.persistance.interfaces.ItemSetDao;
 import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
+import com.tp.LeagueApp.persistance.postgres.mappers.ItemSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -71,7 +69,7 @@ public class PostgresItemSetDao implements ItemSetDao {
     @Override
     public List<ItemSet> getAllItemSets() {
         List<ItemSet> allItemSets = template.query("select * from \"ItemSets\"",
-                new PostgresItemSetDao.ItemSetMapper());
+                new ItemSetMapper());
 
         for(ItemSet toGet : allItemSets) {
             List<Integer> itemIds = template.query("select isi.\"itemId\"\n" +
@@ -93,7 +91,7 @@ public class PostgresItemSetDao implements ItemSetDao {
             throw new InvalidSetException("ERROR: Tried to get a set that doesn't exist.");
 
         List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetId\" = ?;",
-                new PostgresItemSetDao.ItemSetMapper(), itemSetId);
+                new ItemSetMapper(), itemSetId);
 
         List<Integer> itemIds = template.query("select isi.\"itemId\"\n" +
                 "from \"ItemSetItems\" as isi\n" +
@@ -148,20 +146,5 @@ public class PostgresItemSetDao implements ItemSetDao {
         return exists;
     }
 
-    //MAPPERS
-
-    private class ItemSetMapper implements RowMapper<ItemSet> {
-
-        @Override
-        public ItemSet mapRow(ResultSet resultSet, int i) throws SQLException {
-            ItemSet mappedItemSet = new ItemSet();
-            mappedItemSet.setItemSetId(resultSet.getInt("itemSetId"));
-            mappedItemSet.setItemSetName(resultSet.getString("itemSetName"));
-            mappedItemSet.setChampionId(resultSet.getInt("championId"));
-
-
-            return mappedItemSet;
-        }
-    }
 
 }

@@ -6,14 +6,12 @@ import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.persistance.interfaces.RuneDao;
 import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
+import com.tp.LeagueApp.persistance.postgres.mappers.RuneMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -26,7 +24,7 @@ public class PostgresRuneDao implements RuneDao {
     //READ
     @Override
     public List<Rune> getAllRunes() {
-        List<Rune> allRunes = template.query("select * from \"Runes\"", new PostgresRuneDao.RuneMapper());
+        List<Rune> allRunes = template.query("select * from \"Runes\"", new RuneMapper());
 
         return allRunes;
     }
@@ -37,7 +35,7 @@ public class PostgresRuneDao implements RuneDao {
         if(runeName == null)
             throw new NullNameException("ERROR: Tried to get a rune with a null name.");
 
-        List<Rune> toReturn = template.query("select * from \"Runes\" where \"runeName\" = ?;", new PostgresRuneDao.RuneMapper(), runeName);
+        List<Rune> toReturn = template.query("select * from \"Runes\" where \"runeName\" = ?;", new RuneMapper(), runeName);
 
         return toReturn.get(0);
     }
@@ -49,7 +47,7 @@ public class PostgresRuneDao implements RuneDao {
         if(!validateId(runeId))
             throw new InvalidSetException("ERROR: Tried to get a rune that doesn't exist.");
 
-        List<Rune> toReturn = template.query("select * from \"Runes\" where \"runeId\" = ?;", new PostgresRuneDao.RuneMapper(), runeId);
+        List<Rune> toReturn = template.query("select * from \"Runes\" where \"runeId\" = ?;", new RuneMapper(), runeId);
 
         return toReturn.get(0);
     }
@@ -69,17 +67,4 @@ public class PostgresRuneDao implements RuneDao {
         return exists;
     }
 
-    public class RuneMapper implements RowMapper<Rune> {
-
-        @Override
-        public Rune mapRow(ResultSet resultSet, int i) throws SQLException {
-            Rune mappedRune = new Rune();
-            mappedRune.setRuneId(resultSet.getInt("runeId"));
-            mappedRune.setRuneName(resultSet.getString("runeName"));
-            mappedRune.setRuneDescription(resultSet.getString("runeDescription"));
-
-            return mappedRune;
-        }
-    }
-    
 }
