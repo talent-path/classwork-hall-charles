@@ -71,7 +71,23 @@ public class PostgresItemSetDao implements ItemSetDao {
         List<ItemSet> allItemSets = template.query("select * from \"ItemSets\"",
                 new PostgresItemSetDao.ItemSetMapper());
 
+        for(ItemSet toGet : allItemSets) {
+            List<Integer> itemIds = template.query("select isi.\"itemId\"\n" +
+                    "from \"ItemSetItems\" as isi\n" +
+                    "where isi.\"itemSetId\" = ?;", new ItemIdMapper(), toGet.getItemSetId());
+
+            toGet.setItemIdList(itemIds);
+        }
+
         return allItemSets;
+    }
+
+    private class ItemIdMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("itemId");
+        }
     }
 
     @Override
@@ -161,6 +177,7 @@ public class PostgresItemSetDao implements ItemSetDao {
             mappedItemSet.setItemSetId(resultSet.getInt("itemSetId"));
             mappedItemSet.setItemSetName(resultSet.getString("itemSetName"));
             mappedItemSet.setChampionId(resultSet.getInt("championId"));
+
 
             return mappedItemSet;
         }
