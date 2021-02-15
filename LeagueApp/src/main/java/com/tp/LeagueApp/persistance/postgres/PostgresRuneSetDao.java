@@ -88,8 +88,8 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
         if(runeSetId == null)
             throw new NullIdException("ERROR: Tried to get a rune set with a null id.");
-        //if(!validateId(runeSetId))
-         //   throw new InvalidSetException("ERROR: Tried to get a rune set that doesn't exist.");
+        if(!validateRuneSetId(runeSetId))
+            throw new InvalidSetException("ERROR: Tried to get a rune set that doesn't exist.");
 
         List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetId\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetId);
 
@@ -110,7 +110,7 @@ public class PostgresRuneSetDao implements RuneSetDao {
             throw new NullSetException("ERROR: Tried to update rune set with a null rune set.");
         if(toUpdate.getRuneSetId() == null)
             throw new NullIdException("ERROR: Tried to update a rune set with a null id.");
-        if(!validateId(toUpdate.getRuneSetId()))
+        if(!validateRuneSetId(toUpdate.getRuneSetId()))
             throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("update \"RuneSets\" set \"runeSetName\" = ?, \"championId\" = ? where \"runeSetId\" = ?",
@@ -124,18 +124,18 @@ public class PostgresRuneSetDao implements RuneSetDao {
 
         if(toDeleteId == null)
             throw new NullIdException("ERROR: Tried to delete a rune set with a null id.");
-        if(!validateId(toDeleteId))
+        if(!validateRuneSetId(toDeleteId))
             throw new InvalidSetException("ERROR: Tried to delete a set that doesn't exist.");
 
         template.update("delete from \"RuneSetRunes\" where \"runeSetId\" = ?;", toDeleteId);
         template.update("delete from \"RuneSets\" where \"runeSetId\" = ?;", toDeleteId);
     }
 
-    private boolean validateId(Integer toValidate) {
+    private boolean validateRuneSetId(Integer toValidate) {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)", new RuneSetCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"RuneSets\" where \"runeSetId\" in (?)", new RuneSetCountMapper(), toValidate);
 
         Integer zero = 0;
 
