@@ -107,11 +107,18 @@ public class PostgresItemSetDao implements ItemSetDao {
 
         if(itemSetId == null)
             throw new NullIdException("ERROR: Tried to get an item set with a null id.");
-        if(!validateId(itemSetId))
-            throw new InvalidSetException("ERROR: Tried to get a set that doesn't exist.");
+        //if(!validateId(itemSetId))
+        //    throw new InvalidSetException("ERROR: Tried to get a set that doesn't exist.");
 
         List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetId\" = ?;",
                 new PostgresItemSetDao.ItemSetMapper(), itemSetId);
+
+        List<Integer> itemIds = template.query("select isi.\"itemId\"\n" +
+                "from \"ItemSetItems\" as isi\n" +
+                "where isi.\"itemSetId\" = "+itemSetId+";", new ItemIdMapper());
+
+        toReturn.get(0).setItemIdList(itemIds);
+
 
         return toReturn.get(0);
     }
