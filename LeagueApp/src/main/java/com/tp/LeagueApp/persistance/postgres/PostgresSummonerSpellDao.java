@@ -5,6 +5,7 @@ import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.SummonerSpell;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellDao;
+import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -56,7 +57,8 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)", new SummonerSpellCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"SummonerSpells\" where \"summSpellId\" in (?)",
+                new IntegerMapper("count"), toValidate);
 
         Integer zero = 0;
 
@@ -79,11 +81,4 @@ public class PostgresSummonerSpellDao implements SummonerSpellDao {
         }
     }
 
-    private class SummonerSpellCountMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("count");
-        }
-    }
 }

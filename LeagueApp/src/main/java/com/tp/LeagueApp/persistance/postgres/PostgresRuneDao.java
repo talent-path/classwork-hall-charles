@@ -5,6 +5,7 @@ import com.tp.LeagueApp.exceptions.NullIdException;
 import com.tp.LeagueApp.exceptions.NullNameException;
 import com.tp.LeagueApp.models.Rune;
 import com.tp.LeagueApp.persistance.interfaces.RuneDao;
+import com.tp.LeagueApp.persistance.postgres.mappers.IntegerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -57,7 +58,8 @@ public class PostgresRuneDao implements RuneDao {
 
         boolean exists = true;
 
-        Integer returnCount = template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)", new RuneCountMapper(), toValidate);
+        Integer returnCount = template.queryForObject("select COUNT(*) from \"Runes\" where \"runeId\" in (?)",
+                new IntegerMapper("count"), toValidate);
 
         Integer zero = 0;
 
@@ -79,12 +81,5 @@ public class PostgresRuneDao implements RuneDao {
             return mappedRune;
         }
     }
-
-    private class RuneCountMapper implements RowMapper<Integer> {
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("count");
-        }
-    }
+    
 }
