@@ -38,19 +38,6 @@ public class SummonerSpellSetController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/summonerSpellSets/name/{summonerSpellSetName}")
-    public ResponseEntity getSummonerSpellSetsByName(@PathVariable String summonerSpellSetName) {
-        SummonerSpellSet toReturn = new SummonerSpellSet();
-        try {
-            toReturn = service.getSummonerSpellSetByName(summonerSpellSetName);
-        }
-        catch(NullNameException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-
-        return ResponseEntity.ok(toReturn);
-    }
-
     @GetMapping("/summonerSpellSets/id/{summonerSpellSetId}")
     public ResponseEntity getSummonerSpellSetsById(@PathVariable Integer summonerSpellSetId) {
         SummonerSpellSet toReturn = new SummonerSpellSet();
@@ -77,17 +64,6 @@ public class SummonerSpellSetController {
     }
 
     //DELETE
-    @DeleteMapping("/delete/summonerSpellSet/name/{summSpellSetName}")
-    public String deleteSummonerSpellSet(@PathVariable String summSpellSetName) {
-        try {
-            service.deleteSummonerSpellSet(summSpellSetName);
-            return "Summoner Spell Set " + summSpellSetName + " successfully deleted.";
-        }
-        catch(NullNameException e) {
-            return e.getMessage();
-        }
-    }
-
     @DeleteMapping("/delete/summonerSpellSet/id/{summSpellSetId}")
     public String deleteSummonerSpellSetById(@PathVariable Integer summSpellSetId) {
         try {

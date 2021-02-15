@@ -38,19 +38,6 @@ public class RuneSetController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/runeSets/name/{runeSetName}")
-    public ResponseEntity getRuneSetsByName(@PathVariable String runeSetName) {
-        RuneSet toReturn = new RuneSet();
-        try {
-            toReturn = service.getRuneSetByName(runeSetName);
-        }
-        catch(NullNameException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-
-        return ResponseEntity.ok(toReturn);
-    }
-
     @GetMapping("/runeSets/id/{runeSetId}")
     public ResponseEntity getRuneSetsById(@PathVariable Integer runeSetId) {
         RuneSet toReturn = new RuneSet();
@@ -77,17 +64,6 @@ public class RuneSetController {
     }
 
     //DELETE
-    @DeleteMapping("/delete/runeSet/name/{runeSetName}")
-    public String deleteRuneSet(@PathVariable String runeSetName) {
-        try {
-            service.deleteRuneSet(runeSetName);
-            return "Rune Set " + runeSetName + " successfully deleted.";
-        }
-        catch(NullNameException e) {
-            return e.getMessage();
-        }
-    }
-
     @DeleteMapping("/delete/runeSet/id/{runeSetId}")
     public String deleteRuneSet(@PathVariable Integer runeSetId) {
         try {

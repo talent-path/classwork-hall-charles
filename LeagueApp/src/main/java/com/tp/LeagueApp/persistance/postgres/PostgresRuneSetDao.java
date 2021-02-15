@@ -84,17 +84,6 @@ public class PostgresRuneSetDao implements RuneSetDao {
     }
 
     @Override
-    public RuneSet getRuneSetByName(String runeSetName) throws NullNameException {
-
-        if(runeSetName == null)
-            throw new NullNameException("ERROR: Tried to get a rune set with a null name.");
-
-        List<RuneSet> toReturn = template.query("select * from \"RuneSets\" where \"runeSetName\" = ?;", new PostgresRuneSetDao.RuneSetMapper(), runeSetName);
-
-        return toReturn.get(0);
-    }
-
-    @Override
     public RuneSet getRuneSetById(Integer runeSetId) throws NullIdException, InvalidSetException {
 
         if(runeSetId == null)
@@ -130,15 +119,6 @@ public class PostgresRuneSetDao implements RuneSetDao {
     }
 
     //DELETE
-    @Override
-    public void deleteRuneSet(String toDelete) throws NullNameException {
-
-        if(toDelete == null)
-            throw new NullNameException("ERROR: Tried to delete a rune set with a null name.");
-
-        template.update("delete from \"RuneSets\" where \"runeSetName\" = ?;", toDelete);
-    }
-
     @Override
     public void deleteRuneSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
 

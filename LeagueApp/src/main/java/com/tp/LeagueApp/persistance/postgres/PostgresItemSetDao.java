@@ -91,18 +91,6 @@ public class PostgresItemSetDao implements ItemSetDao {
     }
 
     @Override
-    public ItemSet getItemSetByName(String itemSetName) throws NullNameException {
-
-        if(itemSetName == null)
-            throw new NullNameException("ERROR: Tried to get an item set with a null name.");
-
-        List<ItemSet> toReturn = template.query("select * from \"ItemSets\" where \"itemSetName\" = ?;",
-                new PostgresItemSetDao.ItemSetMapper(), itemSetName);
-
-        return toReturn.get(0);
-    }
-
-    @Override
     public ItemSet getItemSetById(Integer itemSetId) throws NullIdException, InvalidSetException {
 
         if(itemSetId == null)
@@ -140,15 +128,6 @@ public class PostgresItemSetDao implements ItemSetDao {
     }
 
     //DELETE
-    @Override
-    public void deleteItemSet(String toDelete) throws NullNameException {
-
-        if(toDelete == null)
-            throw new NullNameException("ERROR: Tried to delete an item set with a null name.");
-
-        template.update("delete from \"ItemSets\" where \"itemSetName\" = ?;", toDelete);
-    }
-
     @Override
     public void deleteItemSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
         if(toDeleteId == null)

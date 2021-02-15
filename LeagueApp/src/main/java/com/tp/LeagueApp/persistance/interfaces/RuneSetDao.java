@@ -12,14 +12,11 @@ public interface RuneSetDao {
 
     //READ
     List<RuneSet> getAllRuneSets();
-    RuneSet getRuneSetByName(String runeSetName) throws NullNameException;
     RuneSet getRuneSetById(Integer runeSetId) throws NullIdException, InvalidSetException;
 
     //UPDATE
     void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException, InvalidSetException;
 
     //CREATE
-    void deleteRuneSet(String toDelete) throws NullNameException;
-
     void deleteRuneSetById(Integer toDeleteId) throws NullIdException, InvalidSetException;
 }

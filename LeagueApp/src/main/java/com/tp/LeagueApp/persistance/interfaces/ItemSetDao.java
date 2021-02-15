@@ -12,14 +12,12 @@ public interface ItemSetDao {
 
     //READ
     List<ItemSet> getAllItemSets();
-    ItemSet getItemSetByName(String itemSetName) throws NullNameException;
     ItemSet getItemSetById(Integer itemSetId) throws NullIdException, InvalidSetException;
 
     //UPDATE
     void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException, InvalidSetException;
 
     //DELETE
-    void deleteItemSet(String toDelete) throws NullNameException;
     void deleteItemSetById(Integer toDeleteId) throws NullIdException, InvalidSetException;
 
 

@@ -1,6 +1,7 @@
 package com.tp.LeagueApp.persistance.postgres;
 
 import com.tp.LeagueApp.exceptions.*;
+import com.tp.LeagueApp.models.RuneSet;
 import com.tp.LeagueApp.models.SummonerSpellSet;
 import com.tp.LeagueApp.persistance.interfaces.SummonerSpellSetDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,18 +71,15 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
     public List<SummonerSpellSet> getAllSummonerSpellSets() {
         List<SummonerSpellSet> allSummonerSpellSets = template.query("select * from \"SummonerSpellSets\"", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper());
 
+        for(SummonerSpellSet toGet : allSummonerSpellSets) {
+            List<Integer> summSpellIds = template.query("select isi.\"summSpellId\"\n" +
+                    "from \"SummonerSpellSetSummonerSpells\" as isi\n" +
+                    "where isi.\"summSpellSetId\" = ?;", new SummonerSpellIdMapper(), toGet.getSummonerSpellSetId());
+
+            toGet.setSummonerSpellIdList(summSpellIds);
+        }
+
         return allSummonerSpellSets;
-    }
-
-    @Override
-    public SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName) throws NullNameException {
-
-        if(summonerSpellSetName == null)
-            throw new NullNameException("ERROR: Tried to get a summoner spell set with a null name.");
-
-        List<SummonerSpellSet> toReturn = template.query("select * from \"SummonerSpellSets\" where \"summSpellSetName\" = ?;", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper(), summonerSpellSetName);
-
-        return toReturn.get(0);
     }
 
     @Override
@@ -89,10 +87,16 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
 
         if(summonerSpellSetId == null)
             throw new NullIdException("ERROR: Tried to get a summoner spell set with a null name.");
-        if(!validateId(summonerSpellSetId))
-            throw new InvalidSetException("ERROR: Tried to get a summoner spell set that doesn't exist.");
+        //if(!validateId(summonerSpellSetId))
+          //  throw new InvalidSetException("ERROR: Tried to get a summoner spell set that doesn't exist.");
 
         List<SummonerSpellSet> toReturn = template.query("select * from \"SummonerSpellSets\" where \"summSpellSetId\" = ?;", new PostgresSummonerSpellSetDao.SummonerSpellSetMapper(), summonerSpellSetId);
+
+        List<Integer> summSpellIds = template.query("select isi.\"summSpellId\"\n" +
+                "from \"SummonerSpellSetSummonerSpells\" as isi\n" +
+                "where isi.\"summSpellSetId\" = "+summonerSpellSetId+";", new SummonerSpellIdMapper());
+
+        toReturn.get(0).setSummonerSpellIdList(summSpellIds);
 
         return toReturn.get(0);
     }
@@ -114,15 +118,6 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
     }
 
     //DELETE
-    @Override
-    public void deleteSummonerSpellSet(String toDelete) throws NullNameException {
-
-        if(toDelete == null)
-            throw new NullNameException("ERROR: Tried to delete a summoner spell set with a null name.");
-
-        template.update("delete from \"SummonerSpellSets\" where \"summSpellSetName\" = ?;", toDelete);
-    }
-
     @Override
     public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
 
@@ -173,6 +168,14 @@ public class PostgresSummonerSpellSetDao implements SummonerSpellSetDao {
         @Override
         public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
             return resultSet.getInt("count");
+        }
+    }
+
+    private class SummonerSpellIdMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            return resultSet.getInt("summSpellId");
         }
     }
 }

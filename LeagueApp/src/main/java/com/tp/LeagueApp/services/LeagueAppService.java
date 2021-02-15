@@ -4,7 +4,6 @@ import com.tp.LeagueApp.exceptions.*;
 import com.tp.LeagueApp.models.*;
 import com.tp.LeagueApp.persistance.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -96,20 +95,12 @@ public class LeagueAppService {
         return itemSetDao.getAllItemSets();
     }
 
-    public ItemSet getItemSetByName(String itemSetName) throws NullNameException {
-        return itemSetDao.getItemSetByName(itemSetName);
-    }
-
     public ItemSet getItemSetById(Integer itemSetId) throws NullIdException, InvalidSetException {
         return itemSetDao.getItemSetById(itemSetId);
     }
 
     public void updateItemSet(ItemSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
         itemSetDao.updateItemSet(toUpdate);
-    }
-
-    public void deleteItemSet(String toDelete) throws NullNameException {
-        itemSetDao.deleteItemSet(toDelete);
     }
 
     public void deleteItemSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
@@ -125,20 +116,12 @@ public class LeagueAppService {
         return runeSetDao.getAllRuneSets();
     }
 
-    public RuneSet getRuneSetByName(String runeSetName) throws NullNameException {
-        return runeSetDao.getRuneSetByName(runeSetName);
-    }
-
     public RuneSet getRuneSetById(Integer runeSetId) throws NullIdException, InvalidSetException {
         return runeSetDao.getRuneSetById(runeSetId);
     }
 
     public void updateRuneSet(RuneSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
         runeSetDao.updateRuneSet(toUpdate);
-    }
-
-    public void deleteRuneSet(String toDelete) throws NullNameException {
-        runeSetDao.deleteRuneSet(toDelete);
     }
 
     public void deleteRuneSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {
@@ -154,20 +137,12 @@ public class LeagueAppService {
         return summonerSpellSetDao.getAllSummonerSpellSets();
     }
 
-    public SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName) throws NullNameException {
-        return summonerSpellSetDao.getSummonerSpellSetByName(summonerSpellSetName);
-    }
-
     public SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId) throws NullIdException, InvalidSetException {
         return summonerSpellSetDao.getSummonerSpellSetById(summonerSpellSetId);
     }
 
     public void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException, InvalidSetException {
         summonerSpellSetDao.updateSummonerSpellSet(toUpdate);
-    }
-
-    public void deleteSummonerSpellSet(String toDelete) throws NullNameException {
-        summonerSpellSetDao.deleteSummonerSpellSet(toDelete);
     }
 
     public void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException, InvalidSetException {

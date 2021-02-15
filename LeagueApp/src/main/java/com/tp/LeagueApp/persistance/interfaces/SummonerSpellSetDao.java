@@ -14,14 +14,11 @@ public interface SummonerSpellSetDao {
 
     //READ
     List<SummonerSpellSet> getAllSummonerSpellSets();
-    SummonerSpellSet getSummonerSpellSetByName(String summonerSpellSetName)throws NullNameException;
     SummonerSpellSet getSummonerSpellSetById(Integer summonerSpellSetId) throws NullIdException, InvalidSetException;
 
     //UPDATE
     void updateSummonerSpellSet(SummonerSpellSet toUpdate) throws NullSetException, NullIdException, InvalidSetException;
 
     //DELETE
-    void deleteSummonerSpellSet(String toDelete) throws NullNameException;
-
     void deleteSummonerSpellSetById(Integer toDeleteId) throws NullIdException, InvalidSetException;
 }

@@ -38,19 +38,6 @@ public class ItemSetController {
         return ResponseEntity.ok(toReturn);
     }
 
-    @GetMapping("/itemSets/name/{itemSetName}")
-    public ResponseEntity getItemSetsByName(@PathVariable String itemSetName) {
-        ItemSet toReturn = new ItemSet();
-        try {
-            toReturn = service.getItemSetByName(itemSetName);
-        }
-        catch(NullNameException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-
-        return ResponseEntity.ok(toReturn);
-    }
-
     @GetMapping("/itemSets/id/{itemSetId}")
     public ResponseEntity getItemSetsById(@PathVariable Integer itemSetId) {
         ItemSet toReturn = new ItemSet();
@@ -77,17 +64,6 @@ public class ItemSetController {
     }
 
     //DELETE
-    @DeleteMapping("/delete/itemSet/name/{itemSetName}")
-    public String deleteItemSet(@PathVariable String itemSetName) {
-        try {
-            service.deleteItemSet(itemSetName);
-            return "Item Set " + itemSetName + " successfully deleted.";
-        }
-        catch(NullNameException e) {
-            return e.getMessage();
-        }
-    }
-
     @DeleteMapping("/delete/itemSet/id/{itemSetId}")
     public String deleteItemSetById(@PathVariable Integer itemSetId) {
         try {
