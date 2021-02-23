@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bulls and Cows Game</title>
+    </head>
+    <body>
+
+        <div id="gameContainer" style="text-align: center;">
+
+            <h4>GUESSING GAME</h4>
+
+            <div id= "1" style="width:100px; height:100px; display: inline-block; border:  5px solid black; margin: 15px;">
+                    <p id="1text"></p>                
+            </div>
+
+            <div id= "2" style="width:100px; height:100px; display: inline-block; border:  5px solid black; margin: 15px;">
+                    <p id="2text"></p>
+            </div>
+
+            <div id= "3" style="width:100px; height:100px; display: inline-block; border:  5px solid black; margin: 15px;">
+                    <p id="3text"></p>
+            </div>
+
+            <div id= "4" style="width:100px; height:100px; display: inline-block; border:  5px solid black; margin: 15px;">
+                    <p id="4text"></p>
+            </div>
+
+            <br>
+                
+            <input type="text" id="guess" name="guess"/>
+            <input type="submit" value="Submit" onclick="processGuess()"/>
+            <input type="submit" value="Reset" onclick="reset()"/>
+
+            
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>

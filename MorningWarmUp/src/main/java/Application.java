@@ -1,9 +1,10 @@
+import com.sun.jdi.IntegerValue;
+
 import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
-        String[] board = {"XXX","XOO","OO "};
-        System.out.println(validTicTacToe(board));
+        System.out.println(letterCasePermutation("a1b2"));
     }
 
     //01-14-2021 Warmups
@@ -575,5 +576,68 @@ public class Application {
         return false;
     }
 
+    //Technical Interview Prep 02-15-2021
+    public static int calculate(String expression) {
+        int toReturn = 0;
+
+        String trimmedString = expression.replace(" ", "");
+        String[] numbers = trimmedString.split("[+\\-\\*\\/]");
+        String operand = trimmedString.substring(numbers[0].length(), numbers[0].length()+1);
+        Integer num1 = Integer.valueOf(numbers[0]);
+        Integer num2 = Integer.valueOf(numbers[1]);
+
+        switch(operand) {
+            case "+":
+                toReturn = num1 + num2;
+                break;
+            case "-":
+                toReturn = num1 - num2;
+                break;
+            case "*":
+                toReturn = num1 * num2;
+                break;
+            case "/":
+                toReturn = num1 / num2;
+                break;
+        }
+
+
+        return toReturn;
+    }
+
+    //Warmup for 02-16-2021
+    public static List<String> letterCasePermutation(String S) {
+        List<String> toReturn = new ArrayList<>();
+
+        char[] charArr = S.toCharArray();
+
+        permutationHelper(toReturn, charArr, 0);
+
+        return toReturn;
+    }
+
+
+    public static void permutationHelper(List<String> toReturn, char[] charArr, int start) {
+        String stringToAdd = String.valueOf(charArr);
+
+        toReturn.add(stringToAdd);//Add string to results list
+
+        for(int i = start; i < stringToAdd.length(); i++) {//Go through whole string
+            char c = charArr[i];
+
+            if(Character.isLetter(charArr[i])) {//check if it is letter or not
+
+                if(Character.isUpperCase(charArr[i])) //if uppercase, make lower case
+                    charArr[i] = Character.toLowerCase(charArr[i]);
+                else if (Character.isLowerCase(charArr[i]))//else lowercase, make uppercase
+                    charArr[i] = Character.toUpperCase(charArr[i]);
+
+                permutationHelper(toReturn, charArr, i+1);//make recursive call on next index
+
+                charArr[i] = c;
+            }
+        }
+
+    }
 
 }
