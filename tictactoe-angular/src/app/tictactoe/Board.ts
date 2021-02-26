@@ -5,6 +5,8 @@ export class TicTacToeBoard {
     isXTurn : boolean;
     allSquares : number [][];
     gameOver : boolean;
+    xWins : number;
+    oWins : number;
 
     constructor(copyFrom?: TicTacToeBoard, turn?: boolean, gameOver?: boolean) {
         if(copyFrom) {
@@ -19,6 +21,8 @@ export class TicTacToeBoard {
             this.allSquares = [];
             this.isXTurn = true;
             this.gameOver = false;
+            this.xWins = 0;
+            this.oWins = 0;
 
             for(let row = 0; row < 3; row++) {
                 this.allSquares[row] = [];
@@ -45,10 +49,14 @@ export class TicTacToeBoard {
         if(won === true) {
             this.gameOver = true;
             let player : string = "";
-            if(this.isXTurn)
-            player = "X";
-            else
-            player = "O";
+            if(this.isXTurn) {
+                player = "X";
+                this.xWins++;
+            }
+            else {
+                player = "O";
+                this.oWins++;
+            }
 
             console.log("Player " + player + " wins!");
         

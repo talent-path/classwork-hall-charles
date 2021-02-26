@@ -28,15 +28,15 @@ export class TictactoeBoardComponent implements OnInit {
     }
   }
 
-  reset() {
-    this.board.isXTurn = true;
-    this.board.gameOver = false;
+  // reset() {
+  //   this.board.isXTurn = true;
+  //   this.board.gameOver = false;
 
-    for(let row = 0; row < 3; row++) {
-      for(let col = 0; col < 3; col++) {
-        this.board.allSquares[row][col] = 0;
-      }
-    }
-  }
+  //   for(let row = 0; row < 3; row++) {
+  //     for(let col = 0; col < 3; col++) {
+  //       this.board.allSquares[row][col] = 0;
+  //     }
+  //   }
+  // }
 
 }

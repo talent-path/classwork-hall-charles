@@ -1,11 +1,12 @@
 .board {
-    width: 100vmin;
-    height: 100vmin;
+    width: 90vmin;
+    height: 90vmin;
     display: inline-block;
     text-align: center;
     position: relative;
 }
 
 .rowDiv {
-    height: 12.5%;
+    height: 33.3%;
+    width: 100%;
 }
