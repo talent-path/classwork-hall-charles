@@ -1,0 +1,17 @@
+.square {
+    width: 12.5%;
+    height: 100%;
+    display: inline-block;
+}
+
+.lightSquare {
+    background-color: whitesmoke;
+}
+
+img {
+    height: 100%;
+}
+
+.darkSquare {
+    background-color: grey;
+}

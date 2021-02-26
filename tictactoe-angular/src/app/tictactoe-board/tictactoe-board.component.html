@@ -1,0 +1,13 @@
+<div class="board">
+    <div *ngFor="let row of board.allSquares; index as r" class="rowDiv">
+        <app-tictactoe-square *ngFor="let s of row; index as c" [isX]="s" [row]="r" [col]="c" 
+        (squareClickedEvent)="onSquareClicked($event)"></app-tictactoe-square>
+    </div>
+
+    <div>
+        <br>
+        <button type="submit" id="resetButton" (click)="reset()">Reset</button>
+    </div>
+
+</div>
+
