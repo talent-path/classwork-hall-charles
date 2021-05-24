@@ -23,6 +23,10 @@ namespace SudokuSolver
             PopulateAllowableVals();
         }
 
+        /// <summary>
+        /// Most of the logic for solving the game with the current board state
+        /// </summary>
+        /// <returns>A boolean for whether it filled all the spaces or not.</returns>
         public bool Solve()
         {
             int minCount = getMinCount(AllowableVals);
@@ -50,9 +54,9 @@ namespace SudokuSolver
         }
 
         /// <summary>
-        /// Returns the smallest count in the list of AllowableVals
+        /// Gets the minimum count value in the list provided.
         /// </summary>
-        /// <returns>Returns an int representing the minimum count of allowable values.</returns>
+        /// <returns>An int representing the minimum count of allowable values.</returns>
         public int getMinCount(List<int>[,] AllowableVals)
         {
             int min = 9;
@@ -72,7 +76,7 @@ namespace SudokuSolver
         }
 
         /// <summary>
-        /// Checks the board state for a win
+        /// Checks the board state for a win.
         /// </summary>
         /// <returns>A boolean, true if won, false if lost.</returns>
         public bool checkWin()
@@ -111,7 +115,7 @@ namespace SudokuSolver
         }
 
         /// <summary>
-        /// Sets the value provided at a given position
+        /// Sets the value provided at a given position.
         /// </summary>
         internal void SetValue(int row, int col, int v)
         {
