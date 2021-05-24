@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/bin/Debug/netcoreapp3.1/SudokuSolver.deps.json
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/bin/Debug/netcoreapp3.1/SudokuSolver.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/bin/Debug/netcoreapp3.1/SudokuSolver.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/bin/Debug/netcoreapp3.1/SudokuSolver.dll
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/bin/Debug/netcoreapp3.1/SudokuSolver.pdb
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/obj/Debug/netcoreapp3.1/SudokuSolver.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/obj/Debug/netcoreapp3.1/SudokuSolver.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/obj/Debug/netcoreapp3.1/SudokuSolver.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/obj/Debug/netcoreapp3.1/SudokuSolver.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/obj/Debug/netcoreapp3.1/SudokuSolver.dll
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/obj/Debug/netcoreapp3.1/SudokuSolver.pdb
+/Users/charleshall/classwork-hall-charles/SudokuSolver/SudokuSolver/obj/Debug/netcoreapp3.1/SudokuSolver.genruntimeconfig.cache
