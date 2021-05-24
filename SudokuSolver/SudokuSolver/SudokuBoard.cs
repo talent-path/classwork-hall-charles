@@ -41,7 +41,6 @@ namespace SudokuSolver
                             {
                                 return true;
                             }
-
                         }
                         return false;
                     }
@@ -50,6 +49,10 @@ namespace SudokuSolver
             return false;
         }
 
+        /// <summary>
+        /// Returns the smallest count in the list of AllowableVals
+        /// </summary>
+        /// <returns>Returns an int representing the minimum count of allowable values.</returns>
         public int getMinCount(List<int>[,] AllowableVals)
         {
             int min = 9;
@@ -68,6 +71,10 @@ namespace SudokuSolver
             return min;
         }
 
+        /// <summary>
+        /// Checks the board state for a win
+        /// </summary>
+        /// <returns>A boolean, true if won, false if lost.</returns>
         public bool checkWin()
         {
             for (int row = 0; row < 9; row++)
@@ -103,6 +110,9 @@ namespace SudokuSolver
             }
         }
 
+        /// <summary>
+        /// Sets the value provided at a given position
+        /// </summary>
         internal void SetValue(int row, int col, int v)
         {
             //update _vals
