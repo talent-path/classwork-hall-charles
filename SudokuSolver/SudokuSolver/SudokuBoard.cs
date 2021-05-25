@@ -57,7 +57,7 @@ namespace SudokuSolver
         /// Gets the minimum count value in the list provided.
         /// </summary>
         /// <returns>An int representing the minimum count of allowable values.</returns>
-        public int getMinCount(List<int>[,] AllowableVals)
+        public int getMinCount(List<int>[,] list)
         {
             int min = 9;
 
@@ -65,9 +65,9 @@ namespace SudokuSolver
             {
                 for (int col = 0; col < 9; col++)
                 {
-                    if (AllowableVals[row, col].Count < min)
+                    if (list[row, col].Count < min)
                     {
-                        min = AllowableVals[row, col].Count;
+                        min = list[row, col].Count;
                     }
                 }
             }

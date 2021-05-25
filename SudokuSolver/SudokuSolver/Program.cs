@@ -25,15 +25,8 @@ namespace SudokuSolver
 
             while (!completed)
             {
-                copyBoard.Solve();
-                completed = copyBoard.checkWin();
-
+                completed = copyBoard.Solve();
             }
-
-            Console.WriteLine("Hello World!");
-
-            //I lied (mac version?)
-            //Console.WriteLine("this shouldn't work except VS is great");
         }
     }
 }

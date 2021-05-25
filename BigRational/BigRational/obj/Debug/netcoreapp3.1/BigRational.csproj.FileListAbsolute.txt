@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/bin/Debug/netcoreapp3.1/BigRational.deps.json
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/bin/Debug/netcoreapp3.1/BigRational.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/bin/Debug/netcoreapp3.1/BigRational.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/bin/Debug/netcoreapp3.1/BigRational.dll
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/bin/Debug/netcoreapp3.1/BigRational.pdb
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/obj/Debug/netcoreapp3.1/BigRational.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/obj/Debug/netcoreapp3.1/BigRational.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/obj/Debug/netcoreapp3.1/BigRational.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/obj/Debug/netcoreapp3.1/BigRational.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/obj/Debug/netcoreapp3.1/BigRational.dll
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/obj/Debug/netcoreapp3.1/BigRational.pdb
+/Users/charleshall/classwork-hall-charles/BigRational/BigRational/obj/Debug/netcoreapp3.1/BigRational.genruntimeconfig.cache

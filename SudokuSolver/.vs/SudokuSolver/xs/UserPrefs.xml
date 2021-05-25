@@ -1,18 +1,24 @@
 ﻿<Properties StartupConfiguration="{87A971A2-8C89-4062-BF70-FA2B9DC44AE1}|Default">
   <MonoDevelop.Ide.ItemProperties.SudokuSolver PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SudokuSolver/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SudokuSolver/SudokuBoard.cs">
     <Files>
-      <File FileName="SudokuSolver/SudokuBoard.cs" Line="1" Column="1" />
-      <File FileName="SudokuSolver/Program.cs" Line="1" Column="1" />
+      <File FileName="SudokuSolver/SudokuBoard.cs" Line="43" Column="76" />
+      <File FileName="SudokuSolver/Program.cs" Line="29" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SudokuSolver" expanded="True">
             <Node name="SudokuSolver" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="SudokuBoard.cs" selected="True" />
             </Node>
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>copyBoard._vals[6,3]</Value>
+          <Value>copyBoard._vals[6,5]</Value>
         </State>
       </Pad>
     </Pads>
