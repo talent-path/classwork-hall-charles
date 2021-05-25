@@ -11,7 +11,7 @@ namespace DateTimeDemo
 
             DateTime userDate = DateTime.ParseExact(userInput, "yyyy-MM-dd", null);
 
-            int daysTilFriday = System.DayOfWeek.Friday - userDate.DayOfWeek;
+            int daysTilFriday = DayOfWeek.Friday - userDate.DayOfWeek;
 
             DateTime dateOfFriday = userDate.AddDays(daysTilFriday);
 
