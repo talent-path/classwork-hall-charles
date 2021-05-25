@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{EC8F4ED5-5F9C-4B63-8BF5-5B9E96927D08}|Default">
-  <MonoDevelop.Ide.ItemProperties.DateTimeDemo FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.DateTimeDemo PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="DateTimeDemo/Program.cs">
     <Files>
-      <File FileName="DateTimeDemo/Program.cs" Line="24" Column="2" />
+      <File FileName="DateTimeDemo/Program.cs" Line="14" Column="71" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
