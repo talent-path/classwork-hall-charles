@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/bin/Debug/netcoreapp3.1/DateTimeDemo.deps.json
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/bin/Debug/netcoreapp3.1/DateTimeDemo.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/bin/Debug/netcoreapp3.1/DateTimeDemo.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/bin/Debug/netcoreapp3.1/DateTimeDemo.dll
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/bin/Debug/netcoreapp3.1/DateTimeDemo.pdb
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/obj/Debug/netcoreapp3.1/DateTimeDemo.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/obj/Debug/netcoreapp3.1/DateTimeDemo.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/obj/Debug/netcoreapp3.1/DateTimeDemo.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/obj/Debug/netcoreapp3.1/DateTimeDemo.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/obj/Debug/netcoreapp3.1/DateTimeDemo.dll
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/obj/Debug/netcoreapp3.1/DateTimeDemo.pdb
+/Users/charleshall/classwork-hall-charles/DateTimeDemo/DateTimeDemo/obj/Debug/netcoreapp3.1/DateTimeDemo.genruntimeconfig.cache
