@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/bin/Debug/netcoreapp3.1/GroupByExercise.deps.json
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/bin/Debug/netcoreapp3.1/GroupByExercise.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/bin/Debug/netcoreapp3.1/GroupByExercise.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/bin/Debug/netcoreapp3.1/GroupByExercise.dll
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/bin/Debug/netcoreapp3.1/GroupByExercise.pdb
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/obj/Debug/netcoreapp3.1/GroupByExercise.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/obj/Debug/netcoreapp3.1/GroupByExercise.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/obj/Debug/netcoreapp3.1/GroupByExercise.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/obj/Debug/netcoreapp3.1/GroupByExercise.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/obj/Debug/netcoreapp3.1/GroupByExercise.dll
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/obj/Debug/netcoreapp3.1/GroupByExercise.pdb
+/Users/charleshall/classwork-hall-charles/GroupByExercise/GroupByExercise/obj/Debug/netcoreapp3.1/GroupByExercise.genruntimeconfig.cache
