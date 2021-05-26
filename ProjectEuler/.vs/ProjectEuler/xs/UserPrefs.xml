@@ -1,28 +1,30 @@
-﻿<Properties StartupConfiguration="{302479E3-CFA7-4375-8C64-AC4E14D30CA3}|Default">
+﻿<Properties StartupConfiguration="{64E786E5-13E3-42CB-B15B-3249935AEDC1}|Default">
   <MonoDevelop.Ide.ItemProperties.Problem6 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem5 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Utils/Util.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Problem9/Program.cs">
     <Files>
-      <File FileName="Utils/Util.cs" Line="67" Column="34" />
-      <File FileName="Problem6/Program.cs" Line="12" Column="10" />
+      <File FileName="Problem9/Program.cs" Line="10" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ProjectEuler" expanded="True">
-            <Node name="Problem6" expanded="True" />
-            <Node name="Utils" expanded="True">
-              <Node name="Util.cs" selected="True" />
+            <Node name="Problem7" expanded="True" />
+            <Node name="Problem9" expanded="True">
+              <Node name="Program.cs" selected="True" />
             </Node>
+            <Node name="Utils" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.Problem3 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Problem9 FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem1 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem7 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Problem8 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Problem4 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
