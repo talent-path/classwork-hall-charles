@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/bin/Debug/netcoreapp3.1/Problem9.deps.json
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/bin/Debug/netcoreapp3.1/Problem9.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/bin/Debug/netcoreapp3.1/Problem9.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/bin/Debug/netcoreapp3.1/Problem9.dll
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/bin/Debug/netcoreapp3.1/Problem9.pdb
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/obj/Debug/netcoreapp3.1/Problem9.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/obj/Debug/netcoreapp3.1/Problem9.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/obj/Debug/netcoreapp3.1/Problem9.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/obj/Debug/netcoreapp3.1/Problem9.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/obj/Debug/netcoreapp3.1/Problem9.dll
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/obj/Debug/netcoreapp3.1/Problem9.pdb
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem9/obj/Debug/netcoreapp3.1/Problem9.genruntimeconfig.cache

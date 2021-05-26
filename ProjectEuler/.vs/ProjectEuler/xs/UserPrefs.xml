@@ -9,7 +9,6 @@
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ProjectEuler" expanded="True">
-            <Node name="Problem7" expanded="True" />
             <Node name="Problem9" expanded="True">
               <Node name="Program.cs" selected="True" />
             </Node>
