@@ -15,12 +15,13 @@ namespace RPG.Classes.Fighter
             Armor = new Shirt();
         }
 
-        public Ninja(string name, int health, string weapon, string armor)
+        public Ninja(string name, int health, string weapon, string armor, int potion)
         {
             Name = name;
             Health = health;
             Weapon = GetWeapon(weapon);
             Armor = GetArmor(armor);
+            Potion = potion;
         }
 
         public override void Attack(IFighter toAttack)

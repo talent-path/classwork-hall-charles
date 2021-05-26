@@ -47,6 +47,13 @@ namespace RPG
 
                 attacker.Attack(defender);
 
+                if(defender.Name == player.Name && player.Health <= 6 && player.Potion > 0)
+                {
+                    Console.WriteLine("You healed 4 hp with a potion!");
+                    player.Health += 4;
+                    player.Potion--;
+                }
+
                 if (attacker.Name == "Troll")
                 {
                     Console.WriteLine("The dang troll regenerated 1 hp!");
@@ -64,6 +71,7 @@ namespace RPG
             if(enemy.Health <= 0)
             {
                 Console.WriteLine("You have defeated the " + enemy.Name);
+                Console.WriteLine("---------------------");
                 points++;
             }
 
@@ -88,23 +96,27 @@ namespace RPG
             Console.WriteLine("Helmet | Shirt | Shield");
             string armor = Console.ReadLine();
 
-           return GetType(type, name, weapon , armor);
+            Console.WriteLine("Choose how many potions you want to bring: ");
+            Console.WriteLine("1 | 2 | 3");
+            int potion = Convert.ToInt32(Console.ReadLine());
+
+            return GetType(type, name, weapon, armor, potion);
         }
 
-        private static Fighter GetType(string type, string name, string weapon, string armor)
+        private static Fighter GetType(string type, string name, string weapon, string armor, int potion)
         {
             Fighter newFighter = null;
 
             switch (type)
             {
                 case "Brute":
-                    newFighter = new Brute(name, 10, weapon, armor);
+                    newFighter = new Brute(name, 10, weapon, armor, potion);
                     break;
                 case "Ninja":
-                    newFighter = new Ninja(name, 10, weapon, armor);
+                    newFighter = new Ninja(name, 10, weapon, armor, potion);
                     break;
                 case "Troll":
-                    newFighter = new Troll(name, 10, weapon, armor);
+                    newFighter = new Troll(name, 10, weapon, armor, potion);
                     break;
             }
 

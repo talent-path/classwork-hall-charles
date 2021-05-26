@@ -15,12 +15,13 @@ namespace RPG.Classes.Fighter
             Armor = new Helmet();
         }
 
-        public Troll(string name, int health, string weapon, string armor)
+        public Troll(string name, int health, string weapon, string armor, int potion)
         {
             Name = name;
             Health = health;
             Weapon = GetWeapon(weapon);
             Armor = GetArmor(armor);
+            Potion = potion;
         }
 
         public override void Attack(IFighter toAttack)

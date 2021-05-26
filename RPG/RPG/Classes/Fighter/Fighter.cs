@@ -11,17 +11,20 @@ namespace RPG.Classes.Fighter
         {
         }
 
-        public Fighter(string name, int health, string weapon, string armor)
+        public Fighter(string name, int health, string weapon, string armor, int potion)
         {
             Name = name;
             Health = health;
             Weapon = GetWeapon(weapon);
             Armor = GetArmor(armor);
+            Potion = potion;
         }
 
         public IWeapon Weapon { get; set; }
 
         public IArmor Armor { get; set; }
+
+        public int Potion { get; set; }
 
         public int Health { get; set; }
 

@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.RPG PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="RPG/Program.cs">
     <Files>
-      <File FileName="RPG/Program.cs" Line="47" Column="1" />
-      <File FileName="RPG/Classes/Fighter/Fighter.cs" />
+      <File FileName="RPG/Program.cs" Line="119" Column="77" />
+      <File FileName="RPG/Classes/Fighter/Fighter.cs" Line="20" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -26,7 +26,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/charleshall/classwork-hall-charles/RPG/RPG/Program.cs" relfile="RPG/Program.cs" line="34" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
