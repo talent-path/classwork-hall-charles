@@ -1,14 +1,14 @@
-﻿<Properties StartupConfiguration="{1D1B93C0-0BD7-4F99-996C-EB04B99EF620}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GroupByExercise/Program.cs">
+﻿<Properties StartupConfiguration="{48E33449-DBF8-4F1D-BF0C-B99AF7158876}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NasaqData/Program.cs">
     <Files>
-      <File FileName="GroupByExercise/Program.cs" Line="40" Column="14" />
-      <File FileName="GroupByExercise/Person.cs" Line="1" Column="1" />
+      <File FileName="NasaqData/Program.cs" Line="71" Column="18" />
+      <File FileName="NasaqData/DailyQuote.cs" Line="38" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GroupByExercise" expanded="True">
-            <Node name="GroupByExercise" expanded="True">
+          <Node name="NasaqData" expanded="True">
+            <Node name="NasaqData" expanded="True">
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
@@ -16,11 +16,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.GroupByExercise PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.NasaqData PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

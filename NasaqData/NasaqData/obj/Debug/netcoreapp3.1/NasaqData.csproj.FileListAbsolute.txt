@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/bin/Debug/netcoreapp3.1/NasaqData.deps.json
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/bin/Debug/netcoreapp3.1/NasaqData.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/bin/Debug/netcoreapp3.1/NasaqData.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/bin/Debug/netcoreapp3.1/NasaqData.dll
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/bin/Debug/netcoreapp3.1/NasaqData.pdb
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/obj/Debug/netcoreapp3.1/NasaqData.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/obj/Debug/netcoreapp3.1/NasaqData.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/obj/Debug/netcoreapp3.1/NasaqData.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/obj/Debug/netcoreapp3.1/NasaqData.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/obj/Debug/netcoreapp3.1/NasaqData.dll
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/obj/Debug/netcoreapp3.1/NasaqData.pdb
+/Users/charleshall/classwork-hall-charles/NasaqData/NasaqData/obj/Debug/netcoreapp3.1/NasaqData.genruntimeconfig.cache
