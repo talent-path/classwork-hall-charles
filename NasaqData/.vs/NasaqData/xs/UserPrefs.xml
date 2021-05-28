@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{48E33449-DBF8-4F1D-BF0C-B99AF7158876}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="NasaqData/Program.cs">
     <Files>
-      <File FileName="NasaqData/Program.cs" Line="71" Column="18" />
-      <File FileName="NasaqData/DailyQuote.cs" Line="38" Column="10" />
+      <File FileName="NasaqData/Program.cs" Line="102" Column="10" />
+      <File FileName="NasaqData/DailyQuote.cs" Line="6" Column="34" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

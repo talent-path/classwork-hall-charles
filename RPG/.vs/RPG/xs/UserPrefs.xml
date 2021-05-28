@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{E5691B7A-1415-4EA1-AC8D-2AAB9BAA6892}|Default">
   <MonoDevelop.Ide.ItemProperties.RPG PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RPG/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RPG/Classes/Fighter/Fighter.cs">
     <Files>
-      <File FileName="RPG/Program.cs" Line="59" Column="75" />
-      <File FileName="RPG/Classes/Fighter/Fighter.cs" Line="8" Column="63" />
+      <File FileName="RPG/Program.cs" Line="236" Column="51" />
+      <File FileName="RPG/Classes/Fighter/Fighter.cs" Line="25" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,12 +11,11 @@
           <Node name="RPG" expanded="True">
             <Node name="RPG" expanded="True">
               <Node name="Classes" expanded="True">
-                <Node name="Armor" expanded="True" />
-                <Node name="Fighter" expanded="True" />
-                <Node name="Weapon" expanded="True" />
+                <Node name="Fighter" expanded="True">
+                  <Node name="Fighter.cs" selected="True" />
+                </Node>
               </Node>
               <Node name="Interfaces" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -26,9 +25,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/charleshall/classwork-hall-charles/RPG/RPG/Program.cs" relfile="RPG/Program.cs" line="34" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

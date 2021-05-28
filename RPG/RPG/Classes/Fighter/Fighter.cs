@@ -20,6 +20,10 @@ namespace RPG.Classes.Fighter
             Potion = potion;
         }
 
+        public int RowPosition { get; set;}
+
+        public int ColPosition { get; set; }
+
         public IWeapon Weapon { get; set; }
 
         public IArmor Armor { get; set; }

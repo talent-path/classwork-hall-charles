@@ -7,29 +7,211 @@ namespace RPG
 {
     class Program
     {
+        static Random rand = new Random();
+
         static void Main(string[] args)
         {
-            Fighter player = SetUpPlayer();
-            int points = 0;
+            //Fighter player = SetUpPlayer();
+            //int points = 0;
 
+            //while (player.Health > 0)
+            //{
+            //    Fighter enemy = SetUpEnemy();
+
+            //    Console.WriteLine("Watch out! An enemy " + enemy.Name + " appears!");
+
+            //    points = Battle(player, enemy, points);
+
+            //}
+
+            //GameOverScreen(player, points);
+
+            Fighter player = SetUpPlayer();
+            int roomNum = 1;
+            int points = 0;
+            bool playerDefeated = false;
+
+            int[,] room = new int[15,15];
+
+            InitRoom(room, roomNum);
+            
             while (player.Health > 0)
             {
-                Fighter enemy = SetUpEnemy();
 
-                Console.WriteLine("Watch out! An enemy " + enemy.Name + " appears!");
+                //Prompt user for movement
+                PrintBoard(room, roomNum);
+                Console.WriteLine("Enter where you would like to go");
+                char input = char.Parse(Console.ReadLine());
 
-                points = Battle(player, enemy, points);
+                //Move the user
+                playerDefeated = Move(input, player, room);
+
+                //Check if the player has reached the exit
+                if(RoomComplete(player))
+                {
+                    Console.WriteLine("Congrats! You got past room " + roomNum);
+                    roomNum++;
+                }
 
             }
 
-            GameOverScreen(player, points);
+            if(playerDefeated)
+            {
+                Console.WriteLine("You have been defeated!");
+                GameOverScreen(player, points);
+            }
+            else
+            {
+                Console.WriteLine("You have won!");
+                GameOverScreen(player, points);
+            }
+            
+
         }
 
-        private static int Battle(Fighter player, Fighter enemy, int points)
+        //todo: refactor to be 2d array of objects??
+        private static void InitRoom(int[,] room, int roomNum)
+        {
+            //0 for empty
+            //1 for enemy
+            //2 for player
+            for (int i = 0; i < 15; i++)
+            {
+                for(int j = 0; j < 15; j++)
+                {
+                    //Place the player
+                    if(i == 0 && j == 0)
+                    {
+                        room[i,j] = 2;
+                    }
+                    else//Empty spot
+                    {
+                        room[i,j] = 0;
+                    }
+                }
+            }
+
+            //Placing enemies
+            for (int i = 0; i < roomNum + 1; i++)
+            {
+                bool placed = false;
+
+                //While an enemy has not been placed, attempt to place
+                while (!placed)
+                {
+                    int spawnRow = rand.Next(0, 14);
+                    int spawnCol = rand.Next(0, 14);
+
+                    Fighter enemy = SetUpEnemy();
+
+                    //If the spot is not empty, place
+                    if (room[spawnRow, spawnCol] == 0)
+                    {
+                        room[spawnRow, spawnCol] = 1;
+                        placed = true;
+                    }
+
+                }
+
+            }
+
+        }
+
+        private static Boolean RoomComplete(Fighter fighter)
+        {
+            return fighter.RowPosition == 14 && fighter.ColPosition == 14;
+        }
+
+        private static bool Move(char direction, Fighter fighter, int[,] room)
+        {
+
+            bool valid = true;
+            bool playerDefeated = false;
+
+            //If the position is not empty (enemy is there)
+            if((fighter.RowPosition != 0 && direction == 'w' && room[fighter.RowPosition - 1, fighter.ColPosition] != 0)
+                || (fighter.RowPosition != 14 && direction == 's' && room[fighter.RowPosition + 1, fighter.ColPosition] != 0)
+                || (fighter.ColPosition != 0 && direction == 'a' && room[fighter.RowPosition, fighter.ColPosition - 1] != 0)
+                || (fighter.ColPosition != 14 && direction == 'd' && room[fighter.RowPosition, fighter.ColPosition + 1] != 0))
+            {
+                //Battle
+                playerDefeated = Battle(fighter, room);
+            }
+
+            if (playerDefeated)
+            {
+                return playerDefeated;
+            }
+
+            //Row 0 can't move up and row 14 can't move down
+            if((fighter.RowPosition == 0 && direction == 'w') || (fighter.RowPosition == 14 && direction == 's'))
+            {
+                valid = false;
+            }
+
+            //Col 0 can't move left and col 14 can't move right
+            if((fighter.ColPosition == 0 && direction == 'a') || (fighter.ColPosition == 14 && direction == 'd'))
+            {
+                valid = false;
+            }
+
+            //If valid move, perform move
+            if(valid)
+            {
+                switch(direction)
+                {
+                    case 'w'://Move up one position
+                        room[fighter.RowPosition - 1, fighter.ColPosition] = 2;
+                        room[fighter.RowPosition, fighter.ColPosition] = 0;
+                        fighter.RowPosition -= 1;
+                        break;
+                    case 'a'://Move left one position
+                        room[fighter.RowPosition, fighter.ColPosition - 1] = 2;
+                        room[fighter.RowPosition, fighter.ColPosition] = 0;
+                        fighter.ColPosition -= 1;
+                        break;
+                    case 's'://Move down one position
+                        room[fighter.RowPosition + 1, fighter.ColPosition] = 2;
+                        room[fighter.RowPosition, fighter.ColPosition] = 0;
+                        fighter.RowPosition += 1;
+                        break;
+                    case 'd'://Move right one position
+                        room[fighter.RowPosition, fighter.ColPosition + 1] = 2;
+                        room[fighter.RowPosition, fighter.ColPosition] = 0;
+                        fighter.ColPosition += 1;
+                        break;
+                }
+            }
+            else//Else if not valid error message
+            {
+                Console.WriteLine("ERROR: You cannot move there!!");
+            }
+
+            return playerDefeated;
+        }
+
+        private static void PrintBoard(int[,] board, int roomNum)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Room " + roomNum);
+            Console.WriteLine("___________________");
+            Console.WriteLine();
+            for (int row = 0; row < 15; row++)
+            {
+                for(int col = 0; col < 15; col++)
+                {
+                    Console.Write(board[row,col] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        private static bool Battle(Fighter player, int[,] room)
         {
             Fighter attacker = player;
+            Fighter enemy = SetUpEnemy();
             Fighter defender = enemy;
-            Random rand = new Random();
+            bool playerDefeated = false;
 
             while (player.Health > 0 && enemy.Health > 0)
             {
@@ -72,10 +254,14 @@ namespace RPG
             {
                 Console.WriteLine("You have defeated the " + enemy.Name);
                 Console.WriteLine("---------------------");
-                points++;
             }
 
-            return points;
+            if(player.Health <= 0)
+            {
+                playerDefeated = true;
+            }
+
+            return playerDefeated;
         }
 
         private static Fighter SetUpPlayer()
@@ -120,12 +306,14 @@ namespace RPG
                     break;
             }
 
+            newFighter.RowPosition = 0;
+            newFighter.ColPosition = 0;
+
             return newFighter;
         }
 
         private static Fighter SetUpEnemy()
         {
-            Random rand = new Random();
 
             int random = rand.Next(1, 4);
 
