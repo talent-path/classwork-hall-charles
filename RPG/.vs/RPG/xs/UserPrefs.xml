@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{E5691B7A-1415-4EA1-AC8D-2AAB9BAA6892}|Default">
   <MonoDevelop.Ide.ItemProperties.RPG PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RPG/Classes/Fighter/Fighter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RPG/Program.cs">
     <Files>
-      <File FileName="RPG/Program.cs" Line="236" Column="51" />
-      <File FileName="RPG/Classes/Fighter/Fighter.cs" Line="25" Column="43" />
+      <File FileName="RPG/Program.cs" Line="38" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,11 +10,10 @@
           <Node name="RPG" expanded="True">
             <Node name="RPG" expanded="True">
               <Node name="Classes" expanded="True">
-                <Node name="Fighter" expanded="True">
-                  <Node name="Fighter.cs" selected="True" />
-                </Node>
+                <Node name="Fighter" expanded="True" />
               </Node>
               <Node name="Interfaces" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>

@@ -33,26 +33,36 @@ namespace RPG
 
             int[,] room = new int[15,15];
 
-            InitRoom(room, roomNum);
-            
-            while (player.Health > 0)
+            //While the player has not been defeated or beaten the last room
+            while (!playerDefeated || roomNum != 15)
             {
-
-                //Prompt user for movement
-                PrintBoard(room, roomNum);
-                Console.WriteLine("Enter where you would like to go");
-                char input = char.Parse(Console.ReadLine());
-
-                //Move the user
-                playerDefeated = Move(input, player, room);
-
-                //Check if the player has reached the exit
-                if(RoomComplete(player))
+                //Create the room
+                InitRoom(room, roomNum);
+                bool roomComplete = false;
+                //While player alive
+                while (!roomComplete)
                 {
-                    Console.WriteLine("Congrats! You got past room " + roomNum);
-                    roomNum++;
-                }
 
+                    //Prompt user for movement
+                    PrintBoard(room, roomNum);
+                    Console.WriteLine("Enter where you would like to go");
+                    char input = char.Parse(Console.ReadLine());
+
+                    //Move the user
+                    playerDefeated = Move(input, player, room);
+
+                    //Check if the player has reached the exit
+                    if (RoomComplete(player))
+                    {
+                        Console.WriteLine("Congrats! You got past room " + roomNum);
+                        player.RowPosition = 0;
+                        player.ColPosition = 0;
+                        roomComplete = true;
+                        roomNum++;
+                        break;
+                    }
+
+                }
             }
 
             if(playerDefeated)
@@ -69,7 +79,6 @@ namespace RPG
 
         }
 
-        //todo: refactor to be 2d array of objects??
         private static void InitRoom(int[,] room, int roomNum)
         {
             //0 for empty
@@ -215,14 +224,18 @@ namespace RPG
 
             while (player.Health > 0 && enemy.Health > 0)
             {
-                if(attacker.Weapon.Name == "Crossbow")
+                Console.WriteLine(attacker.Name + " attacks " + defender.Name + " with a " + attacker.Weapon.Name + "!");
+
+                if (attacker.Weapon.Name == "Crossbow")
                 {
                     if(rand.Next(0,2) == 0)
                     {
+                        Console.WriteLine("The crossbow actually hit!");
                         attacker.Weapon.Damage = 20;
                     }
                     else
                     {
+                        Console.WriteLine("The crossbow missed!");
                         attacker.Weapon.Damage = 0;
                     }
                 }

@@ -33,9 +33,13 @@ namespace RPG.Classes.Fighter
         {
             Random rand = new Random();
 
-            if(rand.Next(0,5) != 0)
+            if (rand.Next(0, 5) != 0)
             {
                 Health -= Armor.ReduceDamage(dmg);
+            }
+            else
+            {
+                Console.WriteLine("Attack dodged!");
             }
         }
     }
