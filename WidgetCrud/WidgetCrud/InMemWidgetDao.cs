@@ -90,7 +90,7 @@ namespace WidgetCrud
         {
             //assuming each page is pageSize wide, return the pageNumberth page of widgets
             //order by name?
-            var allWidgetsOrdered = _allWidgets.OrderBy(x => x);
+            var allWidgetsOrdered = _allWidgets.OrderBy(x => x.Name);
 
             IEnumerable<Widget> toReturn = allWidgetsOrdered.Skip((pageNumber - 1) * pageSize).Take(pageSize);
 
