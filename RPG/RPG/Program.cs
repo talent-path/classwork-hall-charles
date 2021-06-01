@@ -11,21 +11,6 @@ namespace RPG
 
         static void Main(string[] args)
         {
-            //Fighter player = SetUpPlayer();
-            //int points = 0;
-
-            //while (player.Health > 0)
-            //{
-            //    Fighter enemy = SetUpEnemy();
-
-            //    Console.WriteLine("Watch out! An enemy " + enemy.Name + " appears!");
-
-            //    points = Battle(player, enemy, points);
-
-            //}
-
-            //GameOverScreen(player, points);
-
             Fighter player = SetUpPlayer();
             int roomNum = 1;
             int points = 0;

@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/bin/Debug/netcoreapp3.1/WidgetCrud.deps.json
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/bin/Debug/netcoreapp3.1/WidgetCrud.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/bin/Debug/netcoreapp3.1/WidgetCrud.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/bin/Debug/netcoreapp3.1/WidgetCrud.dll
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/bin/Debug/netcoreapp3.1/WidgetCrud.pdb
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/obj/Debug/netcoreapp3.1/WidgetCrud.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/obj/Debug/netcoreapp3.1/WidgetCrud.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/obj/Debug/netcoreapp3.1/WidgetCrud.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/obj/Debug/netcoreapp3.1/WidgetCrud.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/obj/Debug/netcoreapp3.1/WidgetCrud.dll
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/obj/Debug/netcoreapp3.1/WidgetCrud.pdb
+/Users/charleshall/classwork-hall-charles/WidgetCrud/WidgetCrud/obj/Debug/netcoreapp3.1/WidgetCrud.genruntimeconfig.cache
