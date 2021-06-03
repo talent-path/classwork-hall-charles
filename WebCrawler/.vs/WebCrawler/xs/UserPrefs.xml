@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{7729DCAB-1D1A-41F3-98FB-E6C524BB0DA9}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WebCrawler/html.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebCrawler/Program.cs">
     <Files>
       <File FileName="WebCrawler/Program.cs" Line="18" Column="14" />
       <File FileName="WebCrawler/html.txt" Line="1" Column="1" />
@@ -9,7 +9,7 @@
         <State name="__root__">
           <Node name="WebCrawler" expanded="True">
             <Node name="WebCrawler" expanded="True">
-              <Node name="html.txt" selected="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
