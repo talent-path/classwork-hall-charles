@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="GenericsDemo/Program.cs">
     <Files>
       <File FileName="GenericHeap/MinHeap.cs" Line="115" Column="10" />
-      <File FileName="GenericsDemo/Program.cs" Line="24" Column="1" />
+      <File FileName="GenericsDemo/Program.cs" Line="37" Column="1" />
       <File FileName="LinkedList/DavidLinkedList.cs" />
       <File FileName="GenericHeap/MaxHeap.cs" />
     </Files>
@@ -24,9 +24,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/Program.cs" relfile="GenericsDemo/Program.cs" line="25" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{7729DCAB-1D1A-41F3-98FB-E6C524BB0DA9}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebCrawler/html.txt">
+    <Files>
+      <File FileName="WebCrawler/Program.cs" Line="18" Column="14" />
+      <File FileName="WebCrawler/html.txt" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WebCrawler" expanded="True">
+            <Node name="WebCrawler" expanded="True">
+              <Node name="html.txt" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.WebCrawler PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
