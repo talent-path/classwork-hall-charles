@@ -19,26 +19,40 @@ namespace GenericsDemo
             firstHeap.Add(1);
             firstHeap.Add(2);
 
-            //Remove
-            //firstHeap.Remove(2);
+            Console.WriteLine("Max Heap:");
+            Console.WriteLine(firstHeap.Pop());
 
-            Console.WriteLine(firstHeap.Peek());
+            Console.WriteLine(firstHeap.Pop());
 
-            //Pop works as expected
-            //Console.WriteLine(firstHeap.Peek());
+            Console.WriteLine(firstHeap.Pop());
 
-            //firstHeap.Pop();
+            Console.WriteLine(firstHeap.Pop());
 
-            //Console.WriteLine(firstHeap.Peek());
+            Console.WriteLine(firstHeap.Pop());
 
-            //firstHeap.Pop();
+            Console.WriteLine(firstHeap.Pop());
 
-            //Console.WriteLine(firstHeap.Peek());
+            MinHeap<int> secondHeap = new MinHeap<int>();
 
-            //firstHeap.Pop();
+            secondHeap.Add(3);
+            secondHeap.Add(4);
+            secondHeap.Add(5);
+            secondHeap.Add(6);
+            secondHeap.Add(1);
+            secondHeap.Add(2);
 
-            //Console.WriteLine(firstHeap.Peek());
+            Console.WriteLine("Min Heap:");
+            Console.WriteLine(secondHeap.Pop());
 
+            Console.WriteLine(secondHeap.Pop());
+
+            Console.WriteLine(secondHeap.Pop());
+
+            Console.WriteLine(secondHeap.Pop());
+
+            Console.WriteLine(secondHeap.Pop());
+
+            Console.WriteLine(secondHeap.Pop());
         }
     }
 }
