@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "GenericsDemo/1.0.0": {
+        "dependencies": {
+          "GenericHeap": "1.0.0",
+          "LinkedList": "1.0.0"
+        },
+        "runtime": {
+          "GenericsDemo.dll": {}
+        }
+      },
+      "GenericHeap/1.0.0": {
+        "runtime": {
+          "GenericHeap.dll": {}
+        }
+      },
+      "LinkedList/1.0.0": {
+        "runtime": {
+          "LinkedList.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GenericsDemo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GenericHeap/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LinkedList/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

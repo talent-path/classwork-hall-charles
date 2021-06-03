@@ -1,0 +1,9 @@
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/bin/Debug/netcoreapp3.1/LinkedList.deps.json
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/bin/Debug/netcoreapp3.1/LinkedList.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/bin/Debug/netcoreapp3.1/LinkedList.pdb
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/obj/Debug/netcoreapp3.1/LinkedList.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/obj/Debug/netcoreapp3.1/LinkedList.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/obj/Debug/netcoreapp3.1/LinkedList.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/obj/Debug/netcoreapp3.1/LinkedList.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/obj/Debug/netcoreapp3.1/LinkedList.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/obj/Debug/netcoreapp3.1/LinkedList.pdb

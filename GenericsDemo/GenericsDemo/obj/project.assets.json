@@ -1,0 +1,107 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "GenericHeap/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/GenericHeap.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericHeap.dll": {}
+        }
+      },
+      "LinkedList/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/LinkedList.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LinkedList.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GenericHeap/1.0.0": {
+      "type": "project",
+      "path": "../GenericHeap/GenericHeap.csproj",
+      "msbuildProject": "../GenericHeap/GenericHeap.csproj"
+    },
+    "LinkedList/1.0.0": {
+      "type": "project",
+      "path": "../LinkedList/LinkedList.csproj",
+      "msbuildProject": "../LinkedList/LinkedList.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "GenericHeap >= 1.0.0",
+      "LinkedList >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/charleshall/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/GenericsDemo.csproj",
+      "projectName": "GenericsDemo",
+      "projectPath": "/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/GenericsDemo.csproj",
+      "packagesPath": "/Users/charleshall/.nuget/packages/",
+      "outputPath": "/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/charleshall/.config/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "projectReferences": {
+            "/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/GenericHeap.csproj": {
+              "projectPath": "/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/GenericHeap.csproj"
+            },
+            "/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/LinkedList.csproj": {
+              "projectPath": "/Users/charleshall/classwork-hall-charles/GenericsDemo/LinkedList/LinkedList.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

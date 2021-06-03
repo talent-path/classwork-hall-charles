@@ -1,0 +1,9 @@
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/bin/Debug/netcoreapp3.1/GenericHeap.deps.json
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/bin/Debug/netcoreapp3.1/GenericHeap.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/bin/Debug/netcoreapp3.1/GenericHeap.pdb
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/obj/Debug/netcoreapp3.1/GenericHeap.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/obj/Debug/netcoreapp3.1/GenericHeap.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/obj/Debug/netcoreapp3.1/GenericHeap.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/obj/Debug/netcoreapp3.1/GenericHeap.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/obj/Debug/netcoreapp3.1/GenericHeap.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericHeap/obj/Debug/netcoreapp3.1/GenericHeap.pdb

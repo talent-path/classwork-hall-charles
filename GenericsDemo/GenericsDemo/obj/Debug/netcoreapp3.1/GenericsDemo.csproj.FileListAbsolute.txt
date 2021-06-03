@@ -1,0 +1,17 @@
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/GenericsDemo.deps.json
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/GenericsDemo.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/GenericsDemo.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/GenericsDemo.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/GenericsDemo.pdb
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/GenericHeap.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/LinkedList.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/LinkedList.pdb
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/bin/Debug/netcoreapp3.1/GenericHeap.pdb
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.csproj.CopyComplete
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.dll
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.pdb
+/Users/charleshall/classwork-hall-charles/GenericsDemo/GenericsDemo/obj/Debug/netcoreapp3.1/GenericsDemo.genruntimeconfig.cache

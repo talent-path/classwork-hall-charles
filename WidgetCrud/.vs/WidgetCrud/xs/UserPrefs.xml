@@ -4,7 +4,7 @@
     <Files>
       <File FileName="WidgetCrud/Program.cs" Line="106" Column="1" />
       <File FileName="WidgetCrud/InMemWidgetDao.cs" Line="93" Column="1" />
-      <File FileName="WidgetCrud/Widget.cs" Line="1" Column="1" />
+      <File FileName="WidgetCrud/Widget.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
