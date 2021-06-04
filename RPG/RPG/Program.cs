@@ -37,7 +37,7 @@ namespace RPG
                     Move(input, player, room);
 
                     //Check if the player has reached the exit
-                    if (RoomComplete(player))
+                    if (player.RowPosition == 14 && player.ColPosition == 14)
                     {
                         Console.WriteLine("Congrats! You got past room " + roomNum);
                         player.RowPosition = 0;
@@ -392,11 +392,6 @@ namespace RPG
             int potion = Convert.ToInt32(Console.ReadLine());
 
             return GetType(type, name, weapon, armor, potion);
-        }
-
-        private static Boolean RoomComplete(Fighter fighter)
-        {
-            return fighter.RowPosition == 14 && fighter.ColPosition == 14;
         }
 
         private static Fighter GetEnemy(int row, int col)
