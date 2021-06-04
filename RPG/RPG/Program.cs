@@ -15,7 +15,6 @@ namespace RPG
         {
             Fighter player = SetUpPlayer();
             int roomNum = 1;
-            int points = 0;
             bool playerDefeated = false;
 
             int[,] room = new int[15,15];
@@ -66,12 +65,10 @@ namespace RPG
             if(playerDefeated)
             {
                 Console.WriteLine("You have been defeated!");
-                GameOverScreen(player, points);
             }
             else
             {
                 Console.WriteLine("You have won!");
-                GameOverScreen(player, points);
             }
             
 
@@ -359,6 +356,7 @@ namespace RPG
 
             if (enemy.Health <= 0)
             {
+                room[enemy.RowPosition, enemy.ColPosition] = 0;
                 Console.WriteLine("You have defeated the " + enemy.Name);
                 Console.WriteLine("---------------------");
             }
@@ -444,6 +442,7 @@ namespace RPG
 
             if(enemy.Health <= 0)
             {
+                room[enemy.RowPosition, enemy.ColPosition] = 0;
                 Console.WriteLine("You have defeated the " + enemy.Name);
                 Console.WriteLine("---------------------");
             }
@@ -525,21 +524,5 @@ namespace RPG
             return new Brute();
         }
 
-        private static void GameOverScreen(Fighter player, int points)
-        {
-            Console.WriteLine("\nGAME OVER");
-            if (points == 0)
-            {
-                Console.WriteLine("Impressive, " + player.Name + ", you managed to kill absolutely " + points + " enemies.");
-            }
-            else if (points == 1)
-            {
-                Console.WriteLine("Uh, " + player.Name + ", you only killed " + points + " enemy. Disappointing performance.");
-            }
-            else
-            {
-                Console.WriteLine("Congratulations, " + player.Name + ", you defeated " + points + " enemies.");
-            }
-        }
     }
 }
