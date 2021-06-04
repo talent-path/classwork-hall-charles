@@ -7,6 +7,8 @@ namespace RPG.Classes.Fighter
 {
     public class Ninja : Fighter
     {
+        Random rand = new Random();
+
         public Ninja()
         {
             Name = "Ninja";
@@ -26,6 +28,19 @@ namespace RPG.Classes.Fighter
 
         public override void Attack(IFighter toAttack)
         {
+            if (Weapon.Name == "Crossbow")
+            {
+                if (rand.Next(0, 2) == 0)
+                {
+                    Console.WriteLine("The crossbow actually hit!");
+                    Weapon.Damage = 20;
+                }
+                else
+                {
+                    Console.WriteLine("The crossbow missed!");
+                    Weapon.Damage = 0;
+                }
+            }
             toAttack.Defend(Weapon.Damage);
         }
 
@@ -36,6 +51,12 @@ namespace RPG.Classes.Fighter
             if (rand.Next(0, 5) != 0)
             {
                 Health -= Armor.ReduceDamage(dmg);
+                if (Name != "Ninja" && Potion != 0 && Health <= 6)
+                {
+                    Console.WriteLine("You healed 4 hp with a potion!");
+                    Health += 4;
+                    Potion--;
+                }
             }
             else
             {

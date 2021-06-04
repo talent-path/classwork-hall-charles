@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.RPG PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="RPG/Program.cs">
     <Files>
-      <File FileName="RPG/Program.cs" Line="198" Column="67" />
-      <File FileName="RPG/Classes/Fighter/Fighter.cs" />
+      <File FileName="RPG/Program.cs" Line="388" Column="17" />
+      <File FileName="RPG/Classes/Fighter/Fighter.cs" Line="37" Column="56" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
