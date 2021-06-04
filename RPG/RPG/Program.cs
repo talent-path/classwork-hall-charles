@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RPG.Classes.Armor;
 using RPG.Classes.Fighter;
 using RPG.Classes.Weapon;
@@ -8,6 +9,7 @@ namespace RPG
     class Program
     {
         static Random rand = new Random();
+        static List<Fighter> enemyList = new List<Fighter>();
 
         static void Main(string[] args)
         {
@@ -23,11 +25,11 @@ namespace RPG
             {
                 //Create the room
                 InitRoom(room, roomNum);
+                EnemyMove();
                 bool roomComplete = false;
                 //While player alive
                 while (!roomComplete)
                 {
-
                     //Prompt user for movement
                     PrintBoard(room, roomNum);
                     Console.WriteLine("Enter where you would like to go");
@@ -46,7 +48,6 @@ namespace RPG
                         roomNum++;
                         break;
                     }
-
                 }
             }
 
@@ -64,8 +65,10 @@ namespace RPG
 
         }
 
+        //Add list of enemies
         private static void InitRoom(int[,] room, int roomNum)
         {
+            enemyList.Clear();
             //0 for empty
             //1 for enemy
             //2 for player
@@ -97,16 +100,17 @@ namespace RPG
                     int spawnCol = rand.Next(0, 14);
 
                     Fighter enemy = SetUpEnemy();
+                    enemyList.Add(enemy);
 
                     //If the spot is not empty, place
                     if (room[spawnRow, spawnCol] == 0)
                     {
                         room[spawnRow, spawnCol] = 1;
+                        enemy.ColPosition = spawnCol;
+                        enemy.RowPosition = spawnRow;
                         placed = true;
                     }
-
                 }
-
             }
 
         }
@@ -129,7 +133,7 @@ namespace RPG
                 || (fighter.ColPosition != 14 && direction == 'd' && room[fighter.RowPosition, fighter.ColPosition + 1] != 0))
             {
                 //Battle
-                playerDefeated = Battle(fighter, room);
+                playerDefeated = Battle(fighter, direction, room);
             }
 
             if (playerDefeated)
@@ -184,6 +188,22 @@ namespace RPG
             return playerDefeated;
         }
 
+        private static void EnemyMove(Fighter player, int[,] room)
+        {
+            foreach(Fighter enemy in enemyList)
+            {
+                int colDiff = Math.Abs(enemy.ColPosition - player.ColPosition);
+                int rowDiff = Math.Abs(enemy.RowPosition - player.RowPosition);
+
+                //See which direction enemy should go, remove abs?
+                if(colDiff > rowDiff)
+                {
+
+                    room[enemy.RowPosition, enemy.ColPosition] = 0;
+                }
+            }
+        }
+
         private static void PrintBoard(int[,] board, int roomNum)
         {
             Console.WriteLine();
@@ -200,10 +220,46 @@ namespace RPG
             }
         }
 
-        private static bool Battle(Fighter player, int[,] room)
+        private static Fighter GetEnemy(int row, int col)
+        {
+            foreach(Fighter enemy in enemyList)
+            {
+                if(enemy.RowPosition == row && enemy.ColPosition == col)
+                {
+                    return enemy;
+                }
+            }
+            return null;
+        }
+
+        private static bool Battle(Fighter player, char direction, int[,] room)
         {
             Fighter attacker = player;
-            Fighter enemy = SetUpEnemy();
+            int enemyCol = 0, enemyRow = 0;
+
+            if(direction == 'w')
+            {
+                enemyCol = player.ColPosition;
+                enemyRow = player.RowPosition - 1;
+            }
+            if(direction == 'a')
+            {
+                enemyCol = player.ColPosition - 1;
+                enemyRow = player.RowPosition;
+            }
+            if(direction == 's')
+            {
+                enemyCol = player.ColPosition;
+                enemyRow = player.RowPosition + 1;
+            }
+            if(direction == 'd')
+            {
+                enemyCol = player.ColPosition + 1;
+                enemyRow = player.RowPosition;
+            }
+
+
+            Fighter enemy = GetEnemy(enemyRow, enemyCol);
             Fighter defender = enemy;
             bool playerDefeated = false;
 
@@ -250,6 +306,7 @@ namespace RPG
 
             if(enemy.Health <= 0)
             {
+                enemyList.Remove(enemy);
                 Console.WriteLine("You have defeated the " + enemy.Name);
                 Console.WriteLine("---------------------");
             }
