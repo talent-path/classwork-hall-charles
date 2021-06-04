@@ -21,13 +21,12 @@ namespace RPG
             int[,] room = new int[15,15];
 
             //While the player has not been defeated or beaten the last room
-            while (!playerDefeated || roomNum != 15)
+            while (playerDefeated == false || roomNum != 15)
             {
                 //Create the room
                 InitRoom(room, roomNum);
-                EnemyMove();
                 bool roomComplete = false;
-                //While player alive
+                //While room is not completed
                 while (!roomComplete)
                 {
                     //Prompt user for movement
@@ -48,6 +47,19 @@ namespace RPG
                         roomNum++;
                         break;
                     }
+
+                    //Move enemies
+                    playerDefeated = EnemyMove(player, room);
+
+                    if(playerDefeated)
+                    {
+                        break;
+                    }
+                }
+                //Added because for some reason despite player defeated == true, does not break while loop??
+                if(playerDefeated == true)
+                {
+                    break;
                 }
             }
 
@@ -188,20 +200,86 @@ namespace RPG
             return playerDefeated;
         }
 
-        private static void EnemyMove(Fighter player, int[,] room)
+        private static bool EnemyMove(Fighter player, int[,] room)
         {
-            foreach(Fighter enemy in enemyList)
+            bool playerDefeated = false;
+            foreach (Fighter enemy in enemyList)
             {
-                int colDiff = Math.Abs(enemy.ColPosition - player.ColPosition);
-                int rowDiff = Math.Abs(enemy.RowPosition - player.RowPosition);
+                if (enemy.Health > 0)
+                { 
+                int colDiff = enemy.ColPosition - player.ColPosition;
+                int rowDiff = enemy.RowPosition - player.RowPosition;
 
-                //See which direction enemy should go, remove abs?
-                if(colDiff > rowDiff)
-                {
+                    //If the column difference is greater than row, move left/right
+                    if (Math.Abs(colDiff) > Math.Abs(rowDiff))
+                    {
+                        //Negative difference, means player is to the right
+                        if (colDiff < 0)
+                        {
+                            //If the spot the enemy is about to move to is taken by the player battle
+                            if (room[enemy.RowPosition, enemy.ColPosition + 1] == 2)
+                            {
+                                playerDefeated = EnemyBattle(enemy, player, room);
+                            }
 
-                    room[enemy.RowPosition, enemy.ColPosition] = 0;
+                            if (enemy.Health > 0)
+                            {
+                                room[enemy.RowPosition, enemy.ColPosition + 1] = 1;
+                                room[enemy.RowPosition, enemy.ColPosition] = 0;
+                                enemy.ColPosition += 1;
+                            }
+                        }
+                        else if (colDiff > 0)//Positive difference, means player is to the left
+                        {
+                            if (room[enemy.RowPosition, enemy.ColPosition - 1] == 2)
+                            {
+                                playerDefeated = EnemyBattle(enemy, player, room);
+                            }
+
+                            if (enemy.Health > 0)
+                            {
+                                room[enemy.RowPosition, enemy.ColPosition - 1] = 1;
+                                room[enemy.RowPosition, enemy.ColPosition] = 0;
+                                enemy.ColPosition -= 1;
+                            }
+                        }
+                    }//Else if the row difference is greater than column, move up/down
+                    else if (Math.Abs(rowDiff) > Math.Abs(colDiff))
+                    {
+                        //Negative difference, means player is down
+                        if (rowDiff < 0)
+                        {
+                            if (room[enemy.RowPosition + 1, enemy.ColPosition] == 2)
+                            {
+                                playerDefeated = EnemyBattle(enemy, player, room);
+                            }
+
+                            if (enemy.Health > 0)
+                            {
+                                room[enemy.RowPosition + 1, enemy.ColPosition] = 1;
+                                room[enemy.RowPosition, enemy.ColPosition] = 0;
+                                enemy.RowPosition += 1;
+                            }
+                        }
+                        else if (rowDiff > 0)//Positive difference, means player is up
+                        {
+                            if (room[enemy.RowPosition - 1, enemy.ColPosition] == 2)
+                            {
+                                playerDefeated = EnemyBattle(enemy, player, room);
+                            }
+
+                            if (enemy.Health > 0)
+                            {
+                                room[enemy.RowPosition - 1, enemy.ColPosition] = 1;
+                                room[enemy.RowPosition, enemy.ColPosition] = 0;
+                                enemy.RowPosition -= 1;
+                            }
+                        }
+                    }
                 }
             }
+
+            return playerDefeated;
         }
 
         private static void PrintBoard(int[,] board, int roomNum)
@@ -232,6 +310,67 @@ namespace RPG
             return null;
         }
 
+        private static bool EnemyBattle(Fighter enemy, Fighter player, int[,] room)
+        {
+            Fighter attacker = player;
+            Fighter defender = enemy;
+            bool playerDefeated = false;
+
+            while (player.Health > 0 && enemy.Health > 0)
+            {
+                Console.WriteLine(attacker.Name + " attacks " + defender.Name + " with a " + attacker.Weapon.Name + "!");
+
+                if (attacker.Weapon.Name == "Crossbow")
+                {
+                    if (rand.Next(0, 2) == 0)
+                    {
+                        Console.WriteLine("The crossbow actually hit!");
+                        attacker.Weapon.Damage = 20;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The crossbow missed!");
+                        attacker.Weapon.Damage = 0;
+                    }
+                }
+
+                attacker.Attack(defender);
+
+                if (defender.Name == player.Name && player.Health <= 6 && player.Potion > 0)
+                {
+                    Console.WriteLine("You healed 4 hp with a potion!");
+                    player.Health += 4;
+                    player.Potion--;
+                }
+
+                if (attacker.Name == "Troll")
+                {
+                    Console.WriteLine("The dang troll regenerated 1 hp!");
+                    attacker.Health += 1;
+                }
+
+                Fighter temp = attacker;
+                attacker = defender;
+                defender = temp;
+
+                Console.WriteLine("Current Health: " + player.Health);
+                Console.WriteLine("Enemy Health: " + enemy.Health);
+            }
+
+            if (enemy.Health <= 0)
+            {
+                Console.WriteLine("You have defeated the " + enemy.Name);
+                Console.WriteLine("---------------------");
+            }
+
+            if (player.Health <= 0)
+            {
+                playerDefeated = true;
+            }
+
+            return playerDefeated;
+        }
+
         private static bool Battle(Fighter player, char direction, int[,] room)
         {
             Fighter attacker = player;
@@ -257,7 +396,6 @@ namespace RPG
                 enemyCol = player.ColPosition + 1;
                 enemyRow = player.RowPosition;
             }
-
 
             Fighter enemy = GetEnemy(enemyRow, enemyCol);
             Fighter defender = enemy;
@@ -306,7 +444,6 @@ namespace RPG
 
             if(enemy.Health <= 0)
             {
-                enemyList.Remove(enemy);
                 Console.WriteLine("You have defeated the " + enemy.Name);
                 Console.WriteLine("---------------------");
             }
