@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/bin/Debug/netcoreapp3.1/FakeAutoTrader.deps.json
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/bin/Debug/netcoreapp3.1/FakeAutoTrader.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/bin/Debug/netcoreapp3.1/FakeAutoTrader.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/bin/Debug/netcoreapp3.1/FakeAutoTrader.dll
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/bin/Debug/netcoreapp3.1/FakeAutoTrader.pdb
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/obj/Debug/netcoreapp3.1/FakeAutoTrader.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/obj/Debug/netcoreapp3.1/FakeAutoTrader.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/obj/Debug/netcoreapp3.1/FakeAutoTrader.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/obj/Debug/netcoreapp3.1/FakeAutoTrader.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/obj/Debug/netcoreapp3.1/FakeAutoTrader.dll
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/obj/Debug/netcoreapp3.1/FakeAutoTrader.pdb
+/Users/charleshall/classwork-hall-charles/FakeAutoTrader/FakeAutoTrader/obj/Debug/netcoreapp3.1/FakeAutoTrader.genruntimeconfig.cache

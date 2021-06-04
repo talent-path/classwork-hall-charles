@@ -1,14 +1,13 @@
-﻿<Properties StartupConfiguration="{7729DCAB-1D1A-41F3-98FB-E6C524BB0DA9}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WebCrawler/Program.cs">
+﻿<Properties StartupConfiguration="{4A1308BC-6E9F-4CE7-8F85-7CC4B6B75206}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FakeAutoTrader/Program.cs">
     <Files>
-      <File FileName="WebCrawler/Program.cs" Line="39" Column="1" />
-      <File FileName="WebCrawler/html.txt" />
+      <File FileName="FakeAutoTrader/Program.cs" Line="43" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="WebCrawler" expanded="True">
-            <Node name="WebCrawler" expanded="True">
+          <Node name="FakeAutoTrader" expanded="True">
+            <Node name="FakeAutoTrader" expanded="True">
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
@@ -16,11 +15,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.WebCrawler PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.FakeAutoTrader PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
 </Properties>

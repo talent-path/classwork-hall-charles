@@ -13,7 +13,7 @@ namespace RPG.Classes.Fighter
         {
             Name = "Troll";
             Health = 10;
-            Weapon = new Crossbow();
+            Weapon = new Sword();
             Armor = new Helmet();
         }
 

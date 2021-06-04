@@ -138,6 +138,7 @@ namespace RPG
             {
                 //Battle
                 enemyDefeated = Battle(fighter, direction, room);
+                //If the enemy is defeated, you can move there bc it is empty, otherwise no bc the enemy is still there
                 valid = enemyDefeated;
             }
 
@@ -184,10 +185,6 @@ namespace RPG
                         fighter.ColPosition += 1;
                         break;
                 }
-            }
-            else//Else if not valid error message
-            {
-                Console.WriteLine("ERROR: You cannot move there!!");
             }
 
             return fighter.Health >= 0;
@@ -246,11 +243,12 @@ namespace RPG
                     int colDiff = enemy.ColPosition - player.ColPosition;
                     int rowDiff = enemy.RowPosition - player.RowPosition;
 
-                    //If player is adjacent to enemy 
-                    if ((room[enemy.RowPosition, enemy.ColPosition + 1] == 2)
-                        || (room[enemy.RowPosition, enemy.ColPosition - 1] == 2)
-                        || (room[enemy.RowPosition + 1, enemy.ColPosition] == 2)
-                        || (room[enemy.RowPosition - 1, enemy.ColPosition] == 2))
+                    //If player is adjacent to enemy
+
+                    if ((enemy.ColPosition != 14 && room[enemy.RowPosition, enemy.ColPosition + 1] == 2)
+                        || (enemy.ColPosition != 0 && room[enemy.RowPosition, enemy.ColPosition - 1] == 2)
+                        || (enemy.RowPosition != 14 && room[enemy.RowPosition + 1, enemy.ColPosition] == 2)
+                        || (enemy.RowPosition != 0 && room[enemy.RowPosition - 1, enemy.ColPosition] == 2))
                     {
                         playerDefeated = EnemyBattle(enemy, player, room);
                     }
