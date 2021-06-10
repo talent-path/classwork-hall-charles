@@ -1225,6 +1225,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "VendingMachine/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/VendingMachine.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VendingMachine.dll": {}
+        }
       }
     }
   },
@@ -4613,13 +4623,19 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "VendingMachine/1.0.0": {
+      "type": "project",
+      "path": "../VendingMachine/VendingMachine.csproj",
+      "msbuildProject": "../VendingMachine/VendingMachine.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "NUnit >= 3.12.0",
-      "NUnit3TestAdapter >= 3.16.1"
+      "NUnit3TestAdapter >= 3.16.1",
+      "VendingMachine >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4646,7 +4662,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/VendingMachine.csproj": {
+              "projectPath": "/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/VendingMachine.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

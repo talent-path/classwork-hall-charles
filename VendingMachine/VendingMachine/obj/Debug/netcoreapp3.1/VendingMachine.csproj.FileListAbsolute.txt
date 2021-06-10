@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/bin/Debug/netcoreapp3.1/VendingMachine.deps.json
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/bin/Debug/netcoreapp3.1/VendingMachine.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/bin/Debug/netcoreapp3.1/VendingMachine.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/bin/Debug/netcoreapp3.1/VendingMachine.dll
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/bin/Debug/netcoreapp3.1/VendingMachine.pdb
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/obj/Debug/netcoreapp3.1/VendingMachine.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/obj/Debug/netcoreapp3.1/VendingMachine.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/obj/Debug/netcoreapp3.1/VendingMachine.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/obj/Debug/netcoreapp3.1/VendingMachine.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/obj/Debug/netcoreapp3.1/VendingMachine.dll
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/obj/Debug/netcoreapp3.1/VendingMachine.pdb
+/Users/charleshall/classwork-hall-charles/VendingMachine/VendingMachine/obj/Debug/netcoreapp3.1/VendingMachine.genruntimeconfig.cache

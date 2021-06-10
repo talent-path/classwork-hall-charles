@@ -1,17 +1,20 @@
 ﻿<Properties StartupConfiguration="{E4178C7B-C06A-4189-838D-9068D994A676}|Default">
   <MonoDevelop.Ide.ItemProperties.VendingMachine FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachine/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachineTests/UnitTest1.cs">
     <Files>
-      <File FileName="VendingMachine/Program.cs" Line="1" Column="1" />
+      <File FileName="VendingMachine/VendingMachineView.cs" Line="23" Column="61" />
+      <File FileName="VendingMachine/IInventoryDao.cs" Line="9" Column="45" />
+      <File FileName="VendingMachine/InMemInventoryDao.cs" Line="20" Column="1" />
+      <File FileName="VendingMachineTests/UnitTest1.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="VendingMachine" expanded="True">
-            <Node name="VendingMachine" expanded="True">
-              <Node name="Program.cs" selected="True" />
+            <Node name="VendingMachine" expanded="True" />
+            <Node name="VendingMachineTests" expanded="True">
+              <Node name="UnitTest1.cs" selected="True" />
             </Node>
-            <Node name="VendingMachineTests" expanded="True" />
           </Node>
         </State>
       </Pad>
