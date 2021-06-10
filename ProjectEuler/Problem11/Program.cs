@@ -24,7 +24,6 @@ namespace Problem11
 
                     rowIndex++;
                 }
-
                 Console.WriteLine(ProductOfFour(grid));
             }
         }

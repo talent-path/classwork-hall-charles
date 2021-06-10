@@ -13,6 +13,9 @@ namespace Utils
         /// <returns>True if prime, False if not prime.</returns>
         public static bool IsPrime(BigInteger num)
         {
+            if (num < 2)
+                return false;
+
             bool prime = true;
 
             BigInteger squareRoot = GetSquareRoot(num);
@@ -50,6 +53,22 @@ namespace Utils
                     squareRoot = i - 1;
                     break;
                }
+            }
+
+            return squareRoot;
+        }
+
+        public static int GetSquareRoot(int num)
+        {
+            int squareRoot = 0;
+
+            for (int i = 1; i < num; i++)
+            {
+                if ((i * i) > num)
+                {
+                    squareRoot = i - 1;
+                    break;
+                }
             }
 
             return squareRoot;
@@ -109,6 +128,23 @@ namespace Utils
             }
 
             return squareOfSums * squareOfSums;
+        }
+
+        public static long GetFactors(long num)
+        {
+            long count = 0;
+            for(long i = 1; i * i <= num; i++)
+            {
+                if(num % i == 0)
+                {
+                    count++;
+                    if(i * i != num)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
     }
 }

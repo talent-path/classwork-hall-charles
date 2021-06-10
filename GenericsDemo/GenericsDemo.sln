@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList", "LinkedList\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericHeap", "GenericHeap\GenericHeap.csproj", "{A6C56940-28C7-47BF-A39B-2D7739AAE777}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedListTests", "LinkedListTests\LinkedListTests.csproj", "{A35CCD80-37B6-42F6-97DD-6A114873EAAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A6C56940-28C7-47BF-A39B-2D7739AAE777}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6C56940-28C7-47BF-A39B-2D7739AAE777}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6C56940-28C7-47BF-A39B-2D7739AAE777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A35CCD80-37B6-42F6-97DD-6A114873EAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35CCD80-37B6-42F6-97DD-6A114873EAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35CCD80-37B6-42F6-97DD-6A114873EAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35CCD80-37B6-42F6-97DD-6A114873EAAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

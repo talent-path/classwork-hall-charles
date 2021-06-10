@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{E4178C7B-C06A-4189-838D-9068D994A676}|Default">
+  <MonoDevelop.Ide.ItemProperties.VendingMachine FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachine/Program.cs">
+    <Files>
+      <File FileName="VendingMachine/Program.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="VendingMachine" expanded="True">
+            <Node name="VendingMachine" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+            <Node name="VendingMachineTests" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.VendingMachineTests FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

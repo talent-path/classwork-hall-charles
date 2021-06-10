@@ -14,6 +14,7 @@ namespace RPG
         static void Main(string[] args)
         {
             Fighter player = SetUpPlayer();
+            player.Health = 1000;
             int roomNum = 1;
             bool playerDefeated = false;
 
