@@ -13,12 +13,15 @@ namespace VendingMachine
             bool valid = false;
             while (!valid)
             {
+                Console.WriteLine("Vending Machine Items");
+                Console.WriteLine("--------------------------------------");
                 Console.WriteLine("1. Hershey's Chocolate Bar - $2.00");
                 Console.WriteLine("2. Reese's Peanut Butter Cup - $2.50");
                 Console.WriteLine("3. Skittles - $2.25");
                 Console.WriteLine("4. M&M's - $1.75");
                 Console.WriteLine("5. Peanut M&M's - $1.90");
-
+                Console.WriteLine("6. To Exit");
+                Console.WriteLine("--------------------------------------");
                 valid = int.TryParse(Console.ReadLine(), out choice);
                 if (valid) valid = choice > 0 && choice < 6;
             }

@@ -6,7 +6,14 @@ namespace VendingMachine
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            VendingMachineController controller = new VendingMachineController(
+                new VendingMachineService(
+                    new InMemInventoryDao()
+                ),
+                new VendingMachineView()
+            );
+
+            controller.Run();
         }
     }
 }

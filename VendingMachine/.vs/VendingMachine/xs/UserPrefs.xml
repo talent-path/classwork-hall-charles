@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{E4178C7B-C06A-4189-838D-9068D994A676}|Default">
-  <MonoDevelop.Ide.ItemProperties.VendingMachine FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachineTests/UnitTest1.cs">
+  <MonoDevelop.Ide.ItemProperties.VendingMachine PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachineTests/VendingMachineServiceTests.cs">
     <Files>
-      <File FileName="VendingMachine/VendingMachineView.cs" Line="23" Column="61" />
-      <File FileName="VendingMachine/IInventoryDao.cs" Line="9" Column="45" />
-      <File FileName="VendingMachine/InMemInventoryDao.cs" Line="20" Column="1" />
-      <File FileName="VendingMachineTests/UnitTest1.cs" Line="1" Column="1" />
+      <File FileName="VendingMachine/VendingMachineService.cs" Line="45" Column="43" />
+      <File FileName="VendingMachine/Program.cs" Line="1" Column="1" />
+      <File FileName="VendingMachine/VendingMachineController.cs" Line="27" Column="66" />
+      <File FileName="VendingMachine/VendingMachineView.cs" Line="1" Column="1" />
+      <File FileName="VendingMachine/InMemInventoryDao.cs" Line="1" Column="1" />
+      <File FileName="VendingMachineTests/VendingMachineServiceTests.cs" Line="30" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +15,21 @@
           <Node name="VendingMachine" expanded="True">
             <Node name="VendingMachine" expanded="True" />
             <Node name="VendingMachineTests" expanded="True">
-              <Node name="UnitTest1.cs" selected="True" />
+              <Node name="VendingMachineServiceTests.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="VendingMachine" expanded="True">
+            <Node name="VendingMachineTests" expanded="True">
+              <Node name="VendingMachineTests" expanded="True">
+                <Node name="VendingMachineInMemDaoTests" expanded="True">
+                  <Node name="UpdateVendingMachineItem" selected="True" />
+                </Node>
+                <Node name="VendingMachineServiceTests" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -22,7 +38,6 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.VendingMachineTests FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

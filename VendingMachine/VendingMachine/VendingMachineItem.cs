@@ -6,6 +6,7 @@ namespace VendingMachine
         public int Id { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
+        public decimal Price { get; set; }
 
         public VendingMachineItem()
         {
@@ -15,6 +16,7 @@ namespace VendingMachine
         {
             Id = item.Id;
             Name = item.Name;
+            Price = item.Price;
             Quantity = item.Quantity;
         }
     }

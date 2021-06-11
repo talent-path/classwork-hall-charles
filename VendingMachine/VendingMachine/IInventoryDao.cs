@@ -4,11 +4,13 @@ namespace VendingMachine
     public interface IInventoryDao
     {
 
-        int Add(VendingMachineItem item);
+        int AddVendingMachineItem(VendingMachineItem item);
 
-        VendingMachineItem GetById(int id); 
+        VendingMachineItem GetVendingMachineItemById(int id); 
 
         void UpdateVendingMachineItem(VendingMachineItem item);
+
+        void PurchaseCandyById(int id);
 
         void DeleteVendingMachineItemById(int id);
     }

@@ -7,13 +7,13 @@ namespace VendingMachine
     public class InMemInventoryDao : IInventoryDao
     {
 
-        List<VendingMachineItem> _allItems = new List<VendingMachineItem>();
+        private List<VendingMachineItem> _allItems = new List<VendingMachineItem>();
 
         public InMemInventoryDao()
         {
         }
 
-        public int Add(VendingMachineItem item)
+        public int AddVendingMachineItem(VendingMachineItem item)
         {
             if (item == null) throw new ArgumentNullException("Cannot add a null item.");
 
@@ -23,14 +23,28 @@ namespace VendingMachine
             return item.Id;
         }
 
-        public VendingMachineItem GetById(int id)
+        public VendingMachineItem GetVendingMachineItemById(int id)
         {
-            return _allItems.SingleOrDefault(w => w.Id == id);
+            var receivedItem = _allItems.SingleOrDefault(w => w.Id == id);
+
+            if (receivedItem == null) throw new ArgumentException("No item with that id was found.");
+
+            return receivedItem;
         }
 
         public void UpdateVendingMachineItem(VendingMachineItem item)
         {
+            if (item == null) throw new ArgumentNullException("Cannot update a null item.");
             _allItems = _allItems.Select(w => w.Id == item.Id ? item : w).ToList();
+        }
+
+        public void PurchaseCandyById(int id)
+        {
+            var receivedItem = _allItems.SingleOrDefault(w => w.Id == id);
+
+            if (receivedItem == null) throw new ArgumentException("No item with that id was found.");
+
+            receivedItem.Quantity--;
         }
 
         public void DeleteVendingMachineItemById(int id)
