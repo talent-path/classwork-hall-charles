@@ -10,7 +10,7 @@ namespace VendingMachine
 
         void UpdateVendingMachineItem(VendingMachineItem item);
 
-        void PurchaseCandyById(int id);
+        decimal PurchaseCandyById(int id, decimal userFunds);
 
         void DeleteVendingMachineItemById(int id);
     }

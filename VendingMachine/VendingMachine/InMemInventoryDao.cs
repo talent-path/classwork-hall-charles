@@ -38,13 +38,14 @@ namespace VendingMachine
             _allItems = _allItems.Select(w => w.Id == item.Id ? item : w).ToList();
         }
 
-        public void PurchaseCandyById(int id)
+        public decimal PurchaseCandyById(int id, decimal userFunds)
         {
             var receivedItem = _allItems.SingleOrDefault(w => w.Id == id);
 
             if (receivedItem == null) throw new ArgumentException("No item with that id was found.");
 
             receivedItem.Quantity--;
+            return userFunds - receivedItem.Price;
         }
 
         public void DeleteVendingMachineItemById(int id)

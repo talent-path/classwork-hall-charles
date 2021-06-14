@@ -1,22 +1,21 @@
 ﻿<Properties StartupConfiguration="{E4178C7B-C06A-4189-838D-9068D994A676}|Default">
   <MonoDevelop.Ide.ItemProperties.VendingMachine PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachineTests/VendingMachineServiceTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachine/FileDao.cs">
     <Files>
-      <File FileName="VendingMachine/VendingMachineService.cs" Line="45" Column="43" />
-      <File FileName="VendingMachine/Program.cs" Line="1" Column="1" />
-      <File FileName="VendingMachine/VendingMachineController.cs" Line="27" Column="66" />
-      <File FileName="VendingMachine/VendingMachineView.cs" Line="1" Column="1" />
-      <File FileName="VendingMachine/InMemInventoryDao.cs" Line="1" Column="1" />
-      <File FileName="VendingMachineTests/VendingMachineServiceTests.cs" Line="30" Column="30" />
+      <File FileName="VendingMachine/Program.cs" Line="12" Column="19" />
+      <File FileName="VendingMachine/FileDao.cs" Line="70" Column="37" />
+      <File FileName="VendingMachine/VendingMachineController.cs" Line="54" Column="71" />
+      <File FileName="VendingMachine/VendingMachineService.cs" Line="47" Column="1" />
+      <File FileName="VendingMachine/Seed.txt" Line="1" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="VendingMachine" expanded="True">
-            <Node name="VendingMachine" expanded="True" />
-            <Node name="VendingMachineTests" expanded="True">
-              <Node name="VendingMachineServiceTests.cs" selected="True" />
+            <Node name="VendingMachine" expanded="True">
+              <Node name="FileDao.cs" selected="True" />
             </Node>
+            <Node name="VendingMachineTests" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -36,7 +35,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../VendingMachine/Program.cs" line="10" column="20" endLine="10" endColumn="55" offsetX="-1" offsetY="-1" expression="                    new FileDao(&quot;../../../../Seed.txt&quot;)&#xD;&#xA;" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

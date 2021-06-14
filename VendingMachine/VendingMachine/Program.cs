@@ -8,7 +8,7 @@ namespace VendingMachine
         {
             VendingMachineController controller = new VendingMachineController(
                 new VendingMachineService(
-                    new InMemInventoryDao()
+                    new FileDao("../../../Seed.txt")
                 ),
                 new VendingMachineView()
             );

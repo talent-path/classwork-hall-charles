@@ -171,30 +171,30 @@ namespace VendingMachineTests
         //DELETE
         //********
 
-        [Test]
-        public void PurchaseCandyById()
-        {
-            //Arrange
-            VendingMachineItem toAdd = new VendingMachineItem
-            {
-                Name = "test",
-                Price = 1.00m,
-                Quantity = 10
-            };
+        //[Test]
+        //public void PurchaseCandyById()
+        //{
+        //    //Arrange
+        //    VendingMachineItem toAdd = new VendingMachineItem
+        //    {
+        //        Name = "test",
+        //        Price = 1.00m,
+        //        Quantity = 10
+        //    };
 
-            //Act
-            int toAddId = _toTest.AddVendingMachineItem(toAdd);
-            _toTest.PurchaseCandyById(toAddId);
-            var recievedItem = _toTest.GetVendingMachineItemById(toAddId);
+        //    //Act
+        //    int toAddId = _toTest.AddVendingMachineItem(toAdd);
+        //    _toTest.PurchaseCandyById(toAddId);
+        //    var recievedItem = _toTest.GetVendingMachineItemById(toAddId);
 
-            //Assert
-            Assert.AreEqual(9, recievedItem.Quantity);
-         }
+        //    //Assert
+        //    Assert.AreEqual(9, recievedItem.Quantity);
+        // }
 
-        public void PurchaseInvalidCandy()
-        {
-            Assert.Throws<ArgumentNullException>(() => _toTest.PurchaseCandyById(10000));
-        }
+        //public void PurchaseInvalidCandy()
+        //{
+        //    Assert.Throws<ArgumentNullException>(() => _toTest.PurchaseCandyById(10000));
+        //}
 
 
         [Test]

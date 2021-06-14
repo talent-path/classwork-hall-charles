@@ -27,6 +27,7 @@ namespace VendingMachineTests
             VendingMachineItem toAdd = new VendingMachineItem
             {
                 Name = null,
+                Price = 1.00m,
                 Quantity = 10
             };
 
@@ -39,6 +40,7 @@ namespace VendingMachineTests
             VendingMachineItem toAdd = new VendingMachineItem
             {
                 Name = "",
+                Price = 1.00m,
                 Quantity = 10
             };
 
@@ -51,6 +53,7 @@ namespace VendingMachineTests
             VendingMachineItem toAdd = new VendingMachineItem
             {
                 Name = "test",
+                Price = 1.00m,
                 Quantity = -10000
             };
 
@@ -77,6 +80,7 @@ namespace VendingMachineTests
             VendingMachineItem toAdd = new VendingMachineItem
             {
                 Name = null,
+                Price = 1.00m,
                 Quantity = 10
             };
 
@@ -89,6 +93,7 @@ namespace VendingMachineTests
             VendingMachineItem toAdd = new VendingMachineItem
             {
                 Name = "",
+                Price = 1.00m,
                 Quantity = 10
             };
 
@@ -101,6 +106,7 @@ namespace VendingMachineTests
             VendingMachineItem toAdd = new VendingMachineItem
             {
                 Name = "test",
+                Price = 1.00m,
                 Quantity = -10000
             };
 
@@ -110,11 +116,11 @@ namespace VendingMachineTests
         //********
         //DELETE
         //********
-        [Test]
-        public void PurchaseCandyByInvalidIdTest()
-        {
-            Assert.Throws<ArgumentException>(() => _toTest.PurchaseCandyById(0));
-        }
+        //[Test]
+        //public void PurchaseCandyByInvalidIdTest()
+        //{
+        //    Assert.Throws<ArgumentException>(() => _toTest.PurchaseCandyById(0));
+        //}
 
 
         [Test]

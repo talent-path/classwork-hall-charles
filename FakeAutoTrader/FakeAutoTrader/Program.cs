@@ -70,8 +70,7 @@ namespace FakeAutoTrader
                     {
                         //Convert to decimal for math operations
                         decimal parsedCurrentPrice = decimal.Parse(currentPrice.ToString());
-                        Console.WriteLine("Stock: " + symbol);
-                        Console.WriteLine("Current Price: " + parsedCurrentPrice);
+                        Console.WriteLine("Stock: " + symbol + "  Current Price: " + parsedCurrentPrice);
 
                         //Lock
                         mutex.WaitOne();
@@ -113,11 +112,11 @@ namespace FakeAutoTrader
                                 //Compare current price to median price
                                 if (parsedCurrentPrice < median)
                                 {
-                                    Console.WriteLine("BUY " + symbol + " now, current difference is " + (median - parsedCurrentPrice));
+                                    Console.WriteLine("Current price is lower than median, BUY " + symbol + " now.");
                                 }
                                 else if (parsedCurrentPrice > median)
                                 {
-                                    Console.WriteLine("SELL " + symbol + " now, current difference is " + (parsedCurrentPrice - median));
+                                    Console.WriteLine("Current price is higher than median, SELL " + symbol + " now.");
                                 }
                                 else
                                 {

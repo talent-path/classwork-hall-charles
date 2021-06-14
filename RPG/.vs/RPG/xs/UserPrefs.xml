@@ -4,7 +4,7 @@
     <Files>
       <File FileName="RPG/Program.cs" Line="17" Column="34" />
       <File FileName="RPG/Classes/Fighter/Fighter.cs" />
-      <File FileName="RPG/Classes/Fighter/Ninja.cs" Line="15" Column="23" />
+      <File FileName="RPG/Classes/Fighter/Ninja.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
