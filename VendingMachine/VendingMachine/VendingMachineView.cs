@@ -23,7 +23,7 @@ namespace VendingMachine
                 Console.WriteLine("6. To Exit");
                 Console.WriteLine("--------------------------------------");
                 valid = int.TryParse(Console.ReadLine(), out choice);
-                if (valid) valid = choice > 0 && choice < 6;
+                if (valid) valid = choice > 0 && choice <= 6;
             }
 
             return choice;

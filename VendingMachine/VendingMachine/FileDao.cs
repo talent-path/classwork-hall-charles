@@ -9,15 +9,16 @@ namespace VendingMachine
     {
 
         List<VendingMachineItem> _allItems = new List<VendingMachineItem>();
+
         string FilePath { get; set; }
 
         public FileDao(string filePath)
         {
             FilePath = filePath;
-            GetItems(FilePath);
+            GetItemsFromFile(FilePath);
         }
 
-        public void GetItems(string FilePath)
+        public void GetItemsFromFile(string FilePath)
         {
             using(StreamReader reader = new StreamReader(FilePath))
             {
@@ -25,25 +26,15 @@ namespace VendingMachine
                 while ((line = reader.ReadLine()) != null)
                 {
                     string[] arr = line.Split(',');
-                    AddVendingMachineItem(new VendingMachineItem
+                    _allItems.Add(new VendingMachineItem
                     {
-                        Name = arr[0],
-                        Price = decimal.Parse(arr[1]),
-                        Quantity = int.Parse(arr[2])
+                        Id = int.Parse(arr[0]),
+                        Name = arr[1],
+                        Price = decimal.Parse(arr[2]),
+                        Quantity = int.Parse(arr[3])
                     });
                 }
             }
-
-        }
-
-        public int AddVendingMachineItem(VendingMachineItem item)
-        {
-            if (item == null) throw new ArgumentNullException("Cannot add a null item.");
-
-            item.Id = _allItems.Count() + 1;
-            _allItems.Add(new VendingMachineItem(item));
-
-            return item.Id;
         }
 
         public VendingMachineItem GetVendingMachineItemById(int id)
@@ -57,23 +48,25 @@ namespace VendingMachine
 
         public void UpdateVendingMachineItem(VendingMachineItem item)
         {
-            if (item == null) throw new ArgumentNullException("Cannot update a null item.");
-            _allItems = _allItems.Select(w => w.Id == item.Id ? item : w).ToList();
+            //Remove the -- quantity, should just replace with item
+            _allItems = _allItems.Select(w => w.Id == item.Id ?
+            new VendingMachineItem { Id = w.Id, Name = w.Name, Price = w.Price, Quantity = w.Quantity - 1 }
+            : w).ToList();
+
+            WriteToFile(_allItems);
         }
 
-        public decimal PurchaseCandyById(int id, decimal userFunds)
+        private void WriteToFile(List<VendingMachineItem> allItems)
         {
-            var receivedItem = _allItems.SingleOrDefault(w => w.Id == id);
+            string newText = "";
 
-            if (receivedItem == null) throw new ArgumentException("No item with that id was found.");
+            foreach (VendingMachineItem item in allItems)
+            {
+                newText += item.Id + "," + item.Name + "," + item.Price + "," + item.Quantity + "\n";
+            }
 
-            receivedItem.Quantity--;
-            return userFunds - receivedItem.Price;
+            File.WriteAllText("../../../Prod.txt", newText);
         }
 
-        public void DeleteVendingMachineItemById(int id)
-        {
-            _allItems = _allItems.Where(w => w.Id != id).ToList();
-        }
     }
 }

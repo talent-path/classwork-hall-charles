@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using VendingMachine;
+using VendingMachine.exceptions;
 
 namespace VendingMachineTests
 {
@@ -18,49 +19,6 @@ namespace VendingMachineTests
         }
 
         //********
-        //ADD
-        //********
-
-        [Test]
-        public void AddVendingMachineItemNullNameTest()
-        {
-            VendingMachineItem toAdd = new VendingMachineItem
-            {
-                Name = null,
-                Price = 1.00m,
-                Quantity = 10
-            };
-
-            Assert.Throws<ArgumentException>(() => _toTest.AddVendingMachineItem(toAdd));
-        }
-
-        [Test]
-        public void AddVendingMachineItemEmptyNameTest()
-        {
-            VendingMachineItem toAdd = new VendingMachineItem
-            {
-                Name = "",
-                Price = 1.00m,
-                Quantity = 10
-            };
-
-            Assert.Throws<ArgumentException>(() => _toTest.AddVendingMachineItem(toAdd));
-        }
-
-        [Test]
-        public void AddVendingMachineItemNegativeQuantityTest()
-        {
-            VendingMachineItem toAdd = new VendingMachineItem
-            {
-                Name = "test",
-                Price = 1.00m,
-                Quantity = -10000
-            };
-
-            Assert.Throws<ArgumentException>(() => _toTest.AddVendingMachineItem(toAdd));
-        }
-
-        //********
         //GET
         //********
 
@@ -73,60 +31,25 @@ namespace VendingMachineTests
         //********
         //UPDATE
         //********
-
         [Test]
-        public void UpdateVendingMachineItemNullNameTest()
+        public void UpdateVendingMachineItemInvalidIdTest()
         {
-            VendingMachineItem toAdd = new VendingMachineItem
-            {
-                Name = null,
-                Price = 1.00m,
-                Quantity = 10
-            };
-
-            Assert.Throws<ArgumentException>(() => _toTest.AddVendingMachineItem(toAdd));
+            Assert.Throws<ArgumentException>(() => _toTest.UpdateVendingMachineItem(10000, 2.00m));
         }
 
         [Test]
-        public void UpdateVendingMachineItemEmptyNameTest()
+        public void UpdateVendingMachineItemNotEnoughFundsTest()
         {
-            VendingMachineItem toAdd = new VendingMachineItem
-            {
-                Name = "",
-                Price = 1.00m,
-                Quantity = 10
-            };
-
-            Assert.Throws<ArgumentException>(() => _toTest.AddVendingMachineItem(toAdd));
+            //Hershey's bar is 2.00
+            Assert.Throws<InsufficientFundsException>(() => _toTest.UpdateVendingMachineItem(1, 1.50m));
         }
 
         [Test]
-        public void UpdateVendingMachineItemNegativeQuantityTest()
+        public void UpdateVendingMachineItemNotEnoughItemsTest()
         {
-            VendingMachineItem toAdd = new VendingMachineItem
-            {
-                Name = "test",
-                Price = 1.00m,
-                Quantity = -10000
-            };
-
-            Assert.Throws<ArgumentException>(() => _toTest.AddVendingMachineItem(toAdd));
+            //0 Almond Joys left, they are $1.75
+            Assert.Throws<InsufficientStockException>(() => _toTest.UpdateVendingMachineItem(6, 2.00m));
         }
 
-        //********
-        //DELETE
-        //********
-        //[Test]
-        //public void PurchaseCandyByInvalidIdTest()
-        //{
-        //    Assert.Throws<ArgumentException>(() => _toTest.PurchaseCandyById(0));
-        //}
-
-
-        [Test]
-        public void DeleteVendingMachineItemByInvalidIdTest()
-        {
-            Assert.Throws<ArgumentException>(() => _toTest.DeleteVendingMachineItemById(0));
-        }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using VendingMachine.exceptions;
+
 namespace VendingMachine
 {
     public class VendingMachineService
@@ -15,14 +18,6 @@ namespace VendingMachine
         {
         }
 
-        public int AddVendingMachineItem(VendingMachineItem item)
-        {
-            if (item.Name == string.Empty || item.Name == null) throw new ArgumentException("Name cannot be empty or null.");
-            if (item.Quantity < 0) throw new ArgumentException("Quantity cannot be less than 0.");
-
-            return _invDao.AddVendingMachineItem(item);
-        }
-
         public VendingMachineItem GetVendingMachineItemById(int id)
         {
             if (id < 1) throw new ArgumentException("ID cannot be less than 1.");
@@ -30,30 +25,16 @@ namespace VendingMachine
             return _invDao.GetVendingMachineItemById(id);
         }
 
-        public void UpdateVendingMachineItem(VendingMachineItem item)
+        public Change UpdateVendingMachineItem(int id, decimal userFunds)
         {
-            if (item.Name == string.Empty || item.Name == null) throw new ArgumentException("Name cannot be empty or null.");
-            if (item.Quantity < 0) throw new ArgumentException("Quantity cannot be less than 0.");
+            VendingMachineItem item = GetVendingMachineItemById(id);//Also checks for invalid id bc of exception handling in dao
+
+            if (item.Price > userFunds) throw new InsufficientFundsException("Cannot purchase, not enough funds.");
+            if (item.Quantity <= 0) throw new InsufficientStockException("Cannot purchase, none left.");
 
             _invDao.UpdateVendingMachineItem(item);
-        }
 
-        public decimal PurchaseCandyById(int id, decimal funds)
-        {
-            if (id < 1) throw new ArgumentException("ID cannot be less than 1.");
-
-            VendingMachineItem item = GetVendingMachineItemById(id);
-
-            if (item.Price > funds) throw new ArgumentException("Cannot purchase, not enough funds,");
-
-            return _invDao.PurchaseCandyById(id, funds);
-        }
-
-        public void DeleteVendingMachineItemById(int id)
-        {
-            if (id < 1) throw new ArgumentException("ID cannot be less than 1.");
-
-            _invDao.DeleteVendingMachineItemById(id);
+            return new Change(userFunds - item.Price);
         }
     }
 }
