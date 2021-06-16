@@ -1,0 +1,20 @@
+﻿@model Movie
+@{
+}
+
+<h1>Add movie here</h1>
+
+@using (Html.BeginForm("AddMovie", "Movie", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Name);
+    @Html.TextBoxFor(m => m.Name);
+
+    @Html.LabelFor(m => m.Director);
+    @Html.TextBoxFor(m => m.Director);
+
+    @Html.LabelFor(m => m.Year);
+    @Html.TextBoxFor(m => m.Year);
+
+    <button type="submit">Submit</button>
+
+}

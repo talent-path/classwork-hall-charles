@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{28DF9322-58DC-4F87-A532-171936487E2D}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MovieTracker/Dao/InMemDao.cs">
+    <Files>
+      <File FileName="MovieTracker/Controllers/MovieController.cs" Line="31" Column="1" />
+      <File FileName="MovieTracker/Views/Movie/MovieView.cshtml" Line="14" Column="5" />
+      <File FileName="MovieTracker/Views/Movie/Index.cshtml" Line="5" Column="26" />
+      <File FileName="MovieTracker/Views/Movie/AddMovieView.cshtml" Line="9" Column="19" />
+      <File FileName="MovieTracker/Dao/InMemDao.cs" Line="36" Column="35" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MovieTracker" expanded="True">
+            <Node name="MovieTracker" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Dao" expanded="True">
+                <Node name="InMemDao.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Service" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Movie" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.MovieTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
