@@ -1,0 +1,50 @@
+﻿@model EditCourseViewModel
+@{
+}
+
+@using (Html.BeginForm("Edit", "Course", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.ToEdit.Id);
+
+    @Html.LabelFor(m => m.ToEdit.Name)
+    @Html.TextBoxFor(m => m.ToEdit.Name);
+
+<br />
+
+Teacher:
+    <select name="ToEdit.ClassTeacher.Id">
+        @foreach (var t in Model.AllTeachers)
+        {
+            if (t.Id == Model.ToEdit.ClassTeacher.Id)
+            {
+                <option value="@t.Id" selected>@t.Name</option>
+
+            }
+            else
+            {
+                <option value="@t.Id">@t.Name</option>
+            }
+        }
+    </select>
+
+    <br />
+
+    @foreach (var s in Model.AllStudents)
+    {
+        @s.Name
+
+        if (Model.ToEdit.ClassStudents.Any(inClass => inClass.Id == s.Id))
+        {
+            <input type="checkbox" checked name="SelectedStudentIds" value="@s.Id" />
+
+        }
+        else
+        {
+            <input type="checkbox" name="SelectedStudentIds" value="@s.Id" />
+        }
+        <br />
+    }
+
+    <button>Edit</button>
+
+}

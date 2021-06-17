@@ -1,0 +1,12 @@
+﻿@model Student
+@{
+}
+
+<h1>@Model.Name</h1>
+<br />
+<hr />
+@foreach (var c in Model.Courses)
+{
+    <h3>@c.Name</h3>
+    <br />
+}

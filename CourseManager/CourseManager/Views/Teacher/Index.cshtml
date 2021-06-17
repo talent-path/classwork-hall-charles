@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Teacher>
+@{
+}
+
+<table>
+
+    @foreach (Teacher t in Model)
+    {
+    <tr>
+        <td>@Html.ActionLink(t.Name, "Details", new { id = t.Id })</td>
+
+        @*<td>@Html.ActionLink("Edit", "Edit", new { id = c.Id })</td>*@
+
+        <td>@Html.ActionLink("Delete", "Delete", new { id = t.Id })</td>
+    </tr>
+    }
+
+
+</table>
