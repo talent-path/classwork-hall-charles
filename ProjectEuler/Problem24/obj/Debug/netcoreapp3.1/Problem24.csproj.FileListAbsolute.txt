@@ -1,0 +1,12 @@
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/bin/Debug/netcoreapp3.1/Problem24.deps.json
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/bin/Debug/netcoreapp3.1/Problem24.runtimeconfig.json
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/bin/Debug/netcoreapp3.1/Problem24.runtimeconfig.dev.json
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/bin/Debug/netcoreapp3.1/Problem24.dll
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/bin/Debug/netcoreapp3.1/Problem24.pdb
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.csprojAssemblyReference.cache
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.AssemblyInfoInputs.cache
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.AssemblyInfo.cs
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.csproj.CoreCompileInputs.cache
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.dll
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.pdb
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.genruntimeconfig.cache

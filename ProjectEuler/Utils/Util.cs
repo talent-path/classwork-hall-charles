@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace Utils
@@ -145,6 +146,33 @@ namespace Utils
                 }
             }
             return count;
+        }
+
+        public static void GeneratePermutations
+            (List<string> allPermutations, string currNum, List<string> availableNums)
+        {
+
+            //currNum = 0
+            //currNum = 01
+            //currNum = 012
+            //currNum = 0123
+            if (availableNums.Count == 0)
+            {
+                allPermutations.Add(currNum);
+            }
+            else
+            {
+                for (int i = 0; i < availableNums.Count; i++)
+                {
+                    string addString = availableNums[i];
+
+                    availableNums.RemoveAt(i);
+
+                    GeneratePermutations(allPermutations, currNum + addString, availableNums);
+
+                    availableNums.Insert(i, addString);
+                }
+            }
         }
     }
 }
