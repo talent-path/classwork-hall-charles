@@ -1,22 +1,26 @@
 ﻿<Properties StartupConfiguration="{4AFA37BF-B06B-4F23-9097-D630A930BD6D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="CourseManager/Controllers/CourseController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CourseManager/Services/CourseService.cs">
     <Files>
-      <File FileName="CourseManager/Controllers/TeacherController.cs" Line="37" Column="10" />
-      <File FileName="CourseManager/Controllers/CourseController.cs" Line="1" Column="1" />
+      <File FileName="CourseManager/Controllers/TeacherController.cs" Line="80" Column="23" />
+      <File FileName="CourseManager/Models/Teacher.cs" Line="1" Column="1" />
+      <File FileName="CourseManager/Services/CourseService.cs" Line="88" Column="1" />
+      <File FileName="CourseManager/Views/Teacher/Edit.cshtml" Line="1" Column="1" />
+      <File FileName="CourseManager/Views/Course/Edit.cshtml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CourseManager" expanded="True">
             <Node name="CourseManager" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="CourseController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Repos" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="CourseService.cs" selected="True" />
+              </Node>
               <Node name="Views" expanded="True">
-                <Node name="Student" expanded="True" />
+                <Node name="Course" expanded="True" />
+                <Node name="Teacher" expanded="True" />
               </Node>
             </Node>
           </Node>

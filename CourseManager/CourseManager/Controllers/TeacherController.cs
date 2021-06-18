@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using CourseManager.Exceptions;
 using CourseManager.Models;
 using CourseManager.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace CourseManager.Controllers
 {
@@ -33,6 +35,54 @@ namespace CourseManager.Controllers
                     return NotFound(ex.Message);
                 }
             }
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id != null)
+            {
+                try
+                {
+                    Teacher toDisplay = _service.GetTeacherById(id.Value);
+                    List<Course> allCourses = _service.GetAll();
+
+                    EditTeacherViewModel vm = new EditTeacherViewModel
+                    {
+                        ToEdit = toDisplay,
+                        AllCourses = allCourses,
+                    };
+
+                    return View(vm);
+
+                }
+                catch (CourseNotFoundException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditTeacherViewModel vm)
+        {
+
+            if (vm.ToEdit != null)
+            {
+
+               
+                List<Course> fullyHydratedCourses
+                    = vm.SelectedCourseIds.Select(id => _service.GetById(id)).ToList();
+
+                vm.ToEdit.Courses = fullyHydratedCourses;
+                //TODO
+                _service.EditCourse(vm.ToEdit);
+
+                return RedirectToAction("Index");
+            }
+
             return BadRequest();
         }
 

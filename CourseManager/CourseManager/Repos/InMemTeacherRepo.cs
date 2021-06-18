@@ -48,6 +48,15 @@ namespace CourseManager.Repos
             return _allTeachers.SingleOrDefault(t => t.Id == id);
         }
 
+        public void Edit(Teacher toEdit)
+        {
+            _allTeachers = _allTeachers.Select(
+                t => t.Id == toEdit.Id ?
+                    new Teacher(toEdit) :
+                    t
+                    ).ToList();
+        }
+
         public void Delete(int id)
         {
             _allTeachers = _allTeachers.Where(t => t.Id != id).ToList();

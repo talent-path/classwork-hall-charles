@@ -81,6 +81,13 @@ namespace CourseManager.Services
             }
         }
 
+        public void EditTeacher(Teacher toEdit)
+        {
+            _teacherRepo.Edit(toEdit);
+
+
+        }
+
         public Student GetStudentById(int id)
         {
             return _studentRepo.GetById(id);

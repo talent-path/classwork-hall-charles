@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{E4178C7B-C06A-4189-838D-9068D994A676}|Default">
   <MonoDevelop.Ide.ItemProperties.VendingMachine PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachine/Test.txt">
+    <Files>
+      <File FileName="VendingMachine/Test.txt" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="VendingMachine" expanded="True">
             <Node name="VendingMachine" expanded="True">
               <Node name="exceptions" expanded="True" />
-              <Node name="VendingMachineService.cs" selected="True" />
+              <Node name="Test.txt" selected="True" />
             </Node>
             <Node name="VendingMachineTests" expanded="True" />
           </Node>
