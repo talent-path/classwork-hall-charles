@@ -1,21 +1,19 @@
-﻿<Properties StartupConfiguration="{CFD060CF-EAB8-4185-BD00-DC3422B4BF08}|Default">
+﻿<Properties StartupConfiguration="{4DA87120-1CC2-48FD-9401-CBAEAEEA5222}|Default">
   <MonoDevelop.Ide.ItemProperties.Problem10 FirstBuild="True" />
   <MonoDevelop.Ide.ItemProperties.Problem18 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem6 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem12 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem5 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Problem24/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Problem43/Program.cs">
     <Files>
-      <File FileName="Problem24/Program.cs" Line="6" Column="5" />
+      <File FileName="Problem43/Program.cs" Line="43" Column="29" />
+      <File FileName="Utils/Util.cs" Line="157" Column="28" />
+      <File FileName="Problem24/Program.cs" Line="17" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ProjectEuler" expanded="True">
-            <Node name="Problem15" expanded="True" />
-            <Node name="Problem24" expanded="True">
-              <Node name="Program.cs" selected="True" />
-            </Node>
             <Node name="Utils" expanded="True" />
           </Node>
         </State>
@@ -35,6 +33,7 @@
   <MonoDevelop.Ide.ItemProperties.Problem8 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Problem16 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Problem43 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem27 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem4 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

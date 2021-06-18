@@ -32,6 +32,28 @@ namespace VendingMachineTests
         //UPDATE
         //********
         [Test]
+        public void UpdateVendingMachineItemChangeTest()
+        {
+            Change change = _toTest.UpdateVendingMachineItem(1, 5.00m);
+
+            Assert.AreEqual(3, change.dollars);
+            Assert.AreEqual(0, change.quarters);
+            Assert.AreEqual(0, change.dimes);
+            Assert.AreEqual(0, change.nickels);
+            Assert.AreEqual(0, change.pennies);
+
+
+            Change change2 = _toTest.UpdateVendingMachineItem(2, 5.00m);
+
+            Assert.AreEqual(2, change2.dollars);
+            Assert.AreEqual(2, change2.quarters);
+            Assert.AreEqual(0, change.dimes);
+            Assert.AreEqual(0, change.nickels);
+            Assert.AreEqual(0, change.pennies);
+        }
+
+
+        [Test]
         public void UpdateVendingMachineItemInvalidIdTest()
         {
             Assert.Throws<ArgumentException>(() => _toTest.UpdateVendingMachineItem(10000, 2.00m));

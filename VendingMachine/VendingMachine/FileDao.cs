@@ -14,6 +14,9 @@ namespace VendingMachine
 
         public FileDao(string filePath)
         {
+            File.Delete(filePath);
+            File.Copy("../../../Seed.txt", filePath);
+
             FilePath = filePath;
             GetItemsFromFile(FilePath);
         }
@@ -48,10 +51,7 @@ namespace VendingMachine
 
         public void UpdateVendingMachineItem(VendingMachineItem item)
         {
-            //Remove the -- quantity, should just replace with item
-            _allItems = _allItems.Select(w => w.Id == item.Id ?
-            new VendingMachineItem { Id = w.Id, Name = w.Name, Price = w.Price, Quantity = w.Quantity - 1 }
-            : w).ToList();
+            _allItems = _allItems.Select(w => w.Id == item.Id ? item : w).ToList();
 
             WriteToFile(_allItems);
         }

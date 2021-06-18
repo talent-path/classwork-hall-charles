@@ -1,20 +1,25 @@
 ﻿<Properties StartupConfiguration="{E4178C7B-C06A-4189-838D-9068D994A676}|Default">
   <MonoDevelop.Ide.ItemProperties.VendingMachine PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="VendingMachineTests/VendingMachineInMemDaoTests.cs">
-    <Files>
-      <File FileName="VendingMachineTests/VendingMachineInMemDaoTests.cs" Line="46" Column="1" />
-      <File FileName="VendingMachineTests/VendingMachineServiceTests.cs" />
-      <File FileName="VendingMachine/VendingMachineService.cs" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="VendingMachine" expanded="True">
             <Node name="VendingMachine" expanded="True">
               <Node name="exceptions" expanded="True" />
+              <Node name="VendingMachineService.cs" selected="True" />
             </Node>
+            <Node name="VendingMachineTests" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="VendingMachine" expanded="True" selected="True">
             <Node name="VendingMachineTests" expanded="True">
-              <Node name="VendingMachineInMemDaoTests.cs" selected="True" />
+              <Node name="VendingMachineTests" expanded="True">
+                <Node name="VendingMachineFileDaoTests" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>

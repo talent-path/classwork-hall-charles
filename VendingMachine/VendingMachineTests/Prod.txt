@@ -1,0 +1,5 @@
+1,Hershey's Chocolate Bar,2.00,5
+2,Reese's Peanut Butter Cup,2.50,13
+3,Skittles,2.25,12
+4,M&M's,1.75,15
+5,Peanut M&M's,1.90,14

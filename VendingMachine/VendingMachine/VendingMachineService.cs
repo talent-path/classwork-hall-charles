@@ -32,6 +32,8 @@ namespace VendingMachine
             if (item.Price > userFunds) throw new InsufficientFundsException("Cannot purchase, not enough funds.");
             if (item.Quantity <= 0) throw new InsufficientStockException("Cannot purchase, none left.");
 
+            item.Quantity--;
+
             _invDao.UpdateVendingMachineItem(item);
 
             return new Change(userFunds - item.Price);

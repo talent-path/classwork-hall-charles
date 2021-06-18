@@ -31,9 +31,7 @@ namespace VendingMachine
         public void UpdateVendingMachineItem(VendingMachineItem item)
         {
             //Remove the -- quantity, should just replace with item
-            _allItems = _allItems.Select(w => w.Id == item.Id ?
-            new VendingMachineItem { Id = w.Id, Name = w.Name, Price = w.Price, Quantity = w.Quantity-- }
-            : w).ToList();
+            _allItems = _allItems.Select(w => w.Id == item.Id ? item : w).ToList();
         }
 
 

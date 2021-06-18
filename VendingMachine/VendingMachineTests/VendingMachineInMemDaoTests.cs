@@ -41,9 +41,19 @@ namespace VendingMachineTests
         //UPDATE
         //********
         [Test]
-        public void UpdateVendingMachineItemTest()
+        public void UpdateVendingMachineItem()
         {
+            VendingMachineItem toUpdate = new VendingMachineItem { Id = 1, Name = "Hershey's Chocolate Bar", Price = 2.00m, Quantity = 5 };
 
+            _toTest.UpdateVendingMachineItem(toUpdate);
+
+            VendingMachineItem retrievedItem = _toTest.GetVendingMachineItemById(1);
+
+            Assert.AreEqual(1, retrievedItem.Id);
+            Assert.AreEqual("Hershey's Chocolate Bar", retrievedItem.Name);
+            Assert.AreEqual(2.00m, retrievedItem.Price);
+            Assert.AreEqual(5, retrievedItem.Quantity);
         }
+
     }
 }
