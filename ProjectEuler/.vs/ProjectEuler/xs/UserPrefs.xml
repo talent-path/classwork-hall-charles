@@ -1,19 +1,21 @@
-﻿<Properties StartupConfiguration="{4DA87120-1CC2-48FD-9401-CBAEAEEA5222}|Default">
+﻿<Properties StartupConfiguration="{54135564-6E49-4B29-9C32-61CFDFBF88E0}|Default">
   <MonoDevelop.Ide.ItemProperties.Problem10 FirstBuild="True" />
   <MonoDevelop.Ide.ItemProperties.Problem18 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Problem30 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem6 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem12 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Problem5 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Problem43/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Problem30/Program.cs">
     <Files>
       <File FileName="Problem43/Program.cs" Line="43" Column="29" />
-      <File FileName="Utils/Util.cs" Line="157" Column="28" />
-      <File FileName="Problem24/Program.cs" Line="17" Column="1" />
+      <File FileName="Utils/Util.cs" />
+      <File FileName="Problem30/Program.cs" Line="12" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ProjectEuler" expanded="True">
+            <Node name="Problem30" expanded="True" selected="True" />
             <Node name="Utils" expanded="True" />
           </Node>
         </State>

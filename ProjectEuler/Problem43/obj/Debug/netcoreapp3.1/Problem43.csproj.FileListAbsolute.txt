@@ -5,7 +5,6 @@
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/bin/Debug/netcoreapp3.1/Problem43.pdb
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/bin/Debug/netcoreapp3.1/Utils.dll
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/bin/Debug/netcoreapp3.1/Utils.pdb
-/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.csprojAssemblyReference.cache
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.AssemblyInfoInputs.cache
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.AssemblyInfo.cs
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.csproj.CoreCompileInputs.cache
@@ -13,3 +12,4 @@
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.dll
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.pdb
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.genruntimeconfig.cache
+/Users/charleshall/classwork-hall-charles/ProjectEuler/Problem43/obj/Debug/netcoreapp3.1/Problem43.csproj.AssemblyReference.cache
