@@ -5,7 +5,7 @@ using CourseManager.Models;
 
 namespace CourseManager.Repos
 {
-    public class InMemStudentRepo
+    public class InMemStudentRepo : IStudentRepo
     {
         public static List<Student> _allStudents = new List<Student>
         {
@@ -81,7 +81,7 @@ namespace CourseManager.Repos
             return _allStudents.Select(s => new Student(s)).ToList();
         }
 
-        public Student GetById( int id)
+        public Student GetById(int id)
         {
             return _allStudents.SingleOrDefault(s => s.Id == id);
         }

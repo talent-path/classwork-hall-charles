@@ -8,9 +8,12 @@
     <Folder Include="Controllers\" />
     <Folder Include="Views\Course\" />
     <Folder Include="Services\" />
-    <Folder Include="Repos\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Views\Teacher\" />
     <Folder Include="Views\Student\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 </Project>

@@ -9,13 +9,21 @@ namespace CourseManager.Services
 {
     public class CourseService
     {
-        InMemCourseRepo _courseRepo = new InMemCourseRepo();
-        InMemTeacherRepo _teacherRepo = new InMemTeacherRepo();
-        InMemStudentRepo _studentRepo = new InMemStudentRepo();
+        ICourseRepo _courseRepo = new DbCoursesRepo();
+        ITeacherRepo _teacherRepo = new DbTeachersRepo();
+        IStudentRepo _studentRepo = new DBStudentsRepo();
 
         public List<Course> GetAll()
         {
-            return _courseRepo.GetAll();
+            List<Course> toReturn = _courseRepo.GetAll();
+
+            foreach(Course course in toReturn)
+            {
+                course.ClassTeacher = _teacherRepo.GetById(course.ClassTeacher.Id.Value);
+            }
+
+            return toReturn;
+
         }
 
         public List<Teacher> GetAllTeachers()
@@ -31,6 +39,7 @@ namespace CourseManager.Services
         public Course GetById(int id)
         {
             Course toReturn = _courseRepo.GetById(id);
+            toReturn.ClassTeacher = _teacherRepo.GetById(toReturn.ClassTeacher.Id.Value);
 
             if( toReturn == null)
             {
@@ -44,6 +53,7 @@ namespace CourseManager.Services
         public Teacher GetTeacherById(int id)
         {
             Teacher toReturn = _teacherRepo.GetById(id);
+            toReturn.Courses = _courseRepo.GetCoursesByTeacherId(id);
 
             if (toReturn == null)
             {
@@ -53,9 +63,14 @@ namespace CourseManager.Services
             return toReturn;
         }
 
+        public int AddTeacher(string name)
+        {
+            return _teacherRepo.Add(name);
+        }
+
         public void EditCourse(Course toEdit)
         {
-            _courseRepo.Edit(toEdit);
+            //_courseRepo.Edit(toEdit);
 
             //may need to fix all students and teachers
             //because of stupid in-mem relationships
@@ -90,7 +105,19 @@ namespace CourseManager.Services
 
         public Student GetStudentById(int id)
         {
-            return _studentRepo.GetById(id);
+            Student toReturn = _studentRepo.GetById(id);
+
+            List<Course> toAdd = new List<Course>();
+            List<int> courseIds = _courseRepo.GetCoursesByStudentId(id);
+
+            foreach(int courseId in courseIds)
+            {
+                toAdd.Add(_courseRepo.GetById(courseId));
+            }
+
+            toReturn.Courses = toAdd;
+
+            return toReturn;
         }
 
         public void DeleteCourse(int id)

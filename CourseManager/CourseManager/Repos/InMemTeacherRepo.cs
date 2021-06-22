@@ -5,7 +5,7 @@ using CourseManager.Models;
 
 namespace CourseManager.Repos
 {
-    public class InMemTeacherRepo
+    public class InMemTeacherRepo : ITeacherRepo
     {
         static List<Teacher> _allTeachers = new List<Teacher>
         {

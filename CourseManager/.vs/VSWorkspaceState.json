@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CourseManager",
+    "\\CourseManager\\Models",
+    "\\CourseManager\\Repos"
+  ],
+  "SelectedNode": "\\CourseManager\\Repos\\InMemCourseRepo.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -38,6 +38,12 @@ namespace CourseManager.Controllers
             return BadRequest();
         }
 
+        [HttpPost]
+        public IActionResult Add(String name)
+        {
+           return View(_service.AddTeacher(name));
+        }
+
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -69,19 +75,19 @@ namespace CourseManager.Controllers
         public IActionResult Edit(EditTeacherViewModel vm)
         {
 
-            if (vm.ToEdit != null)
-            {
+            //if (vm.ToEdit != null)
+            //{
 
                
-                List<Course> fullyHydratedCourses
-                    = vm.SelectedCourseIds.Select(id => _service.GetById(id)).ToList();
+            //    List<Course> fullyHydratedCourses
+            //        = vm.SelectedCourseIds.Select(id => _service.GetById(id)).ToList();
 
-                vm.ToEdit.Courses = fullyHydratedCourses;
-                //TODO
-                _service.EditCourse(vm.ToEdit);
+            //    vm.ToEdit.Courses = fullyHydratedCourses;
+            //    //TODO
+            //    _service.EditCourse(vm.ToEdit);
 
-                return RedirectToAction("Index");
-            }
+            //    return RedirectToAction("Index");
+            //}
 
             return BadRequest();
         }

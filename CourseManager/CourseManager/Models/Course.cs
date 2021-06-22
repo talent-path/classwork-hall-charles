@@ -8,7 +8,7 @@ namespace CourseManager.Models
     {
         public int? Id { get; set; }
         public Teacher ClassTeacher { get; set; }
-        public List<Student> ClassStudents { get; set; }
+        public List<Student> ClassStudents { get; set; } = new List<Student>();
         public string Name { get; set; }
 
         public Course() { }
