@@ -31,10 +31,10 @@ namespace CourseManager.Repos
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 cmd = new SqlCommand("insert into Teachers (Name) values ('" + name + "')", conn);
+                conn.Open();
+                var result = cmd.ExecuteScalar();
+                return -1;
             }
-
-            List<Teacher> allTeachers = GetAll();
-            return allTeachers[allTeachers.Count - 1].Id.Value;
 
         }
 

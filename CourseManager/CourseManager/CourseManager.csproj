@@ -9,7 +9,6 @@
     <Folder Include="Views\Course\" />
     <Folder Include="Services\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Views\Teacher\" />
     <Folder Include="Views\Student\" />
   </ItemGroup>
 
