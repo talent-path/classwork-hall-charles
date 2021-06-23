@@ -61,5 +61,10 @@ namespace CourseManager.Repos
         {
             _allTeachers = _allTeachers.Where(t => t.Id != id).ToList();
         }
+
+        public int Add(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

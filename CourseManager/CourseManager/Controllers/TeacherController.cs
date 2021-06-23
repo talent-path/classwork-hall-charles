@@ -38,10 +38,18 @@ namespace CourseManager.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Add(String name)
         {
-           return View(_service.AddTeacher(name));
+            _service.AddTeacher(name);
+            return RedirectToAction("Index");
+
         }
 
         [HttpGet]

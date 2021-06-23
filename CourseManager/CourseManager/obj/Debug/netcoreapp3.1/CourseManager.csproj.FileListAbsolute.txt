@@ -97,3 +97,6 @@ C:\Users\CHall\Desktop\classwork-hall-charles\CourseManager\CourseManager\obj\De
 C:\Users\CHall\Desktop\classwork-hall-charles\CourseManager\CourseManager\obj\Debug\netcoreapp3.1\CourseManager.dll
 C:\Users\CHall\Desktop\classwork-hall-charles\CourseManager\CourseManager\obj\Debug\netcoreapp3.1\CourseManager.pdb
 C:\Users\CHall\Desktop\classwork-hall-charles\CourseManager\CourseManager\obj\Debug\netcoreapp3.1\CourseManager.genruntimeconfig.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\CourseManager\CourseManager\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\Add.cshtml.g.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\CourseManager\CourseManager\obj\Debug\netcoreapp3.1\Razor\Views\Student\Add.cshtml.g.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\CourseManager\CourseManager\obj\Debug\netcoreapp3.1\Razor\Views\Course\Add.cshtml.g.cs

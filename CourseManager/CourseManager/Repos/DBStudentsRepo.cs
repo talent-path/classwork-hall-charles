@@ -24,6 +24,17 @@ namespace CourseManager.Repos
 
             return set;
         }
+
+        public int Add(string name)
+        {
+            int id = 0;
+            DataSet set = ExecuteQuery("insert into Students (Name) output inserted.Id values ('" + name + "')");
+
+            id = set.Tables[0].Rows[0].Field<int>("Id");
+
+            return id;
+        }
+
         public void Delete(int id)
         {
             throw new NotImplementedException();

@@ -8,5 +8,6 @@ namespace CourseManager.Repos
         void Delete(int id);
         List<Student> GetAll();
         Student GetById(int id);
+        int Add(string name);
     }
 }

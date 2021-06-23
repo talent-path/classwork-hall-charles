@@ -90,5 +90,10 @@ namespace CourseManager.Repos
         {
             _allStudents = _allStudents.Where(s => s.Id != id).ToList();
         }
+
+        public int Add(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

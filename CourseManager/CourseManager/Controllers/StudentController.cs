@@ -38,6 +38,19 @@ namespace CourseManager.Controllers
         }
 
         [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(String name)
+        {
+            _service.AddStudent(name);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public IActionResult Delete(Student student)
         {
             if (student.Id != null)

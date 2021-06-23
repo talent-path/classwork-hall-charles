@@ -23,9 +23,13 @@ namespace CourseManager.Repos
 
             return set;
         }
-        private int AddQuery(string sql)
+        public int Add(Course toAdd)
         {
-            throw new NotImplementedException();
+            int id = 0;
+            DataSet set = ExecuteQuery("insert into Courses (Name, TeacherId) output inserted.Id values ('" + toAdd.Name + "', " + toAdd.ClassTeacher.Id + ")");
+            id = set.Tables[0].Rows[0].Field<int>("Id");
+
+            return id;
         }
         
         public List<Course> GetCoursesByTeacherId(int id)

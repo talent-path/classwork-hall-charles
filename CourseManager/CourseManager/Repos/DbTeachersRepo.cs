@@ -28,14 +28,12 @@ namespace CourseManager.Repos
 
         public int Add(string name)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            {
-                cmd = new SqlCommand("insert into Teachers (Name) values ('" + name + "')", conn);
-                conn.Open();
-                var result = cmd.ExecuteScalar();
-                return -1;
-            }
+            int id = 0;
+            DataSet set = ExecuteQuery("insert into Teachers (Name) output inserted.Id values ('" + name + "')");
 
+            id = set.Tables[0].Rows[0].Field<int>("Id");
+
+            return id;
         }
 
         public void Delete(int id)

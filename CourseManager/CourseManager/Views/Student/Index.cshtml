@@ -1,18 +1,19 @@
 ﻿@model IEnumerable<Student>
 @{
 }
-
+<a href="~/Student/Add">Add a Student</a>
+<br/>
 <table>
 
     @foreach (Student s in Model)
     {
-    <tr>
-        <td>@Html.ActionLink(s.Name, "Details", new { id = s.Id })</td>
+        <tr>
+            <td>@Html.ActionLink(s.Name, "Details", new { id = s.Id })</td>
 
-        @*<td>@Html.ActionLink("Edit", "Edit", new { id = c.Id })</td>*@
+            @*<td>@Html.ActionLink("Edit", "Edit", new { id = c.Id })</td>*@
 
-        <td>@Html.ActionLink("Delete", "Delete", new { id = s.Id })</td>
-    </tr>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = s.Id })</td>
+        </tr>
     }
 
 

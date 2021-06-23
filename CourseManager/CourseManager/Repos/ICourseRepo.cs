@@ -10,5 +10,7 @@ namespace CourseManager.Repos
         Course GetById(int id);
         List<Course> GetCoursesByTeacherId(int id);
         List<int> GetCoursesByStudentId(int id);
+
+        int Add(Course toAdd);
     }
 }

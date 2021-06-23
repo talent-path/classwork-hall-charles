@@ -84,5 +84,10 @@ namespace CourseManager.Repos
         {
             throw new NotImplementedException();
         }
+
+        public int Add(Course toAdd)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

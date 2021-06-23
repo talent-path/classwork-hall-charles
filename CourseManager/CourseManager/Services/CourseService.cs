@@ -49,6 +49,10 @@ namespace CourseManager.Services
             return toReturn;
         }
 
+        public int AddStudent(string name)
+        {
+            return _studentRepo.Add(name);
+        }
 
         public Teacher GetTeacherById(int id)
         {
@@ -66,6 +70,11 @@ namespace CourseManager.Services
         public int AddTeacher(string name)
         {
             return _teacherRepo.Add(name);
+        }
+
+        public int AddCourse(Course toAdd)
+        {
+            return _courseRepo.Add(toAdd);
         }
 
         public void EditCourse(Course toEdit)

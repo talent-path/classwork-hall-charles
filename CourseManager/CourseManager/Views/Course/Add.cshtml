@@ -1,0 +1,24 @@
+﻿@model AddCourseViewModel
+
+@using (Html.BeginForm("Add", "Course", FormMethod.Post))
+{
+
+<input type="text" name="toAdd.Name">
+
+
+<br />
+
+Teacher:
+    <select name="toAdd.ClassTeacher.Id">
+        @foreach (var t in Model.AllTeachers)
+        {
+            <option value="@t.Id">@t.Name</option>
+        }
+    </select>
+
+    <br />
+
+
+    <button>Add</button>
+
+}

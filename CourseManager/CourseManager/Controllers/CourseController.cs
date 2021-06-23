@@ -43,6 +43,39 @@ namespace CourseManager.Controllers
         }
 
         [HttpGet]
+        public IActionResult Add()
+        {
+            List<Teacher> allTeachers = _service.GetAllTeachers();
+
+            AddCourseViewModel vm = new AddCourseViewModel
+            {
+                ToAdd = new Course(),
+                AllTeachers = allTeachers
+            };
+
+            return View(vm);
+
+        }
+
+        [HttpPost]
+        public IActionResult Add(AddCourseViewModel vm)
+        {
+            if (vm.ToAdd.ClassTeacher.Id != null)
+            {
+                Teacher fullyHydratedTeacher
+                    = _service.GetTeacherById(vm.ToAdd.ClassTeacher.Id.Value);
+
+                vm.ToAdd.ClassTeacher = fullyHydratedTeacher;
+
+                _service.AddCourse(vm.ToAdd);
+                return RedirectToAction("Index");
+            }
+
+            return BadRequest();
+
+        }
+
+        [HttpGet]
         public IActionResult Edit( int? id)
         {
             if (id != null)
