@@ -31,6 +31,7 @@ namespace Problem22
                     scoreSum += ((i+1) * nameScore);
                 }
 
+                Console.WriteLine("Sum");
                 Console.WriteLine(scoreSum);
             }
         }
