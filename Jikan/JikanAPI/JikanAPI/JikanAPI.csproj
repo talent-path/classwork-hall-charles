@@ -7,7 +7,5 @@
 
   <ItemGroup>
     <Folder Include="Service\" />
-    <Folder Include="Repos\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 </Project>

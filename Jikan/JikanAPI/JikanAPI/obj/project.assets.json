@@ -8,24 +8,26 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "/Users/charleshall/.nuget/packages/": {}
+    "C:\\Users\\CHall\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/charleshall/classwork-hall-charles/Jikan/JikanAPI/JikanAPI/JikanAPI.csproj",
+      "projectUniqueName": "C:\\Users\\CHall\\Desktop\\classwork-hall-charles\\Jikan\\JikanAPI\\JikanAPI\\JikanAPI.csproj",
       "projectName": "JikanAPI",
-      "projectPath": "/Users/charleshall/classwork-hall-charles/Jikan/JikanAPI/JikanAPI/JikanAPI.csproj",
-      "packagesPath": "/Users/charleshall/.nuget/packages/",
-      "outputPath": "/Users/charleshall/classwork-hall-charles/Jikan/JikanAPI/JikanAPI/obj/",
+      "projectPath": "C:\\Users\\CHall\\Desktop\\classwork-hall-charles\\Jikan\\JikanAPI\\JikanAPI\\JikanAPI.csproj",
+      "packagesPath": "C:\\Users\\CHall\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CHall\\Desktop\\classwork-hall-charles\\Jikan\\JikanAPI\\JikanAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/charleshall/.config/NuGet/NuGet.Config"
+        "C:\\Users\\CHall\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -61,7 +63,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
