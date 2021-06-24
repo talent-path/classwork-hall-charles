@@ -1,0 +1,12 @@
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\bin\Debug\netcoreapp3.1\Problem26.exe
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\bin\Debug\netcoreapp3.1\Problem26.deps.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\bin\Debug\netcoreapp3.1\Problem26.runtimeconfig.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\bin\Debug\netcoreapp3.1\Problem26.runtimeconfig.dev.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\bin\Debug\netcoreapp3.1\Problem26.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\bin\Debug\netcoreapp3.1\Problem26.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\obj\Debug\netcoreapp3.1\Problem26.AssemblyInfoInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\obj\Debug\netcoreapp3.1\Problem26.AssemblyInfo.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\obj\Debug\netcoreapp3.1\Problem26.csproj.CoreCompileInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\obj\Debug\netcoreapp3.1\Problem26.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\obj\Debug\netcoreapp3.1\Problem26.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem26\obj\Debug\netcoreapp3.1\Problem26.genruntimeconfig.cache
