@@ -19,10 +19,6 @@ namespace JikanAPI.Repos
         {
             throw new NotImplementedException();
         }
-        public void EditWatch()
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Watch> GetAllWatches()
         {
@@ -39,12 +35,17 @@ namespace JikanAPI.Repos
             throw new NotImplementedException();
         }
 
+        public List<Watch> GetWatchesByType(string type)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Watch> GetWatchesByPrice(decimal min, decimal max)
         {
             throw new NotImplementedException();
         }
 
-        public List<Watch> GetWatchesByType(string type)
+        public void EditWatch(Watch watch)
         {
             throw new NotImplementedException();
         }

@@ -15,39 +15,39 @@ namespace JikanAPI.Service
             _watchRepo = new WatchRepo(context);
             _orderRepo = new OrderRepo(context);
         }
-        public Watch GetWatchById(int value)
+        public int AddWatch(Watch watch)
         {
-            throw new NotImplementedException();
+            return _watchRepo.AddWatch(watch);
+        }
+
+        public Watch GetWatchById(int id)
+        {
+            return _watchRepo.GetWatchById(id);
         }
 
         public Watch GetWatchByName(string name)
         {
-            throw new NotImplementedException();
-        }
-
-        internal void AddWatch(WatchController watch)
-        {
-            throw new NotImplementedException();
+            return _watchRepo.GetWatchByName(name);
         }
 
         public List<Watch> GetAllWatches()
         {
-            throw new NotImplementedException();
+            return _watchRepo.GetAllWatches();
         }
 
         public List<Watch> GetWatchesByType(string type)
         {
-            throw new NotImplementedException();
+            return _watchRepo.GetWatchesByType(type);
         }
 
         public List<Watch> GetWatchesByPrice(decimal min, decimal max)
         {
-            throw new NotImplementedException();
+            return _watchRepo.GetWatchesByPrice(min, max);
         }
 
-        public void EditWatch()
+        public void EditWatch(Watch watch)
         {
-            throw new NotImplementedException();
+            _watchRepo.EditWatch(watch);
         }
     }
 }
