@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CourseManager.Controllers
 {
+    [ApiController]
     public class CourseController : Controller
     {
         CourseService _service = new CourseService();
@@ -162,6 +163,38 @@ namespace CourseManager.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost("/Course")]
+        public IActionResult Add(Course toAdd)
+        {
+            return this.Accepted(_service.AddCourse(toAdd));
+        }
+
+        [HttpGet("/Course/{id}")]
+        public IActionResult GetCourse(int id)
+        {
+            return this.Accepted(_service.GetById(id));
+        }
+
+        [HttpGet("/Course")]
+        public IActionResult GetAllCourses()
+        {
+            return this.Accepted(_service.GetAll());
+        }
+
+        //[HttpPut("/Course")]
+        //public IActionResult Edit(Course toEdit)
+        //{
+        //    _service.EditCourse(toEdit);
+        //    return this.Accepted();
+        //}
+
+        [HttpDelete("/Course/{id}")]
+        public IActionResult Delete(int id)
+        {
+             _service.DeleteCourse(id);
+            return this.Accepted();
         }
 
     }

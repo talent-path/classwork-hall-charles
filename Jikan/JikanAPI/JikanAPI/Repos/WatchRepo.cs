@@ -6,8 +6,19 @@ using System.Threading.Tasks;
 
 namespace JikanAPI.Repos
 {
-    public class DBWatchRepo : IWatchRepo
+    public class WatchRepo : IWatchRepo
     {
+        private JikanDbContext _context;
+
+        public WatchRepo(JikanDbContext context)
+        {
+            _context = context;
+        }
+
+        public int AddWatch(Watch watch)
+        {
+            throw new NotImplementedException();
+        }
         public void EditWatch()
         {
             throw new NotImplementedException();
@@ -37,5 +48,6 @@ namespace JikanAPI.Repos
         {
             throw new NotImplementedException();
         }
+
     }
 }

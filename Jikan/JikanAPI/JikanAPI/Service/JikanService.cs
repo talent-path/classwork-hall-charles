@@ -1,4 +1,6 @@
-﻿using JikanAPI.Models;
+﻿using JikanAPI.Controllers;
+using JikanAPI.Models;
+using JikanAPI.Repos;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +8,13 @@ namespace JikanAPI.Service
 {
     public class JikanService
     {
+        WatchRepo _watchRepo;
+        OrderRepo _orderRepo;
+        public JikanService(JikanDbContext context)
+        {
+            _watchRepo = new WatchRepo(context);
+            _orderRepo = new OrderRepo(context);
+        }
         public Watch GetWatchById(int value)
         {
             throw new NotImplementedException();
@@ -15,6 +24,12 @@ namespace JikanAPI.Service
         {
             throw new NotImplementedException();
         }
+
+        internal void AddWatch(WatchController watch)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Watch> GetAllWatches()
         {
             throw new NotImplementedException();

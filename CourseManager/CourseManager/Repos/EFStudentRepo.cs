@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JikanAPI.Repos
+namespace CourseManager.Repos
 {
-    public class DBOrderRepo
+    public class EFStudentRepo
     {
     }
 }

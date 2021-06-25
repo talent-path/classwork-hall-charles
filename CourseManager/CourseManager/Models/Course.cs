@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace CourseManager.Models
@@ -9,10 +10,9 @@ namespace CourseManager.Models
         public int? Id { get; set; }
         public Teacher ClassTeacher { get; set; }
         public List<Student> ClassStudents { get; set; } = new List<Student>();
+        [Required]
         public string Name { get; set; }
-
         public Course() { }
-
         public Course( Course that)
         {
             this.Id = that.Id;

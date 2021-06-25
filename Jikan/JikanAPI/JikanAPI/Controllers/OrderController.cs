@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace JikanAPI.Controllers
 {
+    [ApiController]
+    [Route("/api/order")]
     public class OrderController : Controller
     {
         public IActionResult Index()

@@ -8,6 +8,7 @@ namespace JikanAPI.Repos
 {
     interface IWatchRepo
     {
+        int AddWatch(Watch watch);
         Watch GetWatchById(int value);
         Watch GetWatchByName(string name);
         List<Watch> GetAllWatches();
