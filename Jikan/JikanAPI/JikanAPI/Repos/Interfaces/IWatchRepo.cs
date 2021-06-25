@@ -8,13 +8,13 @@ namespace JikanAPI.Repos
 {
     interface IWatchRepo
     {
-        int AddWatch(Watch watch);
+        int AddWatch(Watch toAdd);
         Watch GetWatchById(int value);
         Watch GetWatchByName(string name);
         List<Watch> GetAllWatches();
         List<Watch> GetWatchesByType(string type);
         List<Watch> GetWatchesByPrice(decimal min, decimal max);
-        void EditWatch(Watch watch);
+        void EditWatch(Watch toEdit);
         void DeleteWatch(int id);
     }
 }

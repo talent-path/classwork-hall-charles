@@ -15,9 +15,9 @@ namespace JikanAPI.Service
             _watchRepo = new WatchRepo(context);
             _orderRepo = new OrderRepo(context);
         }
-        public int AddWatch(Watch watch)
+        public int AddWatch(Watch toAdd)
         {
-            return _watchRepo.AddWatch(watch);
+            return _watchRepo.AddWatch(toAdd);
         }
 
         public Watch GetWatchById(int id)
@@ -45,14 +45,35 @@ namespace JikanAPI.Service
             return _watchRepo.GetWatchesByPrice(min, max);
         }
 
-        public void EditWatch(Watch watch)
+        public void EditWatch(Watch toEdit)
         {
-            _watchRepo.EditWatch(watch);
+            _watchRepo.EditWatch(toEdit);
         }
 
         public void DeleteWatch(int id)
         {
             _watchRepo.DeleteWatch(id);
         }
+
+        public int AddOrder(Order toAdd)
+        {
+           return _orderRepo.AddOrder(toAdd);
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return _orderRepo.GetOrderById(id);
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            return _orderRepo.GetAllOrders();
+        }
+
+        public void DeleteOrder(int id)
+        {
+            _orderRepo.DeleteOrder(id);
+        }
+
     }
 }
