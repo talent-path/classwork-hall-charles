@@ -4,14 +4,16 @@ using JikanAPI.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JikanAPI.Migrations
 {
     [DbContext(typeof(JikanDbContext))]
-    partial class JikanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210625205518_OrderChanges")]
+    partial class OrderChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,14 +4,16 @@ using JikanAPI.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JikanAPI.Migrations
 {
     [DbContext(typeof(JikanDbContext))]
-    partial class JikanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210625205301_OrderDetails")]
+    partial class OrderDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,6 +83,9 @@ namespace JikanAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(5,2)");
 
@@ -89,6 +94,8 @@ namespace JikanAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Watches");
                 });
@@ -106,6 +113,18 @@ namespace JikanAPI.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("Watch");
+                });
+
+            modelBuilder.Entity("JikanAPI.Models.Watch", b =>
+                {
+                    b.HasOne("JikanAPI.Models.Order", null)
+                        .WithMany("Items")
+                        .HasForeignKey("OrderId");
+                });
+
+            modelBuilder.Entity("JikanAPI.Models.Order", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

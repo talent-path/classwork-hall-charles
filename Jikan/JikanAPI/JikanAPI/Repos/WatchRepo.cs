@@ -59,5 +59,12 @@ namespace JikanAPI.Repos
             _context.SaveChanges();
         }
 
+        public void DeleteWatch(int id)
+        {
+            Watch toDelete = _context.Watches.Find(id);
+            _context.Attach(toDelete);
+            _context.Remove(toDelete);
+            _context.SaveChanges();
+        }
     }
 }

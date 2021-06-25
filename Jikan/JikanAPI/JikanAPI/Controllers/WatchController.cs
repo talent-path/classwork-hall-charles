@@ -23,16 +23,16 @@ namespace JikanAPI.Controllers
             return this.Accepted();
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetWatchById(int id)
         {
-           return (IActionResult)_service.GetWatchById(id);
+           return this.Accepted(_service.GetWatchById(id));
         }
 
-        [HttpGet("/name/{name}")]
+        [HttpGet("name/{name}")]
         public IActionResult GetWatchByName(string name)
         {
-            return (IActionResult)_service.GetWatchByName(name);
+            return this.Accepted(_service.GetWatchByName(name));
         }
 
         [HttpGet]
@@ -41,22 +41,29 @@ namespace JikanAPI.Controllers
             return this.Accepted(_service.GetAllWatches());
         }
 
-        [HttpGet("/type/{type}")]
+        [HttpGet("type/{type}")]
         public IActionResult GetWatchesByType(string type)
         {
-            return (IActionResult)_service.GetWatchesByType(type);
+            return this.Accepted(_service.GetWatchesByType(type));
         }
 
-        [HttpGet("/{min}/{max}")]
+        [HttpGet("{min}/{max}")]
         public IActionResult GetWatchesByPrice(decimal min, decimal max)
         {
-            return (IActionResult)_service.GetWatchesByPrice(min, max);
+            return this.Accepted(_service.GetWatchesByPrice(min, max));
         }
 
         [HttpPut]
         public IActionResult EditWatch(Watch watch)
         {
            _service.EditWatch(watch);
+            return this.Accepted();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteWatch(int id)
+        {
+            _service.DeleteWatch(id);
             return this.Accepted();
         }
 

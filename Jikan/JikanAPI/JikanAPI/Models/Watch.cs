@@ -16,13 +16,6 @@ namespace JikanAPI.Models
         public decimal Price { get; set; }
         [Required]
         public string ImageUrl { get; set; }
-        public Watch(int id, string name, string type, decimal price, string imageUrl)
-        {
-            Id = id;
-            Name = name;
-            Type = type;
-            Price = price;
-            ImageUrl = imageUrl;
-        }
+
     }
 }

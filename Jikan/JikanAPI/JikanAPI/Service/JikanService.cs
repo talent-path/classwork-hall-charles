@@ -49,5 +49,10 @@ namespace JikanAPI.Service
         {
             _watchRepo.EditWatch(watch);
         }
+
+        public void DeleteWatch(int id)
+        {
+            _watchRepo.DeleteWatch(id);
+        }
     }
 }

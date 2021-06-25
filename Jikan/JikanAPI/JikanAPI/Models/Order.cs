@@ -17,7 +17,5 @@ namespace JikanAPI.Models
         public DateTime Date { get; set; }
         [Required]
         public string DeliveryAddress { get; set; }
-        [Required]
-        public List<Watch> Items { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace JikanAPI.Repos
         List<Watch> GetWatchesByType(string type);
         List<Watch> GetWatchesByPrice(decimal min, decimal max);
         void EditWatch(Watch watch);
+        void DeleteWatch(int id);
     }
 }
