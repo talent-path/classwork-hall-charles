@@ -38,7 +38,7 @@ namespace JikanAPI.Controllers
         [HttpGet]
         public IActionResult GetAllWatches()
         {
-            return (IActionResult)_service.GetAllWatches();
+            return this.Accepted(_service.GetAllWatches());
         }
 
         [HttpGet("/type/{type}")]

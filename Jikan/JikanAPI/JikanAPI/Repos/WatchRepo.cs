@@ -1,4 +1,5 @@
 ﻿using JikanAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,39 +16,47 @@ namespace JikanAPI.Repos
             _context = context;
         }
 
-        public int AddWatch(Watch watch)
+        public int AddWatch(Watch toAdd)
         {
-            throw new NotImplementedException();
+            _context.Watches.Add(toAdd);
+            _context.SaveChanges();
+            return toAdd.Id;
         }
 
         public List<Watch> GetAllWatches()
         {
-            throw new NotImplementedException();
+            return _context.Watches.ToList();
         }
 
-        public Watch GetWatchById(int value)
+        public Watch GetWatchById(int id)
         {
-            throw new NotImplementedException();
+            Watch toReturn = _context.Watches.Find(id);
+            return toReturn;
         }
 
         public Watch GetWatchByName(string name)
         {
-            throw new NotImplementedException();
+            Watch toReturn = _context.Watches.Where(w => w.Name == name).SingleOrDefault();
+            return toReturn;
         }
 
         public List<Watch> GetWatchesByType(string type)
         {
-            throw new NotImplementedException();
+            List<Watch> toReturn = _context.Watches.Where(w => w.Type == type).ToList();
+            return toReturn;
         }
 
         public List<Watch> GetWatchesByPrice(decimal min, decimal max)
         {
-            throw new NotImplementedException();
+            List<Watch> toReturn = _context.Watches.Where(w => w.Price >= min && w.Price <= max).ToList();
+            return toReturn;
         }
 
-        public void EditWatch(Watch watch)
+        public void EditWatch(Watch toEdit)
         {
-            throw new NotImplementedException();
+            _context.Attach(toEdit);
+            _context.Entry(toEdit).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
     }
