@@ -13,7 +13,7 @@ namespace JikanAPI.Repos
         Watch GetWatchByName(string name);
         List<Watch> GetAllWatches();
         List<Watch> GetWatchesByType(string type);
-        List<Watch> GetWatchesByPrice(decimal min, decimal max);
+        List<Watch> GetWatchesByPrice(decimal max);
         void EditWatch(Watch toEdit);
         void DeleteWatch(int id);
     }

@@ -46,9 +46,9 @@ namespace JikanAPI.Repos
             return toReturn;
         }
 
-        public List<Watch> GetWatchesByPrice(decimal min, decimal max)
+        public List<Watch> GetWatchesByPrice(decimal max)
         {
-            List<Watch> toReturn = _context.Watches.Where(w => w.Price >= min && w.Price <= max).ToList();
+            List<Watch> toReturn = _context.Watches.Where(w => w.Price <= max).ToList();
             return toReturn;
         }
 

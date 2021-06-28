@@ -47,10 +47,10 @@ namespace JikanAPI.Controllers
             return this.Accepted(_service.GetWatchesByType(type));
         }
 
-        [HttpGet("{min}/{max}")]
-        public IActionResult GetWatchesByPrice(decimal min, decimal max)
+        [HttpGet("{max}")]
+        public IActionResult GetWatchesByPrice(decimal max)
         {
-            return this.Accepted(_service.GetWatchesByPrice(min, max));
+            return this.Accepted(_service.GetWatchesByPrice(max));
         }
 
         [HttpPut]
