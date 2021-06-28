@@ -9,29 +9,35 @@ namespace JikanAPI.Repos
 {
     public class OrderRepo : IOrderRepo
     {
-        private JikanDbContext context;
+        private JikanDbContext _context;
 
         public OrderRepo(JikanDbContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public int AddOrder(Order toAdd)
         {
-            throw new NotImplementedException();
+            _context.Orders.Add(toAdd);
+            _context.SaveChanges();
+            return toAdd.Id;
         }
         public Order GetOrderById(int id)
         {
-            throw new NotImplementedException();
+            Order toReturn = _context.Orders.Find(id);
+            return toReturn;
         }
         public List<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return _context.Orders.ToList();
         }
 
         public void DeleteOrder(int id)
         {
-            throw new NotImplementedException();
+            Order toDelete = _context.Orders.Find(id);
+            _context.Attach(toDelete);
+            _context.Remove(toDelete);
+            _context.SaveChanges();
         }
 
     }

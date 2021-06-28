@@ -20,51 +20,51 @@ namespace JikanAPI.Controllers
         public IActionResult AddWatch(Watch watch)
         {
             _service.AddWatch(watch);
-            return this.Accepted();
+            return Accepted();
         }
 
         [HttpGet("{id}")]
         public IActionResult GetWatchById(int id)
         {
-           return this.Accepted(_service.GetWatchById(id));
+           return Accepted(_service.GetWatchById(id));
         }
 
         [HttpGet("name/{name}")]
         public IActionResult GetWatchByName(string name)
         {
-            return this.Accepted(_service.GetWatchByName(name));
+            return Accepted(_service.GetWatchByName(name));
         }
 
         [HttpGet]
         public IActionResult GetAllWatches()
         {
-            return this.Accepted(_service.GetAllWatches());
+            return Accepted(_service.GetAllWatches());
         }
 
         [HttpGet("type/{type}")]
         public IActionResult GetWatchesByType(string type)
         {
-            return this.Accepted(_service.GetWatchesByType(type));
+            return Accepted(_service.GetWatchesByType(type));
         }
 
         [HttpGet("{max}")]
         public IActionResult GetWatchesByPrice(decimal max)
         {
-            return this.Accepted(_service.GetWatchesByPrice(max));
+            return Accepted(_service.GetWatchesByPrice(max));
         }
 
         [HttpPut]
         public IActionResult EditWatch(Watch watch)
         {
            _service.EditWatch(watch);
-            return this.Accepted();
+            return Accepted();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteWatch(int id)
         {
             _service.DeleteWatch(id);
-            return this.Accepted();
+            return Accepted();
         }
 
     }
