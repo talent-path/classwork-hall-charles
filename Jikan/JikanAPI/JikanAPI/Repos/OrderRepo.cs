@@ -32,11 +32,19 @@ namespace JikanAPI.Repos
         public Order GetOrderById(int id)
         {
             Order toReturn = _context.Orders.Find(id);
+            toReturn.OrderDetails = _context.OrderDetails.Where(od => od.OrderId == id).ToList();
+
             return toReturn;
         }
         public List<Order> GetAllOrders()
         {
-            return _context.Orders.ToList();
+            List<Order> toReturn = _context.Orders.ToList();
+            foreach(Order o in toReturn)
+            {
+                o.OrderDetails = _context.OrderDetails.Where(od => od.OrderId == o.Id).ToList();
+            }
+
+            return toReturn;
         }
 
         public void DeleteOrder(int id)
