@@ -22,3 +22,4 @@ C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\ne
 C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.dll
 C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.pdb
 C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.genruntimeconfig.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.csproj.AssemblyReference.cache
