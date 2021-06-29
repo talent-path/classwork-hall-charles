@@ -82,6 +82,13 @@ namespace JikanAPI.Service
         {
             if (toAdd == null)
                 throw new ArgumentNullException("Cannot add a null order.");
+            foreach(OrderDetail od in toAdd.OrderDetails)
+            {
+                if (od.WatchId <= 0)
+                    throw new InvalidIdException("Invalid Id, cannot be <= 0.");
+                if (od.Quantity <= 0)
+                    throw new InvalidQuantityException("Invalid quantity, cannot be <= 0.");
+            }
 
            return _orderRepo.AddOrder(toAdd);
         }
