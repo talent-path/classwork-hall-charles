@@ -6,3 +6,12 @@
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Utils/obj/Debug/netcoreapp3.1/Utils.csproj.CoreCompileInputs.cache
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Utils/obj/Debug/netcoreapp3.1/Utils.dll
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Utils/obj/Debug/netcoreapp3.1/Utils.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\bin\Debug\netcoreapp3.1\Utils.deps.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\bin\Debug\netcoreapp3.1\Utils.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\bin\Debug\netcoreapp3.1\Utils.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\obj\Debug\netcoreapp3.1\Utils.csproj.AssemblyReference.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\obj\Debug\netcoreapp3.1\Utils.AssemblyInfoInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\obj\Debug\netcoreapp3.1\Utils.AssemblyInfo.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\obj\Debug\netcoreapp3.1\Utils.csproj.CoreCompileInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\obj\Debug\netcoreapp3.1\Utils.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Utils\obj\Debug\netcoreapp3.1\Utils.pdb

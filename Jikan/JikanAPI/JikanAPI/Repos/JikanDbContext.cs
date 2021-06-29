@@ -12,6 +12,10 @@ namespace JikanAPI.Repos
         public DbSet<Watch> Watches { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderId, od.WatchId });
+        }
         public JikanDbContext(DbContextOptions<JikanDbContext> options) : base(options)
         { }
     }

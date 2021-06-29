@@ -46,13 +46,13 @@ namespace JikanAPI.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.Property<int>("WatchId")
                         .HasColumnType("int");
 
-                    b.HasIndex("OrderId");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId", "WatchId");
 
                     b.HasIndex("WatchId");
 

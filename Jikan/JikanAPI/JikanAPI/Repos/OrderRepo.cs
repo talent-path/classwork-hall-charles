@@ -20,6 +20,13 @@ namespace JikanAPI.Repos
         {
             _context.Orders.Add(toAdd);
             _context.SaveChanges();
+
+            foreach (OrderDetail od in toAdd.OrderDetails)
+            {
+                od.OrderId = toAdd.Id;
+                _context.OrderDetails.Add(od);
+            }
+
             return toAdd.Id;
         }
         public Order GetOrderById(int id)

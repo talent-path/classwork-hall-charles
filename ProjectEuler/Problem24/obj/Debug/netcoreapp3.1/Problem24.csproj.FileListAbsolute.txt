@@ -10,3 +10,16 @@
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.dll
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.pdb
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem24/obj/Debug/netcoreapp3.1/Problem24.genruntimeconfig.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\bin\Debug\netcoreapp3.1\Problem24.exe
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\bin\Debug\netcoreapp3.1\Problem24.deps.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\bin\Debug\netcoreapp3.1\Problem24.runtimeconfig.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\bin\Debug\netcoreapp3.1\Problem24.runtimeconfig.dev.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\bin\Debug\netcoreapp3.1\Problem24.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\bin\Debug\netcoreapp3.1\Problem24.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\obj\Debug\netcoreapp3.1\Problem24.csproj.AssemblyReference.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\obj\Debug\netcoreapp3.1\Problem24.AssemblyInfoInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\obj\Debug\netcoreapp3.1\Problem24.AssemblyInfo.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\obj\Debug\netcoreapp3.1\Problem24.csproj.CoreCompileInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\obj\Debug\netcoreapp3.1\Problem24.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\obj\Debug\netcoreapp3.1\Problem24.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem24\obj\Debug\netcoreapp3.1\Problem24.genruntimeconfig.cache

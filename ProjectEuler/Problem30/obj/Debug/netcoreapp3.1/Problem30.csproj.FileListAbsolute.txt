@@ -10,3 +10,16 @@
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem30/obj/Debug/netcoreapp3.1/Problem30.dll
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem30/obj/Debug/netcoreapp3.1/Problem30.pdb
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem30/obj/Debug/netcoreapp3.1/Problem30.genruntimeconfig.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\bin\Debug\netcoreapp3.1\Problem30.exe
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\bin\Debug\netcoreapp3.1\Problem30.deps.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\bin\Debug\netcoreapp3.1\Problem30.runtimeconfig.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\bin\Debug\netcoreapp3.1\Problem30.runtimeconfig.dev.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\bin\Debug\netcoreapp3.1\Problem30.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\bin\Debug\netcoreapp3.1\Problem30.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\obj\Debug\netcoreapp3.1\Problem30.csproj.AssemblyReference.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\obj\Debug\netcoreapp3.1\Problem30.AssemblyInfoInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\obj\Debug\netcoreapp3.1\Problem30.AssemblyInfo.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\obj\Debug\netcoreapp3.1\Problem30.csproj.CoreCompileInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\obj\Debug\netcoreapp3.1\Problem30.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\obj\Debug\netcoreapp3.1\Problem30.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem30\obj\Debug\netcoreapp3.1\Problem30.genruntimeconfig.cache

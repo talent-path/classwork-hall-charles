@@ -10,3 +10,15 @@
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem8/obj/Debug/netcoreapp3.1/Problem8.dll
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem8/obj/Debug/netcoreapp3.1/Problem8.pdb
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem8/obj/Debug/netcoreapp3.1/Problem8.genruntimeconfig.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\bin\Debug\netcoreapp3.1\Problem8.exe
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\bin\Debug\netcoreapp3.1\Problem8.deps.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\bin\Debug\netcoreapp3.1\Problem8.runtimeconfig.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\bin\Debug\netcoreapp3.1\Problem8.runtimeconfig.dev.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\bin\Debug\netcoreapp3.1\Problem8.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\bin\Debug\netcoreapp3.1\Problem8.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.AssemblyInfoInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.AssemblyInfo.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.csproj.CoreCompileInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem8\obj\Debug\netcoreapp3.1\Problem8.genruntimeconfig.cache

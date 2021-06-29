@@ -10,3 +10,16 @@
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem19/obj/Debug/netcoreapp3.1/Problem19.dll
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem19/obj/Debug/netcoreapp3.1/Problem19.pdb
 /Users/charleshall/classwork-hall-charles/ProjectEuler/Problem19/obj/Debug/netcoreapp3.1/Problem19.genruntimeconfig.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\bin\Debug\netcoreapp3.1\Problem19.exe
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\bin\Debug\netcoreapp3.1\Problem19.deps.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\bin\Debug\netcoreapp3.1\Problem19.runtimeconfig.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\bin\Debug\netcoreapp3.1\Problem19.runtimeconfig.dev.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\bin\Debug\netcoreapp3.1\Problem19.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\bin\Debug\netcoreapp3.1\Problem19.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\obj\Debug\netcoreapp3.1\Problem19.csproj.AssemblyReference.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\obj\Debug\netcoreapp3.1\Problem19.AssemblyInfoInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\obj\Debug\netcoreapp3.1\Problem19.AssemblyInfo.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\obj\Debug\netcoreapp3.1\Problem19.csproj.CoreCompileInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\obj\Debug\netcoreapp3.1\Problem19.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\obj\Debug\netcoreapp3.1\Problem19.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem19\obj\Debug\netcoreapp3.1\Problem19.genruntimeconfig.cache

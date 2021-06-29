@@ -12,21 +12,21 @@ namespace Utils
         /// </summary>
         /// <param name="maxNum">Number to check.</param>
         /// <returns>True if prime, False if not prime.</returns>
-        public static bool IsPrime(BigInteger num)
+        public static bool IsPrime(int num)
         {
             if (num < 2)
                 return false;
 
             bool prime = true;
 
-            BigInteger squareRoot = GetSquareRoot(num);
+            int squareRoot = GetSquareRoot(num);
 
             if(num % 2 == 0)
             {
                 return num == 2;
             }
 
-            for(BigInteger i = 3; i <= squareRoot; i+=2)
+            for(int i = 3; i <= squareRoot; i+=2)
             {
                 if(num % i == 0)
                 {

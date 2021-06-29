@@ -47,7 +47,7 @@ namespace JikanAPI.Controllers
             return Accepted(_service.GetWatchesByType(type));
         }
 
-        [HttpGet("{max}")]
+        [HttpGet("/price/{max}")]
         public IActionResult GetWatchesByPrice(decimal max)
         {
             return Accepted(_service.GetWatchesByPrice(max));

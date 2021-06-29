@@ -18,30 +18,30 @@ namespace Problem3
 
             bool found = false;
 
-            for(BigInteger i = 1; i <= squareRoot; i++)
-            {
-                if(input % i == 0)
-                {
-                    BigInteger bigFactor = input / i;
+            //for(BigInteger i = 1; i <= squareRoot; i++)
+            //{
+            //    if(input % i == 0)
+            //    {
+            //        BigInteger bigFactor = input / i;
 
-                    if(Util.IsPrime(bigFactor))
-                    {
-                        Console.WriteLine(bigFactor);
-                        found = true;
-                        break;
-                    }
+            //        if(Util.IsPrime(bigFactor))
+            //        {
+            //            Console.WriteLine(bigFactor);
+            //            found = true;
+            //            break;
+            //        }
 
-                    if(Util.IsPrime(i))
-                    {
-                        biggestLowFactor = i;
-                    }
-                }
-            }
+            //        if(Util.IsPrime(i))
+            //        {
+            //            biggestLowFactor = i;
+            //        }
+            //    }
+            //}
 
-            if(!found)
-            {
-                Console.WriteLine(biggestLowFactor);
-            }
+            //if(!found)
+            //{
+            //    Console.WriteLine(biggestLowFactor);
+            //}
         }
     }
 }
