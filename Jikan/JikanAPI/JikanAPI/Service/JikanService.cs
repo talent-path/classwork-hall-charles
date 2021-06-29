@@ -20,6 +20,10 @@ namespace JikanAPI.Service
         {
             if (toAdd == null)
                 throw new ArgumentNullException("Cannot create a null watch.");
+            if (toAdd.Name == null)
+                throw new ArgumentNullException("Cannot create a watch with a null name.");
+            if (toAdd.Name == "" || toAdd.Name.Length > 50 || toAdd.Name.Trim().Length == 0)
+                throw new InvalidNameException("Invalid name, cannot be empty, white spaces, or too long.");
 
             return _watchRepo.AddWatch(toAdd);
         }

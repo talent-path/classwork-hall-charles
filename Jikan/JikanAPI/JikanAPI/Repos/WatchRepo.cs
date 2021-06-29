@@ -1,4 +1,5 @@
-﻿using JikanAPI.Models;
+﻿using JikanAPI.Exceptions;
+using JikanAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,10 @@ namespace JikanAPI.Repos
         public Watch GetWatchById(int id)
         {
             Watch toReturn = _context.Watches.Find(id);
+
+            if (toReturn == null)
+                throw new WatchNotFoundException("Could not find watch with that Id.");
+
             return toReturn;
         }
 
@@ -62,6 +67,10 @@ namespace JikanAPI.Repos
         public void DeleteWatch(int id)
         {
             Watch toDelete = _context.Watches.Find(id);
+
+            if (toDelete == null)
+                throw new WatchNotFoundException("Could not find watch with that Id.");
+
             _context.Attach(toDelete);
             _context.Remove(toDelete);
             _context.SaveChanges();
