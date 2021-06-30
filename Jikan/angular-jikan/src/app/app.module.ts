@@ -11,6 +11,8 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 import { CartComponent } from './components/cart/cart.component';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
+import { WatchesListComponent } from './components/watches-list/watches-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { CartComponent } from './components/cart/cart.component';
     SearchPageComponent,
     ContactPageComponent,
     CheckoutPageComponent,
-    CartComponent
+    CartComponent,
+    OrdersListComponent,
+    WatchesListComponent
   ],
   imports: [
     BrowserModule,
