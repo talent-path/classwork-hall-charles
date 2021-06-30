@@ -19,6 +19,8 @@ namespace JikanAPI.Models
         [Column(TypeName = "decimal(5,2)")]
         public decimal Price { get; set; }
         [Required]
+        public string Description { get; set; }
+        [Required]
         public string ImageUrl { get; set; }
         [JsonIgnore]
         public List<OrderDetail> OrderDetails { get; set; }
