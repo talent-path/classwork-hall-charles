@@ -14,6 +14,7 @@ export class WatchDisplayComponent implements OnInit {
   constructor(private jikanService : JikanService) { }
 
   ngOnInit(): void {
+    console.log(this.watch);
   }
 
 }

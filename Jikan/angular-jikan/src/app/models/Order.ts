@@ -1,7 +1,7 @@
 
 export interface Order {
-    Id? : number;
-    Total : number;
-    Date : Date;
-    DeliveryAddress : string;
+    id? : number;
+    total : number;
+    date : Date;
+    deliveryAddress : string;
 }

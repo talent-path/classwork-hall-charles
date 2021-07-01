@@ -10,7 +10,7 @@ import { JikanService } from 'src/app/service/jikan.service';
 })
 export class WatchesListComponent implements OnInit {
 
-  watches: Watch[];
+  watches : Watch[] = [];
 
   constructor(private jikanService : JikanService) { }
 

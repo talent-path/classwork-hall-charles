@@ -1,5 +1,7 @@
 <div id="watch" class="watch-display-container">
-    <h1>Hello</h1>
-    <h1>{{watch.Name}}</h1>
-    <h4>{{watch.Price}}</h4>
+    <h1>{{watch.name}}</h1>
+    
+    <img id="watchImg" alt="watchImg" [src]="watch.imageUrl" [title]="watch.name">
+
+    <h4>{{watch.price}}</h4>
 </div>
