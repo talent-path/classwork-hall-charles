@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Watch } from '../../models/Watch';
 import { JikanService } from 'src/app/service/jikan.service';
 
+
 @Component({
   selector: 'app-watches-list',
   templateUrl: './watches-list.component.html',
@@ -9,7 +10,7 @@ import { JikanService } from 'src/app/service/jikan.service';
 })
 export class WatchesListComponent implements OnInit {
 
-  watches: Watch[] = [];
+  watches: Watch[];
 
   constructor(private jikanService : JikanService) { }
 

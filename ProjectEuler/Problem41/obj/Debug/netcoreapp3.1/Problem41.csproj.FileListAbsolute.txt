@@ -1,0 +1,16 @@
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Problem41.exe
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Problem41.deps.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Problem41.runtimeconfig.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Problem41.runtimeconfig.dev.json
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Problem41.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Problem41.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Utils.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\bin\Debug\netcoreapp3.1\Utils.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.csproj.AssemblyReference.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.AssemblyInfoInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.AssemblyInfo.cs
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.csproj.CoreCompileInputs.cache
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.csproj.CopyComplete
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.dll
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.pdb
+C:\Users\CHall\Desktop\classwork-hall-charles\ProjectEuler\Problem41\obj\Debug\netcoreapp3.1\Problem41.genruntimeconfig.cache

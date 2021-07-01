@@ -13,6 +13,9 @@ import { OrdersListComponent } from './components/orders-list/orders-list.compon
 import { WatchesListComponent } from './components/watches-list/watches-list.component';
 import { WatchDisplayComponent } from './components/watch-display/watch-display.component';
 import { WatchDetailDisplayComponent } from './components/watch-detail-display/watch-detail-display.component';
+import { JikanService } from './service/jikan.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,11 +29,16 @@ import { WatchDetailDisplayComponent } from './components/watch-detail-display/w
     OrdersListComponent,
     WatchesListComponent,
     WatchDisplayComponent,
-    WatchDetailDisplayComponent
+    WatchDetailDisplayComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+  ],
+  exports: [
+    HomePageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

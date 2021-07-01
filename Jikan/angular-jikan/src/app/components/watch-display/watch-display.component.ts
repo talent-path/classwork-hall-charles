@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Watch } from 'src/app/models/Watch';
+import { JikanService } from 'src/app/service/jikan.service';
 
 @Component({
   selector: 'app-watch-display',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WatchDisplayComponent implements OnInit {
 
-  constructor() { }
+  @Input() watch : Watch;
+
+  constructor(private jikanService : JikanService) { }
 
   ngOnInit(): void {
   }
