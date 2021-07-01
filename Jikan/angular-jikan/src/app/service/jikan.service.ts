@@ -27,6 +27,18 @@ export class JikanService {
     );
   }
 
+  getWatchById(id : number) : Observable<Watch> {
+    return this.http.get<Watch>(this.baseUrl + "/watch/" + id);
+  }
+
+  getWatchByName(name : string) : Observable<Watch> {
+    return this.http.get<Watch>(this.baseUrl + "/watch/name/" + name);
+  }
+
+  getWatchByType(type : string) : Observable<Watch> {
+    return this.http.get<Watch>(this.baseUrl + "/watch/type/" + type);
+  }
+
   getAllOrders() : Observable<Order[]> {
     return this.http.get<Order[]>(this.baseUrl + "/order")
     .pipe(
@@ -37,6 +49,10 @@ export class JikanService {
         return of(empty);
       })
     );
+  }
+
+  getORderById(id : number) : Observable<Order> {
+    return this.http.get<Order>(this.baseUrl + "/order/" + id);
   }
 
 }
