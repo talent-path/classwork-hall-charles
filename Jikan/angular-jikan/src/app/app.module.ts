@@ -22,6 +22,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { WatchDetailPageComponent } from './components/watch-detail-page/watch-detail-page.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { OrderDisplayComponent } from './components/order-display/order-display.component';
+import { TypeWatchPageComponent } from './components/type-watch-page/type-watch-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { OrderDisplayComponent } from './components/order-display/order-display.
     WatchDetailPageComponent,
     AddToCartComponent,
     OrderDisplayComponent,
+    TypeWatchPageComponent,
   ],
   imports: [
     BrowserModule,

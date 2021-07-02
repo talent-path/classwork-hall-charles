@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { JikanService } from 'src/app/service/jikan.service';
 import { Watch } from '../../models/Watch';
 import { ActivatedRoute } from '@angular/router';
@@ -11,15 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class TypeWatchListComponent implements OnInit {
 
   watches : Watch[] = [];
-  type : string = "";
+  @Input() type : string = "";
 
   constructor(private jikanService : JikanService, private route : ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.route.params.subscribe(paramType => {
-      this.type = paramType.type;
-    });
-    
+  ngOnInit(): void {  
     this.jikanService.getWatchesByType(this.type).subscribe(list => {
       this.watches = list;
     });

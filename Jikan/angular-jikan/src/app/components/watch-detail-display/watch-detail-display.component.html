@@ -1,11 +1,27 @@
-<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 py-3">
-      <h2 class="display-5">{{watch.name}}</h2>
-      <p class="lead">${{watch.price}}</p>
+<!-- Page Content -->
+<div class="container">
+
+  <!-- Portfolio Item Heading -->
+  <h1 class="my-4">{{watch.name}}
+  </h1>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-6">
+      <img class="img-fluid" src="{{watch.imageUrl}}" alt="">
     </div>
-    <div style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-        <img src="{{watch.imageUrl}}">
+
+    <div class="col-md-6">
+      <h5 class="my-3">${{watch.price}}.00</h5>
+      <h5>{{watch.type}}</h5>
+      <hr>
+      <p>{{watch.description}}</p>
+      <app-add-to-cart></app-add-to-cart>
     </div>
-    <p>{{watch.type}}</p>
-    <p>{{watch.description}}</p>
+
   </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
