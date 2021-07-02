@@ -8,7 +8,7 @@ import { WatchesListComponent } from './components/watches-list/watches-list.com
 const routes: Routes = [
   { path: 'watches', component: WatchesListComponent },
   { path: 'orders', component: OrdersListComponent },
-  {path: 'home', component: HomePageComponent },
+  {path: '', component: HomePageComponent },
   { path: 'watches/type/:type', component: TypeWatchListComponent }
 ];
 
