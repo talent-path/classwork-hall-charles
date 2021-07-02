@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { WatchDetailPageComponent } from './components/watch-detail-page/watch-detail-page.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import { OrderDisplayComponent } from './components/order-display/order-display.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     ContactFormComponent,
     WatchDetailPageComponent,
     AddToCartComponent,
+    OrderDisplayComponent,
   ],
   imports: [
     BrowserModule,
