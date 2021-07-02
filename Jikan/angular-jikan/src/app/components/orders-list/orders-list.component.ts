@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/models/Order';
+import { JikanService } from 'src/app/service/jikan.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersListComponent implements OnInit {
 
-  constructor() { }
+  orders : Order[] = [];
+
+  constructor(private jikanService : JikanService) { }
 
   ngOnInit(): void {
+    this.jikanService.getAllOrders().subscribe(list => {
+      this.orders = list;
+    });
   }
 
 }
