@@ -20,6 +20,7 @@ import { TypeWatchListComponent } from './components/type-watch-list/type-watch-
 import { FooterComponent } from './components/footer/footer.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { WatchDetailPageComponent } from './components/watch-detail-page/watch-detail-page.component';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { WatchDetailPageComponent } from './components/watch-detail-page/watch-d
     FooterComponent,
     ContactFormComponent,
     WatchDetailPageComponent,
+    AddToCartComponent,
   ],
   imports: [
     BrowserModule,
