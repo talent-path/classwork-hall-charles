@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TypeWatchListComponent } from './components/type-watch-list/type-watch-list.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { WatchDetailPageComponent } from './components/watch-detail-page/watch-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { FooterComponent } from './components/footer/footer.component';
     WatchDetailDisplayComponent,
     TypeWatchListComponent,
     FooterComponent,
+    ContactFormComponent,
+    WatchDetailPageComponent,
   ],
   imports: [
     BrowserModule,

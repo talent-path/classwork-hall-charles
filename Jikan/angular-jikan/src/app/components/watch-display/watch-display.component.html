@@ -1,9 +1,11 @@
-<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 py-3">
-      <h2 class="display-5">{{watch.name}}</h2>
-      <p class="lead">${{watch.price}}</p>
-    </div>
-    <div style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-        <img src="{{watch.imageUrl}}">
-    </div>
+<a href="/watch/detail/{{watch.id}}">
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">{{watch.name}}</h2>
+        <p class="lead">${{watch.price}}</p>
+      </div>
+      <div style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+          <img src="{{watch.imageUrl}}">
+      </div>
   </div>
+</a>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Watch } from 'src/app/models/Watch';
 
 @Component({
   selector: 'app-watch-detail-display',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./watch-detail-display.component.css']
 })
 export class WatchDetailDisplayComponent implements OnInit {
+
+  @Input() watch : Watch;
 
   constructor() { }
 
