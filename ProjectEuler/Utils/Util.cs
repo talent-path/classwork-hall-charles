@@ -38,6 +38,21 @@ namespace Utils
             return prime;
         }
 
+        public static bool IntIsPrime(int num)
+        {
+            if (num < 2)
+                return false;
+            int root = GetSquareRoot(num);
+            if (num % 2 == 0 && num != 2)
+                return false;
+            for (int i = 3; i <= root; i += 2)
+            {
+                if (num % i == 0)
+                    return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Gets the square root of a Big Integer.
         /// </summary>

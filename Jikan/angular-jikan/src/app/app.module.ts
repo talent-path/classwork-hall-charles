@@ -16,6 +16,8 @@ import { WatchDetailDisplayComponent } from './components/watch-detail-display/w
 import { JikanService } from './service/jikan.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TypeWatchListComponent } from './components/type-watch-list/type-watch-list.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { FormsModule } from '@angular/forms';
     WatchesListComponent,
     WatchDisplayComponent,
     WatchDetailDisplayComponent,
+    TypeWatchListComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

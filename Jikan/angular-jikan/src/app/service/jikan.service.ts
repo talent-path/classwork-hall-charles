@@ -35,8 +35,8 @@ export class JikanService {
     return this.http.get<Watch>(this.baseUrl + "/watch/name/" + name);
   }
 
-  getWatchByType(type : string) : Observable<Watch> {
-    return this.http.get<Watch>(this.baseUrl + "/watch/type/" + type);
+  getWatchesByType(type : string) : Observable<Watch[]> {
+    return this.http.get<Watch[]>(this.baseUrl + "/watch/type/" + type);
   }
 
   getAllOrders() : Observable<Order[]> {
@@ -51,7 +51,7 @@ export class JikanService {
     );
   }
 
-  getORderById(id : number) : Observable<Order> {
+  getOrderById(id : number) : Observable<Order> {
     return this.http.get<Order>(this.baseUrl + "/order/" + id);
   }
 
