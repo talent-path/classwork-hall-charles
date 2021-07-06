@@ -1,4 +1,6 @@
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-    <app-watch-display *ngFor="let watch of watches" [watch]="watch">
-    </app-watch-display>
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+        <app-watch-display *ngFor="let watch of watches" [watch]="watch">
+        </app-watch-display>
+    </div>
 </div>
