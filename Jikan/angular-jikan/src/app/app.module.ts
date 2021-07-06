@@ -24,6 +24,8 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
 import { OrderDisplayComponent } from './components/order-display/order-display.component';
 import { TypeWatchPageComponent } from './components/type-watch-page/type-watch-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
+import { CartService } from './service/cart.service';
+import { WatchCartDisplayComponent } from './components/watch-cart-display/watch-cart-display.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { AboutUsPageComponent } from './components/about-us-page/about-us-page.c
     OrderDisplayComponent,
     TypeWatchPageComponent,
     AboutUsPageComponent,
+    WatchCartDisplayComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { AboutUsPageComponent } from './components/about-us-page/about-us-page.c
   exports: [
     HomePageComponent
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

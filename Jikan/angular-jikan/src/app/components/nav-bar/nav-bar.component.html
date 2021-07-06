@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
 
-    <a class="navbar-brand" href="">
+    <a class="navbar-brand" routerLink="">
       <img src="../../../assets/images/logo.png" height="45" alt="logo">
     </a>
   
@@ -17,7 +17,7 @@
       <!-- Right -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="#!" class="nav-link navbar-link-2 waves-effect">
+          <a routerLink="/cart" class="nav-link navbar-link-2 waves-effect">
             <span class="badge badge-pill red">{{count}}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -29,25 +29,25 @@
             Shop
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/watches">All Watches</a>
-            <a class="dropdown-item" href="/watches/type/Analog">Analog</a>
-            <a class="dropdown-item" href="/watches/type/Digital">Digital</a>
-            <a class="dropdown-item" href="/watches/type/Hybrid">Hybrid</a>
-            <a class="dropdown-item" href="/watches/type/Smart">Smart</a>
+            <a class="dropdown-item" routerLink="/watches">All Watches</a>
+            <a class="dropdown-item" routerLink="/watches/type/Analog">Analog</a>
+            <a class="dropdown-item" routerLink="/watches/type/Digital">Digital</a>
+            <a class="dropdown-item" routerLink="/watches/type/Hybrid">Hybrid</a>
+            <a class="dropdown-item" routerLink="/watches/type/Smart">Smart</a>
           </div>
         </li>
         <li class="nav-item">
-          <a href="/about" class="nav-link waves-effect">
+          <a routerLink="/about" class="nav-link waves-effect">
             About
           </a>
         </li>
         <li class="nav-item">
-          <a href="/contact" class="nav-link waves-effect">
+          <a routerLink="/contact" class="nav-link waves-effect">
             Contact
           </a>
         </li>
         <li class="nav-item">
-          <a href="/orders" class="nav-link waves-effect">
+          <a routerLink="/orders" class="nav-link waves-effect">
             Orders
           </a>
         </li>

@@ -4,8 +4,8 @@ import { Watch } from '../models/Watch';
 @Injectable({
   providedIn: 'root'
 })
-export class CartServiceService {
-
+export class CartService {
+  
   items : Watch[] = [];
   
   constructor() { }
@@ -22,4 +22,5 @@ export class CartServiceService {
     this.items = [];
     return this.items;
   }
+  
 }
