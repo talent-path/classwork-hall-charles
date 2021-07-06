@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'watches/type/:type', component: TypeWatchPageComponent },
   { path: 'contact', component: ContactPageComponent },
   { path: 'search', component: SearchPageComponent },
-  { path: 'watch/detail/:id', component: WatchDetailPageComponent }
+  { path: 'watch/detail/:id', component: WatchDetailPageComponent },
+  { path: 'about', component: AboutUsPageComponent }
 ];
 
 @NgModule({

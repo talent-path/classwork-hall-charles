@@ -23,6 +23,7 @@ import { WatchDetailPageComponent } from './components/watch-detail-page/watch-d
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { OrderDisplayComponent } from './components/order-display/order-display.component';
 import { TypeWatchPageComponent } from './components/type-watch-page/type-watch-page.component';
+import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { TypeWatchPageComponent } from './components/type-watch-page/type-watch-
     AddToCartComponent,
     OrderDisplayComponent,
     TypeWatchPageComponent,
+    AboutUsPageComponent,
   ],
   imports: [
     BrowserModule,
