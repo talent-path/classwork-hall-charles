@@ -7,13 +7,11 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
-import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
 import { WatchesListComponent } from './components/watches-list/watches-list.component';
 import { WatchDisplayComponent } from './components/watch-display/watch-display.component';
 import { WatchDetailDisplayComponent } from './components/watch-detail-display/watch-detail-display.component';
-import { JikanService } from './service/jikan.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TypeWatchListComponent } from './components/type-watch-list/type-watch-list.component';
@@ -26,6 +24,8 @@ import { TypeWatchPageComponent } from './components/type-watch-page/type-watch-
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 import { CartService } from './service/cart.service';
 import { WatchCartDisplayComponent } from './components/watch-cart-display/watch-cart-display.component';
+import { OrderDetailsPageComponent } from './components/order-details-page/order-details-page.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { WatchCartDisplayComponent } from './components/watch-cart-display/watch
     NavBarComponent,
     SearchPageComponent,
     ContactPageComponent,
-    CheckoutPageComponent,
     CartComponent,
     OrdersListComponent,
     WatchesListComponent,
@@ -49,6 +48,8 @@ import { WatchCartDisplayComponent } from './components/watch-cart-display/watch
     TypeWatchPageComponent,
     AboutUsPageComponent,
     WatchCartDisplayComponent,
+    OrderDetailsPageComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

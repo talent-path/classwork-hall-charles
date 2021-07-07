@@ -4,11 +4,10 @@ import { AboutUsPageComponent } from './components/about-us-page/about-us-page.c
 import { CartComponent } from './components/cart/cart.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { OrderDetailsPageComponent } from './components/order-details-page/order-details-page.component';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
-import { TypeWatchListComponent } from './components/type-watch-list/type-watch-list.component';
 import { TypeWatchPageComponent } from './components/type-watch-page/type-watch-page.component';
-import { WatchDetailDisplayComponent } from './components/watch-detail-display/watch-detail-display.component';
 import { WatchDetailPageComponent } from './components/watch-detail-page/watch-detail-page.component';
 import { WatchesListComponent } from './components/watches-list/watches-list.component';
 
@@ -21,7 +20,8 @@ const routes: Routes = [
   { path: 'search', component: SearchPageComponent },
   { path: 'watch/detail/:id', component: WatchDetailPageComponent },
   { path: 'about', component: AboutUsPageComponent },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  { path: 'order/details', component: OrderDetailsPageComponent }
 ];
 
 @NgModule({
