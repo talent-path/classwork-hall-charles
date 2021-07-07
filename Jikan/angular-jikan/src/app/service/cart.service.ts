@@ -25,8 +25,7 @@ export class CartService {
 
   getSubTotal() {
     var sum = 0;
-    for(var i = 0; i < this.items.length; i++)
-    {
+    for(var i = 0; i < this.items.length; i++) {
       sum += this.items[i].price;
     }
     return sum;
@@ -34,6 +33,14 @@ export class CartService {
 
   getTax() {
     return this.getSubTotal() * 0.07;
+  }
+
+  removeItem(watch : Watch) {
+    for(var i = 0; i < this.items.length; i++) {
+      if(this.items[i].id == watch.id) {
+        this.items.splice(i, 1);
+      }
+    }
   }
   
 }
