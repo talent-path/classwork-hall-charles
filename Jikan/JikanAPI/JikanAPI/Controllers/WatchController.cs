@@ -9,7 +9,6 @@ namespace JikanAPI.Controllers
 {
     [ApiController]
     [Route("/api/watch")]
-    [EnableCors("MyPolicy")]
     public class WatchController : Controller
     {
         JikanService _service;

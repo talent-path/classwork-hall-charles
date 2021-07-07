@@ -21,6 +21,10 @@ namespace JikanAPI.Models
         public string DeliveryAddress { get; set; }
         [Required]
         public string Email { get; set; }
+        [Required]
+        public int PostalCode { get; set; }
+        [Required]
+        public string City { get; set; }
 
 
         public List<OrderDetail> OrderDetails { get; set; }

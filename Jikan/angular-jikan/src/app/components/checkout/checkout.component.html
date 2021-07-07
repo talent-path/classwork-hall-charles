@@ -26,7 +26,7 @@
                 <!-- First name -->
                 <div class="md-form md-outline mb-0 mb-lg-4">
                   <label for="firstName">First Name</label>
-                  <input type="text" id="firstName" placeholder="John" class="form-control mb-0 mb-lg-2">
+                  <input type="text" id="firstName" placeholder="John" class="form-control mb-0 mb-lg-2" required [(ngModel)]="firstName">
                 </div>
   
               </div>
@@ -38,7 +38,7 @@
                 <!-- Last name -->
                 <div class="md-form md-outline">
                   <label for="lastName">Last Name</label>
-                  <input type="text" id="lastName" placeholder="Doe" class="form-control">
+                  <input type="text" id="lastName" placeholder="Doe" class="form-control" required [(ngModel)]="lastName">
                 </div>
   
               </div>
@@ -50,25 +50,25 @@
             <!-- Address Part 1 -->
             <div class="md-form md-outline mt-0">
               <label for="form14">Address</label>
-              <input type="text" id="form14" placeholder="1234 Name Street" class="form-control">
+              <input type="text" id="form14" placeholder="1234 Name Street" required class="form-control" [(ngModel)]="deliveryAddress">
+            </div>
+
+            <!-- Town / City -->
+            <div class="md-form md-outline">
+              <label for="form17">City</label>
+              <input type="text" id="form17" required class="form-control" [(ngModel)]="city">
             </div>
   
             <!-- Postcode / ZIP -->
             <div class="md-form md-outline">
               <label for="form16">Postal Code</label>
-              <input type="text" id="form16" class="form-control">
-            </div>
-  
-            <!-- Town / City -->
-            <div class="md-form md-outline">
-              <label for="form17">City</label>
-              <input type="text" id="form17" class="form-control">
+              <input type="text" id="form16" required class="form-control" [(ngModel)]="postalCode">
             </div>
   
             <!-- Email address -->
             <div class="md-form md-outline">
               <label for="form19">Email Address</label>
-              <input type="email" id="form19" placeholder="email@email.com" class="form-control">
+              <input type="email" id="form19" required placeholder="email@email.com" class="form-control" [(ngModel)]="email">
             </div>
   
           </div>
@@ -108,7 +108,7 @@
               </li>
             </ul>
   
-            <button type="button" class="btn btn-primary btn-block waves-effect waves-light">Make purchase</button>
+            <button type="button" class="btn btn-primary btn-block waves-effect waves-light" (click)="createOrder()">Make purchase</button>
   
           </div>
         </div>

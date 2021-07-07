@@ -8,4 +8,6 @@ export interface Order {
     orderDetails : OrderDetail[];
     name : string;
     email : string;
+    city: string;
+    postalCode : number;
 }
