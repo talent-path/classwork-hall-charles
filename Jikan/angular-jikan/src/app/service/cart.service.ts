@@ -22,5 +22,18 @@ export class CartService {
     this.items = [];
     return this.items;
   }
+
+  getSubTotal() {
+    var sum = 0;
+    for(var i = 0; i < this.items.length; i++)
+    {
+      sum += this.items[i].price;
+    }
+    return sum;
+  }
+
+  getTax() {
+    return this.getSubTotal() * 0.07;
+  }
   
 }
