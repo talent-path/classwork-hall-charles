@@ -6,4 +6,6 @@ export interface Order {
     date : Date;
     deliveryAddress : string;
     orderDetails : OrderDetail[];
+    name : string;
+    email : string;
 }
