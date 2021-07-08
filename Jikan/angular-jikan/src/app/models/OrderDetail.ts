@@ -1,4 +1,4 @@
 export interface OrderDetail {
-    watchId : number;
+    watchId? : number;
     quantity : number;
 }

@@ -40,7 +40,23 @@ export class JikanService {
   }
 
   createOrder(toAdd : Order) : Observable<Order> {
-    return this.http.post<Order>(this.baseUrl + "/order", toAdd, this.httpOptions)
+    return this.http.post<Order>(this.baseUrl + "/order", toAdd, this.httpOptions).pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        alert(err.error);
+        let empty : Order = {
+          total : 0,
+          date : new Date(),
+          deliveryAddress : "",
+          orderDetails : [],
+          name : "",
+          email : "",
+          city : "",
+          postalCode : 0
+        };
+        return of(empty);
+      })
+    );
   }
 
   getAllOrders() : Observable<Order[]> {

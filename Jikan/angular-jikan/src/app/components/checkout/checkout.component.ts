@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/service/cart.service';
+import { JikanService } from 'src/app/service/jikan.service';
 import { Order } from '../../models/Order';
 import { OrderDetail } from '../../models/OrderDetail';
+import { OrderDetailsPageComponent } from '../order-details-page/order-details-page.component';
 
 
 
@@ -24,32 +27,40 @@ export class CheckoutComponent implements OnInit {
   city : string = "";
   postalCode : number;
 
-  constructor(private cartService : CartService) { }
+  constructor(private cartService : CartService, private jikanService : JikanService, private router : Router) { }
 
   ngOnInit(): void {
   }
 
   createOrder() {
 
-    console.log(this.cartService.getQuantities());
+    let toAdd : Order = {
+      total : this.total,
+      date : new Date(),
+      deliveryAddress : this.deliveryAddress,
+      orderDetails : this.setOrderDetails(),
+      name : this.firstName + " " + this.lastName,
+      email : this.email,
+      city : this.city,
+      postalCode : this.postalCode
+    } 
 
-    // let toAdd : Order = {
-    //   total : this.total,
-    //   date : new Date(),
-    //   deliveryAddress : this.deliveryAddress,
-    //   orderDetails : this.setOrderDetails(),
-    //   name : this.firstName + " " + this.lastName,
-    //   email : this.email,
-    //   city : this.city,
-    //   postalCode : this.postalCode
-    // } 
+    this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
+
 
   }
 
   setOrderDetails() : OrderDetail[] {
     let orderDetails : OrderDetail [] = [];
 
-    
+    for(var i = 0; i < this.cartService.items.length; i++) {
+        let orderDetail : OrderDetail = { 
+          watchId : this.cartService.items[i].id, 
+          quantity :  this.cartService.quantities[i]
+        }
+      orderDetails.push(orderDetail);
+    }
+
     return orderDetails;
   }
 
