@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'watch/detail/:id', component: WatchDetailPageComponent },
   { path: 'about', component: AboutUsPageComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'order/details', component: OrderDetailsPageComponent },
+  { path: 'order/detail/:id', component: OrderDetailsPageComponent },
   { path: 'checkout', component: CheckoutComponent }
 ];
 
