@@ -72,7 +72,23 @@ export class JikanService {
   }
 
   getOrderById(id : number) : Observable<Order> {
-    return this.http.get<Order>(this.baseUrl + "/order/" + id);
+    return this.http.get<Order>(this.baseUrl + "/order/" + id).pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        alert(err.error);
+        let empty : Order = {
+          total : 0,
+          date : new Date(),
+          deliveryAddress : "",
+          orderDetails : [],
+          name : "",
+          email : "",
+          city : "",
+          postalCode : 0
+        };
+        return of(empty);
+      })
+    );;
   }
 
 }
