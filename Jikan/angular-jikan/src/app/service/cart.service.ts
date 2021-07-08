@@ -7,26 +7,33 @@ import { Watch } from '../models/Watch';
 export class CartService {
   
   items : Watch[] = [];
+  quantities : number[] = [];
   
   constructor() { }
 
-  addToCart(item: Watch) {
+  addToCart(item: Watch, quantity : number) {
     this.items.push(item);
+    this.quantities.push(quantity);
   }
 
   getItems() {
     return this.items;
   }
 
+  getQuantities() {
+    return this.quantities;
+  }
+
   clearCart() {
     this.items = [];
+    this.quantities = [];
     return this.items;
   }
 
   getSubTotal() {
     var sum = 0;
     for(var i = 0; i < this.items.length; i++) {
-      sum += this.items[i].price;
+      sum += this.items[i].price * this.quantities[i];
     }
     return sum;
   }
@@ -39,8 +46,13 @@ export class CartService {
     for(var i = 0; i < this.items.length; i++) {
       if(this.items[i].id == watch.id) {
         this.items.splice(i, 1);
+        this.quantities.splice(i, 1);
       }
     }
+  }
+
+  indexOf(watch : Watch) : number {
+    return this.items.indexOf(watch);
   }
   
 }

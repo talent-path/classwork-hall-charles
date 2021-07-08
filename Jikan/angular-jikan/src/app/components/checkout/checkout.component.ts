@@ -31,13 +31,26 @@ export class CheckoutComponent implements OnInit {
 
   createOrder() {
 
-    console.log(new Date())
+    console.log(this.cartService.getQuantities());
+
     // let toAdd : Order = {
     //   total : this.total,
     //   date : new Date(),
-
+    //   deliveryAddress : this.deliveryAddress,
+    //   orderDetails : this.setOrderDetails(),
+    //   name : this.firstName + " " + this.lastName,
+    //   email : this.email,
+    //   city : this.city,
+    //   postalCode : this.postalCode
     // } 
 
+  }
+
+  setOrderDetails() : OrderDetail[] {
+    let orderDetails : OrderDetail [] = [];
+
+    
+    return orderDetails;
   }
 
 }
