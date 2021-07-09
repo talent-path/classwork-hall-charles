@@ -23,4 +23,13 @@ export class WatchCartDisplayComponent implements OnInit {
     window.alert('Your item has been removed from the cart!');
   }
 
+  changeQuantity(quantityStr : string) {
+    const quantityNum = parseInt(quantityStr);
+    this.cartService.quantities[this.cartService.indexOf(this.watch)] = quantityNum;
+    console.log(this.cartService.quantities);
+  }
+
+  
+
+
 }
