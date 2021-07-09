@@ -27,6 +27,8 @@ export class CartService {
   clearCart() {
     this.items = [];
     this.quantities = [];
+    console.log(this.items)
+    console.log(this.quantities);
     return this.items;
   }
 

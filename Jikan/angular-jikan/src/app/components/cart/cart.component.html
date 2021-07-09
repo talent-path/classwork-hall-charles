@@ -13,9 +13,12 @@
         </tbody>
       </table>
     </div>
-    <button type="button" class="btn btn-primary waves-effect waves-light" routerLink="/checkout">Checkout</button>
-    <button type="button" class="btn btn-primary waves-effect waves-light" (click)="clearCart()">Clear Cart</button>
-
+    <div id="checkout-button">
+      <button type="button" class="btn btn-primary waves-effect waves-light" routerLink="/checkout">Checkout</button>
+    </div>
+    <div id="clear-cart-button">
+      <button type="button" class="btn btn-primary waves-effect waves-light" (click)="clearCart()">Clear Cart</button>
+    </div>
     <!-- End -->
   </div>
 </div>
