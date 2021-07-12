@@ -47,7 +47,6 @@ export class CheckoutComponent implements OnInit {
 
     this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
 
-
   }
 
   setOrderDetails() : OrderDetail[] {

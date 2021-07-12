@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
 import { Watch } from '../models/Watch';
 
 @Injectable({
@@ -8,12 +9,37 @@ export class CartService {
   
   items : Watch[] = [];
   quantities : number[] = [];
+  count = 0;
+  private cartCount = new ReplaySubject<number>(1);
+  cartCount$ = this.cartCount.asObservable();
   
   constructor() { }
+
+  addCount() {
+    this.count += 1;
+    this.cartCount.next(this.count);
+  }
+
+  removeCount() {
+    if(this.count > 0) {
+      this.count -= 1;
+    }
+    this.cartCount.next(this.count);
+  }
+
+  clearCount() {
+    this.count = 0;
+    this.cartCount.next(this.count);
+  }
+
+  getCount() {
+    return this.cartCount$;
+  }
 
   addToCart(item: Watch, quantity : number) {
     this.items.push(item);
     this.quantities.push(quantity);
+    this.addCount();
   }
 
   getItems() {
@@ -27,8 +53,7 @@ export class CartService {
   clearCart() {
     this.items = [];
     this.quantities = [];
-    console.log(this.items)
-    console.log(this.quantities);
+    this.clearCount();
     return this.items;
   }
 
@@ -49,6 +74,7 @@ export class CartService {
       if(this.items[i].id == watch.id) {
         this.items.splice(i, 1);
         this.quantities.splice(i, 1);
+        this.removeCount();
       }
     }
   }

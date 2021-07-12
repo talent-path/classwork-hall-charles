@@ -8,12 +8,18 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class NavBarComponent implements OnInit {
 
-  count : number = this.cartService.getItems.length;
-
+  totalItem = 0;
 
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
+    this.cartService.getCount().subscribe(
+      count => {
+        this.totalItem = count;
+        console.log(count);
+      }
+    );
+
   }
 
 }
