@@ -19,7 +19,6 @@ export class AddToCartComponent implements OnInit {
 
   addToCart(item : Watch) {
     this.cartService.addToCart(item, this.quantity);
-    window.alert('Your item has been added to the cart!');
   }
 
   changeQuantity(quantityStr : string) {
