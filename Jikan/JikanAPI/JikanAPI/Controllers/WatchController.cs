@@ -48,7 +48,7 @@ namespace JikanAPI.Controllers
             return Accepted(_service.GetWatchesByType(type));
         }
 
-        [HttpGet("/price/{max}")]
+        [HttpGet("price/{max}")]
         public IActionResult GetWatchesByPrice(decimal max)
         {
             return Accepted(_service.GetWatchesByPrice(max));
@@ -68,5 +68,10 @@ namespace JikanAPI.Controllers
             return Accepted();
         }
 
+        [HttpGet("order/{id}")]
+        public IActionResult GetWatchesByOrderId(int id)
+        {
+            return Accepted(_service.GetWatchesByOrderId(id));
+        }
     }
 }

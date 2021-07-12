@@ -3,12 +3,21 @@
 <br>
 <br>
 <div>
+    <h1>Thank you for your order</h1>
     <h2>{{order.name}}</h2>
-    <p>{{dateStr}}</p>
-    <p>{{order.deliveryAddress}}</p>
-    <p>{{order.email}}</p>
-    <p>{{order.city}}</p>
-    <p>{{order.postalCode}}</p>
-    <p>{{order.total | currency}}</p>
+    <p>Order Date: {{dateStr}}</p>
+    <p>Delivery Address: {{order.deliveryAddress}}, {{order.city}} {{order.postalCode}}</p>
+    <p>Email: {{order.email}}</p>
+    <p>Total: {{order.total | currency}}</p>
+    <h4>Order Summary:</h4> 
+    <div>
+        <table class="table">
+            <tbody>
+                <div *ngFor="let item of items">
+                    <app-order-detail-item-display [watch]="item"></app-order-detail-item-display>
+                </div>
+            </tbody>
+        </table>
+    </div>
 
 </div>

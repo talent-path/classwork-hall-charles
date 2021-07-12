@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/models/Order';
+import { Watch } from 'src/app/models/Watch';
 import { JikanService } from 'src/app/service/jikan.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class OrderDetailsPageComponent implements OnInit {
   order : Order;
   id : number = 0;
   dateStr : string = "";
+  items : Watch[] = [];
 
   constructor(private jikanService : JikanService, private route : ActivatedRoute) { }
 
@@ -26,7 +28,10 @@ export class OrderDetailsPageComponent implements OnInit {
       this.dateStr = this.order.date.toString().substring(0,10);
     });
 
-    
+    this.jikanService.getWatchesByOrderId(this.id).subscribe(watches => {
+      this.items = watches;
+    });
+
   }
 
 }

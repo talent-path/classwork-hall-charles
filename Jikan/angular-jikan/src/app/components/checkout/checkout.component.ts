@@ -45,7 +45,8 @@ export class CheckoutComponent implements OnInit {
       postalCode : this.postalCode
     } 
 
-    this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/order/detail/${order.id}"])});
+    this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
+    console.log(toAdd);
 
   }
 

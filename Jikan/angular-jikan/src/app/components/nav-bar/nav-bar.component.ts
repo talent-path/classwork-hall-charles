@@ -16,7 +16,6 @@ export class NavBarComponent implements OnInit {
     this.cartService.getCount().subscribe(
       count => {
         this.totalItem = count;
-        console.log(count);
       }
     );
 

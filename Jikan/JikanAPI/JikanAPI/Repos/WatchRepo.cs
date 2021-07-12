@@ -51,6 +51,19 @@ namespace JikanAPI.Repos
             return toReturn;
         }
 
+        public List<Watch> GetWatchesByOrderId(int id)
+        {
+            List<OrderDetail> ordersList = _context.OrderDetails.Where(od => od.OrderId == id).ToList();
+            List<Watch> toReturn = new List<Watch>();
+            foreach(OrderDetail od in ordersList)
+            {
+                Watch toAdd = _context.Watches.Find(od.WatchId);
+                toReturn.Add(toAdd);
+            }
+
+            return toReturn;
+        }
+
         public List<Watch> GetWatchesByPrice(decimal max)
         {
             List<Watch> toReturn = _context.Watches.Where(w => w.Price <= max).ToList();
