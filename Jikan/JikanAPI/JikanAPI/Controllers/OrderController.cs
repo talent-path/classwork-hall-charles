@@ -24,7 +24,7 @@ namespace JikanAPI.Controllers
         public IActionResult AddOrder(Order order)
         {
             _service.AddOrder(order);
-            return Accepted();
+            return Accepted(order);
         }
 
         [HttpGet("{id}")]

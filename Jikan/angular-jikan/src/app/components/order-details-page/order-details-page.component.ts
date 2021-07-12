@@ -12,6 +12,7 @@ export class OrderDetailsPageComponent implements OnInit {
 
   order : Order;
   id : number = 0;
+  dateStr : string = "";
 
   constructor(private jikanService : JikanService, private route : ActivatedRoute) { }
 
@@ -21,8 +22,11 @@ export class OrderDetailsPageComponent implements OnInit {
     });
     
     this.jikanService.getOrderById(this.id).subscribe(order => {
-      this.order = order;
+      this.order = order;    
+      this.dateStr = this.order.date.toString().substring(0,10);
     });
+
+    
   }
 
 }
