@@ -45,5 +45,6 @@ namespace JikanAPI.Controllers
             _service.DeleteOrder(id);
             return Accepted();
         }
+
     }
 }

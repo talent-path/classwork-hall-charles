@@ -61,6 +61,11 @@ namespace JikanAPI.Service
             return _watchRepo.GetWatchesByType(type);
         }
 
+        public List<int> GetWatchQuantityByOrderId(int id)
+        {
+            return _watchRepo.GetWatchQuantityByOrderId(id);
+        }
+
         public List<Watch> GetWatchesByOrderId(int id)
         {
             return _watchRepo.GetWatchesByOrderId(id);

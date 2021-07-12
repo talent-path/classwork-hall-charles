@@ -88,5 +88,18 @@ namespace JikanAPI.Repos
             _context.Remove(toDelete);
             _context.SaveChanges();
         }
+
+        public List<int> GetWatchQuantityByOrderId(int id)
+        {
+            List<OrderDetail> ordersList = _context.OrderDetails.Where(od => od.OrderId == id).ToList();
+            List<int> toReturn = new List<int>();
+            foreach (OrderDetail od in ordersList)
+            {
+                int toAdd = od.Quantity;
+                toReturn.Add(toAdd);
+            }
+
+            return toReturn;
+        }
     }
 }

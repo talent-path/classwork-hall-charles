@@ -15,6 +15,8 @@ export class OrderDetailsPageComponent implements OnInit {
   id : number = 0;
   dateStr : string = "";
   items : Watch[] = [];
+  quantities : number[] = [];
+  count : number = 0;
 
   constructor(private jikanService : JikanService, private route : ActivatedRoute) { }
 
@@ -30,6 +32,10 @@ export class OrderDetailsPageComponent implements OnInit {
 
     this.jikanService.getWatchesByOrderId(this.id).subscribe(watches => {
       this.items = watches;
+    });
+
+    this,this.jikanService.getWatchQuantityByOrderId(this.id).subscribe(quantities => {
+      this.quantities = quantities;
     });
 
   }

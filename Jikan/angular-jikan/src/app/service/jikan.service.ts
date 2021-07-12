@@ -48,9 +48,20 @@ export class JikanService {
         let empty : Watch[] = [];
         return of(empty);
       })
-    );;
+    );
   }
 
+  getWatchQuantityByOrderId(id : number) : Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + "/watch/order/quantity/" + id)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        let empty : number[] = [];
+        return of(empty);
+      })
+    );
+  }
   createOrder(toAdd : Order) : Observable<Order> {
     return this.http.post<Order>(this.baseUrl + "/order", toAdd, this.httpOptions).pipe(
       tap(x => console.log(x)),
