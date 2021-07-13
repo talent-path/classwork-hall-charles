@@ -27,6 +27,8 @@ import { WatchCartDisplayComponent } from './components/watch-cart-display/watch
 import { OrderDetailsPageComponent } from './components/order-details-page/order-details-page.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderDetailItemDisplayComponent } from './components/order-detail-item-display/order-detail-item-display.component';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { OrderDetailItemDisplayComponent } from './components/order-detail-item-
     OrderDetailsPageComponent,
     CheckoutComponent,
     OrderDetailItemDisplayComponent,
+    UserRegistrationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

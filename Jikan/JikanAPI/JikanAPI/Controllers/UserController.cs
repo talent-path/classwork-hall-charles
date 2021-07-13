@@ -28,7 +28,7 @@ namespace JikanAPI.Controllers
         public IActionResult RegisterUser(RegisterUserViewModel vm)
         {
             _service.RegisterUser(vm);
-            return Ok();
+            return Ok(true);
         }
 
         [AllowAnonymous]
