@@ -4,14 +4,16 @@ using JikanAPI.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JikanAPI.Migrations
 {
     [DbContext(typeof(JikanDbContext))]
-    partial class JikanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210713204547_OrderWithUser")]
+    partial class OrderWithUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,15 +109,13 @@ namespace JikanAPI.Migrations
                     b.Property<int>("PostalCode")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PurchaserId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(5,2)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("PurchaserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Orders");
                 });
@@ -188,15 +188,6 @@ namespace JikanAPI.Migrations
                     b.Navigation("EnrolledUser");
 
                     b.Navigation("SelectedRole");
-                });
-
-            modelBuilder.Entity("JikanAPI.Models.Order", b =>
-                {
-                    b.HasOne("JikanAPI.Models.Auth.User", "Purchaser")
-                        .WithMany()
-                        .HasForeignKey("PurchaserId");
-
-                    b.Navigation("Purchaser");
                 });
 
             modelBuilder.Entity("JikanAPI.Models.OrderDetail", b =>

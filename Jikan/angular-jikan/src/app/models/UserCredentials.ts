@@ -1,4 +1,4 @@
 export interface UserCredentials {
     Username : string;
-    Token : string;
+    token : string;
 }

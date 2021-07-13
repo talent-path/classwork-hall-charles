@@ -55,5 +55,9 @@ namespace JikanAPI.Repos
             _context.SaveChanges();
         }
 
+        public List<Order> GetOrdersByUserId(int curUserId)
+        {
+            return _context.Orders.Where(o => o.Purchaser.Id == curUserId).ToList();
+        }
     }
 }

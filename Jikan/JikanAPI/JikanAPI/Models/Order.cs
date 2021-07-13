@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JikanAPI.Models.Auth;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,6 +27,7 @@ namespace JikanAPI.Models
         [Required]
         public string City { get; set; }
         
+        public User Purchaser { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
     }

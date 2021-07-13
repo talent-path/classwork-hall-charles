@@ -29,6 +29,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderDetailItemDisplayComponent } from './components/order-detail-item-display/order-detail-item-display.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { LoginComponent } from './components/login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './token.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,7 @@ import { LoginComponent } from './components/login/login.component';
   exports: [
     HomePageComponent
   ],
-  providers: [CartService],
+  providers: [CartService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

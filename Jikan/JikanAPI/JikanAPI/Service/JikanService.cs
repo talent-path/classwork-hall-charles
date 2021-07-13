@@ -49,6 +49,11 @@ namespace JikanAPI.Service
             return token;
         }
 
+        public List<Order> GetOrdersByUserId(int curUserId)
+        {
+            return _orderRepo.GetOrdersByUserId(curUserId);
+        }
+
         private string GenerateToken(User curUser)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();

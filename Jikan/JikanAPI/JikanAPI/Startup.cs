@@ -36,6 +36,7 @@ namespace JikanAPI
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<JikanDbContext>(o => o.UseSqlServer("name=ConnectionStrings:Db1"));
             services.AddScoped<JikanService, JikanService>();
+            services.AddCors();
             services.AddAuthentication(o => {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -79,7 +80,11 @@ namespace JikanAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -87,11 +92,6 @@ namespace JikanAPI
             app.UseAuthentication();
 
             app.UseAuthorization();
-
-            app.UseCors(x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
