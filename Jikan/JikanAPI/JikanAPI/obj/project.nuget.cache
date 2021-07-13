@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "g79hFI1NB/kXzBSPYVf793yEYCvlhbX25BYsT8phoCoLhw0pkqxP5D/ejdHoGupI59xXaY24zr6vGGB+lJB0sg==",
+  "dgSpecHash": "cZMqG4fBMjMd8p9JqWlDwo8BnpbPIwGSN+XsT2ZRH9xU5BzfX+Zf1rZ5e1rH/lkiaJe5NUvwPVXlXwSpyaK+Zg==",
   "success": true,
   "projectFilePath": "C:\\Users\\CHall\\Desktop\\classwork-hall-charles\\Jikan\\JikanAPI\\JikanAPI\\JikanAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CHall\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\CHall\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.17\\microsoft.aspnetcore.authentication.jwtbearer.3.1.17.nupkg.sha512",
     "C:\\Users\\CHall\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.0\\microsoft.aspnetcore.jsonpatch.3.1.0.nupkg.sha512",
     "C:\\Users\\CHall\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.0.nupkg.sha512",
     "C:\\Users\\CHall\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

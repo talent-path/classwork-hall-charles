@@ -25,7 +25,7 @@ namespace JikanAPI.Models
         public int PostalCode { get; set; }
         [Required]
         public string City { get; set; }
-
+        
 
         public List<OrderDetail> OrderDetails { get; set; }
     }

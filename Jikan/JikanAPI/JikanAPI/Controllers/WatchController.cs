@@ -79,5 +79,11 @@ namespace JikanAPI.Controllers
         {
             return Accepted(_service.GetWatchQuantityByOrderId(id));
         }
+
+        [HttpGet("order/watch/quantity/{id}")]
+        public IActionResult GetWatchQuantityPair(int id)
+        {
+            return Accepted(_service.GetWatchQuantityPair(id));
+        }
     }
 }

@@ -62,6 +62,8 @@ export class JikanService {
       })
     );
   }
+
+
   createOrder(toAdd : Order) : Observable<Order> {
     return this.http.post<Order>(this.baseUrl + "/order", toAdd, this.httpOptions).pipe(
       tap(x => console.log(x)),

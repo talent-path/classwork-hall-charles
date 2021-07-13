@@ -4,14 +4,16 @@ using JikanAPI.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JikanAPI.Migrations
 {
     [DbContext(typeof(JikanDbContext))]
-    partial class JikanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210713132257_Users")]
+    partial class Users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,21 +63,6 @@ namespace JikanAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("JikanAPI.Models.Auth.UserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("JikanAPI.Models.Order", b =>
@@ -164,25 +151,6 @@ namespace JikanAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Watches");
-                });
-
-            modelBuilder.Entity("JikanAPI.Models.Auth.UserRole", b =>
-                {
-                    b.HasOne("JikanAPI.Models.Auth.Role", "SelectedRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JikanAPI.Models.Auth.User", "EnrolledUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EnrolledUser");
-
-                    b.Navigation("SelectedRole");
                 });
 
             modelBuilder.Entity("JikanAPI.Models.OrderDetail", b =>
