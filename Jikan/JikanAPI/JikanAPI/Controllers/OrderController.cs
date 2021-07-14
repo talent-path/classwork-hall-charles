@@ -26,13 +26,13 @@ namespace JikanAPI.Controllers
         public IActionResult AddOrder(Order order)
         {
             _service.AddOrder(order);
-            return Accepted(order);
+            return Ok(order);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetOrderById(int id)
         {
-            return Accepted(_service.GetOrderById(id));
+            return Ok(_service.GetOrderById(id));
         }
 
         [HttpGet]
@@ -54,7 +54,7 @@ namespace JikanAPI.Controllers
         public IActionResult DeleteOrder(int id)
         {
             _service.DeleteOrder(id);
-            return Accepted();
+            return Ok();
         }
 
     }

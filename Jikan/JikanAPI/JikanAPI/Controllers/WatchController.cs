@@ -23,77 +23,77 @@ namespace JikanAPI.Controllers
         public IActionResult AddWatch(Watch watch)
         {
             _service.AddWatch(watch);
-            return Accepted();
+            return Ok();
         }
 
         [HttpGet("{id}")]
         [AllowAnonymous]
         public IActionResult GetWatchById(int id)
         {
-           return Accepted(_service.GetWatchById(id));
+           return Ok(_service.GetWatchById(id));
         }
 
         [HttpGet("name/{name}")]
         [AllowAnonymous]
         public IActionResult GetWatchByName(string name)
         {
-            return Accepted(_service.GetWatchByName(name));
+            return Ok(_service.GetWatchByName(name));
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult GetAllWatches()
         {
-            return Accepted(_service.GetAllWatches());
+            return Ok(_service.GetAllWatches());
         }
 
         [HttpGet("type/{type}")]
         [AllowAnonymous]
         public IActionResult GetWatchesByType(string type)
         {
-            return Accepted(_service.GetWatchesByType(type));
+            return Ok(_service.GetWatchesByType(type));
         }
 
         [HttpGet("price/{max}")]
         [AllowAnonymous]
         public IActionResult GetWatchesByPrice(decimal max)
         {
-            return Accepted(_service.GetWatchesByPrice(max));
+            return Ok(_service.GetWatchesByPrice(max));
         }
 
         [HttpPut]
         public IActionResult EditWatch(Watch watch)
         {
            _service.EditWatch(watch);
-            return Accepted();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteWatch(int id)
         {
             _service.DeleteWatch(id);
-            return Accepted();
+            return Ok();
         }
 
         [HttpGet("order/{id}")]
         [AllowAnonymous]
         public IActionResult GetWatchesByOrderId(int id)
         {
-            return Accepted(_service.GetWatchesByOrderId(id));
+            return Ok(_service.GetWatchesByOrderId(id));
         }
 
         [HttpGet("order/quantity/{id}")]
         [AllowAnonymous]
         public IActionResult GetWatchQuantityByOrderId(int id)
         {
-            return Accepted(_service.GetWatchQuantityByOrderId(id));
+            return Ok(_service.GetWatchQuantityByOrderId(id));
         }
 
         [HttpGet("order/watch/quantity/{id}")]
         [AllowAnonymous]
         public IActionResult GetWatchQuantityPair(int id)
         {
-            return Accepted(_service.GetWatchQuantityPair(id));
+            return Ok(_service.GetWatchQuantityPair(id));
         }
     }
 }
