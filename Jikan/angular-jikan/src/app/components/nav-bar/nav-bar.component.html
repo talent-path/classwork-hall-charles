@@ -51,9 +51,14 @@
             Orders
           </a>
         </li>
-        <li *ngIf="!signedIn"class="nav-item">
+        <li *ngIf="!signedIn" class="nav-item">
           <a routerLink="/login" class="nav-link waves-effect">
             Sign In
+          </a>
+        </li>
+        <li *ngIf="!signedIn" class="nav-item">
+          <a routerLink="/register" class="nav-link waves-effect">
+            Register
           </a>
         </li>
         <li *ngIf="signedIn" class="nav-item">

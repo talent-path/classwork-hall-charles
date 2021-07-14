@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
 
@@ -13,7 +14,7 @@ export class NavBarComponent implements OnInit {
   signedIn : boolean = false;
 
 
-  constructor(private cartService : CartService, private authService : AuthService) { }
+  constructor(private cartService : CartService, private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
     this.cartService.getCount().subscribe(
@@ -29,5 +30,7 @@ export class NavBarComponent implements OnInit {
 
   signOut() {
     this.authService.signOut();
+    this.cartService.clearCart();
+    this.router.navigate([""]);
   }
 }
