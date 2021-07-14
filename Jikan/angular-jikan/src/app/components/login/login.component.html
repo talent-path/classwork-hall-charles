@@ -1,7 +1,13 @@
 <br>
 <br>
 <br>
-<br>
-<input name="username" type="text" placeholder="Enter Username" [(ngModel)]="username">
-<input name="password" type="password" placeholder="Enter Password" [(ngModel)]="password">
-<button type="submit" (click)="submit()">Submit</button>
+<div id="form-body" class="text-center">
+    <div class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input [(ngModel)]="username" type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input [(ngModel)]="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="submit()">Sign in</button>
+    </div>
+</div>

@@ -31,6 +31,5 @@ export class NavBarComponent implements OnInit {
   signOut() {
     this.authService.signOut();
     this.cartService.clearCart();
-    this.router.navigate([""]);
   }
 }

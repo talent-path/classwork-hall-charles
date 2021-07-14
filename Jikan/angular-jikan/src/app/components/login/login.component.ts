@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       Username : this.username,
       Password : this.password
     }
+    console.log(toLogin);
 
     this.authService.loginUser(toLogin);
     this.router.navigate([""]);
