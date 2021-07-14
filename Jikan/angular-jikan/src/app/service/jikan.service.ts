@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import {tap, catchError} from 'rxjs/operators';
 import { Watch } from '../models/Watch';
 import { Order } from '../models/Order';
 
@@ -16,15 +15,7 @@ export class JikanService {
   constructor(private http : HttpClient) { }
 
   getAllWatches() : Observable<Watch[]> {
-    return this.http.get<Watch[]>(this.baseUrl + "/watch")
-    .pipe(
-      tap(x => console.log(x)),
-      catchError(err => {
-        console.log(err);
-        let empty : Watch[] = [];
-        return of(empty);
-      })
-    );
+    return this.http.get<Watch[]>(this.baseUrl + "/watch");
   }
 
   getWatchById(id : number) : Observable<Watch> {
@@ -40,80 +31,24 @@ export class JikanService {
   }
 
   getWatchesByOrderId(id : number) : Observable<Watch[]> {
-    return this.http.get<Watch[]>(this.baseUrl + "/watch/order/" + id)
-    .pipe(
-      tap(x => console.log(x)),
-      catchError(err => {
-        console.log(err);
-        let empty : Watch[] = [];
-        return of(empty);
-      })
-    );
+    return this.http.get<Watch[]>(this.baseUrl + "/watch/order/" + id);
   }
 
   getWatchQuantityByOrderId(id : number) : Observable<number[]> {
-    return this.http.get<number[]>(this.baseUrl + "/watch/order/quantity/" + id)
-    .pipe(
-      tap(x => console.log(x)),
-      catchError(err => {
-        console.log(err);
-        let empty : number[] = [];
-        return of(empty);
-      })
-    );
+    return this.http.get<number[]>(this.baseUrl + "/watch/order/quantity/" + id);
   }
 
 
   createOrder(toAdd : Order) : Observable<Order> {
-    return this.http.post<Order>(this.baseUrl + "/order", toAdd, this.httpOptions).pipe(
-      tap(x => console.log(x)),
-      catchError(err => {
-        alert(err.error);
-        let empty : Order = {
-          total : 0,
-          date : new Date(),
-          deliveryAddress : "",
-          orderDetails : [],
-          name : "",
-          email : "",
-          city : "",
-          postalCode : 0
-        };
-        return of(empty);
-      })
-    );
+    return this.http.post<Order>(this.baseUrl + "/order", toAdd, this.httpOptions);
   }
 
   getAllOrders() : Observable<Order[]> {
-    return this.http.get<Order[]>(this.baseUrl + "/order")
-    .pipe(
-      tap(x => console.log(x)),
-      catchError(err => {
-        console.log(err);
-        let empty : Order[] = [];
-        return of(empty);
-      })
-    );
+    return this.http.get<Order[]>(this.baseUrl + "/order");
   }
 
   getOrderById(id : number) : Observable<Order> {
-    return this.http.get<Order>(this.baseUrl + "/order/" + id).pipe(
-      tap(x => console.log(x)),
-      catchError(err => {
-        alert(err.error);
-        let empty : Order = {
-          total : 0,
-          date : new Date(),
-          deliveryAddress : "",
-          orderDetails : [],
-          name : "",
-          email : "",
-          city : "",
-          postalCode : 0
-        };
-        return of(empty);
-      })
-    );;
+    return this.http.get<Order>(this.baseUrl + "/order/" + id);
   }
 
 }

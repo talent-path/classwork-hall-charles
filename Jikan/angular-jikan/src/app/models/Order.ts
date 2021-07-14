@@ -1,4 +1,5 @@
 import { OrderDetail } from "./OrderDetail";
+import { User } from "./User";
 
 export interface Order {
     id? : number;
@@ -10,4 +11,5 @@ export interface Order {
     email : string;
     city: string;
     postalCode : number;
+    purchaser : User;
 }

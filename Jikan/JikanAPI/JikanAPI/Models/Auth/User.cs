@@ -9,9 +9,7 @@ namespace JikanAPI.Models.Auth
     public class User
     {
         public int Id { get; set; }
-        [Required]
         public string Username { get; set; }
-        [Required]
         public string Email { get; set; }
         public string Name { get; set; }
         public byte[] PasswordHash { get; set; }

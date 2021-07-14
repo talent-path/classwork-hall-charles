@@ -16,7 +16,6 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     
     if(this.authService.isSignedIn()) {
-      console.log(this.authService.userCreds?.token)
       request = request.clone({
         setHeaders : {
           Authorization: `Bearer ${this.authService.userCreds?.token}`

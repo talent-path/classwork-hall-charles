@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/service/cart.service';
 import { JikanService } from 'src/app/service/jikan.service';
 import { Order } from '../../models/Order';
+import { User } from 'src/app/models/User';
 import { OrderDetail } from '../../models/OrderDetail';
 import { OrderDetailsPageComponent } from '../order-details-page/order-details-page.component';
+import { AuthService } from 'src/app/service/auth.service';
 
 
 
@@ -26,10 +28,19 @@ export class CheckoutComponent implements OnInit {
   email : string = "";
   city : string = "";
   postalCode : number;
+  userToAdd : User;
 
-  constructor(private cartService : CartService, private jikanService : JikanService, private router : Router) { }
+  constructor(private cartService : CartService, private jikanService : JikanService, private router : Router, private authService : AuthService) { }
 
   ngOnInit(): void {
+    this.userToAdd  = {
+      id : 0,
+      username : this.authService.userCreds?.username,
+      email : "",
+      name : "",
+      passwordHash : [],
+      passwordSalt : []
+    }
   }
 
   createOrder() {
@@ -42,12 +53,12 @@ export class CheckoutComponent implements OnInit {
       name : this.firstName + " " + this.lastName,
       email : this.email,
       city : this.city,
-      postalCode : this.postalCode
+      postalCode : this.postalCode,
+      purchaser : this.userToAdd
     } 
 
     this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
-    console.log(toAdd);
-
+    this.cartService.clearCart();
   }
 
   setOrderDetails() : OrderDetail[] {

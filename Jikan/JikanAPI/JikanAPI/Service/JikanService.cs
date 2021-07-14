@@ -225,7 +225,11 @@ namespace JikanAPI.Service
                     throw new InvalidQuantityException("Invalid quantity, cannot be <= 0.");
             }
 
-           return _orderRepo.AddOrder(toAdd);
+            toAdd.Purchaser = _userRepo.GetUserByUsername(toAdd.Purchaser.Username);
+
+            Console.WriteLine();
+
+            return _orderRepo.AddOrder(toAdd);
         }
 
         public Order GetOrderById(int id)
