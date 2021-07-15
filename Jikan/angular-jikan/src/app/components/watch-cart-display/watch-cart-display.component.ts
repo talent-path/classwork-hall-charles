@@ -20,7 +20,6 @@ export class WatchCartDisplayComponent implements OnInit {
 
   removeFromCart(toDelete : Watch) {
     this.cartService.removeItem(toDelete);
-    window.alert('Your item has been removed from the cart!');
   }
 
   changeQuantity(quantityStr : string) {
