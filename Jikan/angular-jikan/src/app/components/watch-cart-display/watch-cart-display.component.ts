@@ -15,7 +15,7 @@ export class WatchCartDisplayComponent implements OnInit {
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
-    this.quantity = this.cartService.quantities[this.cartService.indexOf(this.watch)];
+    this.quantity = this.cartService.quantities[this.cartService.indexOf(this.watch)];    
   }
 
   removeFromCart(toDelete : Watch) {

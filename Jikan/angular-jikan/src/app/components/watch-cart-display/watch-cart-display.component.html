@@ -1,5 +1,5 @@
 <tr>
-    <td class="border-0 align-middle" colspan="1">
+    <td id="watch" class="border-0 align-middle" colspan="1">
       <div class="p-2">
         <img src="{{watch.imageUrl}}" alt="" width="70" class="img-fluid rounded shadow-sm">
         <div class="ml-3 d-inline-block align-middle">
@@ -7,11 +7,11 @@
         </div>
       </div>
     </td>
-    <td class="border-0 align-middle" colspan="1"><strong>{{watch.price | currency}}</strong></td>
-    <td class="border-0 align-middle" colspan="1">
-      <select class="form-control" #quantitySelect (change)="changeQuantity(quantitySelect.value)">
+    <td id="price" class="border-0 align-middle" colspan="1"><strong>{{watch.price | currency}}</strong></td>
+    <td id="quantity" class="border-0 align-middle" colspan="1">
+      <select id="quantity-select" class="form-control" #quantitySelect (change)="changeQuantity(quantitySelect.value)">
         <option *ngFor='let number of [1,2,3,4,5]' [selected]="number === quantity" [value]="number">{{number}}</option>    
       </select>
     </td>
-    <td class="border-0 align-middle" colspan="1"><button class="btn btn-outline-secondary" (click)="removeFromCart(watch)">Delete</button></td>
+    <td id="delete" class="border-0 align-middle" colspan="1"><button class="btn btn-outline-secondary" (click)="removeFromCart(watch)">Delete</button></td>
 </tr>
