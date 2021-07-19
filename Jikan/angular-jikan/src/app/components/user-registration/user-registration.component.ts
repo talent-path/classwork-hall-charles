@@ -20,13 +20,13 @@ export class UserRegistrationComponent implements OnInit {
     if(registerForm.valid) {
       const user = registerForm.value;
       if(user.password == user.confirmPass) {
+        
         let toRegister : RegisterUserRequest = {
           Username : user.username,
           Name : user.name,
           Email : user.email,
           Password : user.password,
         }
-        console.log(toRegister)
 
         this.authService.registerUser(toRegister).subscribe((_) => console.log(_));
         this.router.navigate([""]);

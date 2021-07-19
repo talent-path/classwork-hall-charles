@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/models/LoginRequest';
 import { AuthService } from 'src/app/service/auth.service';
@@ -10,22 +11,23 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  username : string = "";
-  password : string = "";
-
   constructor(private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
   }
 
-  submit() {
-    let toLogin : LoginRequest = {
-      Username : this.username,
-      Password : this.password
-    }
+  submit(loginForm : NgForm) {
+    if(loginForm.valid) {
+      const user = loginForm.value;
 
-    this.authService.loginUser(toLogin);
-    this.router.navigate([""]);
+      let toLogin : LoginRequest = {
+        Username : user.username,
+        Password : user.password
+      }
+
+      this.authService.loginUser(toLogin);
+      this.router.navigate([""]);
+    }
   }
 
 }
