@@ -5,8 +5,8 @@ import { JikanService } from 'src/app/service/jikan.service';
 import { Order } from '../../models/Order';
 import { User } from 'src/app/models/User';
 import { OrderDetail } from '../../models/OrderDetail';
-import { OrderDetailsPageComponent } from '../order-details-page/order-details-page.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -21,13 +21,7 @@ export class CheckoutComponent implements OnInit {
   tax : number = this.cartService.getTax();
   total : number = this.subTotal + this.tax;
   date : Date;
-  deliveryAddress : string = "";
   orderDetails : OrderDetail[] = [];
-  firstName : string = "";
-  lastName : string = "";
-  email : string = "";
-  city : string = "";
-  postalCode : number;
   userToAdd : User;
 
   constructor(private cartService : CartService, private jikanService : JikanService, private router : Router, private authService : AuthService) { }
@@ -43,22 +37,29 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  createOrder() {
+  submit(checkoutForm : NgForm) {
 
-    let toAdd : Order = {
-      total : this.total,
-      date : new Date(),
-      deliveryAddress : this.deliveryAddress,
-      orderDetails : this.setOrderDetails(),
-      name : this.firstName + " " + this.lastName,
-      email : this.email,
-      city : this.city,
-      postalCode : this.postalCode,
-      purchaser : this.userToAdd
-    } 
+    if(checkoutForm.valid) {
+      const order = checkoutForm.value;
 
-    this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
-    this.cartService.clearCart();
+      let toAdd : Order = {
+        total : this.total,
+        date : new Date(),
+        deliveryAddress : order.deliveryAddress,
+        orderDetails : this.setOrderDetails(),
+        name : order.firstName + " " + order.lastName,
+        email : order.email,
+        city : order.city,
+        postalCode : order.postalCode,
+        purchaser : this.userToAdd
+      } 
+
+      console.log(toAdd)
+      console.log(order.deliveryAddress)
+
+      this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
+      this.cartService.clearCart();
+    }
   }
 
   setOrderDetails() : OrderDetail[] {
