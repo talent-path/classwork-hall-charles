@@ -31,6 +31,7 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
 import { LoginComponent } from './components/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token.interceptor';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { TokenInterceptor } from './token.interceptor';
     OrderDetailItemDisplayComponent,
     UserRegistrationComponent,
     LoginComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,

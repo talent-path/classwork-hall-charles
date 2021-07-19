@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterUserRequest } from 'src/app/models/RegisteredUserRequest';
 import { AuthService } from 'src/app/service/auth.service';
@@ -10,32 +11,27 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class UserRegistrationComponent implements OnInit {
 
-  username : string = "";
-  email : string = "";
-  name : string = "";
-  password : string = "";
-  confirmPass : string = "";
-
   constructor(private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
   }
 
-  submit() {
+  submit(registerForm: NgForm) {
+    if(registerForm.valid) {
+      const user = registerForm.value;
+      if(user.password == user.confirmPass) {
+        let toRegister : RegisterUserRequest = {
+          Username : user.username,
+          Name : user.name,
+          Email : user.email,
+          Password : user.password,
+        }
+        console.log(toRegister)
 
-    if(this.password == this.confirmPass)
-    {
-      let toRegister : RegisterUserRequest = {
-        Username : this.username,
-        Name : this.name,
-        Email : this.email,
-        Password : this.password,
+        this.authService.registerUser(toRegister).subscribe((_) => console.log(_));
+        this.router.navigate([""]);
+
       }
-      console.log(toRegister)
-
-      this.authService.registerUser(toRegister).subscribe((_) => console.log(_));
-      this.router.navigate([""]);
-
     }
   }
 
