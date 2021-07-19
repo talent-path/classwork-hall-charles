@@ -7,7 +7,7 @@
         </div>
       </div>
     </td>
-    <td id="price" class="border-0 align-middle" colspan="1"><strong>{{watch.price | currency}}</strong></td>
+    <td id="price" class="border-0 align-middle" colspan="1"><strong>{{watchTotalPrice | currency}}</strong></td>
     <td id="quantity" class="border-0 align-middle" colspan="1">
       <select id="quantity-select" class="form-control" #quantitySelect (change)="changeQuantity(quantitySelect.value)">
         <option *ngFor='let number of [1,2,3,4,5]' [selected]="number === quantity" [value]="number">{{number}}</option>    

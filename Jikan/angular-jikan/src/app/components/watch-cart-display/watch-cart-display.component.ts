@@ -11,11 +11,13 @@ export class WatchCartDisplayComponent implements OnInit {
 
   @Input() watch : Watch;
   quantity : number = 0;
+  watchTotalPrice : number = 0;
 
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
     this.quantity = this.cartService.quantities[this.cartService.indexOf(this.watch)];    
+    this.watchTotalPrice = this.quantity * this.watch.price;
   }
 
   removeFromCart(toDelete : Watch) {
@@ -25,7 +27,7 @@ export class WatchCartDisplayComponent implements OnInit {
   changeQuantity(quantityStr : string) {
     const quantityNum = parseInt(quantityStr);
     this.cartService.quantities[this.cartService.indexOf(this.watch)] = quantityNum;
-    console.log(this.cartService.quantities);
+    this.watchTotalPrice = quantityNum * this.watch.price;
   }
 
   
