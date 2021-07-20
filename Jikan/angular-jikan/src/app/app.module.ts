@@ -30,7 +30,7 @@ import { OrderDetailItemDisplayComponent } from './components/order-detail-item-
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './token.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
