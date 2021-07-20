@@ -14,6 +14,7 @@ export class OrderDisplayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //Change to pipe?
     this.dateStr = this.order.date.toString().substring(0,10);
   }
 

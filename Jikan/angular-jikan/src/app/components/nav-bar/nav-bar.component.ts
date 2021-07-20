@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SubscriptionsContainer } from 'src/app/models/Subscriptions-Container';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
 
@@ -8,16 +9,16 @@ import { CartService } from 'src/app/service/cart.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, OnDestroy {
 
   totalItem = 0;
   signedIn : boolean = false;
-
+  subs : SubscriptionsContainer = new SubscriptionsContainer();
 
   constructor(private cartService : CartService, private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
-    this.cartService.getCount().subscribe(
+    this.subs.add = this.cartService.getCount().subscribe(
       count => {
         this.totalItem = count;
       }
@@ -25,11 +26,15 @@ export class NavBarComponent implements OnInit {
 
     this.signedIn = this.authService.isSignedIn();
 
-    this.authService.loggedInEvent.subscribe((signedIn) => this.signedIn = signedIn);
+    this.subs.add = this.authService.loggedInEvent.subscribe((signedIn) => this.signedIn = signedIn);
   }
 
   signOut() {
     this.authService.signOut();
     this.cartService.clearCart();
+  }
+
+  ngOnDestroy(): void {
+    this.subs.dispose();
   }
 }
