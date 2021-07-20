@@ -16,7 +16,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit(loginForm : NgForm) {
+  /**
+   * Submits the user-entered form for login.
+   *
+   * @param loginForm - The NgForm being submitted.
+   *
+   */
+  submit(loginForm : NgForm): void {
     if(loginForm.valid) {
       const user = loginForm.value;
 

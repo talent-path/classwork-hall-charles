@@ -19,25 +19,53 @@ export class AuthService {
 
   constructor(private http : HttpClient) { }
 
+  /**
+  * Sends a Post request to register a user.
+  *
+  * @param user - The user to be registered.
+  * @returns  true if successfull registered, false otherwise.
+  *
+  */
   registerUser(user : RegisterUserRequest) : Observable<boolean> {
     return this.http.post<boolean>(this.baseUrl, user, this.httpOptions);
   }
 
-  loginUser(user : LoginRequest) {
+  /**
+  * Sends a Post request to login in a user.
+  *
+  * @param user - The login credentials for the user attempting to login. 
+  *
+  */
+  loginUser(user : LoginRequest): void {
     this.http.post<UserCredentials>(this.baseUrl + "/login", user, this.httpOptions)
     .subscribe(c => this.saveUserAndToken(c));
   }
 
-  saveUserAndToken(c : UserCredentials) {
+  /**
+  * Sets the loggedInEvent and saves the user credentials (username, token) to userCreds for the logged in user.
+  *
+  * @param toSave - the UserCredentials to be saved.
+  *
+  */
+  saveUserAndToken(toSave : UserCredentials): void {
     this.loggedInEvent.emit(true);
-    this.userCreds = c;
+    this.userCreds = toSave;
   }
 
-  isSignedIn() : boolean {
+  /**
+  * Checks if a user is currently signed in.
+  *
+  * @returns true if signed in, false otherwise.
+  * 
+  */
+  isSignedIn(): boolean {
     return this.userCreds != null;
   }
 
-  signOut() {
+  /**
+  * Signs out the user who is currently signed in and updates the loggedInEvent.
+  */
+  signOut(): void {
     this.userCreds = null;
     this.loggedInEvent.emit(false);
   }

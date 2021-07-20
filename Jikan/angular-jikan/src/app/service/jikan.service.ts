@@ -14,40 +14,100 @@ export class JikanService {
 
   constructor(private http : HttpClient) { }
 
-  getAllWatches() : Observable<Watch[]> {
+  /**
+  * Sends a Get request to get all Watches.
+  * 
+  * @returns An Observable of Watch array containing all Watches.
+  * 
+  */
+  getAllWatches(): Observable<Watch[]> {
     return this.http.get<Watch[]>(this.baseUrl + "/watch");
   }
 
-  getWatchById(id : number) : Observable<Watch> {
+  /**
+  * Sends a Get request to get a Watch by id.
+  * 
+  * @param id - The id to get by.
+  * @returns An Observable of Watch containing the Watch with the associated id.
+  * 
+  */
+  getWatchById(id : number): Observable<Watch> {
     return this.http.get<Watch>(this.baseUrl + "/watch/" + id);
   }
 
-  getWatchByName(name : string) : Observable<Watch> {
+  /**
+  * Sends a Get request to get a Watch by name.
+  * 
+  * @param name - The name to get by.
+  * @returns An Observable of Watch containing the Watch with the associated name.
+  * 
+  */
+  getWatchByName(name : string): Observable<Watch> {
     return this.http.get<Watch>(this.baseUrl + "/watch/name/" + name);
   }
 
-  getWatchesByType(type : string) : Observable<Watch[]> {
+  /**
+  * Sends a Get request to get Watches by type.
+  * 
+  * @param type - The type to get by.
+  * @returns An Observable of Watch array containing the Watches with the associated type.
+  * 
+  */
+  getWatchesByType(type : string): Observable<Watch[]> {
     return this.http.get<Watch[]>(this.baseUrl + "/watch/type/" + type);
   }
 
-  getWatchesByOrderId(id : number) : Observable<Watch[]> {
-    return this.http.get<Watch[]>(this.baseUrl + "/watch/order/" + id);
+  /**
+  * Sends a Get request to get Watches by order id.
+  * 
+  * @param orderId - The order id to get by.
+  * @returns An Observable of Watch array containing the Watches with the associated order id.
+  * 
+  */
+  getWatchesByOrderId(orderId : number): Observable<Watch[]> {
+    return this.http.get<Watch[]>(this.baseUrl + "/watch/order/" + orderId);
   }
 
-  getWatchQuantityByOrderId(id : number) : Observable<number[]> {
-    return this.http.get<number[]>(this.baseUrl + "/watch/order/quantity/" + id);
+  /**
+  * Sends a Get request to get quantities by order id.
+  * 
+  * @param orderId - The order id to get by.
+  * @returns An Observable of number array containing the quantities with the associated order id.
+  * 
+  */
+  getWatchQuantityByOrderId(orderId : number): Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + "/watch/order/quantity/" + orderId);
   }
 
-
-  createOrder(toAdd : Order) : Observable<Order> {
+  /**
+  * Sends a Post request to add an Order.
+  * 
+  * @param toAdd - The Order to be added.
+  * @returns An Observable of Order containing the Order to be added..
+  * 
+  */
+  addOrder(toAdd : Order): Observable<Order> {
     return this.http.post<Order>(this.baseUrl + "/order", toAdd, this.httpOptions);
   }
 
-  getAllOrders() : Observable<Order[]> {
+  /**
+  * Sends a Get request to get all Orders.
+  * 
+  * @returns An Observable of Order array containing all Orders.
+  * 
+  */
+  getAllOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.baseUrl + "/order");
   }
 
-  getOrderById(id : number) : Observable<Order> {
+  /**
+  * Sends a Get request to get Order by id.
+  * 
+  * @param id - The id to get by.
+  * @returns An Observable of Order containing the Order with the associated id.
+  * 
+  */
+  getOrderById(id : number): Observable<Order> {
     return this.http.get<Order>(this.baseUrl + "/order/" + id);
   }
 

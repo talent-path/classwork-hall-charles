@@ -16,7 +16,13 @@ export class UserRegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit(registerForm: NgForm) {
+  /**
+   * Submits the user-entered form for registration.
+   *
+   * @param registerForm - The NgForm being submitted.
+   *
+   */
+  onSubmit(registerForm: NgForm): void {
     if(registerForm.valid) {
       const user = registerForm.value;
       if(user.password == user.confirmPass) {

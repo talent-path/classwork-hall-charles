@@ -20,11 +20,23 @@ export class WatchCartDisplayComponent implements OnInit {
     this.watchTotalPrice = this.quantity * this.watch.price;
   }
 
-  removeFromCart(toDelete : Watch) {
-    this.cartService.removeItem(toDelete);
+  /**
+   * Removes a Watch and associated quantity to the cart.
+   *
+   * @param toRemove - The Watch to remove from the cart.
+   *
+   */
+  removeFromCart(toRemove : Watch): void {
+    this.cartService.removeItem(toRemove);
   }
 
-  changeQuantity(quantityStr : string) {
+  /**
+   * Changes the quantity of a watch in the cart and updates the calculated price.
+   *
+   * @param quantityStr - The string quantity of the Watch being added.
+   *
+   */
+  changeQuantity(quantityStr : string): void {
     const quantityNum = parseInt(quantityStr);
     this.cartService.quantities[this.cartService.indexOf(this.watch)] = quantityNum;
     this.watchTotalPrice = quantityNum * this.watch.price;

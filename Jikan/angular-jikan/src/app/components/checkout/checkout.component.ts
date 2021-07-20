@@ -35,7 +35,13 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  submit(checkoutForm : NgForm) {
+  /**
+   * Submits the user-entered form for checkout to add an order.
+   *
+   * @param checkoutForm - The NgForm being submitted.
+   *
+   */
+  onSubmit(checkoutForm : NgForm): void {
 
     if(checkoutForm.valid) {
       const order = checkoutForm.value;
@@ -52,15 +58,18 @@ export class CheckoutComponent implements OnInit {
         purchaser : this.userToAdd
       } 
 
-      console.log(toAdd)
-      console.log(order.deliveryAddress)
-
-      this.jikanService.createOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
+      this.jikanService.addOrder(toAdd).subscribe((_) => {this.router.navigate(["/orders"])});
       this.cartService.clearCart();
     }
   }
 
-  setOrderDetails() : OrderDetail[] {
+  /**
+   * Sets the OrderDetail array for a particular order by getting each watch id and its associated quantity.
+   *
+   * @returns An OrderDetail array.
+   *
+   */
+  setOrderDetails(): OrderDetail[] {
     let orderDetails : OrderDetail [] = [];
 
     for(var i = 0; i < this.cartService.items.length; i++) {

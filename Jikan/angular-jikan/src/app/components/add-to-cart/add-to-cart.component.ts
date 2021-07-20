@@ -17,11 +17,23 @@ export class AddToCartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToCart(item : Watch) {
+  /**
+   * Adds a Watch and associated quantity to the cart.
+   *
+   * @param item - The Watch to add to cart.
+   *
+   */
+  addToCart(item : Watch): void {
     this.cartService.addToCart(item, this.quantity);
   }
 
-  changeQuantity(quantityStr : string) {
+  /**
+   * Changes the quantity of a Watch.
+   *
+   * @param quantityStr - The string quantity of the Watch being added.
+   *
+   */
+  changeQuantity(quantityStr : string): void {
     const quantityNum = parseInt(quantityStr);
     this.quantity = quantityNum;
   }

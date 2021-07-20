@@ -29,7 +29,10 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.subs.add = this.authService.loggedInEvent.subscribe((signedIn) => this.signedIn = signedIn);
   }
 
-  signOut() {
+  /**
+   * Signs out the user who is currently signed in.
+   */
+  signOut(): void {
     this.authService.signOut();
     this.cartService.clearCart();
   }

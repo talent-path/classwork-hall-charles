@@ -14,7 +14,13 @@ export class ContactFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(contactForm: NgForm) {
+  /**
+   * Submits the user-entered form for contact.
+   *
+   * @param contactForm - The NgForm being submitted.
+   *
+   */
+  onSubmit(contactForm: NgForm): void {
     if (contactForm.valid) {
       const email = contactForm.value;
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -31,8 +37,13 @@ export class ContactFormComponent implements OnInit {
     this.clearForm();
   }
 
-  clearForm()
-  {
+  /**
+   * Clears the NgForm.
+   *
+   * @returns void
+   *
+   */
+  clearForm(): void {
     (<HTMLFormElement>document.getElementById("contactForm")).reset();
   }
 
