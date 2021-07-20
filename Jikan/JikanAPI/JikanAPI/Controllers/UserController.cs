@@ -13,7 +13,6 @@ namespace JikanAPI.Controllers
     [ApiController]
     [Route("/api/user")]
     [Authorize(Roles = "Admin")]
-    //Change Accepted() to OK()
     public class UserController : Controller
     {
         JikanService _service;

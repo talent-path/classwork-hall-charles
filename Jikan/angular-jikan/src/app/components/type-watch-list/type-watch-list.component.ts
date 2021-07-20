@@ -19,6 +19,8 @@ export class TypeWatchListComponent implements OnInit {
     this.jikanService.getWatchesByType(this.type).subscribe(list => {
       this.watches = list;
     });
+    console.log(this.type)
+    console.log(this.watches)
   }
 
 }

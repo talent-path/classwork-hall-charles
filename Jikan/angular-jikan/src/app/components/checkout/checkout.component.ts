@@ -8,8 +8,6 @@ import { OrderDetail } from '../../models/OrderDetail';
 import { AuthService } from 'src/app/service/auth.service';
 import { NgForm } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
