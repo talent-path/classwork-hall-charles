@@ -25,36 +25,64 @@ namespace JikanAPI.Controllers
         [HttpPost]
         public IActionResult AddOrder(Order order)
         {
-            _service.AddOrder(order);
-            return Ok(order);
+            try
+            {
+                _service.AddOrder(order);
+                return Ok(order);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult GetOrderById(int id)
         {
-            return Ok(_service.GetOrderById(id));
+            try
+            {
+                return Ok(_service.GetOrderById(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpGet]
         [Authorize]
         public IActionResult GetAllOrders()
         {
-            if (this.User.Claims.Any(c => c.Type == ClaimTypes.Role.ToString() && c.Value == "Admin"))
+            try
             {
-                return Ok(_service.GetAllOrders());
+                if (this.User.Claims.Any(c => c.Type == ClaimTypes.Role.ToString() && c.Value == "Admin"))
+                {
+                    return Ok(_service.GetAllOrders());
+                }
+                else
+                {
+                    int curUserId = int.Parse(this.User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value);
+                    return Ok(_service.GetOrdersByUserId(curUserId));
+                }
             }
-            else
+            catch (Exception)
             {
-                int curUserId = int.Parse(this.User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value);
-                return Ok(_service.GetOrdersByUserId(curUserId));
+                return StatusCode(500, "Internal server error");
             }
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteOrder(int id)
         {
-            _service.DeleteOrder(id);
-            return Ok();
+            try
+            {
+                _service.DeleteOrder(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
     }

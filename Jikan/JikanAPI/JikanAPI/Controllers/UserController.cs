@@ -26,22 +26,43 @@ namespace JikanAPI.Controllers
         [HttpPost]
         public IActionResult RegisterUser(RegisterUserViewModel vm)
         {
-            _service.RegisterUser(vm);
-            return Ok(true);
+            try
+            {
+                _service.RegisterUser(vm);
+                return Ok(true);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login(LoginViewModel vm)
         {
-            string token = _service.Login(vm);
-            return Ok(new { vm.Username, token });
+            try
+            {
+                string token = _service.Login(vm);
+                return Ok(new { vm.Username, token });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpGet]
         public IActionResult GetAllUsers()
         {
-            return Ok(_service.GetAllUsers());
+            try
+            {
+                return Ok(_service.GetAllUsers());
+            }
+            catch(Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
     }
