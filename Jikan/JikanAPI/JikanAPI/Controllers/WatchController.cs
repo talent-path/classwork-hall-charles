@@ -33,8 +33,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
         [AllowAnonymous]
+        [HttpGet("{id}")]
         public IActionResult GetWatchById(int id)
         {
             try
@@ -47,8 +47,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet("name/{name}")]
         [AllowAnonymous]
+        [HttpGet("name/{name}")]
         public IActionResult GetWatchByName(string name)
         {
             try
@@ -61,8 +61,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet]
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult GetAllWatches()
         {
             try
@@ -75,8 +75,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet("type/{type}")]
         [AllowAnonymous]
+        [HttpGet("type/{type}")]
         public IActionResult GetWatchesByType(string type)
         {
             try
@@ -89,8 +89,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet("price/{max}")]
         [AllowAnonymous]
+        [HttpGet("price/{max}")]
         public IActionResult GetWatchesByPrice(decimal max)
         {
             try
@@ -108,6 +108,9 @@ namespace JikanAPI.Controllers
         {
             try
             {
+                if (watch == null)
+                    return BadRequest("Watch is null.");
+
                 _service.EditWatch(watch);
                 return Ok();
             }
@@ -131,8 +134,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet("order/{id}")]
         [AllowAnonymous]
+        [HttpGet("order/{id}")]
         public IActionResult GetWatchesByOrderId(int id)
         {
             try
@@ -145,8 +148,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet("order/quantity/{id}")]
         [AllowAnonymous]
+        [HttpGet("order/quantity/{id}")]
         public IActionResult GetWatchQuantityByOrderId(int id)
         {
             try
@@ -159,8 +162,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet("order/watch/quantity/{id}")]
         [AllowAnonymous]
+        [HttpGet("order/watch/quantity/{id}")]
         public IActionResult GetWatchQuantityPair(int id)
         {
             try

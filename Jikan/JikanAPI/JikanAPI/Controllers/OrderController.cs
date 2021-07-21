@@ -27,6 +27,9 @@ namespace JikanAPI.Controllers
         {
             try
             {
+                if (order == null)
+                    return BadRequest("Order is null");
+
                 _service.AddOrder(order);
                 return Ok(order);
             }
@@ -49,8 +52,8 @@ namespace JikanAPI.Controllers
             }
         }
 
-        [HttpGet]
         [Authorize]
+        [HttpGet]
         public IActionResult GetAllOrders()
         {
             try

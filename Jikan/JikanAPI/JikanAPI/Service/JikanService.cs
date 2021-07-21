@@ -24,35 +24,6 @@ namespace JikanAPI.Service
             _orderRepo = new OrderRepo(context);
             _userRepo = new UserRepo(context);
         }
-        public int AddWatch(Watch toAdd)
-        {
-            if (toAdd == null)
-                throw new ArgumentNullException("Cannot create a null watch.");
-            if (toAdd.Name == null)
-                throw new ArgumentNullException("Cannot create a watch with a null name.");
-            if (toAdd.Name == "" || toAdd.Name.Length > 50 || toAdd.Name.Trim().Length == 0)
-                throw new InvalidNameException("Invalid name, cannot be empty, white spaces, or too long.");
-
-            return _watchRepo.AddWatch(toAdd);
-        }
-
-        public string Login(LoginViewModel vm)
-        {
-            User curUser = _userRepo.GetUserByUsername(vm.Username);
-            bool valid = ValidatePassword(vm.Password, curUser.PasswordSalt, curUser.PasswordHash);
-            if (!valid)
-            {
-                throw new InvalidPasswordException("Invalid Password");
-            }
-            string token = GenerateToken(curUser);
-
-            return token;
-        }
-
-        public List<Order> GetOrdersByUserId(int curUserId)
-        {
-            return _orderRepo.GetOrdersByUserId(curUserId);
-        }
 
         private string GenerateToken(User curUser)
         {
@@ -84,9 +55,9 @@ namespace JikanAPI.Service
             using (var hMac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
                 byte[] hashedPass = hMac.ComputeHash(Encoding.UTF8.GetBytes(password));
-                for(int i = 0; i < hashedPass.Length; i++)
+                for (int i = 0; i < hashedPass.Length; i++)
                 {
-                    if(hashedPass[i] != passwordHash[i])
+                    if (hashedPass[i] != passwordHash[i])
                     {
                         return false;
                     }
@@ -101,7 +72,7 @@ namespace JikanAPI.Service
             User prevUsed = _userRepo.GetUserByUsername(vm.Username);
 
             if (prevUsed != null)
-                throw new InvalidUsernameException("Username already taken."); 
+                throw new InvalidUsernameException("Username already taken.");
 
             Role basicRole = _userRepo.GetRoleByName("user");
             UserRole bridgeRow = new UserRole();
@@ -126,9 +97,33 @@ namespace JikanAPI.Service
             _userRepo.AddUser(toAdd);
         }
 
+        public string Login(LoginViewModel vm)
+        {
+            User curUser = _userRepo.GetUserByUsername(vm.Username);
+            bool valid = ValidatePassword(vm.Password, curUser.PasswordSalt, curUser.PasswordHash);
+            if (!valid)
+            {
+                throw new InvalidPasswordException("Invalid Password");
+            }
+            string token = GenerateToken(curUser);
+
+            return token;
+        }
+
         public List<User> GetAllUsers()
         {
             return _userRepo.GetAllUsers();
+        }
+
+        public int AddWatch(Watch toAdd)
+        {
+
+            if (toAdd.Name == null)
+                throw new ArgumentNullException("Cannot create a watch with a null name.");
+            if (toAdd.Name == "" || toAdd.Name.Length > 50 || toAdd.Name.Trim().Length == 0)
+                throw new InvalidNameException("Invalid name, cannot be empty, white spaces, or too long.");
+
+            return _watchRepo.AddWatch(toAdd);
         }
 
         public Watch GetWatchById(int id)
@@ -199,9 +194,6 @@ namespace JikanAPI.Service
 
         public void EditWatch(Watch toEdit)
         {
-            if (toEdit == null)
-                throw new ArgumentNullException("Cannot edit a null watch.");
-
             _watchRepo.EditWatch(toEdit);
         }
 
@@ -215,8 +207,7 @@ namespace JikanAPI.Service
 
         public int AddOrder(Order toAdd)
         {
-            if (toAdd == null)
-                throw new ArgumentNullException("Cannot add a null order.");
+
             foreach(OrderDetail od in toAdd.OrderDetails)
             {
                 if (od.WatchId <= 0)
@@ -238,6 +229,11 @@ namespace JikanAPI.Service
                 throw new InvalidIdException("Invalid Id, cannot be <= 0.");
 
             return _orderRepo.GetOrderById(id);
+        }
+
+        public List<Order> GetOrdersByUserId(int curUserId)
+        {
+            return _orderRepo.GetOrdersByUserId(curUserId);
         }
 
         public List<Order> GetAllOrders()
