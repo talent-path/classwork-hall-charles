@@ -14,10 +14,8 @@ export class OrderDetailsPageComponent implements OnInit, OnDestroy {
 
   order : Order;
   id : number = 0;
-  dateStr : string = "";
   items : Watch[] = [];
   quantities : number[] = [];
-  count : number = 0;
   subs : SubscriptionsContainer = new SubscriptionsContainer();
 
   constructor(private jikanService : JikanService, private route : ActivatedRoute) { }
@@ -29,7 +27,6 @@ export class OrderDetailsPageComponent implements OnInit, OnDestroy {
     
     this.subs.add = this.jikanService.getOrderById(this.id).subscribe(order => {
       this.order = order;    
-      this.dateStr = this.order.date.toString().substring(0,10);
     });
 
     this.subs.add = this.jikanService.getWatchesByOrderId(this.id).subscribe(watches => {

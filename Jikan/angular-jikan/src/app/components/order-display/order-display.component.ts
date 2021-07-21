@@ -9,14 +9,10 @@ import { Order } from 'src/app/models/Order';
 export class OrderDisplayComponent implements OnInit {
 
   @Input() order : Order; 
-  dateStr : string = "";
 
   constructor() { }
 
-  ngOnInit(): void {
-    //Change to pipe?
-    this.dateStr = this.order.date.toString().substring(0,10);
-  }
+  ngOnInit(): void { }
 
 
 }

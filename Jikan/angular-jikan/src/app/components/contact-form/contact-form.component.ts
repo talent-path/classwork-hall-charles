@@ -39,9 +39,6 @@ export class ContactFormComponent implements OnInit {
 
   /**
    * Clears the NgForm.
-   *
-   * @returns void
-   *
    */
   clearForm(): void {
     (<HTMLFormElement>document.getElementById("contactForm")).reset();
